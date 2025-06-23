@@ -23,7 +23,7 @@ using System;
                 parentAfterDrag = transform.parent;
                 transform.SetParent(transform.root);
                 transform.SetAsLastSibling();
-                if (_collider2D != null)
+                if (detectorCollider != null)
                 {
                     _collider2D.enabled = false; 
                     detectorCollider.enabled = true;
@@ -38,7 +38,11 @@ using System;
             public void OnEndDrag(PointerEventData eventData)
             {
                 transform.SetParent(parentAfterDrag);
-                _collider2D.enabled = true; 
-                detectorCollider.enabled = false;
+                if (detectorCollider != null)
+                {
+                    _collider2D.enabled = true; 
+                    detectorCollider.enabled = false;
+                }
+                
             }
         }
