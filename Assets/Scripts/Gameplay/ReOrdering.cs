@@ -2,23 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ReOrdering : MonoBehaviour
 {
-    public float spacing = 140f; // spacing between words
+    public float spacing = 12f; // spacing between words
 
-    private RectTransform rt;
-    private Vector2 originalSizeDelta;
+    private LayoutElement layoutElement;
+    private float originalPreferredWidth;
 
     private void Awake()
     {
-        rt = GetComponent<RectTransform>();
+        layoutElement = GetComponent<LayoutElement>();
     }
 
     private void Start()
     {
-        if (rt != null)
-            originalSizeDelta = rt.sizeDelta;
+        if (layoutElement != null)
+            originalPreferredWidth = layoutElement.preferredWidth;
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -39,19 +40,17 @@ public class ReOrdering : MonoBehaviour
 
     private void SpacingOut()
     {
-        if (rt != null)
+        if (layoutElement != null)
         {
-            Vector2 size = rt.sizeDelta;
-            size.x = spacing;
-            rt.sizeDelta = size;
+            layoutElement.preferredWidth = originalPreferredWidth + spacing;
         }
     }
 
     public void ResetToOriginalSize()
     {
-        if (rt != null)
+        if (layoutElement != null)
         {
-            rt.sizeDelta = originalSizeDelta;
+            layoutElement.preferredWidth = originalPreferredWidth;
         }
     }
 }
