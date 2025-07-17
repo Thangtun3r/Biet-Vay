@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Detector
+  - Word
   layers:
   - Default
   - TransparentFX

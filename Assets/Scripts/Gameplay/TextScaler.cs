@@ -8,18 +8,16 @@ using UnityEngine;
 public class TextScaler : MonoBehaviour
 {
     public TMP_Text text;
-    public RectTransform rt;
+    public RectTransform rectTransform;
     private float preferredWidth;
-    [SerializeField] private float textPadding;
+    [SerializeField] private int textPadding;
 
-    /*private void Start(){
-        text.ForceMeshUpdate();
-        
+    /*private void Start()
+     {
         float preferredWidth = text.preferredWidth;
         Debug.Log(preferredWidth);
     }*/
-
-
+    
     private void Update()
     {
         if (Application.isPlaying) return;
@@ -27,14 +25,16 @@ public class TextScaler : MonoBehaviour
         ScaleWithWidth();
     }
 
+    // Scale the text width to match the preferred width
     private void ScaleWithWidth()
     {
-        if (rt == null) rt = text.GetComponent<RectTransform>();
-        Vector2 size = rt.sizeDelta;
-        size.x = text.preferredWidth + textPadding;
-        rt.sizeDelta = size;
+        if (rectTransform == null) rectTransform = text.GetComponent<RectTransform>();
+        Vector2 size = rectTransform.sizeDelta;
+        size.x = (int)text.preferredWidth + textPadding;
+        rectTransform.sizeDelta = size;
     }
 
+    // Yeh this is just a helper function to calculate the preferred width of the text
     private void CalculatePreferredWidth()
     {
         preferredWidth = text.preferredWidth;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 [ExecuteAlways]
 [RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(BoxCollider2D))]
 public class UIColliderGenerator : MonoBehaviour
 {
     public BoxCollider2D BoxCollider;
@@ -23,6 +24,7 @@ public class UIColliderGenerator : MonoBehaviour
         Generate();
     }
 
+    //Generate a Box collider that matches the size of the RectTransform cause the we have dynamic UI elements
     public void Generate()
     {
         var size = rectTransform.rect.size;
