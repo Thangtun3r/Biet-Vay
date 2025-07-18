@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WordPoolManager : MonoBehaviour
+public interface IWordOrder
 {
-    
+    //oid OrderInPosition(Words.WordState state);
 }

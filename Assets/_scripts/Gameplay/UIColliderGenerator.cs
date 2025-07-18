@@ -20,7 +20,7 @@ public class UIColliderGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (Application.isPlaying) return;
+        //if (Application.isPlaying) return;
         Generate();
     }
 
