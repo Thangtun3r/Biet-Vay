@@ -20,7 +20,7 @@ public class TextScaler : MonoBehaviour
     
     private void Update()
     {
-        if (Application.isPlaying) return;
+        //if (Application.isPlaying) return;
         CalculatePreferredWidth();
         ScaleWithWidth();
     }
