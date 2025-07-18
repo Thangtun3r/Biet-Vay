@@ -7,6 +7,6 @@ using UnityEngine;
 public class WordsTemplate : ScriptableObject
 {
     public string word;
-    
+    public int id;
 }
 
