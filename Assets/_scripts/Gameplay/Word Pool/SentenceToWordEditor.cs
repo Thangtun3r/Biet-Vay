@@ -11,12 +11,11 @@ public class SentenceToWordEditor : EditorWindow
     private bool autoReset = true;
 
     private List<string> editableBlocks = new List<string>(); // Editable blocks
-    private WordPoolManager wordPoolManager;
 
-    [MenuItem("Tools/Word Pool Editor")]
+    [MenuItem("Tools/Word Package Editor")]
     public static void ShowWindow()
     {
-        GetWindow<SentenceToWordEditor>("Word Pool Manager");
+        GetWindow<SentenceToWordEditor>("Word Package Editor");
     }
 
     void OnGUI()
@@ -24,7 +23,7 @@ public class SentenceToWordEditor : EditorWindow
         GUILayout.Label("Sentence Input", EditorStyles.boldLabel);
         EditorGUILayout.HelpBox("Press ENTER for new block or use ';' to separate inline.\nYou can edit blocks below in real-time.", MessageType.Info);
 
-        // Text area for raw input
+        // Raw input text
         EditorGUI.BeginChangeCheck();
         inputText = EditorGUILayout.TextArea(inputText, GUILayout.Height(80));
         if (EditorGUI.EndChangeCheck())
@@ -34,7 +33,7 @@ public class SentenceToWordEditor : EditorWindow
 
         GUILayout.Space(10);
 
-        // ======= Editable Array-like UI =======
+        // ======= Preview & Editable Blocks =======
         GUILayout.Label($"🟦 Preview & Edit Blocks ({editableBlocks.Count})", EditorStyles.boldLabel);
 
         if (editableBlocks.Count > 0)
@@ -51,7 +50,7 @@ public class SentenceToWordEditor : EditorWindow
                 {
                     editableBlocks.RemoveAt(i);
                     GUI.FocusControl(null); // Avoid Unity focus bug
-                    break; // Avoid layout errors after removal
+                    break; // avoid layout errors
                 }
 
                 EditorGUILayout.EndHorizontal();
@@ -62,7 +61,6 @@ public class SentenceToWordEditor : EditorWindow
             GUILayout.Label("No blocks yet. Type something above.", EditorStyles.miniLabel);
         }
 
-        // Add new block manually
         if (GUILayout.Button("➕ Add New Block"))
         {
             editableBlocks.Add("New Block");
@@ -70,7 +68,7 @@ public class SentenceToWordEditor : EditorWindow
 
         GUILayout.Space(10);
 
-        // ======= Save Location UI =======
+        // ======= Save Location =======
         GUILayout.Label("Save Location", EditorStyles.boldLabel);
         EditorGUILayout.BeginHorizontal();
         GUILayout.Label("Current Path: " + savePath, EditorStyles.wordWrappedLabel);
@@ -97,32 +95,20 @@ public class SentenceToWordEditor : EditorWindow
 
         // ======= Generate Button =======
         GUI.enabled = editableBlocks.Count > 0;
-        if (GUILayout.Button("✅ Generate Words"))
+        if (GUILayout.Button("✅ Generate Words Package"))
         {
             if (autoReset) ResetGeneratedWords();
-            GenerateWordsFromBlocks();
+            GenerateWordsPackage();
         }
         GUI.enabled = true;
 
         GUILayout.Space(5);
 
-        // Reset blocks
+        // Reset preview
         if (GUILayout.Button("🔄 Reset Preview Blocks"))
         {
             editableBlocks.Clear();
         }
-
-        GUILayout.Space(10);
-
-        GUILayout.Label("Generated Words: (After Creation)", EditorStyles.boldLabel);
-
-        if (GUILayout.Button("🎲 Randomize & Assign To WordPoolManager"))
-        {
-            RandomizeAndAssign();
-        }
-
-        GUILayout.Space(10);
-        wordPoolManager = (WordPoolManager)EditorGUILayout.ObjectField("Word Pool Manager", wordPoolManager, typeof(WordPoolManager), true);
     }
 
     // 🔹 Auto-parsing when typing new text
@@ -148,7 +134,8 @@ public class SentenceToWordEditor : EditorWindow
         }
     }
 
-    void GenerateWordsFromBlocks()
+    // ✅ Generate ONE WordsPackage.asset
+    void GenerateWordsPackage()
     {
         if (editableBlocks.Count == 0)
         {
@@ -156,75 +143,45 @@ public class SentenceToWordEditor : EditorWindow
             return;
         }
 
-        // Ensure folder exists
-        if (!AssetDatabase.IsValidFolder(savePath))
-        {
-            string parent = Path.GetDirectoryName(savePath);
-            string newFolder = Path.GetFileName(savePath);
-
-            if (!AssetDatabase.IsValidFolder(parent))
-            {
-                AssetDatabase.CreateFolder("Assets", "WordTemplates");
-                parent = "Assets/WordTemplates";
-            }
-            AssetDatabase.CreateFolder(parent, newFolder);
-        }
+        // Create the package ScriptableObject
+        WordsPackage package = ScriptableObject.CreateInstance<WordsPackage>();
 
         for (int i = 0; i < editableBlocks.Count; i++)
         {
-            WordsTemplate wordAsset = ScriptableObject.CreateInstance<WordsTemplate>();
-            wordAsset.word = editableBlocks[i];
-            wordAsset.id = i + 1;
-
-            // Safe filename
-            string safeWordName = new string(editableBlocks[i].Where(char.IsLetterOrDigit).ToArray());
-            if (string.IsNullOrEmpty(safeWordName)) safeWordName = "Word";
-
-            string assetName = $"Word_{i + 1}_{safeWordName}.asset";
-            string fullPath = Path.Combine(savePath, assetName);
-            AssetDatabase.CreateAsset(wordAsset, fullPath);
+            WordsTemplate temp = new WordsTemplate();
+            temp.word = editableBlocks[i];
+            temp.id = i + 1;
+            package.words.Add(temp);
         }
 
+        // Ensure folder exists
+        if (!AssetDatabase.IsValidFolder(savePath))
+        {
+            string[] split = savePath.Split('/');
+            string parent = "Assets";
+            for (int i = 1; i < split.Length; i++)
+            {
+                if (!AssetDatabase.IsValidFolder(parent + "/" + split[i]))
+                    AssetDatabase.CreateFolder(parent, split[i]);
+                parent += "/" + split[i];
+            }
+        }
+
+        // ✅ Generate a unique ID suffix
+        string uniqueID = System.DateTime.Now.ToString("yyyyMMdd_HHmmss"); 
+        string assetName = $"WordsPackage_{uniqueID}.asset";
+
+        string assetPath = Path.Combine(savePath, assetName);
+
+        AssetDatabase.CreateAsset(package, assetPath);
         AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        Debug.Log($"✅ Generated {editableBlocks.Count} ScriptableObjects in: {savePath}");
+
+        Debug.Log($"✅ Created WordsPackage ({editableBlocks.Count} words) → {assetPath}");
     }
+
 
     void ResetGeneratedWords()
     {
         Debug.Log("🔄 Resetting generated word list (Preview stays intact).");
-    }
-
-    void RandomizeAndAssign()
-    {
-        if (wordPoolManager == null)
-        {
-            Debug.LogError("❌ Assign a WordPoolManager before randomizing!");
-            return;
-        }
-
-        if (editableBlocks.Count == 0)
-        {
-            Debug.LogWarning("⚠️ No blocks available to assign!");
-            return;
-        }
-
-        // Randomize order
-        var randomized = editableBlocks.OrderBy(x => Random.value).ToList();
-
-        // Create temporary WordsTemplates in memory (not saved as assets)
-        List<WordsTemplate> tempList = new List<WordsTemplate>();
-        for (int i = 0; i < randomized.Count; i++)
-        {
-            WordsTemplate temp = ScriptableObject.CreateInstance<WordsTemplate>();
-            temp.word = randomized[i];
-            temp.id = i + 1;
-            tempList.Add(temp);
-        }
-
-        wordPoolManager.wordsTemplate = tempList.ToArray();
-        EditorUtility.SetDirty(wordPoolManager);
-
-        Debug.Log("🎲 Randomized words assigned to WordPoolManager!");
     }
 }
