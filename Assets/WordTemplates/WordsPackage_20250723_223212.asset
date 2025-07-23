@@ -10,18 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51131257d47a1d47a0aacf4236c7332, type: 3}
-  m_Name: WordsPackage_20250723_153737
+  m_Name: WordsPackage_20250723_223212
   m_EditorClassIdentifier: 
   words:
-  - word: How
+  - word: I
     id: 1
-  - word: long
+  - word: love
     id: 2
-  - word: have
-    id: 3
   - word: you
+    id: 3
+  - word: Amanda
     id: 4
-  - word: been
-    id: 5
-  - word: waiting?
-    id: 6
+  wordsCount: 4

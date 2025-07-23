@@ -154,6 +154,9 @@ public class SentenceToWordEditor : EditorWindow
             package.words.Add(temp);
         }
 
+        // ✅ Store total word count
+        package.wordsCount = editableBlocks.Count;
+
         // Ensure folder exists
         if (!AssetDatabase.IsValidFolder(savePath))
         {
@@ -178,6 +181,7 @@ public class SentenceToWordEditor : EditorWindow
 
         Debug.Log($"✅ Created WordsPackage ({editableBlocks.Count} words) → {assetPath}");
     }
+
 
 
     void ResetGeneratedWords()

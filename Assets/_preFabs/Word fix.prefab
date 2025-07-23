@@ -42,7 +42,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 117, y: 30}
+  m_SizeDelta: {x: 124, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2452876824314676650
 CanvasRenderer:
@@ -140,7 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 4916858192676377033}
   rectTransform: {fileID: 5537709318452404726}
-  textPadding: 28
+  horizontalPadding: 34
+  verticalPadding: 17
 --- !u!114 &3663406810306228117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,7 +199,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 117, y: 30}
+  m_Size: {x: 100, y: 32}
   m_EdgeRadius: 0
 --- !u!114 &233220215892469625
 MonoBehaviour:
@@ -385,7 +386,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 69, y: 0}
+  m_SizeDelta: {x: 124, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6462339018928218663
 CanvasRenderer:
@@ -577,7 +578,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -619,9 +620,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.12933978, y: 0}
+  m_Offset: {x: -0.12050006, y: 0.05091699}
   serializedVersion: 2
-  m_Radius: 0.18639763
+  m_Radius: 0.56605583
 --- !u!50 &6588332129671535743
 Rigidbody2D:
   serializedVersion: 4
