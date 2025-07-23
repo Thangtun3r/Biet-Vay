@@ -1,30 +1,33 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WordPoolManager : MonoBehaviour
 {
-    public WordsTemplate[] wordsTemplate;
-    public GameObject wordPrefab;
-    public int wordID;
+    [Header("Word Pooling")]
+    public WordsPooling wordPooling;
 
-    private void Start()
-    {
-        CreateWords();
-    }
+    /// <summary>
+    /// Fired every time we pull a WordID prefab out of the pool and set it up.
+    /// </summary>
+    public static event Action<int, string, Transform> OnWordCreated;
 
-    private void CreateWords()
+    public void CreateSentence(WordsPackage wordsPackage)
     {
-        foreach (var wordTemplate in wordsTemplate)
+        foreach (var template in wordsPackage.words)
         {
-            GameObject wordObject = Instantiate(wordPrefab, transform);
-            WordID wordIDComponent = wordObject.GetComponent<WordID>();
-            if (wordIDComponent != null)
-            {
-                wordIDComponent.word = wordTemplate.word;
-                wordIDComponent.id = this.wordID++;
-            }
+            // 1. Get a pooled prefab
+            GameObject pooledObj = wordPooling.GetPooledObject();
+            WordID wordComponent = pooledObj.GetComponent<WordID>();
+
+            // 2. Initialize the logic object
+            wordComponent.word = template.word;
+            wordComponent.id   = template.id;
+            wordComponent.wordText.text = wordComponent.word;
+
+            // 3. Broadcast it
+            OnWordCreated?.Invoke(wordComponent.id,
+                wordComponent.word,
+                pooledObj.transform);
         }
     }
 }

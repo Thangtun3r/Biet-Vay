@@ -4,7 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "WordTemplate/WordsTemplate")]
 
-public class WordsTemplate : ScriptableObject
+[System.Serializable]
+public class WordsTemplate
 {
     public string word;
     public int id;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5503621556693247118}
   - component: {fileID: 606653879599082767}
   - component: {fileID: 9191417213006693733}
+  - component: {fileID: 5119855651370706735}
   m_Layer: 5
   m_Name: Button
   m_TagString: Word
@@ -137,6 +138,18 @@ MonoBehaviour:
   text: {fileID: 4916858192676377033}
   rectTransform: {fileID: 5537709318452404726}
   textPadding: 28
+--- !u!114 &5119855651370706735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268907775603701946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9031802fa8df9a04082b886b213ff90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4314517540068783136
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +163,8 @@ GameObject:
   - component: {fileID: 1834619534195528853}
   - component: {fileID: 5152736865007008619}
   - component: {fileID: 80273622891615803}
+  - component: {fileID: 6073329306566058967}
+  - component: {fileID: 1835007965656030314}
   m_Layer: 5
   m_Name: Word Visual
   m_TagString: Word
@@ -256,6 +271,33 @@ MonoBehaviour:
   word: 
   id: 0
   wordText: {fileID: 4916858192676377033}
+--- !u!114 &6073329306566058967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aae9ba0ddb6b9d4db9d22a86258deef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  followSpeed: 15
+  horizontalOffset: 0
+--- !u!114 &1835007965656030314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9031802fa8df9a04082b886b213ff90d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,55 @@
+﻿title: Start
+position: -226,-101
+color: red
+---
+Player: Hello there!
+NPC: Oh, hello! How can I help you today?
+NPC: What would you like to know?
+    NPC: We have a variety of topics to discuss.
+    NPC: Sure! Where do you need to go?
+    NPC: I can help you find your way around.
+-> I need information.
+    NPC: What kind of information are you looking for?
+-> Actually, I should go.
+    NPC: No problem. Come back anytime!
+    <<jump End>>
+===
+
+title: End
+position: 27,318
+color: blue
+---
+Player: Thanks for your help!
+NPC: You're welcome! Have a nice day!
+<<jump Information>>
+===
+
+title : Information
+position: 380,109
+---
+NPC: What kind of information are you looking for?
+-> About the town.
+    NPC: This town has a rich history. Would you like to know more about its founding?   
+-> About the people.
+    NPC: The people here are friendly and welcoming. Do you want to know about any specific
+individual?
+-> About the services.
+    NPC: We have various services available, including shops and inns. Is there something specific you're looking for?
+===
+
+title: Rude
+style: note
+position: 203,-165
+---
+NPC: Excuse me, but I don't have time for idle chit-chat.
+Player: Oh, I see. Sorry to bother you.
+===
+
+
+title: Node
+style: note
+position: 38,-221
+---
+ csdsdssd
+dfdf
+===
