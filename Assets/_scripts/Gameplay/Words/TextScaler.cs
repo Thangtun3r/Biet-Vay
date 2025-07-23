@@ -11,8 +11,8 @@ public class TextScaler : MonoBehaviour
     private float preferredWidth;
     private float preferredHeight;
 
-    [SerializeField] private int horizontalPadding = 10;
-    [SerializeField] private int verticalPadding = 5;
+    private int horizontalPadding = 20;
+    private int verticalPadding = 7;
 
     private void Update()
     {
