@@ -8,6 +8,7 @@ public class WordPackageRandomizer : MonoBehaviour
     public WordsPackage[] availablePackages; // All your test packages
     public WordPoolManager wordPoolManager;
     public WordsPooling wordPooling;
+    public WordsPooling visualPooling; // Optional: if you want to visualize the words
 
     [Header("Settings")]
     public float showTime = 4f;        // how long a package stays visible
@@ -42,6 +43,7 @@ public class WordPackageRandomizer : MonoBehaviour
     private void ClearPoolWithDelay()
     {
         wordPooling.clearPool();
+        visualPooling.clearPool();
         
     }
     

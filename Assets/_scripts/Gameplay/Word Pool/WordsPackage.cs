@@ -5,4 +5,5 @@ using System.Collections.Generic;
 public class WordsPackage : ScriptableObject
 {
     public List<WordsTemplate> words = new List<WordsTemplate>();
+    public int wordsCount;
 }

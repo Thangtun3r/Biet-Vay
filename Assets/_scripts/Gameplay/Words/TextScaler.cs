@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,34 +7,41 @@ public class TextScaler : MonoBehaviour
 {
     public TMP_Text text;
     public RectTransform rectTransform;
-    private float preferredWidth;
-    [SerializeField] private int textPadding;
 
-    /*private void Start()
-     {
-        float preferredWidth = text.preferredWidth;
-        Debug.Log(preferredWidth);
-    }*/
-    
+    private float preferredWidth;
+    private float preferredHeight;
+
+    [SerializeField] private int horizontalPadding = 10;
+    [SerializeField] private int verticalPadding = 5;
+
     private void Update()
     {
-        //if (Application.isPlaying) return;
-        CalculatePreferredWidth();
-        ScaleWithWidth();
+        // Calculate text preferred size
+        CalculatePreferredSize();
+
+        // Scale rect transform based on text size
+        ScaleWithPreferredSize();
     }
 
-    // Scale the text width to match the preferred width
-    private void ScaleWithWidth()
+    private void ScaleWithPreferredSize()
     {
-        if (rectTransform == null) rectTransform = text.GetComponent<RectTransform>();
+        if (rectTransform == null) 
+            rectTransform = text.GetComponent<RectTransform>();
+
         Vector2 size = rectTransform.sizeDelta;
-        size.x = (int)text.preferredWidth + textPadding;
+
+        // ✅ Add horizontal padding
+        size.x = Mathf.CeilToInt(preferredWidth) + horizontalPadding;
+
+        // ✅ Add vertical padding
+        size.y = Mathf.CeilToInt(preferredHeight) + verticalPadding;
+
         rectTransform.sizeDelta = size;
     }
 
-    // Yeh this is just a helper function to calculate the preferred width of the text
-    private void CalculatePreferredWidth()
+    private void CalculatePreferredSize()
     {
         preferredWidth = text.preferredWidth;
+        preferredHeight = text.preferredHeight;
     }
 }

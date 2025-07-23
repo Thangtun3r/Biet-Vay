@@ -10,16 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51131257d47a1d47a0aacf4236c7332, type: 3}
-  m_Name: WordsPackage_20250723_153620
+  m_Name: WordsPackage_20250723_223259
   m_EditorClassIdentifier: 
   words:
-  - word: Bruh
+  - word: What's
     id: 1
-  - word: what the fuck
+  - word: Up
     id: 2
-  - word: are you
+  - word: Bro
     id: 3
-  - word: doing
+  - word: How
     id: 4
-  - word: Michael ?
+  - word: is
     id: 5
+  - word: it
+    id: 6
+  - word: going
+    id: 7
+  wordsCount: 7
