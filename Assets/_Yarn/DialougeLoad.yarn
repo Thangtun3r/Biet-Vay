@@ -1,55 +1,156 @@
-﻿title: Start
-position: -226,-101
-color: red
+﻿title: PrepPhase_AtHome
 ---
-Player: Hello there!
-NPC: Oh, hello! How can I help you today?
-NPC: What would you like to know?
-    NPC: We have a variety of topics to discuss.
-    NPC: Sure! Where do you need to go?
-    NPC: I can help you find your way around.
--> I need information.
-    NPC: What kind of information are you looking for?
--> Actually, I should go.
-    NPC: No problem. Come back anytime!
-    <<jump End>>
+Crush: Are you on your way yet? The sky looks kind of gloomy today!
+[[Player: On my way!|Downstairs]]
 ===
 
-title: End
-position: 27,318
-color: blue
+title: Downstairs
 ---
-Player: Thanks for your help!
-NPC: You're welcome! Have a nice day!
-<<jump Information>>
+He turns off the phone, heads downstairs, and notices a Nintendo Switch sitting on the table.
+He hesitates, then picks it up and slips it into his bag.
+(The Nintendo Switch is now stored.)
+[[MeetingAtMall]]
 ===
 
-title : Information
-position: 380,109
+title: MeetingAtMall
 ---
-NPC: What kind of information are you looking for?
--> About the town.
-    NPC: This town has a rich history. Would you like to know more about its founding?   
--> About the people.
-    NPC: The people here are friendly and welcoming. Do you want to know about any specific
-individual?
--> About the services.
-    NPC: We have various services available, including shops and inns. Is there something specific you're looking for?
+He arrives at the meeting spot.
+[[Player: How long have you been waiting?|MeetingResponse1]]
 ===
 
-title: Rude
-style: note
-position: 203,-165
+title: MeetingResponse1
 ---
-NPC: Excuse me, but I don't have time for idle chit-chat.
-Player: Oh, I see. Sorry to bother you.
+Player: How long have you been waiting?
+Crush: Oh, just a few minutes. Don’t worry about it.
+Crush: Oh, by the way, I brought us some cheesecake. My mom made it this morning.
+[[Player: Oh, thank you.|MeetingResponse2]]
 ===
 
-
-title: Node
-style: note
-position: 38,-221
+title: MeetingResponse2
 ---
- csdsdssd
-dfdf
+Player: Oh, thank you.
+Crush: So, shall we head to the mall?
+[[Player: Okay, let’s go.|InsideMallLine1]]
+===
+
+title: InsideMallLine1
+---
+Player: Okay, let’s go.
+Inside the mall…
+Crush: This mall… we used to come here all the time with our friends in high school. Those were such fun days.
+[[Player: Yeah, I remember. We even skipped class once to come here just to play the gachapon machines.|InsideMallLine2]]
+===
+
+title: InsideMallLine2
+---
+Player: Yeah, I remember. We even skipped class once to come here just to play the gachapon machines.
+Crush: Haha, we really shouldn’t have done that. I got scolded by my dad so much after that.
+[[Player: Well, at least we got that SSR item from the gacha. Worth it, 100%.|InsideMallLine3]]
+===
+
+title: InsideMallLine3
+---
+Player: Well, at least we got that SSR item from the gacha. Worth it, 100%.
+Crush: Fair trade—a sore butt for a rare item.
+Crush: We’ve been walking around for almost 30 minutes. Do you have any suggestions on where to go next?
+[[Player: How about we watch a movie?|MovieScene]]
+[[Player: How about we get something to eat?|MovieScene]]
+[[Player: How about we play some gachapon?|MovieScene]]
+===
+
+title: MovieScene
+---
+# (Any of the above choices all lead here)
+Crush: Sure, let’s go. I was actually planning to invite you to watch the new Mizenky movie too.
+During the movie, the theater is dim and quiet.
+Crush: (whispering) Wow, the lead actress is stunning.
+[[Player: Kind of like you, though.|AfterMovieLine1]]
+===
+
+title: AfterMovieLine1
+---
+Player: Kind of like you, though.
+Crush: …
+An awkward silence lingers before they return their focus to the movie.
+After the movie ends, they step out together.
+[[Player: Honestly, that movie was terrible. The CGI was absurd.|AfterMovieLine2]]
+===
+
+title: AfterMovieLine2
+---
+Player: Honestly, that movie was terrible. The CGI was absurd.
+Crush: (smirking) Well, at least they had a stunning actress… like me, right?
+He glances at him teasingly.
+[[Player: Why don’t we walk for a bit?|ParkWalkLine1]]
+===
+
+title: ParkWalkLine1
+---
+Player: Why don’t we walk for a bit?
+Crush: Sure, let’s go.
+They wander slowly, the evening breeze carrying a nostalgic feeling.
+Crush: This park is so nostalgic. Remember when we went to that bar when we were underage? They had those ridiculous seats shaped like butts.
+[[Player: Yeah. And remember the time we tried to rescue that kitten, but you accidentally bumped into that scary gang-looking guy? You looked like you were about to cry.|ParkWalkLine2]]
+===
+
+title: ParkWalkLine2
+---
+Player: Yeah. And remember the time we tried to rescue that kitten, but you accidentally bumped into that scary gang-looking guy? You looked like you were about to cry.
+Crush: (mock-angry but smiling) Hey!! Don’t remind me!
+[[Player: Let’s sit here for a bit to rest. Want to play some Nintendo Switch?|ParkBenchLine1]]
+===
+
+title: ParkBenchLine1
+---
+Player: Let’s sit here for a bit to rest. Want to play some Nintendo Switch?
+Crush: Whoa, you actually brought it? Sure!
+They play for 25 minutes.
+[[Player: Haha, you’re a natural, but still far from a pro like me.|ParkBenchLine2]]
+===
+
+title: ParkBenchLine2
+---
+Player: Haha, you’re a natural, but still far from a pro like me.
+Crush: Well, give me some time—I’ll catch up eventually.
+They continue strolling through the park for another hour, talking and laughing along the way.
+[[Player: Haha, look at Khang. He was so crazy when he tried pulling off that stunt.|QuietBenchLine1]]
+===
+
+title: QuietBenchLine1
+---
+Player: Haha, look at Khang. He was so crazy when he tried pulling off that stunt.
+Crush: (laughing) I honestly don’t know what you guys were thinking back then.
+They swipe to another picture—this time, a photo of just the two of them together, looking much younger.
+Crush: Aww, this one’s so cute. We looked so young back then. Time really flies.
+[[Player: Hey… there’s something I want to tell you.|Confession1]]
+===
+
+title: Confession1
+---
+Player: Hey… there’s something I want to tell you.
+Player: I really value the time we’ve spent together. Being with you… it’s always been so much fun.
+[[Player: I like you.|AfterConfession]]
+[[Player: I want to be more than friends.|AfterConfession]]
+===
+
+title: AfterConfession
+---
+Crush: … This is… kind of sudden.
+Crush: I honestly thought you saw me as just a friend.
+Crush: But… thank you. I really appreciate you telling me this. I truly do.
+Crush: It’s just… it’s sudden. I need some time to think about it. I’ll let you know soon.
+Two days later, his phone buzzes with a new message.
+Crush: Hi.
+Crush: About the other day…
+Crush: After thinking about it a lot…
+Crush: I truly value our time together, and I appreciate your confession.
+Crush: But… I don’t think I’m ready to go further than friendship.
+Crush: I still want to remain friends though.
+Crush: Still friends?
+[[Player: Yeah… sure.|EndScene]]
+===
+
+title: EndScene
+---
+Player: Yeah… sure.
 ===

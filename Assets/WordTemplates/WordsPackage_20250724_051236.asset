@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51131257d47a1d47a0aacf4236c7332, type: 3}
-  m_Name: WordsPackage_20250723_223259
+  m_Name: WordsPackage_20250724_051236
   m_EditorClassIdentifier: 
+  packageID: 
   words:
-  - word: What's
+  - word: "Bi\u1EBFt V\u1EADy"
     id: 1
-  - word: Up
+  - word: I
     id: 2
-  - word: Bro
+  - word: should've
     id: 3
-  - word: How
+  - word: bet
     id: 4
-  - word: is
+  - word: on that
     id: 5
-  - word: it
+  - word: horse
     id: 6
-  - word: going
-    id: 7
-  wordsCount: 7
+  wordsCount: 6
