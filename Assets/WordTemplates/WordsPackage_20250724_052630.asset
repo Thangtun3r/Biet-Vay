@@ -10,23 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51131257d47a1d47a0aacf4236c7332, type: 3}
-  m_Name: WordsPackage_20250723_223212
+  m_Name: WordsPackage_20250724_052630
   m_EditorClassIdentifier: 
   words:
   - word: I
     id: 1
-  - word: love
+  - word: want
     id: 2
-  - word: you
+  - word: to
     id: 3
-  - word: Amanda
+  - word: cash in
     id: 4
-  - word: Amandadgdsfdsfdsfdsf
-    id: 4
-  - word: dsfsfdsfffffffffffffffffff
-    id: 4
-  - word: dsfsdfsdfsdfffffffffffffffffffff
-    id: 4
-  - word: dsfsdfsdfsdfffffffffffffffffffff
-    id: 4
-  wordsCount: 4
+  - word: 50$
+    id: 5
+  wordsCount: 5
