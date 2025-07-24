@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WordPackageRandomizer : MonoBehaviour
+public class WordPoolTrigger : MonoBehaviour
 {
     [Header("References")]
     public WordPoolManager wordPoolManager;
@@ -25,6 +25,7 @@ public class WordPackageRandomizer : MonoBehaviour
         {
             ClearPool();
         }
+        PopOutRectTween.Instance.ToggleOff();
 
         wordPoolManager.CreateSentence(package);
         Debug.Log($"[WordPackageRandomizer] Poured package: {package.name}");

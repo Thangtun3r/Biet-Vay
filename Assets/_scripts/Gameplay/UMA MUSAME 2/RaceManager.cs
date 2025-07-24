@@ -6,14 +6,14 @@ public class RaceManager2D : MonoBehaviour
 {
     [Header("Prefab & Lines")]
     public GameObject horsePrefab;
-    public Transform  startLine;    // e.g. left edge
-    public Transform  finishLine;   // e.g. right edge
+    public Transform startLine;
+    public Transform finishLine;
 
     [Header("Race Settings")]
-    public int   numberOfHorses = 6;
-    public float laneSpacingY   = 1.5f;
-    public float minSpeed       = 2f;
-    public float maxSpeed       = 5f;
+    public int numberOfHorses = 6;
+    public float laneSpacingY = 1.5f;
+    public float minSpeed = 2f;
+    public float maxSpeed = 5f;
 
     private List<Horse2D> horses = new List<Horse2D>();
 
@@ -22,7 +22,38 @@ public class RaceManager2D : MonoBehaviour
         SetupRace();
         CalculateOdds();
         DisplayOddsOnHorses();
-        StartCoroutine(RunRace());
+        StartCoroutine(RaceSequence());
+    }
+
+    IEnumerator RaceSequence()
+    {
+        yield return StartCoroutine(IntroduceHorses());
+        yield return StartCoroutine(Countdown());
+        yield return StartCoroutine(RunRaceWithBroadcast());
+    }
+
+    IEnumerator IntroduceHorses()
+    {
+        float introTime = 10f / horses.Count;
+        for (int i = 0; i < horses.Count; i++)
+        {
+            Debug.Log($"🎤 Introducing Horse #{i + 1}! Odds: {horses[i].oddsText.text}");
+            yield return new WaitForSeconds(introTime);
+        }
+        Debug.Log("All horses introduced!");
+    }
+
+    IEnumerator Countdown()
+    {
+        Debug.Log("Get ready for the race!");
+        yield return new WaitForSeconds(1f);
+        Debug.Log("3...");
+        yield return new WaitForSeconds(1f);
+        Debug.Log("2...");
+        yield return new WaitForSeconds(1f);
+        Debug.Log("1...");
+        yield return new WaitForSeconds(1f);
+        Debug.Log("GO!");
     }
 
     void SetupRace()
@@ -30,35 +61,30 @@ public class RaceManager2D : MonoBehaviour
         horses.Clear();
         for (int i = 0; i < numberOfHorses; i++)
         {
-            // stack vertically
-            Vector3 pos = startLine.position 
-                        + Vector3.up * i * laneSpacingY;
-            var go = Instantiate(
-                horsePrefab, 
-                pos, 
-                Quaternion.identity, 
-                transform
-            );
-            var h = go.GetComponent<Horse2D>() 
-                  ?? go.AddComponent<Horse2D>();
-
+            Vector3 pos = startLine.position + Vector3.up * i * laneSpacingY;
+            var go = Instantiate(horsePrefab, pos, Quaternion.identity, transform);
+            var h = go.GetComponent<Horse2D>() ?? go.AddComponent<Horse2D>();
             h.finishLine = finishLine;
-            h.baseSpeed  = Random.Range(minSpeed, maxSpeed);
-            h.isRacing   = false;
+            h.baseSpeed = Random.Range(minSpeed, maxSpeed);
+            h.isRacing = false;
+
+            // Randomize horse color
+            var sr = go.GetComponent<SpriteRenderer>();
+            if (sr != null)
+                sr.color = Random.ColorHSV();
+
             horses.Add(h);
         }
     }
 
     void CalculateOdds()
     {
-        // simple fixed‐odds: weight by speed
         float total = 0f;
         foreach (var h in horses) total += h.baseSpeed;
-
         foreach (var h in horses)
         {
-            float p = h.baseSpeed / total;                // win probability
-            h.fractionalOdds = (1f / p) - 1f;             // e.g. 2.3
+            float p = h.baseSpeed / total;
+            h.fractionalOdds = (1f / p) - 1f;
         }
     }
 
@@ -66,39 +92,48 @@ public class RaceManager2D : MonoBehaviour
     {
         foreach (var h in horses)
         {
-            // round to nearest int, at least 1:1
             int ratio = Mathf.Max(1, Mathf.RoundToInt(h.fractionalOdds));
             h.oddsText.text = $"1:{ratio}";
             h.oddsText.gameObject.SetActive(true);
         }
     }
 
-    // RaceManager2D.cs
-    IEnumerator RunRace()
+    IEnumerator RunRaceWithBroadcast()
     {
         yield return new WaitForSeconds(0.5f);
 
-        // ───── Start each horse AND hide its odds label ─────
         foreach (var h in horses)
         {
             h.oddsText.gameObject.SetActive(false);
             h.isRacing = true;
         }
-        // ────────────────────────────────────────────────────
 
-        // wait for the first one to finish…
-        while (true)
+        bool raceFinished = false;
+        int winnerIndex = -1;
+
+        while (!raceFinished)
         {
+            // Find the horse furthest along the X axis
+            float maxX = float.MinValue;
+            int leaderIndex = -1;
             for (int i = 0; i < horses.Count; i++)
             {
+                if (horses[i].transform.position.x > maxX)
+                {
+                    maxX = horses[i].transform.position.x;
+                    leaderIndex = i;
+                }
                 if (!horses[i].isRacing)
                 {
-                    Debug.Log($"🏆 Horse #{i+1} wins!");
-                    yield break;
+                    raceFinished = true;
+                    winnerIndex = i;
                 }
             }
-            yield return null;
-        }
-    }
 
+            Debug.Log($"📢 Current Leader: Horse #{leaderIndex + 1}");
+            yield return new WaitForSeconds(1f); // Broadcast every second
+        }
+
+        Debug.Log($"🏆 Horse #{winnerIndex + 1} wins!");
+    }
 }

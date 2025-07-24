@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e51131257d47a1d47a0aacf4236c7332, type: 3}
-  m_Name: WordsPackage_20250724_052630
+  m_Name: WordsPackage_20250724_164556
   m_EditorClassIdentifier: 
+  packageID: 
   words:
-  - word: I
+  - word: Hey..
     id: 1
-  - word: want
+  - word: there is
     id: 2
-  - word: to
+  - word: something
     id: 3
-  - word: cash in
+  - word: I
     id: 4
-  - word: 50$
+  - word: want to
     id: 5
-  wordsCount: 5
+  - word: tell you
+    id: 6
+  wordsCount: 6

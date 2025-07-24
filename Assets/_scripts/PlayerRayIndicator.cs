@@ -8,7 +8,7 @@ public class PlayerRayInteractor : MonoBehaviour
     public float interactDistance = 3f;               // Max ray distance
     public LayerMask interactableLayer;               // Layer for interactables
     public TMP_Text interactIndicator;                // UI text like "Press F to interact"
-    public WordPackageRandomizer wordPackageRandomizer; // Reference to the receiver
+    public WordPoolTrigger wordPackageRandomizer; // Reference to the receiver
 
     private WordPackageProvider currentTarget;        // Current interactable target
 
