@@ -209,8 +209,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278650879
-  m_fontColor: {r: 1, g: 0.028301716, b: 0.028301716, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -286,7 +286,6 @@ GameObject:
   - component: {fileID: 3507025611723606499}
   - component: {fileID: 7418943589315721672}
   - component: {fileID: 5348862391439246900}
-  - component: {fileID: 8543830521250243073}
   m_Layer: 5
   m_Name: Button 0
   m_TagString: Word
@@ -313,7 +312,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 54, y: 21}
+  m_SizeDelta: {x: 63, y: 26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6948557739982596614
 CanvasRenderer:
@@ -360,7 +359,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2272673543813509256}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
@@ -437,7 +436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 5686724328126013031}
   rectTransform: {fileID: 5503868994952540026}
-  textPadding: 12
 --- !u!114 &3507025611723606499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,7 +493,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 54, y: 21}
+  m_Size: {x: 63, y: 26}
   m_EdgeRadius: 0
 --- !u!114 &5348862391439246900
 MonoBehaviour:
@@ -511,21 +509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spacing: 12
   layoutElement: {fileID: 1654410485381395712}
---- !u!114 &8543830521250243073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2272673543813509256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a62186c3f07d88243a5320639c09b991, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followSpeed: 10
-  rotateSpeed: 10
-  smoothFollow: 1
 --- !u!1 &2853392015741954217
 GameObject:
   m_ObjectHideFlags: 0

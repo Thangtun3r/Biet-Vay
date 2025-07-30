@@ -1,54 +1,52 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WordPoolManager : MonoBehaviour
 {
     [Header("Word Pooling")]
     public WordsPooling wordPooling;
-
-    // ✅ Event when each word is created (already exists)
+    
+    public static WordPoolManager Instance;
     public static event System.Action<int, string, Transform> OnWordCreated;
+    
+    public static event System.Action<int> OnSentenceCreated;
 
-    // ✅ NEW: Event when the whole sentence is finished spawning
-    public static event System.Action<int> OnSentenceCreated; 
-    // int = total number of words created
-
-    public void CreateSentence(WordsPackage wordsPackage)
+    private void Awake()
     {
-        // Temporary list to hold created objects
+        Instance = this;
+        
+    }
+
+    public void CreateSentenceFromText(string sentence)
+    {
         List<GameObject> createdObjects = new List<GameObject>();
 
-        foreach (var template in wordsPackage.words)
+        var chunks = ParseChunksWithID(sentence);
+
+        foreach (var chunk in chunks)
         {
-            // Get a pooled prefab
             GameObject pooledObj = wordPooling.GetPooledObject();
             WordID wordComponent = pooledObj.GetComponent<WordID>();
 
-            // Initialize
-            wordComponent.word = template.word;
-            wordComponent.id = template.id;
-            wordComponent.wordText.text = wordComponent.word;
+            wordComponent.word = chunk.text;
+            wordComponent.id = chunk.id;
+            wordComponent.wordText.text = chunk.text;
 
-            // Add to list
             createdObjects.Add(pooledObj);
 
-            // Broadcast individual word creation
-            OnWordCreated?.Invoke(wordComponent.id, wordComponent.word, pooledObj.transform);
+            OnWordCreated?.Invoke(chunk.id, chunk.text, pooledObj.transform);
         }
 
-        // ✅ Shuffle the created objects
         ShuffleList(createdObjects);
 
-        // ✅ Randomize their sibling order
         for (int i = 0; i < createdObjects.Count; i++)
         {
             createdObjects[i].transform.SetSiblingIndex(i);
         }
-
-        // ✅ Broadcast total sentence word count
-        OnSentenceCreated?.Invoke(createdObjects.Count);
-        Debug.Log($"✅ Sentence created with {createdObjects.Count} words.");
     }
+
 
     // Fisher-Yates shuffle
     private void ShuffleList<T>(List<T> list)
@@ -59,4 +57,24 @@ public class WordPoolManager : MonoBehaviour
             (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
         }
     }
+    
+    private List<WordChunkData> ParseChunksWithID(string input)
+    {
+        var result = new List<WordChunkData>();
+        if (string.IsNullOrWhiteSpace(input))
+            return result;
+
+        var split = input.Split('/', System.StringSplitOptions.RemoveEmptyEntries);
+        for (int i = 0; i < split.Length; i++)
+        {
+            result.Add(new WordChunkData { id = i, text = split[i].Trim() });
+        }
+        return result;
+    }
+    private class WordChunkData
+    {
+        public int id;
+        public string text;
+    }
+
 }

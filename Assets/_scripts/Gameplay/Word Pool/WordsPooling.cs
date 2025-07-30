@@ -4,10 +4,10 @@ using UnityEngine;
 public class WordsPooling : MonoBehaviour
 {
     public GameObject wordPoolPrefab;
-    public int poolSize = 10; // Number of words to create in the pool
+    public int poolSize = 10; 
     
-    private List<GameObject> _wordPool = new List<GameObject>(); // Store instantiated word objects
-
+    private List<GameObject> _wordPool = new List<GameObject>(); 
+    
     private void Start()
     {
         PopulateThePool();
