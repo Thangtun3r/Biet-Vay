@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1757046839355492618}
   - component: {fileID: 4789482739219408489}
   - component: {fileID: 8910236188978830205}
-  - component: {fileID: 263516675829069815}
+  - component: {fileID: 6791496710507591292}
   m_Layer: 5
   m_Name: Word Pool
   m_TagString: WordPool
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac289659980835e4cb0b30cd661614f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordPooling: {fileID: 263516675829069815}
+  wordPooling: {fileID: 0}
 --- !u!61 &4789482739219408489
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BoxCollider: {fileID: 4789482739219408489}
   rectTransform: {fileID: 4932060941991215276}
---- !u!114 &263516675829069815
+--- !u!114 &6791496710507591292
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

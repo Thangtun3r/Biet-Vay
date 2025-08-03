@@ -17,15 +17,23 @@ public class WordPoolManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogWarning("Duplicate WordPoolManager found! Destroying this one: " + gameObject.name);
+            Destroy(this.gameObject); // destroy the whole GameObject
+            return;
+        }
+
         Instance = this;
-        
     }
+
 
     public void CreateSentenceFromText(string sentence)
     {
         List<GameObject> createdObjects = new List<GameObject>();
 
         var chunks = ParseChunksWithID(sentence);
+        predeterminedOrder = new List<int>();
 
         foreach (var chunk in chunks)
         {
