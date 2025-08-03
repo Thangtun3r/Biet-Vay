@@ -61,6 +61,7 @@ public class SentenceChecker : MonoBehaviour
             WordID wordID = child.GetComponent<WordID>();
             userOrder.Add(wordID.id);
         }
+        Debug.Log("Current Order: " + string.Join(",", userOrder));
     }
     
     private bool isMatched(List<int> a, List<int> b)

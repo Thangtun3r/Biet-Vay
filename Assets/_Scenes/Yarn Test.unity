@@ -174,6 +174,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 861646599}
     m_Modifications:
+    - target: {fileID: 1757046839355492618, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
+      propertyPath: wordPooling
+      value: 
+      objectReference: {fileID: 1021905493}
     - target: {fileID: 4932060941991215276, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -473,7 +477,6 @@ GameObject:
   - component: {fileID: 861646598}
   - component: {fileID: 861646597}
   - component: {fileID: 861646596}
-  - component: {fileID: 861646600}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -566,27 +569,14 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &861646600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861646595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac289659980835e4cb0b30cd661614f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wordPooling: {fileID: 0}
 --- !u!224 &1021905488 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4932060941991215276, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
   m_PrefabInstance: {fileID: 335119877}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1021905489 stripped
+--- !u!114 &1021905493 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 263516675829069815, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6791496710507591292, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
   m_PrefabInstance: {fileID: 335119877}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1247,7 +1237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c5e4b238520e54f8eb2ec33a261f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordPool: {fileID: 1021905489}
+  wordPool: {fileID: 1021905493}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

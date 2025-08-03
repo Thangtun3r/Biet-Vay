@@ -1,15 +1,24 @@
 ﻿title: start
-position: -440,268
+position: -712,232
 ---
 NPC: Good evening!
 -> Good/ evening!/ My name/ is Mr. Fullfy./
-<<jump morning>>
+    <<jump morning>>
+-> I/ Going/ To kick/ your ass/
+    <<jump Scior>>
 ===
 
 title: morning
-position: 140,-79
+position: -278,-36
 ---
 NPC: Good morning!
 -> Good morning!/ My name/ is John./
 <<jump start>>
+===
+
+title: Scior
+position: -228,492
+---
+NPC: Who the hell are you?
+-> I/ am/ Scior./
 ===

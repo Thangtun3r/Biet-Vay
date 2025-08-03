@@ -42,12 +42,7 @@ public class WordsPooling : MonoBehaviour
         }
         return CreateNewPooledObject(); // Expand pool if none available
     }
-
-    public void returnToPool(GameObject obj)
-    {
-        obj.SetActive(false);
-        obj.transform.SetParent(transform, false); 
-    }
+    
     
     public void clearPool()
     {
@@ -56,6 +51,7 @@ public class WordsPooling : MonoBehaviour
             if (obj.activeInHierarchy)
             {
                 obj.SetActive(false);
+                obj.transform.SetParent(transform, false);
             }
         }
     }
