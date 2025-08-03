@@ -24,7 +24,6 @@ public class Detector : MonoBehaviour
         {
             // Climb to parent (pool)
             detectedObjectPosition = other.transform.parent; 
-            Debug.Log("Detected Word inside pool: " + detectedObjectPosition.name);
 
             // Pass the pool, not the word itself
             OnWordDetected?.Invoke(detectedObjectPosition);
@@ -33,7 +32,6 @@ public class Detector : MonoBehaviour
         else if (other.CompareTag("WordPool"))
         {
             detectedPoolPosition = other.transform;
-            Debug.Log("Detected Pool: " + detectedPoolPosition.name);
 
             // Pass the pool itself
             OnWordDetected?.Invoke(detectedPoolPosition);

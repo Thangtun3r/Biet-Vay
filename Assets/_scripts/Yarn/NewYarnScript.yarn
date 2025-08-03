@@ -1,4 +1,15 @@
-﻿title: NewYarnScript
+﻿title: start
+position: -440,268
 ---
-This is an example of a Yarn Spinner script. Write your dialogue here!
+NPC: Good evening!
+-> Good/ evening!/ My name/ is Mr. Fullfy./
+<<jump morning>>
+===
+
+title: morning
+position: 140,-79
+---
+NPC: Good morning!
+-> Good morning!/ My name/ is John./
+<<jump start>>
 ===
