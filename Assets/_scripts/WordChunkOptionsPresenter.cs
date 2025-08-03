@@ -13,21 +13,25 @@ public class WordDisplayManager : DialoguePresenterBase
         return YarnTask.CompletedTask;
     }
 
+    public void SelectOption(DialogueOption option)
+    {
+        selectedOption = option;
+    }
+
     public override async YarnTask<DialogueOption> RunOptionsAsync(DialogueOption[] options, CancellationToken cancellationToken)
     {
-        DialogueOption selected = null;
+        selectedOption = null;
 
         foreach (var option in options)
         {
             string line = option.Line.Text.Text;
-            Debug.Log("called");
             WordPoolManager.Instance.CreateSentenceFromText(line);
-            
         }
-        while (selected == null && !cancellationToken.IsCancellationRequested)
+
+        while (selectedOption == null && !cancellationToken.IsCancellationRequested)
             await YarnTask.Yield();
 
-        return selected;
+        return selectedOption;
     }
 
 

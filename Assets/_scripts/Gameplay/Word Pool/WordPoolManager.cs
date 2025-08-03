@@ -9,9 +9,11 @@ public class WordPoolManager : MonoBehaviour
     public WordsPooling wordPooling;
     
     public static WordPoolManager Instance;
-    public static event System.Action<int, string, Transform> OnWordCreated;
-    
-    public static event System.Action<int> OnSentenceCreated;
+    public static event Action<int, string, Transform> OnWordCreated;
+    public static event Action<List<int>> OnPoolCreated; // This event can be used to notify when the pool is created with a specific order
+
+    [Header("Options Presenter Section")] 
+    private List<int> predeterminedOrder = new List<int>();
 
     private void Awake()
     {
@@ -35,9 +37,13 @@ public class WordPoolManager : MonoBehaviour
             wordComponent.wordText.text = chunk.text;
 
             createdObjects.Add(pooledObj);
+            
+            predeterminedOrder.Add(chunk.id);
 
             OnWordCreated?.Invoke(chunk.id, chunk.text, pooledObj.transform);
         }
+        
+        OnPoolCreated?.Invoke(predeterminedOrder);
 
         ShuffleList(createdObjects);
 
@@ -58,6 +64,10 @@ public class WordPoolManager : MonoBehaviour
         }
     }
     
+    
+    // ======= This section with the custom options presneter ========================================================================================================
+    
+    //helper method to parse the input string into a list of WordChunkData
     private List<WordChunkData> ParseChunksWithID(string input)
     {
         var result = new List<WordChunkData>();
@@ -71,10 +81,14 @@ public class WordPoolManager : MonoBehaviour
         }
         return result;
     }
+    
+    
     private class WordChunkData
     {
         public int id;
         public string text;
+        
     }
+    
 
 }
