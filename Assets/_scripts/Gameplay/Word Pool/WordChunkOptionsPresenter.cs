@@ -6,27 +6,38 @@ using Yarn.Unity;
 
 public class WordDisplayManager : DialoguePresenterBase
 {
-    
+    private List<DialogueOption> lastOptions;
     private DialogueOption selectedOption;
     public override YarnTask RunLineAsync(LocalizedLine line, LineCancellationToken token)
     {
         return YarnTask.CompletedTask;
     }
 
-    public void SelectOption(DialogueOption option)
+    public void SelectOptionByID(int id)
     {
-        selectedOption = option;
+        if (id >= 0 && id < lastOptions.Count)
+        {
+            selectedOption = lastOptions[id]; // ✅ use index directly
+        }
+        else
+        {
+            Debug.LogWarning($"Invalid ID passed to SelectOptionByID: {id}");
+        }
     }
+
 
     public override async YarnTask<DialogueOption> RunOptionsAsync(DialogueOption[] options, CancellationToken cancellationToken)
     {
         selectedOption = null;
+        lastOptions = options.ToList();
 
-        foreach (var option in options)
+        for (int i = 0; i < options.Length; i++)
         {
-            string line = option.Line.Text.Text;
-            WordPoolManager.Instance.CreateSentenceFromText(line);
+            string line = options[i].Line.Text.Text;
+            WordPoolManager.Instance.CreateSentenceFromText(line, i); 
         }
+
+
 
         while (selectedOption == null && !cancellationToken.IsCancellationRequested)
             await YarnTask.Yield();
