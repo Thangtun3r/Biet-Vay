@@ -7,7 +7,7 @@ using Yarn.Unity;
 public class SentenceChecker : MonoBehaviour
 {
     public WordDisplayManager wordDisplayManager;
-    public WordsPooling wordPool;
+    public static event Action OnCheckCompleted;
 
     private List<WordID> wordIDsList = new List<WordID>();
     private List<OptionData> correctOrder;
@@ -36,7 +36,7 @@ public class SentenceChecker : MonoBehaviour
         {
             isCorrect = true;
             wordDisplayManager?.SelectOptionByID(matchedID);
-            wordPool.clearPool();
+            OnCheckCompleted?.Invoke();
         }
         else
         {

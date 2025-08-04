@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +7,19 @@ public class WordsPooling : MonoBehaviour
     public GameObject wordPoolPrefab;
     public int poolSize = 10; 
     
-    private List<GameObject> _wordPool = new List<GameObject>(); 
-    
+    private List<GameObject> _wordPool = new List<GameObject>();
+
+
+    private void OnEnable()
+    {
+        SentenceChecker.OnCheckCompleted += ClearPool;
+    }
+
+    private void OnDisable()
+    {
+        SentenceChecker.OnCheckCompleted -= ClearPool;
+    }
+
     private void Start()
     {
         PopulateThePool();
@@ -44,7 +56,7 @@ public class WordsPooling : MonoBehaviour
     }
     
     
-    public void clearPool()
+    public void ClearPool()
     {
         foreach (GameObject obj in _wordPool)
         {
