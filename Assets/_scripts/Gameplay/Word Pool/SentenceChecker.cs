@@ -2,17 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 
 //Place this script on the SentencePool gameObject in the scene
 public class SentenceChecker : MonoBehaviour
 {
+    
+
+    public WordDisplayManager wordDisplayManager;
     public WordsPooling wordPool;
     
     private List<WordID> wordIDsList = new List<WordID>();
-    private List<int> correctOrder;
-    private List<int> userOrder;
+    private List<OptionData> correctOrder;
+    private List<string> userOrder;
     private bool isCorrect = false;
+    private DialogueOption[] options;
+    
 
     private void OnEnable()
     {
@@ -26,29 +32,34 @@ public class SentenceChecker : MonoBehaviour
 
     public void Check()
     {
-        if (correctOrder == null || correctOrder.Count == 0 || transform.childCount == 0) return;
-        userOrder = new List<int>();
-        CurrentOrder();
         
-        if (isMatched(userOrder, correctOrder))
+        if (correctOrder == null || correctOrder.Count == 0 || transform.childCount == 0) return;
+
+        userOrder = new List<string>();
+        CurrentOrder();
+
+        int matchedID = GetMatchingOptionID(userOrder, correctOrder);
+        if (matchedID != -1)
         {
             isCorrect = true;
-            Debug.Log("Correct Order!");
+            if (wordDisplayManager != null)
+            {
+                wordDisplayManager.SelectOptionByID(matchedID);
+            }
+
             wordPool.clearPool();
         }
         else
         {
             isCorrect = false;
-            Debug.Log("Incorrect Order!");
-        }
-        {
-            
         }
     }
+
+
     
     
 
-    public void GetCorrectOrder(List<int> order)
+    public void GetCorrectOrder(List<OptionData> order)
     {
         correctOrder = order;
     }
@@ -59,12 +70,25 @@ public class SentenceChecker : MonoBehaviour
         {
             Transform child = transform.GetChild(i);
             WordID wordID = child.GetComponent<WordID>();
-            userOrder.Add(wordID.id);
+            userOrder.Add(wordID.word);
         }
-        Debug.Log("Current Order: " + string.Join(",", userOrder));
+
     }
     
-    private bool isMatched(List<int> a, List<int> b)
+    private int GetMatchingOptionID(List<string> userOrder, List<OptionData> options)
+    {
+        foreach (var option in options)
+        {
+            if (IsExactMatch(userOrder, option.words))
+            {
+                return option.id;
+            }
+        }
+        return -1;
+    }
+
+    
+    private bool IsExactMatch(List<string> a, List<string> b)
     {
         if (a.Count != b.Count)
             return false;

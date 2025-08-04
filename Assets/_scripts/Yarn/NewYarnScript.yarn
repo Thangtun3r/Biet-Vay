@@ -2,7 +2,7 @@
 position: -712,232
 ---
 NPC: Good evening!
--> Good/ evening!/ My name/ is Mr. Fullfy./
+-> I/ Going/ To kick/ your bun/
     <<jump morning>>
 -> I/ Going/ To kick/ your ass/
     <<jump Scior>>
@@ -21,4 +21,5 @@ position: -228,492
 ---
 NPC: Who the hell are you?
 -> I/ am/ Scior./
+<<jump start>>
 ===

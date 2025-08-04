@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+
+[System.Serializable]
+public struct OptionData {
+    public int id;
+    public List<string> words;
+}
+
 public class WordPoolManager : MonoBehaviour
 {
     [Header("Word Pooling")]
@@ -10,10 +17,12 @@ public class WordPoolManager : MonoBehaviour
     
     public static WordPoolManager Instance;
     public static event Action<int, string, Transform> OnWordCreated;
-    public static event Action<List<int>> OnPoolCreated; // This event can be used to notify when the pool is created with a specific order
+    public static event Action<List<OptionData>> OnPoolCreated; // This event can be used to notify when the pool is created with a specific order
 
     [Header("Options Presenter Section")] 
-    private List<int> predeterminedOrder = new List<int>();
+    private List<OptionData> OptionsCollection = new List<OptionData>();
+
+    
 
     private void Awake()
     {
@@ -28,12 +37,12 @@ public class WordPoolManager : MonoBehaviour
     }
 
 
-    public void CreateSentenceFromText(string sentence)
+    public void CreateSentenceFromText(string sentence, int optionID)
     {
         List<GameObject> createdObjects = new List<GameObject>();
 
         var chunks = ParseChunksWithID(sentence);
-        predeterminedOrder = new List<int>();
+        var singleOptionsOrder = new List<string>();
 
         foreach (var chunk in chunks)
         {
@@ -46,12 +55,18 @@ public class WordPoolManager : MonoBehaviour
 
             createdObjects.Add(pooledObj);
             
-            predeterminedOrder.Add(chunk.id);
+            singleOptionsOrder.Add(chunk.text);
 
             OnWordCreated?.Invoke(chunk.id, chunk.text, pooledObj.transform);
         }
         
-        OnPoolCreated?.Invoke(predeterminedOrder);
+        OptionsCollection.Add(new OptionData {
+            id = optionID,
+            words = singleOptionsOrder
+        });
+
+        OnPoolCreated?.Invoke(OptionsCollection);
+        
 
         ShuffleList(createdObjects);
 
