@@ -4,21 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
 
-
-//Place this script on the SentencePool gameObject in the scene
 public class SentenceChecker : MonoBehaviour
 {
-    
-
     public WordDisplayManager wordDisplayManager;
     public WordsPooling wordPool;
-    
+
     private List<WordID> wordIDsList = new List<WordID>();
     private List<OptionData> correctOrder;
     private List<string> userOrder;
     private bool isCorrect = false;
-    private DialogueOption[] options;
-    
 
     private void OnEnable()
     {
@@ -32,7 +26,6 @@ public class SentenceChecker : MonoBehaviour
 
     public void Check()
     {
-        
         if (correctOrder == null || correctOrder.Count == 0 || transform.childCount == 0) return;
 
         userOrder = new List<string>();
@@ -42,11 +35,7 @@ public class SentenceChecker : MonoBehaviour
         if (matchedID != -1)
         {
             isCorrect = true;
-            if (wordDisplayManager != null)
-            {
-                wordDisplayManager.SelectOptionByID(matchedID);
-            }
-
+            wordDisplayManager?.SelectOptionByID(matchedID);
             wordPool.clearPool();
         }
         else
@@ -54,10 +43,6 @@ public class SentenceChecker : MonoBehaviour
             isCorrect = false;
         }
     }
-
-
-    
-    
 
     public void GetCorrectOrder(List<OptionData> order)
     {
@@ -72,35 +57,23 @@ public class SentenceChecker : MonoBehaviour
             WordID wordID = child.GetComponent<WordID>();
             userOrder.Add(wordID.word);
         }
-
     }
-    
+
     private int GetMatchingOptionID(List<string> userOrder, List<OptionData> options)
     {
         foreach (var option in options)
         {
             if (IsExactMatch(userOrder, option.words))
-            {
                 return option.id;
-            }
         }
         return -1;
     }
 
-    
     private bool IsExactMatch(List<string> a, List<string> b)
     {
-        if (a.Count != b.Count)
-            return false;
-        
+        if (a.Count != b.Count) return false;
         for (int i = 0; i < a.Count; i++)
-        {
             if (a[i] != b[i]) return false;
-        }
-        
         return true;
     }
-
-    
-    
 }

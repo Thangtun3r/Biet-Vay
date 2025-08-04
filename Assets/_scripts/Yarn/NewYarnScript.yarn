@@ -6,8 +6,14 @@ NPC: Good evening!
     <<jump morning>>
 -> I/ Going/ To kick/ your ass/
     <<jump Scior>>
+-> I/ Love/ To kick/
+    <<jump toKick>>
 ===
+title: toKick
+---
+NPC: Bruh get  out
 
+===
 title: morning
 position: -278,-36
 ---
