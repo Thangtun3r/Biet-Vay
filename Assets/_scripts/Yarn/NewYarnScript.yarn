@@ -1,31 +1,21 @@
-﻿title: start
+title: start
 position: -712,232
 ---
 NPC: Good evening!
--> I/ Going/ To kick/ your bun/
-    <<jump morning>>
--> I/ Going/ To kick/ your ass/
-    <<jump Scior>>
--> I/ Love/ To kick/
-    <<jump toKick>>
-===
-title: toKick
----
-NPC: Bruh get  out
-
-===
-title: morning
-position: -278,-36
----
-NPC: Good morning!
--> Good morning!/ My name/ is John./
-<<jump start>>
+-> This/ is /the /start node
 ===
 
-title: Scior
-position: -228,492
+title: first
 ---
-NPC: Who the hell are you?
--> I/ am/ Scior./
-<<jump start>>
+-> This/ is /the /first node
+===
+
+title: second
+---
+-> This/ is /the /second node
+===
+
+title: third
+---
+-> This/ is /the /third node
 ===
