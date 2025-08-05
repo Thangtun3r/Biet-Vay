@@ -19,3 +19,8 @@ title: third
 ---
 -> This/ is /the /third node
 ===
+
+title: custom
+---
+-> This/ is /the /custom node
+===
