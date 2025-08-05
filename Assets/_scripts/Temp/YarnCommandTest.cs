@@ -16,13 +16,16 @@ public class YarnCommandTest : MonoBehaviour
             Debug.Log("TestCommand executed!");
         }
 
-    private void Update()
+    private void OnEnable()
     {
-        startNode();
-
+        YarnEventCaller.OnYarnEventCalled += startNode;
     }
-
-    private void startNode()
+    private void OnDisable()
+    {
+        YarnEventCaller.OnYarnEventCalled -= startNode;
+    }
+    
+    public void startNode(string nodeName)
     {
         if (Runner.IsDialogueRunning)
         {
@@ -30,20 +33,7 @@ public class YarnCommandTest : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                Runner.StartDialogue("first");
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                Runner.StartDialogue("second");
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                Runner.StartDialogue("third");
-            }
+            Runner.StartDialogue(nodeName);
         }
-       
     }
 }
