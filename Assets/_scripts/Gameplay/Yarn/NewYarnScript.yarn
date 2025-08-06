@@ -1,8 +1,7 @@
 title: start
 position: -712,232
 ---
-NPC: Good evening!
--> This/ is /the /start node
+<<expand>>
 ===
 
 title: first
@@ -22,5 +21,11 @@ title: third
 
 title: custom
 ---
--> This/ is /the /custom node
+<<collapse>>
+-> This/ is /a /custom node
+NPC: OK 
+-> It/ has /a /collapse /button
+NPC: OK
+-> Click/ to /expand /or /collapse
+<<expand>>
 ===

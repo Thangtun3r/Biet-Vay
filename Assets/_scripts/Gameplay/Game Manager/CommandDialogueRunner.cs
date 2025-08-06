@@ -5,24 +5,18 @@ using UnityEngine;
 using Yarn;
 using Yarn.Unity;
 
-public class YarnCommandTest : MonoBehaviour
+public class YarnDialogueController : MonoBehaviour
 {
+    [Tooltip("The DialogueRunner component that runs the dialogue.")]
     public DialogueRunner Runner;
     
-    
-    [YarnCommand("test_command")]
-        public static void TestCommand()
-        {
-            Debug.Log("TestCommand executed!");
-        }
-
     private void OnEnable()
     {
-        YarnEventCaller.OnYarnEventCalled += startNode;
+        YarnDialogueEventBridge.OnYarnEventCalled += startNode;
     }
     private void OnDisable()
     {
-        YarnEventCaller.OnYarnEventCalled -= startNode;
+        YarnDialogueEventBridge.OnYarnEventCalled -= startNode;
     }
     
     public void startNode(string nodeName)
