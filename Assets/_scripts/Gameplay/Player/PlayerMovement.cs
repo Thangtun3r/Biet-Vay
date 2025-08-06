@@ -22,7 +22,6 @@ using System;
             private void Start()
             {
                 characterController = GetComponent<CharacterController>();
-                Cursor.lockState = CursorLockMode.Locked;
             }
         
             private void Update()
