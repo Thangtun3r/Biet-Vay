@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Yarn Test.unity
     guid: e981fe306b46a474d95fe4b0943c8a0f
+  - enabled: 0
+    path: Assets/ModularFirstPersonController/DemoScene/Demo.unity
+    guid: b303d6a104f76714f9b3f2f6246b1b1a
   m_configObjects: {}
