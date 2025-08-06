@@ -7,11 +7,13 @@ position: -712,232
 title: first
 ---
 -> This/ is /the /first node
+<<expand>>
 ===
 
 title: second
 ---
 -> This/ is /the /second node
+<<expand>>
 ===
 
 title: third
@@ -27,5 +29,10 @@ NPC: OK
 -> It/ has /a /collapse /button
 NPC: OK
 -> Click/ to /expand /or /collapse
-<<expand>>
+NPC: OK
+-> Go/to/first/ node
+    <<jump first>>
+-> Go/to/second/ node
+    <<jump second>>
+
 ===

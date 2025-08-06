@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class VisualHandler : MonoBehaviour
 {
     [Header("Visual Pooling")]
-    public WordsPooling visualPooling;      // assign a separate pool of your VisualWord prefab
+    public WordsPooling visualPooling; // Assign a separate pool of your VisualWord prefab
+    public float delayBeforeSpawning = 0.1f; // You can tweak this in Inspector
 
     private void OnEnable()
     {
@@ -17,25 +19,25 @@ public class VisualHandler : MonoBehaviour
 
     private void HandleWordCreated(int id, string word, Transform logicRoot)
     {
-        // Loop over every direct child (or, if you want grandchildren too, use GetComponentsInChildren)
+        StartCoroutine(SpawnVisualsWithDelay(id, word, logicRoot));
+    }
+
+    private IEnumerator SpawnVisualsWithDelay(int id, string word, Transform logicRoot)
+    {
+        yield return new WaitForSeconds(delayBeforeSpawning); // Wait a short time
+
         foreach (Transform child in logicRoot)
         {
-            // 1. Pull from the visual pool
             GameObject visObj = visualPooling.GetPooledObject();
             visObj.transform.SetParent(transform, false);
 
-            // 2. Copy your WordID data into the visual prefab
             var visualWordID = visObj.GetComponent<WordID>();
-            visualWordID.id   = id;
+            visualWordID.id = id;
             visualWordID.word = word;
             visualWordID.wordText.text = word;
 
-            // 3. Tell the VisualWord to follow *this* child
             var vw = visObj.GetComponent<VisualWord>();
             vw.target = child;
-            // (Optionally tweak its offsets per‐child if you need)
         }
     }
-
-
 }
