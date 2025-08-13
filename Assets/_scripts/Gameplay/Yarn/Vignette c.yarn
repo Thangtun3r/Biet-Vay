@@ -1,0 +1,20 @@
+title: start
+position: -712,232
+---
+<<expand>>
+===
+
+title: MeetingMall
+---
+<<collapse>>
+<<wait 0.5>>
+Mai: Welp waiting for you to <shake a=0.4>finish your work</shake>.
+-> Aight/bet
+Mai: I have a meeting with the boss, so I can't chat right now.
+Mai: But I can help you with your tasks if you need it.
+You: I need to finish this report.
+Mai: Sure, I can help you with that.
+Mai: Just let me know what you need.
+Mai: I'll be here to assist you.
+<<expand>>
+===

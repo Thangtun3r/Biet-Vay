@@ -7,6 +7,7 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 {
     [SerializeField] private string yarnNodeName;
     [SerializeField] private Material highlightMaterial;
+    [NonSerialized] private GameObject floatingLabel;
 
     private bool isHighlighting = false;
     private Material originalMaterial;
@@ -25,7 +26,6 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 
     public void Interact()
     {
-        Debug.Log("Interacting with Yarn Node: " + yarnNodeName);
         YarnDialogueEventBridge.CallYarnEvent(yarnNodeName);
     }
 
@@ -48,4 +48,10 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
         }
         isHighlighting = false;
     }
+
+
+    // ======= Handle TMP Floating ========================================================================================================
+
+    
+    
 }

@@ -13,6 +13,7 @@ public class GameTransition : MonoBehaviour
     
     public static event Action OnExpandStarted;
     public static event Action OnCollapseStarted;
+    public static event Action OnCollapseCompleted;
 
     void Awake()
     {
@@ -34,18 +35,22 @@ public class GameTransition : MonoBehaviour
 
     public void Expand()
     {
-        targetRect.DOSizeDelta(endSize, transitionDuration).SetEase(Ease.InOutSine);
+        targetRect.DOSizeDelta(endSize, transitionDuration)
+            .SetEase(Ease.InOutSine);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         OnExpandStarted?.Invoke();
-        
     }
 
     public void Collapse()
     {
-        targetRect.DOSizeDelta(startSize, transitionDuration).SetEase(Ease.InOutSine);
+        OnCollapseStarted?.Invoke();
+        targetRect.DOSizeDelta(startSize, transitionDuration).SetEase(Ease.InOutSine)
+            .OnComplete(() => {
+                OnCollapseCompleted?.Invoke();
+            });
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        OnCollapseStarted?.Invoke();
+        
     }
 }
