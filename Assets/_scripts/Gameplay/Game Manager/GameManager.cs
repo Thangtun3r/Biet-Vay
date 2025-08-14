@@ -1,4 +1,4 @@
-using System.Threading.Tasks;
+using System.Collections;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -10,22 +10,32 @@ public class GameManager : MonoBehaviour
     [YarnCommand("expand")]
     public static void Expand() => GameTransition.Instance.Expand();
 
-    // Async version: Dialogue waits until the Task completes.
+    // Safer coroutine: give physics + rendering a chance to settle
+    // before Yarn continues to the next command.
     [YarnCommand("spawn")]
-    public static async Task SpawnPoint(string spawnPointName)
+    public static IEnumerator SpawnPoint(string spawnPointName)
     {
-        // keep or remove Trim(), up to you
         var name = (spawnPointName ?? string.Empty).Trim();
 
         if (!SpawnPointHandler.TryGetSpawnPoint(name, out var point) || point == null)
         {
             Debug.LogError($"[GameManager] Yarn <<spawn {name}>>: spawn point not found.");
-            return; // dialogue continues after this Task completes
+            yield break; // dialogue continues
         }
 
+        // Perform the spawn/teleport.
         SpawnPointHandler.InvokePlayerSpawn(point);
 
-        // Yield one frame so the move is applied before the next command (e.g., <<expand>>)
-        await Task.Yield();
+        // --- Robust settling sequence ---
+        // If your spawn uses CharacterController/rigidbody or navmesh,
+        // let one FixedUpdate tick process first:
+        yield return new WaitForFixedUpdate();
+
+        // Then wait for the next Update so transforms are visible to scripts:
+        yield return null;
+
+        // Then wait until the end of that frame so rendering catches up:
+        yield return new WaitForEndOfFrame();
+        // --------------------------------
     }
 }
