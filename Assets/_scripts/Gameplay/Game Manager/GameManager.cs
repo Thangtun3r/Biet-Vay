@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
         GameTransition.Instance.Expand();
     }
 
-    
+    [YarnCommand("spawn")]
+    public static void SpawnPoint(string spawnPointName)
+    {
+        SpawnPointHandler.SetPlayerSpawnPoint(spawnPointName);
+    }
 
 }

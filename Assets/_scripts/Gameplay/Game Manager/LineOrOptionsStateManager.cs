@@ -9,16 +9,18 @@ public class LineOrOptionsStateManager : MonoBehaviour
     public GameObject[] stuffsToDisableWhenOptionsDisplayed;
     public void OnEnable()
     {
-        WordDisplayManager.OnOptionsDisplayed += OnOptionsDisplayed;
-        LinePresenter.OnLineDisplayed += OnLineDisplayed;
+        WordDisplayManager.OnOptionsDisplayed += OnEnableObjects;
+        LinePresenter.OnLineDisplayed += OnDisableObjects;
+        GameTransition.OnExpandStarted += OnDisableObjects; // Ensure line is displayed when expanding
     }
     
     public void OnDisable()
     {
-        WordDisplayManager.OnOptionsDisplayed -= OnOptionsDisplayed;
+        WordDisplayManager.OnOptionsDisplayed -= OnEnableObjects;
+        LinePresenter.OnLineDisplayed -= OnDisableObjects;
     }
     
-    public void OnOptionsDisplayed()
+    public void OnEnableObjects()
     {
         foreach (var stuff in stuffsToDisableWhenOptionsDisplayed)
         {
@@ -26,7 +28,7 @@ public class LineOrOptionsStateManager : MonoBehaviour
         }
     }
     
-    public void OnLineDisplayed()
+    public void OnDisableObjects()
     {
         foreach (var stuff in stuffsToDisableWhenOptionsDisplayed)
         {
@@ -34,5 +36,5 @@ public class LineOrOptionsStateManager : MonoBehaviour
         }
     }
     
-    
+
 }
