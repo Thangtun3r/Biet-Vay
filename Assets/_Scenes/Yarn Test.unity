@@ -5606,7 +5606,7 @@ MonoBehaviour:
   - {fileID: 1791914878}
   - {fileID: 1752727367}
   - {fileID: 915408213}
-  fadeDuration: 0.5
+  fadeDuration: 0.2
 --- !u!1 &1268436467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 911281a571e41e446a22571e1cbdbc56, type: 3}

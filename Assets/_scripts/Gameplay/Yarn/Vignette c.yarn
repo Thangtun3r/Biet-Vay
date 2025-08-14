@@ -1,5 +1,5 @@
 title: start
-position: -712,232
+position: -750,-67
 ---
 <<expand>>
 <<spawn Home>>
@@ -8,7 +8,7 @@ position: -712,232
 
 
 title: meetingMall
-position: 170,17
+position: -336,-191
 ---
 <<collapse>>
 <<wait 0.5>>
@@ -30,27 +30,26 @@ Mai: Anyways let's go inside
 <<expand>>
 ===
 title: morningCall
-position: -303,-123
+position: -725,100
 ---
-<<if visited ("morningCall")>>
-<<collapse>>
-Game: Get your stuffs and go quickly.
-<<expand>>
-<<else>>
 <<collapse>>
 <<wait 0.5>>
-Mai: <shake a=0.5> Heyyy...</shake>
+<<once>>
+Mai: <shake a=0.5>Heyyy...</shake>
 Mai: On your way yet ?
 Mai: Looks like. It's gonna <shake a=0.5>rain!</shake>.
 -> I/ am/ on/ my/ way.
 Kiet: I am on my way.
 Mai: Okay hurry up. Or you will get drenched lol.
+<<else>>
+Game: What are you doing?
+Game: Get your ass ready and <shake a=0.5>go.</shake>
+<<endonce>>
 <<expand>>
-<<endif>>
-
 ===
+
 title: toMall
-position: -95,88
+position: -356,48
 ---
 <<collapse>>
 <<wait 0.5>>
@@ -62,3 +61,5 @@ Game: Ready to go?
     Game: Aight bet.
     <<expand>>
 ===
+
+
