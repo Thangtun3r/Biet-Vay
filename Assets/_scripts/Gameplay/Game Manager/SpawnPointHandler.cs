@@ -2,70 +2,56 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-100)]
 public class SpawnPointHandler : MonoBehaviour
 {
-    public static event Action<Transform> OnPlayerSpawn;
-
     [Serializable]
-    public class SpawnPoint
+    public struct NamedSpawnPoint
     {
         public string name;
-        public Transform position;
+        public Transform point;
     }
 
-    [SerializeField] private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+    [SerializeField] private List<NamedSpawnPoint> spawnPoints = new();
+    private Dictionary<string, Transform> _lookup;
 
-    // Case-insensitive + static cache
-    private static readonly Dictionary<string, Transform> spawnPointDictionary =
-        new Dictionary<string, Transform>(StringComparer.OrdinalIgnoreCase);
-
-    private static bool initialized;
+    public static SpawnPointHandler Instance { get; private set; }
+    public static event Action<Transform> OnPlayerSpawn;
 
     private void Awake()
     {
-        EnsureInitialized();
-    }
-
-    private void EnsureInitialized()
-    {
-        if (initialized) return;
-        initialized = true;
-
-        // Fill once from the first active handler in the scene
-        foreach (var sp in spawnPoints)
+        if (Instance != null && Instance != this)
         {
-            if (sp?.position == null || string.IsNullOrWhiteSpace(sp.name)) continue;
-
-            var key = sp.name.Trim();
-            if (!spawnPointDictionary.ContainsKey(key))
-            {
-                spawnPointDictionary.Add(key, sp.position);
-            }
-        }
-#if UNITY_EDITOR
-        Debug.Log($"[SpawnPointHandler] Registered {spawnPointDictionary.Count} spawn points");
-#endif
-    }
-
-    public static void SetPlayerSpawnPoint(string name)
-    {
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            Debug.LogWarning("[SpawnPointHandler] Empty spawn name");
+            Destroy(gameObject);
             return;
         }
 
-        var key = name.Trim();
+        Instance = this;
+        BuildLookup();
+    }
 
-        if (spawnPointDictionary.TryGetValue(key, out var spawnPoint))
+    private void BuildLookup()
+    {
+        _lookup = new Dictionary<string, Transform>(StringComparer.OrdinalIgnoreCase);
+        foreach (var sp in spawnPoints)
         {
+            if (!string.IsNullOrWhiteSpace(sp.name) && sp.point != null)
+            {
+                _lookup[sp.name.Trim()] = sp.point;
+            }
+        }
+    }
+
+    public static bool TryGetSpawnPoint(string name, out Transform point)
+    {
+        point = null;
+        return Instance != null &&
+               Instance._lookup.TryGetValue((name ?? string.Empty).Trim(), out point);
+    }
+
+    public static void InvokePlayerSpawn(Transform spawnPoint)
+    {
+        if (spawnPoint != null)
             OnPlayerSpawn?.Invoke(spawnPoint);
-        }
-        else
-        {
-            Debug.LogWarning(
-                $"[SpawnPointHandler] Spawn '{key}' not found. " +
-                $"Have: {string.Join(", ", spawnPointDictionary.Keys)}");
-        }
     }
 }

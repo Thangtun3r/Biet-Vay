@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-1198294504781638525
+--- !u!114 &-3104161382310722491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: OutlineFxFeature
   m_EditorClassIdentifier: 
   m_Active: 1
-  _event: 1000
+  _event: 600
   _solid: 0
-  _thickness: 0.196
-  _alphaCutout: 0.232
+  _thickness: 0.137
+  _alphaCutout: 0
   _mode: 0
   _filter: 1
   _attachDepth: 1
@@ -46,8 +46,8 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: 5250166178874721300}
-  - {fileID: -1198294504781638525}
-  m_RendererFeatureMap: 140499b75256dc488314302a7fcd5eef
+  - {fileID: -3104161382310722491}
+  m_RendererFeatureMap: 140499b75256dc484544e259abcdebd4
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
