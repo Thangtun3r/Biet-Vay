@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177ddeadd26a80641ad757c51fb7f5d1, type: 3}
   m_Name: OutlineFxFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   _event: 600
   _solid: 0
   _thickness: 0.137
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052a0051f28380a49905d797cf6fd45d, type: 3}
   m_Name: MKToonPerObjectOutlines
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   settings:
     passTag: MKToonPerObjectOutlines
     Event: 300
