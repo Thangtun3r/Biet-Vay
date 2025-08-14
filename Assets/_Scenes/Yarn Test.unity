@@ -6191,7 +6191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe24f0cf52d6d148b711832f39601fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetFPS: 60
+  targetFPS: 160
 --- !u!1 &1337328357
 GameObject:
   m_ObjectHideFlags: 0
