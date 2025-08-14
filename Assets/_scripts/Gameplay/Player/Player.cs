@@ -15,12 +15,14 @@ public class Player : MonoBehaviour
     {
         GameTransition.OnCollapseStarted += DisablePlayer;
         GameTransition.OnExpandStarted += EnablePlayer;
+        SpawnPointHandler.OnPlayerSpawn += SetPlayerSpawnPoint;
     }
 
     private void OnDisable()
     {
         GameTransition.OnCollapseStarted -= DisablePlayer;
         GameTransition.OnExpandStarted -= EnablePlayer;
+        SpawnPointHandler.OnPlayerSpawn -= SetPlayerSpawnPoint;
     }
 
     private void DisablePlayer()
@@ -33,5 +35,11 @@ public class Player : MonoBehaviour
     {
         movement.enabled = true;
         interaction.enabled = true;
+    }
+
+    void SetPlayerSpawnPoint(Transform spawnPoint)
+    {
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
     }
 }

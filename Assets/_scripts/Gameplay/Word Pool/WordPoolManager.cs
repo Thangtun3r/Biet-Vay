@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[System.Serializable]
+[Serializable]
 public struct OptionData {
     public int id;
     public List<string> words;
@@ -19,15 +19,17 @@ public class WordPoolManager : MonoBehaviour
     public static event Action<List<OptionData>> OnPoolCreated;
 
     [Header("Options Presenter Section")]
-    private List<OptionData> OptionsCollection = new List<OptionData>();
-    private HashSet<string> spawnedWords = new HashSet<string>();
+    private readonly List<OptionData> OptionsCollection = new List<OptionData>();
+
+    // How many copies of each word have we spawned globally so far?
+    private readonly Dictionary<string, int> spawnedCountByWord =
+        new Dictionary<string, int>(StringComparer.Ordinal);
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
+        if (Instance != null && Instance != this) {
             Debug.LogWarning("Duplicate WordPoolManager found! Destroying this one: " + gameObject.name);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         Instance = this;
@@ -36,47 +38,82 @@ public class WordPoolManager : MonoBehaviour
     public void ResetPool()
     {
         OptionsCollection.Clear();
-        spawnedWords.Clear();
+        spawnedCountByWord.Clear();
     }
 
     public void CreateSentenceFromText(string sentence, int optionID)
     {
-        List<GameObject> createdObjects = new List<GameObject>();
+        if (string.IsNullOrWhiteSpace(sentence)) return;
+
+        // Parse and keep the original per-option order
         var chunks = ParseChunksWithID(sentence);
-        var singleOptionsOrder = new List<string>();
+        var singleOptionsOrder = new List<string>(chunks.Count);
+        foreach (var c in chunks) singleOptionsOrder.Add(c.text);
 
-        foreach (var chunk in chunks)
+        // Count duplicates in THIS option only
+        var localCounts = CountLocalOccurrences(chunks);
+
+        // Only spawn the delta compared to what's already globally available
+        var createdObjects = new List<GameObject>();
+        foreach (var kvp in localCounts)
         {
-            singleOptionsOrder.Add(chunk.text);
+            string word = kvp.Key;
+            int localNeed = kvp.Value;
 
-            if (spawnedWords.Contains(chunk.text))
-                continue; // prevent duplicate visual word
+            spawnedCountByWord.TryGetValue(word, out int spawnedSoFar);
+            int toSpawn = localNeed - spawnedSoFar;
+            if (toSpawn <= 0) continue;
 
-            GameObject pooledObj = wordPooling.GetPooledObject();
-            WordID wordComponent = pooledObj.GetComponent<WordID>();
+            // Use this option's IDs for this word (so each copy still has a sensible id)
+            var idsForWord = GetIdsForWord(chunks, word);
+            for (int i = 0; i < toSpawn && i < idsForWord.Count; i++)
+            {
+                GameObject pooledObj = wordPooling.GetPooledObject();
+                var wordComponent = pooledObj.GetComponent<WordID>();
 
-            wordComponent.word = chunk.text;
-            wordComponent.id = chunk.id;
-            wordComponent.wordText.text = chunk.text;
+                wordComponent.word = word;
+                wordComponent.id = idsForWord[i];
+                wordComponent.wordText.text = word;
 
-            createdObjects.Add(pooledObj);
-            spawnedWords.Add(chunk.text);
+                createdObjects.Add(pooledObj);
+                OnWordCreated?.Invoke(wordComponent.id, word, pooledObj.transform);
+            }
 
-            OnWordCreated?.Invoke(chunk.id, chunk.text, pooledObj.transform);
+            spawnedCountByWord[word] = spawnedSoFar + toSpawn;
         }
 
+        // Record this option's sequence (including local duplicates)
         OptionsCollection.Add(new OptionData {
             id = optionID,
             words = singleOptionsOrder
         });
-
         OnPoolCreated?.Invoke(OptionsCollection);
 
+        // Shuffle only the newly spawned visuals
         ShuffleList(createdObjects);
         for (int i = 0; i < createdObjects.Count; i++)
-        {
             createdObjects[i].transform.SetSiblingIndex(i);
+    }
+
+    // --- helpers ---
+
+    private static Dictionary<string,int> CountLocalOccurrences(List<WordChunkData> chunks)
+    {
+        var counts = new Dictionary<string,int>(StringComparer.Ordinal);
+        for (int i = 0; i < chunks.Count; i++)
+        {
+            string w = chunks[i].text;
+            counts[w] = counts.TryGetValue(w, out int c) ? c + 1 : 1;
         }
+        return counts;
+    }
+
+    private static List<int> GetIdsForWord(List<WordChunkData> chunks, string word)
+    {
+        var ids = new List<int>();
+        for (int i = 0; i < chunks.Count; i++)
+            if (chunks[i].text == word) ids.Add(chunks[i].id);
+        return ids;
     }
 
     private void ShuffleList<T>(List<T> list)
@@ -95,9 +132,8 @@ public class WordPoolManager : MonoBehaviour
 
         var split = input.Split('/', StringSplitOptions.RemoveEmptyEntries);
         for (int i = 0; i < split.Length; i++)
-        {
             result.Add(new WordChunkData { id = i, text = split[i].Trim() });
-        }
+
         return result;
     }
 

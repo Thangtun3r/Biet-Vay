@@ -45,7 +45,6 @@ public class DiaglogueTransition : MonoBehaviour
     private void HandleCollapseCompleted()
     {
         isCollapsing = false; // Allow animations again
-        HandleLineIntransition(); // Optionally trigger the in-transition after collapse
     }
 
     private void HandleLineIntransition()
