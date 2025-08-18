@@ -1,17 +1,21 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public static event Action OnFreeze; 
+    
+    
     [YarnCommand("collapse")]
     public static void Collapse() => GameTransition.Instance.Collapse();
 
     [YarnCommand("expand")]
     public static void Expand() => GameTransition.Instance.Expand();
 
-    // Safer coroutine: give physics + rendering a chance to settle
-    // before Yarn continues to the next command.
     [YarnCommand("spawn")]
     public static IEnumerator SpawnPoint(string spawnPointName)
     {
@@ -23,19 +27,20 @@ public class GameManager : MonoBehaviour
             yield break; // dialogue continues
         }
 
-        // Perform the spawn/teleport.
         SpawnPointHandler.InvokePlayerSpawn(point);
 
-        // --- Robust settling sequence ---
-        // If your spawn uses CharacterController/rigidbody or navmesh,
-        // let one FixedUpdate tick process first:
         yield return new WaitForFixedUpdate();
-
-        // Then wait for the next Update so transforms are visible to scripts:
         yield return null;
-
-        // Then wait until the end of that frame so rendering catches up:
         yield return new WaitForEndOfFrame();
-        // --------------------------------
     }
+
+    [YarnCommand("freeze")]
+    public static void Freeze()
+    {
+        Debug.Log("freeze");
+        OnFreeze?.Invoke();
+    }
+
+    
+
 }

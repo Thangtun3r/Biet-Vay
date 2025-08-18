@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private const float gravity = -9.81f;
     private float verticalVelocity = 0f;
     private float xRotation = 0f;
+    
+    public bool IsFrozen { get; set; }   // <— add this
 
     private void Start()
     {
@@ -29,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
+        if (!IsFrozen)
+            HandleMovement();
         HandleCameraRotation();
     }
 
@@ -64,7 +67,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleCameraRotation()
     {
-        // IMPORTANT: do NOT multiply by Time.deltaTime for mouse input.
         float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
 

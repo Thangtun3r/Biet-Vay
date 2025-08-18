@@ -6,28 +6,6 @@ position: -750,-67
 
 
 
-title: meetingMall
-position: -336,-191
----
-<<collapse>>
-<<wait 0.5>>
--> Hey.../ Did/ I keep / you waiting?
-Kiet: Hey... Did I keep you waiting?
-Mai: Hmm, just long enough to <bounce a=0.5>re-evaluate my life choices</bounce>.
-Mai: Just kidding. I got here, like two minutes ago.
--> Damn/ I/ thought/ I/ was/ late.
-Kiet: Damn, I thought I was late.
-Kiet: The traffic was bad as hell
-Mai: Ah you want some cheesecake?
-Mai: Freshly baked from my Mom <Wiggle a=0.8>Hehe</Wiggle>
--> Oh/ thanks,/ Mai.
-Kiet: Oh thanks, Mai.
-Kiet: It… smells amazing. Your mom’s seriously good at this.
-Mai: I know right?
-Mai: Anyways let's go inside
--> Sure/ let's/ go.
-<<expand>>
-===
 title: morningCall
 position: -725,100
 ---
@@ -35,30 +13,197 @@ position: -725,100
 <<wait 0.5>>
 <<once>>
 Mai: <shake a=0.5>Heyyy...</shake>
-Mai: On your way yet ?
-Mai: Looks like. It's gonna <shake a=0.5>rain!</shake>.
+Mai: On your way yet?  
+Mai: Looks like it’s gonna <shake a=0.5>rain!</shake>
 -> I/ am/ on/ my/ way.
-Kiet: I am on my way.
-Mai: Okay hurry up. Or you will get drenched lol.
+Kiet: I’m on my way.  
+Mai: Okay, hurry up or you’ll get drenched lol.  
 <<else>>
-Game: What are you doing?
+Game: What are you doing?  
 Game: Get your ass ready and <shake a=0.5>go.</shake>
 <<endonce>>
 <<expand>>
 ===
 
-title: toMall
+title: toPark
 position: -356,48
 ---
 <<collapse>>
 <<wait 0.5>>
-Game: Ready to go?
+Game: Ready to go?  
 -> Yes/ let's/ go.
     <<spawn Mall>>
     <<expand>>
 -> No
-    Game: Aight bet.
+    Game: Aight, bet.  
     <<expand>>
 ===
 
 
+////Park part
+
+title: park
+position: -336,-191
+---
+<<collapse>>
+<<wait 0.5>>
+-> Hey
+Kiet: Hey  
+Mai: ....  
+-> Hey/yyy
+Kiet: Heyyyy  
+Mai: ....  
+-> Hey/yyy/yyy
+Kiet: Heyyyyyyy  
+Mai: *startled* Oh—Kiet. For a sec I thought you were someone else.  
+-> Sorry,/ did/ I/ keep/ you/ waiting?
+Kiet: Sorry, did I keep you waiting?  
+Mai: Maybe. Just enough time to <bounce a=0.5>rethink all my life choices.</bounce>  
+Mai: …Kidding. I just got here, like, two minutes ago.  
+-> The/ traffic/ was/ bad as hell
+Kiet: The traffic was bad as <shake a=0.5>hell</shake>.  
+Mai: Yeah, same for me in District 1.  
+Mai: Ah, you want some cheesecake?  
+Mai: Freshly baked from my mom.  
+-> Oh-uh/ thanks,/ Mai.
+Kiet: Oh—uh, thanks, Mai.  
+Kiet: It… smells amazing. Your mom’s seriously good at this.  
+Mai: I know, right?  
+Mai: But let’s save it for later.  
+Mai: For now… let’s do some "cardio."  
+-> Sure/ let's/ go.
+Kiet: Sure, let’s go.  
+Mai: Whoever reaches the end first gets the durian topping.  
+Kiet: Bet.  
+    <<jump insidePark>>
+===
+
+
+
+title: insidePark
+---
+<<freeze>>
+<<spawn Bench>>
+<<expand>>
+
+===
+
+///park chitchat
+
+title: ParkChitchat
+---
+<<collapse>>
+<<wait 0.5>>
+-> So.../ How was/ University?
+Kiet: So… how was university?  
+Mai: Eh, it’s fine, I guess.  
+Mai: Joining clubs and stuff.  
+-> Oh,/ That's nice/
+    Kiet: Oh, that’s nice.  
+-> Really?/ Which ones?
+    <<detour ArtCLub>>
+Mai: How about you? Joined the Music Club again at university?  
+-> Actually/I/ didn't/ join any.
+    Kiet: Actually, I didn’t join any.  
+    Kiet: Game Design class gives me enough crunch time.  
+    Mai: Really?  
+    Mai: I thought game design was just playing games all day.  
+    Kiet: Haha, I wish.  
+    Kiet: But no, it’s a lot of work… still pretty fun, though.  
+    Kiet: I’m still getting used to it.  
+Mai: I see.  
+Mai: Well, if you ever make a game, I’d love to play it.  
+-> Sure/thing
+    Kiet: Sure thing.  
+    Kiet: I’ll put "Special thanks to Mai" in the credits.  
+    Mai: Aww, that’s sweet.  
+    Mai: I’ll be waiting for it.  
+    Kiet: Just prepare yourself for a lot of bugs.  
+Kiet: So how’s the studying, actually?  
+Mai: Bunch of work and assignments.  
+Mai: But I’m managing it. Maybe.  
+Mai: But geez, there are so many great people in my class.  
+Mai: I’m not sure if I can keep up with them.  
+    -> You/ are/ doing great/ Mai.
+        Kiet: I can tell you’re doing great already.  
+        Kiet: You always underestimate yourself.
+        Mai: Maybe… or maybe I’m just being realistic.    
+        Kiet: And I know it’s kinda cliché… but don’t compare yourself to others.  
+        Mai: …Yeah, I guess you’re right.  
+        Mai: Thanks, Kiet.  
+    -> Well/ just.../chill out.
+        Kiet: Well, just chill out. Don’t stress too much.  
+        Mai: We’re 19 already, Kiet. We can’t just chill out.  
+        Mai: Sometimes I wish it were that simple.  
+        Kiet: …Right, sorry.  
+    -> Wanna/ study together sometimes ?
+        Kiet: Wanna study together sometime?  
+        Mai: Wow, the guitarist actually wants to study? That’s a first.  
+        Mai: Sure, I’m in.  
+        Kiet: Haha, I’m serious.  
+        Kiet: I could use some help with Physics.  
+        Kiet: And I can help you with presentation design.  
+        Mai: Deal.  
+
+-> It's evening already/ would/you/like/to/eat something?
+Kiet: It’s evening already, would you like to eat something?
+Mai: Sure, I’m starving.
+    <<jump StreetVendor>>
+
+-> It's evening already/ would/ you/ like/ to/ do something else?
+Kiet: It’s evening already, would you like to do something else?
+Mai: Sure, what do you have in mind?
+    -> How/ about/ we/ go/ to/ play some gashapon?
+        Kiet: How about we go to the mall?  
+        Mai: Oh, that sounds fun.  
+        Mai: I need to buy some stuff anyway.  
+        Kiet: Alright, let’s go then.  
+        <<jump Gashapon>>
+    -> How/ about/ we/ go/ to/ the/ cinema?
+        Kiet: How about we go to the cinema?  
+        Mai: Oh, that sounds fun.  
+        Mai: I need to watch some movies anyway.  
+        Kiet: Alright, let’s go then.
+        <<jump Cinema>>
+
+title: ArtCLub
+---
+Mai: I joined the Art Club.  
+-> But I thought/ you/ didn't/ like/ drawing.
+    Kiet: Really? Why Art Club?  
+    Kiet: I mean—uh, I didn’t think you were that into drawing.  
+    Kiet: …You always joked you weren’t great at it.  
+    Mai: *pouts* Hey! I’m still learning, okay!  
+-> I/ used to/ join one/ too.
+    Kiet: Oh, actually I used to join one too.  
+    Mai: Wait, really? Which one?  
+    -> The/ one/ in/ high school.
+        Kiet: The one in high school.  
+        Mai: Ohhh, I remember that!  
+        Mai: I think I saw you there a few times.  
+        Mai: Maybe we could draw something together when we have time?  
+        -> Sure/ I/ would/ love/ to.
+            Kiet: Sure, I’d love to.  
+===  
+
+title: Gashapon
+---
+
+===
+
+title: Cinema
+---
+
+===
+
+title: StreetVendor
+---
+
+===
+
+
+title: Convenience_store
+---
+
+===
+a
