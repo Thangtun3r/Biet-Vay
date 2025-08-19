@@ -117,18 +117,16 @@ title: ParkChitchat
 <<collapse>>
 <<wait 0.5>>
 -> The cheesecake/ is/ very /delicious!
-Kiet: The cheesecake is very delicious!
-->Your Mom /really know/ how to bake/, no debate/
-    Kiet: Your Mom really knows how to bake, no debate!  
-    Mai: Ofcourse, it's a cake make with love.
-    -> So/cheesy.
+    Kiet: The cheesecake is very delicious!
+    Kiet: Your mom still overdoes the vanilla… in a good way.
+    Mai: She says it tastes better when it’s too much haha.
 
 -> So.../ How was/ University?
 Kiet: So… how was university?  
 Mai: It's very fun!
-Mai: like there are a bunch of stuffs to do.
-Mai: And he-he, you wouldn't guess which club I get accepted in.
--> Really?/ Which ones?
+Mai: like there are a bunch of things to do.
+Mai: And he-he, you wouldn't guess which club I got in.
+-> Oh,/ Which ones?
 Mai: It's ArtClub! 
     -> Drawing? You?
         Kiet: Drawing? You?
@@ -137,76 +135,48 @@ Mai: It's ArtClub!
         <<set $affection -=1>>
     -> Woah,/ that's awesome!  
         Kiet: Woah, that’s awesome!  
-        Kiet: Honestly, I thought your best anatomy was stick-onomy.  
-        Mai: Man. you should stop with throwing pun.
-        Kiet: Haha, I can’t help it.
-        Mai: But I can draw now, you know!  
-        Kiet: Okay, okay! I take it back!  
+        Kiet: Honestly, I’ll retire the stick-onomy joke. For tonight.
+        Mai: Good!
         <<set $affection +=1>>
 
-
-//purpose to discover more about Kiet background
-Mai: How about you? Joined the Music Club again at university?  
-    -> Actually/I/ didn't/ join any.
-        Kiet: Actually, I didn’t join any.  
-        Kiet: Game Design class gives me enough crunch time.  
-        Mai: So you get to play videogames all day? So cool!
-        Kiet: Haha, I wish.  
-        Kiet: But no, it’s a lot of work… still pretty fun, though.  
-        Mai: Well, if you ever make a game, let me try it!
-        <<set $affection += 1>>
-    -> I/Hate/club activities.
-        Kiet: I hate club activities.
-        Kiet: They just take up so much time and energy.
-        Kiet: And I need time to make my games, you know? For the fame?
-        Mai: I get that but you should still try something!
-        Mai: Have fun and stuffs
-
 // Ask Mai about her study 
-Kiet: Oh and how’s your studying, actually?  
-Mai: So muchhh assignments. And I’m managing it!
-Mai: But geez, there are so many great people in my class.  
-Mai: I’m not sure if I can keep up with them.  
-    -> You/ are/ doing great/ Mai.
-        Kiet: I can tell you’re doing great already.  
-        Kiet: You always underestimate yourself.
-        Mai: Maybe… or maybe I’m just being realistic.    
-        Kiet: And I know it’s kinda cliché… but don’t compare yourself to others.  
-        Mai: …Yeah, I guess you’re right.  
-        Mai: Thanks, Kiet.
+Kiet: Oh and how about your studying, actually?  
+Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
+    -> You/ are/ doing great./
+        Kiet: I can tell you’re doing great already.
+        Kiet: That's very cliche (laughs). But thanks.
         <<set $affection += 1>>
     -> Well,/ just.../chill out.
         Kiet: Well, just chill out. Don’t stress too much.  
         Mai: I don't know. Like in several years we must get a job.
         Mai: And we cannot be silly with our problems anymore.
         Kiet: Cuz funny accident become money accident right?
-        Mai: Yep.
-        Mai: And no more pun please!
+        Mai: Kiet. No more pun.
     -> Wanna/ study together/ sometime?
         Kiet: Wanna study together sometime?  
-        Mai: B-but I thought the only study you will do is before the deadlines 1 day !?!?!
-        Kiet: C'mon people changed, people changed.
+        Mai: You? Not just the night before the deadline ?!?!
+        Kiet: People change ya know.
         Mai: Okay, let's see how it goes.
         <<set $affection += 1>>
 
 Mai: It's evening already, you got any plans?
-    -> Wanna/ grab/some food?  
-    Kiet: It’s evening already, wanna grab some food?  
-    Mai: Sure, I’m really hungry already!  
-    <<jump StreetVendorTransition>>
 
-    -> Wanna/ do /something else?
-    Kiet: It’s evening already, wanna do something else?
-    Mai: Sure, what do you have in mind?
         -> How/ about/ we/ go/ to/ play some gashapon?
             Kiet: How about we go to play some gashapon? 
             Mai: Ok. That's sound fun!
-            Kiet: Let's go to the mall
+            Kiet: Let's hit the Mall!
             <<jump Gashapon>>
-        -> How/ about/ we/ go/ to/ the/ cinema?
+        -> How/ about/ we/ go/ to/ the cinema?
             Kiet: How about we go to the cinema?  
             Mai: Sureee.
             <<jump Cinema>>
+        -> How/ about/ we/ go/ to/ eat some street food?
+            Kiet: How about we go to eat some street food?
+            Mai: Okay, it's your call.
+            Kiet: Let's go for <wiggle a=5>the usual</wiggle>
+            Mai: The usual?
+            Kiet: You will know when we get there.
+            <<jump StreetVendor>>
 ===
 
 
@@ -238,7 +208,7 @@ Mai: I thought when we have a job it will be cheaper
 Mai: But it's actually more expensive.
 -> Yeh,/got to/pay for/ my /own /gashapon now./
 Kiet: Yeh, got to pay for my own gashapon.
-<<jump StreetVendorTransition>>
+<<jump Convenience_store_transition>>
 ===
 
 
@@ -273,45 +243,12 @@ Kiet:...
 -> Yep,/like/you.
 Kiet: Yep, like you.
 <<endif>>
-
-<<jump StreetVendorTransition>>
+<<jump Convenience_store_transition>>
 ===
-
-
-title: StreetVendorTransition
----
-Mai: Anyways, I'm getting hungry right now.
-Mai: wanna get something to eat?
-Kiet: What do you feel like eating?  
-Mai: I’m easy, surprise me!
--> Wanna/ get/ some/ Pho?  
-Kiet: Wanna get some Pho?  
-Mai: Ugh, I literally had Pho yesterday. 
--> How about/ some/ Chicken/ Rice?  
-Kiet: How about some Chicken Rice?  
-Mai: That’s way too oily, not tonight.  
-Kiet: Then what <shake a=0.5>do<shake> you want?  
-Mai: Anything is fine!
--> Alright/ let’s go/ for the usual.  
-Kiet: Alright, let’s go for <wiggle a=0.5>the usual</wiggle>.  
-Mai: The usual?  
-Kiet: Yeah, <wiggle a=0.5>the usual</wiggle>.
-Mai: Come onn, it’s been years. At lease drop me a hint.
--> You/ will/ remember/ when/ we/ get/ there.  
-Kiet: You’ll remember when we get there.  
-<<jump StreetVendor>>
-===
-
-
-
-
-
-
 
 
 
 title: StreetVendor
-color: red
 ---
 <<spawn park>>
 <<freeze>>
@@ -329,30 +266,26 @@ Kiet: Alright, bet.
     //fix multiple choices
     <<declare $correctFood = false>>  
 
-    -> Can you/ get me/ Nui xao bo/ without veggies/ without green onion/  
-    Kiet: Cô ơi, cho con một phần nui xào bò, không rau, không hành.  
+    -> Can you/ get me/ Nui xao bo/ without veggies/ and green onion?/  
+    Kiet: Can you get me Nui xao bo without veggies and green onion? 
     <<set $correctFood = true>>  
 
-    -> Can you/ get me/ Nui xao trung/ without veggies/ without green onion/  
-    Kiet: Cô ơi, cho con một phần nui xào trứng, không rau, không hành.  
+    -> Can you/ get me/ Mi xao trung/ without veggies/ and green onion?/  
+    Kiet: Can you get me Mi xao trung without veggies and green onion?
 
--> And also/ one bot chien/, please.  
-Kiet: Với lại cho con một bột chiên nha.  
-The Vendor: Có liền nha con (In a minute.)  
+-> And also/ one bot chien/, Thank you!  
+Kiet: And also one bot chien, Thank you!
+The Vendor: In a minute
 
 <<if $correctFood == false>>  
-Mai: Err-Err, That's was wrong! 
-Kiet: What?  
-Mai: The correct answer is <wiggle a=0.5>nui xào bò</wiggle>, no veggies, no green onion.  
-Kiet: Oh—right, right. I forgot.  
+Mai: Wrong! Mine’s <wiggle a=0.5>nui xào bò</wiggle>, no veggies, no green onion.
 Kiet: I’ll get it right next time, promise.  
 Mai: Haha, I’m just messing with you.  
 
 <<elseif $correctFood == true>>  
-Mai: Wow, you actually got it right this time.  
+Mai: Wow, you actually got it right.
 Kiet: Of course I did, I’m a pro at this.  
 Mai: Haha, I’m impressed.  
-Kiet: Thanks, I try my best.  
 <<set $affection += 1>>
 <<endif>>  
 
@@ -364,6 +297,12 @@ Kiet: Thanks, cô.
 Mai: That was delicious.  
 Mai: Thanks for treating me, Kiet.  
 Kiet: It's what gentlemen do.
+<<jump Convenience_store_transition>>
+
+===
+
+title: Convenience_store_transition
+---
 Mai: Looks like it’s going to rain soon. We should head home.  
 Kiet: Ah, wait.  
 -> How/ about we/ swing by the convenience store to wait out the rain?  
@@ -382,91 +321,69 @@ Kiet: How about we swing by the convenience store to wait out the rain?
 ===
 
 
-
-
 title: Convenience_store
 ---
--> Lucky/that/ we/ stopped/ by/ here.
-Kiet: Lucky that we stopped by here.
-Mai: Yep, if we go back home earlier we would get soaked.
-Mai: ....So, did you interest in anyone in your class?
-->WHAT!/why/so/sudden?
-Kiet: <Shake a=0.5>WHAT!</Shake> why so sudden?
-Kiet: But I mean my class is all male so yeh
-Mai: I can help you find one!
-Mai: It's time I become your wingman bro.
--> No/I'm/ good/
-Kiet: No, I’m good.
-Mai: Aww, come on.
-Mai: I could introduce you to some of my friends.
-Mai: Like my friend Linh, she's from my class and she's really nice.
-Mai: Or my friend Thao, she's from my club and hey she loves games too!
--> How about/ you/introduce me/to/ the girl/named Mai?
-Kiet: How about you introduce me to the girl named Mai?
-Mai: ....
-Mai: Huh?
-Mai: <shake a=0.5>Huhhhhh?</shake>
--> Honestly/ I/ like/ you.
-Kiet: Honestly, I like you.
-Mai: Whoa-hold up. This also very sudden.
--> I/ have/ a/ crush/ on/ you/ since we were/ in/ high school.
-Kiet: I have a crush on you since we were in high school.
-Mai:...
-Mai: But I thought we were just friends.
-Mai:...
-Mai: Kiet, I truly appreciate your feelings.
+-> Lucky/ that/ we/ stopped/ by/ here.
+    Kiet: Lucky that we stopped by here.
+Mai: Yep—if we’d gone earlier, we’d be soaked.
+Mai: ...So, are you interested in anyone in your class?
+-> WHAT!/ why/ so/ sudden?
+    Kiet: <shake a=0.5>WHAT!</shake> Why so sudden?
+    Kiet: My class is all male, so… yeah.
+Mai: I can help you find someone! Let me be your wingman.
+-> No,/ I’m/ good.
+    Kiet: No, I’m good.
+Mai: Aww, come on. I could introduce you to Linh she’s really nice.
+Mai: Or Thảo from my club. She loves games!
+-> How about/ the girl/ named/ Mai?
+    Kiet: How about the girl named Mai?
+    Mai: ...
+    Mai: Huh?
+    Mai: <shake a=0.5>Huhhhhh?</shake>
+-> Honestly,/ I/ like/ you.
+    Kiet: Honestly, I like you.
+    Mai: Whoa—hold up. This is very sudden.
+-> I’ve/ had/ a crush/ since/ high school.
+    Kiet: I’ve had a crush on you since high school.
+    Mai: ...
+    Mai: I thought we were just friends.
+    Mai: Kiet, I truly appreciate your feelings.
 
-
-<<if $affection >= 3>>
-Mai: But now- I'm not ready for a relationship.
-Mai: But...Thank you for telling me this.
-Mai: I hope we can still be friends.
-Mai: Still friends?
--> Sure/ I/ understand.
-Kiet: Sure, I understand.
-    -> Can/ we/ try this/ out this time ?
-    Kiet: Can we try this out this time?
-    Mai: I'm not sure Kiet.
-    Mai: We have just met again after a long time.
-    Mai: I don't want to ruin our friendship.
-    -> I/Understand.
-
-
-<<elseif $affection > 5>>
-Mai: It's just so sudden.
-Mai: If it someone else I would say no.
-Mai: I will need some time to think about it ok?
-Mai: I will text you later.
-Mai: Today was fun, thanks for hanging out with me.
-<<jump LaterText>>
-
+<<if $affection > 5>>
+    Mai: It’s sudden… Let me think about it, okay? I’ll text you.
+    Mai: Today was fun. Thanks for hanging out with me.
+    <<jump LaterText>>
+<<elseif $affection >= 3>>
+    Mai: I’m not ready for a relationship. But… thank you for telling me.
+    Mai: I hope we can still be friends. Still friends?
+    -> Sure./ I/ understand.
+        Kiet: Sure, I understand.
+    <<jump LaterText>>
+<<else>>
+    <<jump suddenGoHome>>
 <<endif>>
-===
+
 
 title: LaterText
---- 
-Mai: Hey Kiet, after thinking alot about it.
-Mai: I truly value our time together, and appreciate your feelings.
-Mai: But...I don't think I'm ready to go further than friendship.ws
-Mai: Like we just hang out again after a long time.
-Mai: And we don't know how much we have changed.
-Mai: So I don't think we should rush into a relationship.
+---
+Mai: Hey Kiet, after thinking a lot about it—
+Mai: I truly value our time together and appreciate your feelings.
+Mai: But I don’t think I’m ready to go further than friendship.
+Mai: We just hung out again after a long time, and we don’t know how much we’ve changed.
+Mai: So I don’t think we should rush into a relationship.
 Mai: I hope you understand, Kiet.
-Mai: So...still friends?
--> Yeh/ still/friends.
-Kiet: Yeh, still friends.
+Mai: So… still friends?
+-> Yeah,/ still/ friends.
+    Kiet: Yeah, still friends.
 ===
 
 
 title: suddenGoHome
 ---
-///this node will end the game instant if the affect gauge go to low
-// insert phone call
-Mai: I have to go home now. 
-What?/Why?
-Mai: Sorry Kiet, I have to go home now.
-Mai: My mom texted that she needs me to help her with something.
-Mai: Maybe we can hang out again another time?
--> Sure/I/ understand.
-Kiet: Sure, I understand.
+Mai: I have to go home now.
+Kiet: What? Why?
+Mai: Sorry, Kiet. My mom texted—she needs my help.
+Mai: Maybe we can hang out another time?
+-> Sure./ I/ understand.
+    Kiet: Sure, I understand.
 ===
