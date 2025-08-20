@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  followSpeed: 15
+  followSpeed: 20
   horizontalOffset: 0
 --- !u!114 &1835007965656030314
 MonoBehaviour:
