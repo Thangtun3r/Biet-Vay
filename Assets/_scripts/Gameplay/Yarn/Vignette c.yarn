@@ -94,9 +94,7 @@ Kiet: Yeh, let’s go.
 title: insidePark
 ---
 <<freeze>>
-<<once>>
 <<spawn Bench>>
-<<endonce>>
 <<expand>>
 
 ===
@@ -107,7 +105,6 @@ title: ParkChitchat
 ---
 <<collapse>>
 <<wait 0.5>>
-<<once>>
 -> The cheesecake/ was/ very /delicious!
     Kiet: The cheesecake was very delicious!
     Kiet: Your mom still overdoes the vanilla… in a good way.
@@ -164,20 +161,19 @@ Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
         <<set $affection += 1>>
 
 <<transition>>
-<<freeze>>
-<<expand>>
-<<wait  2>>
-<<weather>>
-
-<<wait  2>>
-<<jump insidePark>>
-
-<<endonce >>
+<<jump ParkEvening>>
 
 
 
 
 
+===
+
+
+title: ParkEvening
+---
+Mai: Ahhh, today is so chill.
+Mai: It's was so long since I am this relaxed.
 Mai: Hey, It's evening already, you got any plans?
 
         -> How/ about/ we/ go/ to/ play some gashapon?
@@ -196,8 +192,9 @@ Mai: Hey, It's evening already, you got any plans?
             Mai: The usual?
             Kiet: You will know when we get there.
             <<jump StreetVendor>>
-===
 
+
+===
 
 
 
@@ -407,4 +404,13 @@ Mai: Sorry, Kiet. My mom texted—she needs my help.
 Mai: Maybe we can hang out another time?
 -> Sure./ I/ understand.
     Kiet: Sure, I understand.
+===
+
+
+
+
+///////////////////////Transition Nodes////////////////////////////////
+title: ParkTransition
+---
+
 ===
