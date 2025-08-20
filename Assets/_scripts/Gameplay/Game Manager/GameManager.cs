@@ -7,7 +7,9 @@ using Yarn.Unity;
 public class GameManager : MonoBehaviour
 {
     
-    public static event Action OnFreeze; 
+    public static event Action OnFreeze;
+    public static event Action OnTransition;
+    public static event Action OnWeather;
     
     
     [YarnCommand("collapse")]
@@ -37,10 +39,20 @@ public class GameManager : MonoBehaviour
     [YarnCommand("freeze")]
     public static void Freeze()
     {
-        Debug.Log("freeze");
         OnFreeze?.Invoke();
     }
 
-    
+    [YarnCommand("transition")]
+    public static void Transition()
+    {
+        OnTransition?.Invoke();
+    }
+
+    //temporary weather command for testing purposes
+    [YarnCommand("weather")]
+    public static void Weather()
+    {
+        OnWeather?.Invoke();
+    }
 
 }

@@ -72,25 +72,14 @@ position: -336,-191
 ---
 <<collapse>>
 <<wait 0.5>>
--> Hey
-Kiet: Hey  
-Mai: ....  
--> Hey/yyy
-Kiet: Heyyyy  
-Mai: *startled* Oh—Kiet. For a sec I thought you were someone else.  
--> Ofcourse,/It's/been years/since/we/last/met.
-Kiet: Ofcourse, It's been years since we last met.
-Kiet: People changed.People changed.
 
-//establish for the player the timeline
-Mai: We just graduate 1 year ago!
-Mai: It's not like we will not met each other in 10 years!
-Mai: Ah before heading to the park
-
+-> Did/I/keep/you/waiting?
+Kiet: Did I keep you waiting?
+Mai: Not really. Just arrived here for a bit.
+Mai: Ah before heading to the park. Wanna eat some Durian cheescake?
 //this to create connection with vignette 4
-Mai: Wanna eat some Durian cheescake?
 Mai: Freshly baked from my mom.  
--> Looks/amazing/Mai.
+-> It's/looks/yummy.
 Kiet: Looks amazing Mai.
 Kiet: And smells amazing too.
 Mai: I know, right?  
@@ -105,7 +94,9 @@ Kiet: Yeh, let’s go.
 title: insidePark
 ---
 <<freeze>>
+<<once>>
 <<spawn Bench>>
+<<endonce>>
 <<expand>>
 
 ===
@@ -116,37 +107,50 @@ title: ParkChitchat
 ---
 <<collapse>>
 <<wait 0.5>>
--> The cheesecake/ is/ very /delicious!
-    Kiet: The cheesecake is very delicious!
+<<once>>
+-> The cheesecake/ was/ very /delicious!
+    Kiet: The cheesecake was very delicious!
     Kiet: Your mom still overdoes the vanilla… in a good way.
     Mai: She says it tastes better when it’s too much haha.
 
 -> So.../ How was/ University?
-Kiet: So… how was university?  
-Mai: It's very fun!
-Mai: like there are a bunch of things to do.
-Mai: And he-he, you wouldn't guess which club I got in.
--> Oh,/ Which ones?
-Mai: It's ArtClub! 
-    -> Drawing? You?
-        Kiet: Drawing? You?
-        Kiet: …You always joked you weren’t great at it.  
-        Mai: Hey! I’ve been practicing!
-        <<set $affection -=1>>
-    -> Woah,/ that's awesome!  
-        Kiet: Woah, that’s awesome!  
-        Kiet: Honestly, I’ll retire the stick-onomy joke. For tonight.
-        Mai: Good!
-        <<set $affection +=1>>
+    Kiet: So… how was university?  
+    Mai: It's very fun!...like there are a bunch of things I can do.
+    Mai: And hehe, let’s just say… my eyes are <wiggle a=0.5>very</wiggle> happy there!
+    Kiet: Oh really? What do you mean?
+    Mai: My school basketball team is full of handsome! Like unfairly handsome.
+    -> Oh/ok.
+    Kiet: Oh ok.
+    Mai: And he-he, you wouldn't guess which club I got in.
+    -> Basketball/club?
+    Kiet: Basketball club?
+        Mai: Nooo, It's <wiggle a=0.5>ArtClub!</wiggle> 
+            -> Drawing?/ You?
+                Kiet: Drawing? You?
+                Kiet: …You always joked you weren’t great at it.  
+                Mai: Hey! I’ve been practicing!
+                <<set $affection -=1>>
+            -> You?/ Drawing?
+                Kiet: You? Drawing?
+                Kiet: …You always joked you weren’t great at it.  
+                Mai: Hey! I’ve been practicing!
+                <<set $affection -=1>>
+            -> Woah,/ that's/ awesome!  
+                Kiet: Woah, that’s awesome!  
+                Kiet: Honestly, I’ll retire the stick-onomy joke. For tonight.
+                Mai: Good. You better be!
+                <<set $affection +=1>>
 
-// Ask Mai about her study 
+Kiet: You gotta draw me someday, yeah?
+Kiet: I promise I’ll pay… like, friend discount rates.
+Mai: Haha, sure! I’ll hold you to that. Best friend discount it is.
 Kiet: Oh and how about your studying, actually?  
 Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
     -> You/ are/ doing great./
         Kiet: I can tell you’re doing great already.
-        Kiet: That's very cliche (laughs). But thanks.
+        Mai: Thanks, Kiet.
         <<set $affection += 1>>
-    -> Well,/ just.../chill out.
+    -> Just.../chill out.
         Kiet: Well, just chill out. Don’t stress too much.  
         Mai: I don't know. Like in several years we must get a job.
         Mai: And we cannot be silly with our problems anymore.
@@ -159,11 +163,26 @@ Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
         Mai: Okay, let's see how it goes.
         <<set $affection += 1>>
 
-Mai: It's evening already, you got any plans?
+<<transition>>
+<<freeze>>
+<<expand>>
+<<wait  2>>
+<<weather>>
+
+<<wait  2>>
+<<jump insidePark>>
+
+<<endonce >>
+
+
+
+
+
+Mai: Hey, It's evening already, you got any plans?
 
         -> How/ about/ we/ go/ to/ play some gashapon?
             Kiet: How about we go to play some gashapon? 
-            Mai: Ok. That's sound fun!
+            Mai: Okay. That's sound fun!
             Kiet: Let's hit the Mall!
             <<jump Gashapon>>
         -> How/ about/ we/ go/ to/ the cinema?
@@ -173,7 +192,7 @@ Mai: It's evening already, you got any plans?
         -> How/ about/ we/ go/ to/ eat some street food?
             Kiet: How about we go to eat some street food?
             Mai: Okay, it's your call.
-            Kiet: Let's go for <wiggle a=5>the usual</wiggle>
+            Kiet: Let's go for <wiggle a=0.5>the usual</wiggle>
             Mai: The usual?
             Kiet: You will know when we get there.
             <<jump StreetVendor>>
@@ -192,13 +211,13 @@ Mai: So nostalgic when you get deteined when skipping class to play gashapon.
 Kiet: Welp, at least you got that special figure there. Worth it hundred percent.
 Mai: And you got spanked for that too right?
 Kiet: Fair trade-a sore butt for a limited edition figure.
-Mai: Ok, you go first.
+Mai: Okay, you go first.
 
 <<if $favoriteGashapon>>
 Mai: Oh it's my favorite character in the cartoon!
     ->Well/ you/ can/ have it/
     Kiet: Well you can have it.
-    Mai: Really? Thanks alot Kiet
+    Mai: Really? Thanks alot!
     Kiet: I have alot at home already.
     <<set $affection += 1>>
 <<endif>>
@@ -216,11 +235,15 @@ Kiet: Yeh, got to pay for my own gashapon.
 
 title: Cinema
 ---
+
 /// bought the ticket and enter the cinema
+Game: (....THE MOVIE IS FREAKING SCREENING RIGHT NOW.....)
+
 Mai: (whisper) Woa the camera composition is amazing
 -> The way/ they/ frame each shot/ is just/ perfect./
-Kiet: The way they frame each shot is just perfect.
-Mai: Look at Marina, she is really captivating in this scene.
+Kiet: (whisper) The way they frame each shot is just perfect.
+Game:(...)
+Mai: (whisper)Look at Marina, she is really captivating in this scene.
     -> Kinda /like you,/ though.
     Kiet: Kinda like you, though.
     Mai:...
@@ -228,7 +251,7 @@ Mai: Look at Marina, she is really captivating in this scene.
     <<affection += 1>>
     -> Yep/ She's/ truly/ gorgeous.
     Kiet: Yep, she’s truly gorgeous.
-
+<<transition>>
 /// After the movie ends they went outside
 Mai: The movie..is good right ?
 -> Yeh/ great writing/and/ great acting.
@@ -238,10 +261,7 @@ Kiet: I love the chemistry between the characters.
 Kiet: But the CGI was absurd.
 Mai: I know right? It took me out of the moment.
 <<if $movieFlirtSuccess>>
-Mai: But atleast they had a stunning actress...like me, right ?
-Kiet:...
--> Yep,/like/you.
-Kiet: Yep, like you.
+Mai: But atleast they had a stunning actress like me haha.
 <<endif>>
 <<jump Convenience_store_transition>>
 ===
@@ -250,8 +270,6 @@ Kiet: Yep, like you.
 
 title: StreetVendor
 ---
-<<spawn park>>
-<<freeze>>
 <<collapse>>
 Mai: Oh, yeah <wiggles a=0.5>the usual</wiggle>.  
 Mai: I remember now.  
@@ -272,6 +290,7 @@ Kiet: Alright, bet.
 
     -> Can you/ get me/ Mi xao trung/ without veggies/ and green onion?/  
     Kiet: Can you get me Mi xao trung without veggies and green onion?
+    <<set $correctFood = false>>  
 
 -> And also/ one bot chien/, Thank you!  
 Kiet: And also one bot chien, Thank you!
@@ -295,7 +314,7 @@ Kiet: Thanks, cô.
 
 /// They eat for about half an hour  
 Mai: That was delicious.  
-Mai: Thanks for treating me, Kiet.  
+Mai: Thanks for treating me.
 Kiet: It's what gentlemen do.
 <<jump Convenience_store_transition>>
 
@@ -326,11 +345,12 @@ title: Convenience_store
 -> Lucky/ that/ we/ stopped/ by/ here.
     Kiet: Lucky that we stopped by here.
 Mai: Yep—if we’d gone earlier, we’d be soaked.
-Mai: ...So, are you interested in anyone in your class?
+Mai: So...real talk! Are you interested in anyone in your class?
 -> WHAT!/ why/ so/ sudden?
     Kiet: <shake a=0.5>WHAT!</shake> Why so sudden?
     Kiet: My class is all male, so… yeah.
 Mai: I can help you find someone! Let me be your wingman.
+Mai: And maybe you can help me find someone too.
 -> No,/ I’m/ good.
     Kiet: No, I’m good.
 Mai: Aww, come on. I could introduce you to Linh she’s really nice.
@@ -354,8 +374,9 @@ Mai: Or Thảo from my club. She loves games!
     Mai: Today was fun. Thanks for hanging out with me.
     <<jump LaterText>>
 <<elseif $affection >= 3>>
-    Mai: I’m not ready for a relationship. But… thank you for telling me.
-    Mai: I hope we can still be friends. Still friends?
+    Mai: And I truly value our friendship.
+    Mai: And I don't want to break it.
+    Mai: So...I hope we can still be friends. Still friends?
     -> Sure./ I/ understand.
         Kiet: Sure, I understand.
     <<jump LaterText>>
