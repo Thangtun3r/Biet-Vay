@@ -2,7 +2,7 @@
 //// To-do describe the purpose through dialogue
 
 
-// Kiet archytupe:
+// Tam archytupe:
 //Like throwing bad pun
 
 // Mai archytype
@@ -41,7 +41,7 @@ Mai: <shake a=0.5>Heyyy...</shake>
 Mai: On your way yet?  
 Mai: Looks like it’s gonna <shake a=0.5>rain!</shake>
 -> I/ am/ on/ my/ way.
-Kiet: I’m on my way.  
+Tam: I’m on my way.  
 Mai: Okay, hurry up or you’ll get drenched lol.  
 <<else>>
 Game: What are you doing?  
@@ -74,18 +74,18 @@ position: -336,-191
 <<wait 0.5>>
 
 -> Did/I/keep/you/waiting?
-Kiet: Did I keep you waiting?
+Tam: Did I keep you waiting?
 Mai: Not really. Just arrived here for a bit.
 Mai: Ah before heading to the park. Wanna eat some Durian cheescake?
 //this to create connection with vignette 4
 Mai: Freshly baked from my mom.  
 -> It's/looks/yummy.
-Kiet: Looks amazing Mai.
-Kiet: And smells amazing too.
+Tam: Looks amazing Mai.
+Tam: And smells amazing too.
 Mai: I know, right?  
 Mai: Let's go inside and enjoy it.
 ->Yeh/let's/go.
-Kiet: Yeh, let’s go.
+Tam: Yeh, let’s go.
     <<jump insidePark>>
 ===
 
@@ -103,131 +103,168 @@ title: insidePark
 
 title: ParkChitchat
 ---
+<<VMBoost 1>>
 <<collapse>>
 <<wait 0.5>>
+<<once>>
 -> The cheesecake/ was/ very /delicious!
-    Kiet: The cheesecake was very delicious!
-    Kiet: Your mom still overdoes the vanilla… in a good way.
+    Tam: The cheesecake was very delicious!
+    Tam: Your mom still overdoes the vanilla… in a good way.
     Mai: She says it tastes better when it’s too much haha.
 
 -> So.../ How was/ University?
-    Kiet: So… how was university?  
+    Tam: So… how was university?  
     Mai: It's very fun!...like there are a bunch of things I can do.
     Mai: And hehe, let’s just say… my eyes are <wiggle a=0.5>very</wiggle> happy there!
-    Kiet: Oh really? What do you mean?
+    Tam: Oh really? What do you mean?
     Mai: My school basketball team is full of handsome! Like unfairly handsome.
     -> Oh/ok.
-    Kiet: Oh ok.
+    Tam: Oh ok.
     Mai: And he-he, you wouldn't guess which club I got in.
     -> Basketball/club?
-    Kiet: Basketball club?
+    Tam: Basketball club?
         Mai: Nooo, It's <wiggle a=0.5>ArtClub!</wiggle> 
             -> Drawing?/ You?
-                Kiet: Drawing? You?
-                Kiet: …You always joked you weren’t great at it.  
+                Tam: Drawing? You?
+                Tam: …You always joked you weren’t great at it.  
                 Mai: Hey! I’ve been practicing!
                 <<set $affection -=1>>
             -> You?/ Drawing?
-                Kiet: You? Drawing?
-                Kiet: …You always joked you weren’t great at it.  
+                Tam: You? Drawing?
+                Tam: …You always joked you weren’t great at it.  
                 Mai: Hey! I’ve been practicing!
                 <<set $affection -=1>>
             -> Woah,/ that's/ awesome!  
-                Kiet: Woah, that’s awesome!  
-                Kiet: Honestly, I’ll retire the stick-onomy joke. For tonight.
+                Tam: Woah, that’s awesome!  
+                Tam: Honestly, I’ll retire the stick-onomy joke. For tonight.
                 Mai: Good. You better be!
                 <<set $affection +=1>>
 
-Kiet: You gotta draw me someday, yeah?
-Kiet: I promise I’ll pay… like, friend discount rates.
+Tam: You gotta draw me someday, yeah?
+Tam: I promise I’ll pay… like, friend discount rates.
 Mai: Haha, sure! I’ll hold you to that. Best friend discount it is.
-Kiet: Oh and how about your studying, actually?  
+Tam: Oh and how about your studying, actually?  
 Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
     -> You/ are/ doing great./
-        Kiet: I can tell you’re doing great already.
-        Mai: Thanks, Kiet.
+        Tam: I can tell you’re doing great already.
+        Mai: Thanks, Tam.
         <<set $affection += 1>>
     -> Just.../chill out.
-        Kiet: Well, just chill out. Don’t stress too much.  
+        Tam: Well, just chill out. Don’t stress too much.  
         Mai: I don't know. Like in several years we must get a job.
         Mai: And we cannot be silly with our problems anymore.
-        Kiet: Cuz funny accident become money accident right?
-        Mai: Kiet. No more pun.
+        Tam: Cuz funny accident become money accident right?
+        Mai: Tam. No more pun.
     -> Wanna/ study together/ sometime?
-        Kiet: Wanna study together sometime?  
+        Tam: Wanna study together sometime?  
         Mai: You? Not just the night before the deadline ?!?!
-        Kiet: People change ya know.
+        Tam: People change ya know.
         Mai: Okay, let's see how it goes.
         <<set $affection += 1>>
-
+<<VMReset>>
 <<transition>>
-<<jump ParkEvening>>
+<<wait  2>>
+<<weather>>
+<<jump insidePark>>
+<<endonce>>
 
 
-
-
-
-===
-
-
-title: ParkEvening
----
-Mai: Ahhh, today is so chill.
+-> Kinda/chill/isn't/it?
+Mai: Yeh, very chill indeed.
 Mai: It's was so long since I am this relaxed.
 Mai: Hey, It's evening already, you got any plans?
 
         -> How/ about/ we/ go/ to/ play some gashapon?
-            Kiet: How about we go to play some gashapon? 
+            Tam: How about we go to play some gashapon? 
             Mai: Okay. That's sound fun!
-            Kiet: Let's hit the Mall!
+            Tam: Let's hit the Mall!
+            <<VMReset>>
+            <<transition>>
+            <<expand>>
+            <<wait  2>>
             <<jump Gashapon>>
         -> How/ about/ we/ go/ to/ the cinema?
-            Kiet: How about we go to the cinema?  
+            Tam: How about we go to the cinema?  
             Mai: Sureee.
+            <<VMReset>>
+            <<transition>>
+            <<wait  2>>
             <<jump Cinema>>
         -> How/ about/ we/ go/ to/ eat some street food?
-            Kiet: How about we go to eat some street food?
+            Tam: How about we go to eat some street food?
             Mai: Okay, it's your call.
-            Kiet: Let's go for <wiggle a=0.5>the usual</wiggle>
+            Tam: Let's go for <wiggle a=0.5>the usual</wiggle>
             Mai: The usual?
-            Kiet: You will know when we get there.
+            Tam: You will know when we get there.
+            <<VMReset>>
+            <<transition>>
+            <<wait  2>>
             <<jump StreetVendor>>
 
 
+
 ===
-
-
 
 title: Gashapon
 ---
-Kiet: Welcome to legal gambling my friend!
-Mai: ...
-Mai: Heyy!, don't say it out loud, the cop will handcuff you!
-Mai: So nostalgic when you get deteined when skipping class to play gashapon.
-->Welp/ atleast/you/got/that special figures there/
-Kiet: Welp, at least you got that special figure there. Worth it hundred percent.
-Mai: And you got spanked for that too right?
-Kiet: Fair trade-a sore butt for a limited edition figure.
-Mai: Okay, you go first.
-
-<<if $favoriteGashapon>>
-Mai: Oh it's my favorite character in the cartoon!
-    ->Well/ you/ can/ have it/
-    Kiet: Well you can have it.
-    Mai: Really? Thanks alot!
-    Kiet: I have alot at home already.
-    <<set $affection += 1>>
-<<endif>>
-
-Mai: That's was pretty fun and costly too.
-Mai: I thought when we have a job it will be cheaper
-Mai: But it's actually more expensive.
--> Yeh,/got to/pay for/ my /own /gashapon now./
-Kiet: Yeh, got to pay for my own gashapon.
-<<jump Convenience_store_transition>>
+<<spawn gashapon>>
+<<unfreeze>>
 ===
 
 
+title: MaiAtGashapon
+---
+<<VMBoost 2>>
+<<collapse>>
+<<wait 0.5>>
+<<once>>
+Mai: Hey look! Let's try out this one!
+Mai: It's the newest goods from the classic series of Heroes Chunker!
+Mai: And I heard that the special figure is super limited in stock
+Tam: Really!?! Well we must get the special one.
+-> Let/me/show/you/my/luck.
+Tam: Let me show you my luck.
+Mai: Ok, the stage is all yours.
+<<else>>
+Mai: What do you waiting for. Show me your SSR luck!
+<<endonce>>
+<<VMReset>>
+<<expand>>
+===
+
+
+
+title: GachaMachineGame
+---
+<<VMBoost 3>>
+<<collapse>>
+-> *Turning the crank*
+    <<roll>>
+    <<wait  0.5>>
+    <<if $favoriteGashapon>>
+    Mai: Oh it's my favorite character in the cartoon!
+    ->Well/ you/ can/ have it./
+    Tam: Well you can have it.
+    Mai: Really? Thanks alot!
+    Tam: I have alot at home already.
+    <<set $affection += 111>>
+    <<else>>
+    Mai: A Normal one is fine too!
+    <<endif>>
+    Mai: Wanna try again?
+    -> Sure,/why/not!
+        <<jump GachaMachineGame>>
+    -> Eh,/that's/enough.
+        Mai: Well that's was pretty fun but costly aswell.
+        Mai: I thought when we have a job it will be cheaper
+        Mai: But it's actually more expensive.
+        -> Yeh,/got to/pay for/ our own /gashapon now./
+        Tam: Yeh, got to pay for our own gashapon now..
+        <<jump Convenience_store_transition>>
+        
+                
+
+===
 
 
 title: Cinema
@@ -238,24 +275,24 @@ Game: (....THE MOVIE IS FREAKING SCREENING RIGHT NOW.....)
 
 Mai: (whisper) Woa the camera composition is amazing
 -> The way/ they/ frame each shot/ is just/ perfect./
-Kiet: (whisper) The way they frame each shot is just perfect.
+Tam: (whisper) The way they frame each shot is just perfect.
 Game:(...)
 Mai: (whisper)Look at Marina, she is really captivating in this scene.
     -> Kinda /like you,/ though.
-    Kiet: Kinda like you, though.
+    Tam: Kinda like you, though.
     Mai:...
     <<set $movieFlirtSuccess = true>>
     <<affection += 1>>
     -> Yep/ She's/ truly/ gorgeous.
-    Kiet: Yep, she’s truly gorgeous.
+    Tam: Yep, she’s truly gorgeous.
 <<transition>>
 /// After the movie ends they went outside
 Mai: The movie..is good right ?
 -> Yeh/ great writing/and/ great acting.
-Kiet: Yeh, great writing and great acting.
-Kiet: I love the chemistry between the characters.
+Tam: Yeh, great writing and great acting.
+Tam: I love the chemistry between the characters.
 -> But/the CGI/ was/ absurd./
-Kiet: But the CGI was absurd.
+Tam: But the CGI was absurd.
 Mai: I know right? It took me out of the moment.
 <<if $movieFlirtSuccess>>
 Mai: But atleast they had a stunning actress like me haha.
@@ -268,51 +305,51 @@ Mai: But atleast they had a stunning actress like me haha.
 title: StreetVendor
 ---
 <<collapse>>
-Mai: Oh, yeah <wiggles a=0.5>the usual</wiggle>.  
+Mai: Oh, yeah <wiggle a=0.5>the usual</wiggle>.  
 Mai: I remember now.  
-Kiet: We used to come here to eat before extra classes.  
+Tam: We used to come here to eat before extra classes.  
 
 -> So.../ what/ do/ you/ want?  
 Mai: The usual, please.  
-Kiet: The usual?  
+Tam: The usual?  
 Mai: Yep, the usual.  
-Kiet: Alright, bet.  
+Tam: Alright, bet.  
 
     //fix multiple choices
     <<declare $correctFood = false>>  
 
     -> Can you/ get me/ Nui xao bo/ without veggies/ and green onion?/  
-    Kiet: Can you get me Nui xao bo without veggies and green onion? 
+    Tam: Can you get me Nui xao bo without veggies and green onion? 
     <<set $correctFood = true>>  
 
     -> Can you/ get me/ Mi xao trung/ without veggies/ and green onion?/  
-    Kiet: Can you get me Mi xao trung without veggies and green onion?
+    Tam: Can you get me Mi xao trung without veggies and green onion?
     <<set $correctFood = false>>  
 
 -> And also/ one bot chien/, Thank you!  
-Kiet: And also one bot chien, Thank you!
+Tam: And also one bot chien, Thank you!
 The Vendor: In a minute
 
 <<if $correctFood == false>>  
 Mai: Wrong! Mine’s <wiggle a=0.5>nui xào bò</wiggle>, no veggies, no green onion.
-Kiet: I’ll get it right next time, promise.  
+Tam: I’ll get it right next time, promise.  
 Mai: Haha, I’m just messing with you.  
 
 <<elseif $correctFood == true>>  
 Mai: Wow, you actually got it right.
-Kiet: Of course I did, I’m a pro at this.  
+Tam: Of course I did, I’m a pro at this.  
 Mai: Haha, I’m impressed.  
 <<set $affection += 1>>
 <<endif>>  
 
 The Vendor: Here you go, enjoy your meal, sweeties.  
 Mai: Thanks, cô.  
-Kiet: Thanks, cô.  
+Tam: Thanks, cô.  
 
 /// They eat for about half an hour  
 Mai: That was delicious.  
 Mai: Thanks for treating me.
-Kiet: It's what gentlemen do.
+Tam: It's what gentlemen do.
 <<jump Convenience_store_transition>>
 
 ===
@@ -320,16 +357,23 @@ Kiet: It's what gentlemen do.
 title: Convenience_store_transition
 ---
 Mai: Looks like it’s going to rain soon. We should head home.  
-Kiet: Ah, wait.  
--> How/ about we/ swing by the convenience store to wait out the rain?  
-Kiet: How about we swing by the convenience store to wait out the rain?  
+Tam: Ah, wait.  
+-> How/ about we/ swing/ by /the convenience store/
+Tam: How about we swing by the convenience store. To wait out the rain?
 
 
 <<if $affection >= 3 >>
     Mai: Oh, that’s a good idea.  
     Mai: I need to buy some stuff anyway.  
-    -> Alright/ let’s/ go then.  
-    <<jump Convenience_store>>
+    -> Alright/ let’s/ go then.
+        <<expand>>
+        <<VMReset>>
+        <<transition>>
+        <<wait  2>>
+        <<jump Convenience_store>>
+        
+        
+
 <<else>>
     <<jump suddenGoHome>>
 
@@ -339,32 +383,43 @@ Kiet: How about we swing by the convenience store to wait out the rain?
 
 title: Convenience_store
 ---
+<<freeze>>
+<<spawn ConvenienceStore>>
+    
+===
+
+title: Convenince_store_mai
+---
+<<freeze>>
+<<VMBoost 4>>
+<<collapse>>
+<<wait  0.5>>
 -> Lucky/ that/ we/ stopped/ by/ here.
-    Kiet: Lucky that we stopped by here.
+    Tam: Lucky that we stopped by here.
 Mai: Yep—if we’d gone earlier, we’d be soaked.
 Mai: So...real talk! Are you interested in anyone in your class?
 -> WHAT!/ why/ so/ sudden?
-    Kiet: <shake a=0.5>WHAT!</shake> Why so sudden?
-    Kiet: My class is all male, so… yeah.
+    Tam: <shake a=0.5>WHAT!</shake> Why so sudden?
+    Tam: My class is all male, so… yeah.
 Mai: I can help you find someone! Let me be your wingman.
 Mai: And maybe you can help me find someone too.
 -> No,/ I’m/ good.
-    Kiet: No, I’m good.
+    Tam: No, I’m good.
 Mai: Aww, come on. I could introduce you to Linh she’s really nice.
 Mai: Or Thảo from my club. She loves games!
 -> How about/ the girl/ named/ Mai?
-    Kiet: How about the girl named Mai?
+    Tam: How about the girl named Mai?
     Mai: ...
     Mai: Huh?
     Mai: <shake a=0.5>Huhhhhh?</shake>
--> Honestly,/ I/ like/ you.
-    Kiet: Honestly, I like you.
-    Mai: Whoa—hold up. This is very sudden.
--> I’ve/ had/ a crush/ since/ high school.
-    Kiet: I’ve had a crush on you since high school.
-    Mai: ...
-    Mai: I thought we were just friends.
-    Mai: Kiet, I truly appreciate your feelings.
+    -> Honestly,/ I/ like/ you.
+        Tam: Honestly, I like you.
+        Mai: Whoa—hold up. This is very sudden.
+        -> I’ve/ had/ a crush/on you/ since/ high school.
+            Tam: I’ve had a crush on you since high school.
+            Mai: ...
+            Mai: I thought we were just friends.
+            Mai: Tam, I truly appreciate your feelings.
 
 <<if $affection > 5>>
     Mai: It’s sudden… Let me think about it, okay? I’ll text you.
@@ -375,7 +430,7 @@ Mai: Or Thảo from my club. She loves games!
     Mai: And I don't want to break it.
     Mai: So...I hope we can still be friends. Still friends?
     -> Sure./ I/ understand.
-        Kiet: Sure, I understand.
+        Tam: Sure, I understand.
     <<jump LaterText>>
 <<else>>
     <<jump suddenGoHome>>
@@ -384,29 +439,27 @@ Mai: Or Thảo from my club. She loves games!
 
 title: LaterText
 ---
-Mai: Hey Kiet, after thinking a lot about it—
+Mai: Hey Tam, after thinking a lot about it—
 Mai: I truly value our time together and appreciate your feelings.
 Mai: But I don’t think I’m ready to go further than friendship.
 Mai: We just hung out again after a long time, and we don’t know how much we’ve changed.
 Mai: So I don’t think we should rush into a relationship.
-Mai: I hope you understand, Kiet.
+Mai: I hope you understand, Tam.
 Mai: So… still friends?
 -> Yeah,/ still/ friends.
-    Kiet: Yeah, still friends.
+    Tam: Yeah, still friends.
 ===
 
 
 title: suddenGoHome
 ---
 Mai: I have to go home now.
-Kiet: What? Why?
-Mai: Sorry, Kiet. My mom texted—she needs my help.
+Tam: What? Why?
+Mai: Sorry, Tam. My mom texted—she needs my help.
 Mai: Maybe we can hang out another time?
 -> Sure./ I/ understand.
-    Kiet: Sure, I understand.
+    Tam: Sure, I understand.
 ===
-
-
 
 
 ///////////////////////Transition Nodes////////////////////////////////

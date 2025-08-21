@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -22,18 +24,30 @@ public class PlayerMovement : MonoBehaviour
     private float verticalVelocity = 0f;
     private float xRotation = 0f;
     
+    private Tween lookAtTween;
+    
     public bool IsFrozen { get; set; }   // <— add this
+    void Awake()
+    {
+        var cc = GetComponent<CharacterController>();
+        if (cc != null) cc.minMoveDistance = 0f; // prevent high-FPS stutter
+    }
 
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
     }
 
+    private void LateUpdate()
+    {
+         HandleCameraRotation();
+    }
+
     private void Update()
     {
         if (!IsFrozen)
             HandleMovement();
-        HandleCameraRotation();
+       
     }
 
     private void HandleMovement()

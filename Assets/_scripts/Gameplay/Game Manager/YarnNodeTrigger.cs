@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
+using Yarn.Unity;
 
 public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 {
@@ -9,10 +11,17 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
     [SerializeField] private Material highlightMaterial;
     [NonSerialized] private GameObject floatingLabel;
 
+    [Header("Enable Look At for the girl ?")]
+    public bool girlLookAt;
+    [SerializeField] private GirlLookAt girlLookAtTarget;
+    
+    
+    
+
     private bool isHighlighting = false;
     private Material originalMaterial;
     private Renderer renderer;
-
+    
     private void Start()
     {
         renderer = GetComponent<Renderer>();
@@ -23,11 +32,24 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
         HandleMats();
     }
 
+   
+
 
     public void Interact()
     {
         YarnDialogueEventBridge.CallYarnEvent(yarnNodeName);
+        HandleGirlLookAt();
     }
+    
+    
+    private void HandleGirlLookAt()
+    {
+        if (girlLookAt)
+        {
+            girlLookAtTarget.YawLookAtTarget();
+        }
+    }
+    
 
     public void Highlight()
     {
@@ -48,9 +70,9 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
         }
         isHighlighting = false;
     }
+    
 
-
-    // ======= Handle TMP Floating ========================================================================================================
+    
 
     
     
