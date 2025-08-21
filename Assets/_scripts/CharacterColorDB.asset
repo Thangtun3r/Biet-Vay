@@ -15,7 +15,7 @@ MonoBehaviour:
   entries:
   - characterName: Mai
     hexColor: '#ff71ce'
-  - characterName: Kiet
+  - characterName: Tam
     hexColor: '#7DB0C2'
   - characterName: Game
     hexColor: '#a7ca1c'

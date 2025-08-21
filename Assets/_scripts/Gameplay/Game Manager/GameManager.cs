@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
 {
     
     public static event Action OnFreeze;
+    public static event Action OnUnFreeze;
     public static event Action OnTransition;
     public static event Action OnWeather;
+    public static event Action<int> OnVMBoost;
+    public static event Action OnVMReset;
     
     
     [YarnCommand("collapse")]
@@ -37,11 +40,10 @@ public class GameManager : MonoBehaviour
     }
 
     [YarnCommand("freeze")]
-    public static void Freeze()
-    {
-        OnFreeze?.Invoke();
-    }
+    public static void Freeze() => OnFreeze?.Invoke();
 
+    [YarnCommand("unfreeze")]
+    public static void Unfreeze() => OnUnFreeze?.Invoke();
     [YarnCommand("transition")]
     public static void Transition()
     {
@@ -55,4 +57,16 @@ public class GameManager : MonoBehaviour
         OnWeather?.Invoke();
     }
 
+
+    [YarnCommand("VMBoost")]
+    public static void cinemachine(int cinemachineID)
+    {
+        OnVMBoost?.Invoke(cinemachineID);
+    }
+
+    [YarnCommand("VMReset")]
+    public static void cinemachineReset()
+    {
+        OnVMReset?.Invoke();
+    }
 }

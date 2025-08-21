@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnFreeze += FreezeMovementOnly;
+        GameManager.OnUnFreeze += UnFreezeMovementOnly;
         GameTransition.OnCollapseStarted += DisablePlayer;
         GameTransition.OnExpandStarted += EnablePlayer;
         SpawnPointHandler.OnPlayerSpawn += SetPlayerSpawnPoint;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         GameManager.OnFreeze -= FreezeMovementOnly;
+        GameManager.OnUnFreeze -= UnFreezeMovementOnly;
         GameTransition.OnCollapseStarted -= DisablePlayer;
         GameTransition.OnExpandStarted -= EnablePlayer;
         SpawnPointHandler.OnPlayerSpawn -= SetPlayerSpawnPoint;
@@ -41,11 +43,17 @@ public class Player : MonoBehaviour
         movement.enabled = true;
         interaction.enabled = true;
         characterController.enabled = true;
+        
     }
 
     private void FreezeMovementOnly()
     {
         movement.IsFrozen = true;       
+    }
+
+    private void UnFreezeMovementOnly()
+    {
+        movement.IsFrozen = false;
     }
 
 void SetPlayerSpawnPoint(Transform spawnPoint)
