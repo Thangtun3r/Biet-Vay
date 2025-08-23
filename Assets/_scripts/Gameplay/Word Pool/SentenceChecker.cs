@@ -8,8 +8,6 @@ public class SentenceChecker : MonoBehaviour
 {
     public WordDisplayManager wordDisplayManager;
     public static event Action OnCheckCompleted;
-
-    private List<WordID> wordIDsList = new List<WordID>();
     private List<OptionData> correctOrder;
     private List<string> userOrder;
     private bool isCorrect = false;

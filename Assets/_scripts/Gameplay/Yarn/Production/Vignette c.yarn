@@ -16,17 +16,30 @@ title: Setup
 <<declare $affection = 0>>
 <<declare $favoriteGashapon = false>>
 <<declare $movieFlirtSuccess = false>>
+<<declare $laterRejection = false>>
 
 
 ===
 
-
-
-
-title: start
-position: -750,-67
+title: BietVay
 ---
-<<expand>>
+<<collapse>>
+<<wait  0.5>>
+<<spawn Home>>
+<<PsudoTurnOn>>
+-> Biết vậy/I/shouldn't/have/confessed/to/her.
+    <<PsudoTurnOff>>
+    <<jump start>>
+-> I/shouldn't/have/confessed/to/her.
+    Tam: I confessed to her 
+    Tam: She didn’t feel the same, but that’s okay.
+    Tam: We’re still friends — and that matters to me.
+    <<wait  1>>
+    Tam: Oh hey, Mai. Long time no see.
+    Mai: Woah, Tam! You look different.
+    Mai: It feels like ages since we last hung out.
+
+
 ===
 
 
@@ -36,6 +49,21 @@ position: -725,100
 ---
 <<collapse>>
 <<wait 0.5>>
+<<if $laterRejection == true>>
+Mai: Hey Tam, after thinking a lot about it—
+Mai: I truly value our time together and appreciate your feelings.
+Mai: But I don’t think I’m ready to go further than friendship.
+Mai: We just hung out again after a long time, and we don’t know how much we’ve changed.
+Mai: So I don’t think we should rush into a relationship.
+Mai: I hope you understand, Tam.
+Mai: So… still friends?
+-> Yeah,/ still/ friends.
+    Tam: Yeah, still friends.
+        <<jump BietVay>>
+
+
+
+<<else>>
 <<once>>
 Mai: <shake a=0.5>Heyyy...</shake>
 Mai: On your way yet?  
@@ -47,6 +75,7 @@ Mai: Okay, hurry up or you’ll get drenched lol.
 Game: What are you doing?  
 Game: Get your ass ready and <shake a=0.5>go.</shake>
 <<endonce>>
+<<endif>>
 <<expand>>
 ===
 
@@ -121,8 +150,8 @@ title: ParkChitchat
     -> Oh/ok.
     Tam: Oh ok.
     Mai: And he-he, you wouldn't guess which club I got in.
-    -> Basketball/club?
-    Tam: Basketball club?
+    -> Let/me/guess/Basketball/club?
+    Tam: Let me guess...Basketball club?
         Mai: Nooo, It's <wiggle a=0.5>ArtClub!</wiggle> 
             -> Drawing?/ You?
                 Tam: Drawing? You?
@@ -282,7 +311,7 @@ Mai: (whisper)Look at Marina, she is really captivating in this scene.
     Tam: Kinda like you, though.
     Mai:...
     <<set $movieFlirtSuccess = true>>
-    <<affection += 1>>
+    <<set $affection += 1>>
     -> Yep/ She's/ truly/ gorgeous.
     Tam: Yep, she’s truly gorgeous.
 <<transition>>
@@ -361,7 +390,6 @@ Tam: Ah, wait.
 -> How/ about we/ swing/ by /the convenience store/
 Tam: How about we swing by the convenience store. To wait out the rain?
 
-
 <<if $affection >= 3 >>
     Mai: Oh, that’s a good idea.  
     Mai: I need to buy some stuff anyway.  
@@ -370,9 +398,7 @@ Tam: How about we swing by the convenience store. To wait out the rain?
         <<VMReset>>
         <<transition>>
         <<wait  2>>
-        <<jump Convenience_store>>
-        
-        
+        <<jump Convenience_store>>      
 
 <<else>>
     <<jump suddenGoHome>>
@@ -394,8 +420,8 @@ title: Convenince_store_mai
 <<VMBoost 4>>
 <<collapse>>
 <<wait  0.5>>
--> Lucky/ that/ we/ stopped/ by/ here.
-    Tam: Lucky that we stopped by here.
+-> Lucky/ that/ we/ stopped/ here.
+    Tam: Lucky that we stopped here.
 Mai: Yep—if we’d gone earlier, we’d be soaked.
 Mai: So...real talk! Are you interested in anyone in your class?
 -> WHAT!/ why/ so/ sudden?
@@ -424,33 +450,42 @@ Mai: Or Thảo from my club. She loves games!
 <<if $affection > 5>>
     Mai: It’s sudden… Let me think about it, okay? I’ll text you.
     Mai: Today was fun. Thanks for hanging out with me.
-    <<jump LaterText>>
+        <<VMReset>>
+        <<spawn Home>>
+
 <<elseif $affection >= 3>>
     Mai: And I truly value our friendship.
     Mai: And I don't want to break it.
     Mai: So...I hope we can still be friends. Still friends?
     -> Sure./ I/ understand.
         Tam: Sure, I understand.
-    <<jump LaterText>>
+    
 <<else>>
     <<jump suddenGoHome>>
 <<endif>>
 
 
-title: LaterText
+
+
+
+
+title: gohome
 ---
-Mai: Hey Tam, after thinking a lot about it—
-Mai: I truly value our time together and appreciate your feelings.
-Mai: But I don’t think I’m ready to go further than friendship.
-Mai: We just hung out again after a long time, and we don’t know how much we’ve changed.
-Mai: So I don’t think we should rush into a relationship.
-Mai: I hope you understand, Tam.
-Mai: So… still friends?
--> Yeah,/ still/ friends.
-    Tam: Yeah, still friends.
+
+
+title: startTransition
+---
+
 ===
 
+title: start
+position: 20,20
+---
 
+
+<<unfreeze>>
+<<expand>>
+===
 title: suddenGoHome
 ---
 Mai: I have to go home now.
@@ -459,11 +494,5 @@ Mai: Sorry, Tam. My mom texted—she needs my help.
 Mai: Maybe we can hang out another time?
 -> Sure./ I/ understand.
     Tam: Sure, I understand.
-===
-
-
-///////////////////////Transition Nodes////////////////////////////////
-title: ParkTransition
----
-
+    <<jump BietVay>>
 ===

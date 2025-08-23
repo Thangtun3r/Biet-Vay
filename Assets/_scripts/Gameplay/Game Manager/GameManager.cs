@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public static event Action<int> OnVMBoost;
     public static event Action OnVMReset;
     
+    // deltete after testing
+    public static event Action OnPsudoTurnOff;
+    public static event Action OnPsudoTurnOn;
+    
     
     [YarnCommand("collapse")]
     public static void Collapse() => GameTransition.Instance.Collapse();
@@ -69,4 +73,21 @@ public class GameManager : MonoBehaviour
     {
         OnVMReset?.Invoke();
     }
+    
+    
+    //also delete after testing
+    [YarnCommand("PsudoTurnOff")]
+    public static void PsudoTurnOff()
+    {
+        OnPsudoTurnOff?.Invoke();
+        Debug.Log("Psudo Turn Off Called");
+    }
+    
+    [YarnCommand("PsudoTurnOn")]
+    public static void PsudoTurnOn()
+    {
+        OnPsudoTurnOn?.Invoke();
+        Debug.Log("Psudo Turn Off Called");
+    }
+    
 }
