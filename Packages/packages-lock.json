@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.febucci.custom-hierarchy": {
+      "version": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "845f7521c4695bc30d9efe0c3168b616cc51454a"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.0",
       "depth": 1,
@@ -329,6 +336,16 @@
       "source": "git",
       "dependencies": {},
       "hash": "608d08904508f20b106b27ae2f7c12e2cde45191"
+    },
+    "dev.yarnspinner.unity.samples": {
+      "version": "https://github.com/YarnSpinnerTool/YarnSpinner-Unity-Samples.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "dev.yarnspinner.unity": "3.0.3",
+        "com.unity.shadergraph": "14.0.0"
+      },
+      "hash": "04b0b1531d5fcf4bb61cbc179919c8d76b49318c"
     },
     "www.nulltale.outlinefx": {
       "version": "https://github.com/NullTale/OutlineFx.git",
