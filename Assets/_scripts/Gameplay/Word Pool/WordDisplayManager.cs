@@ -37,8 +37,8 @@ public class WordDisplayManager : DialoguePresenterBase
 
         for (int i = 0; i < options.Length; i++)
         {
-            string line = options[i].Line.Text.Text;
-            WordPoolManager.Instance.CreateSentenceFromText(line, i);
+            var parsed = options[i].Line.Text; // MarkupParseResult
+            WordPoolManager.Instance.CreateSentenceFromText(parsed, i);
         }
 
         while (selectedOption == null && !cancellationToken.IsCancellationRequested)
