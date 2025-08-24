@@ -1,6 +1,5 @@
-﻿title: Debug
+title: Debug
 ---
 <<wait  0.5>>
--> Biet vay,/I/shouldn't have/confess/to/her.
--> I/have/confessed/to/her.
+-> Biet vay,/I/ [switch word=huh] shouldn't have [/switch]/confess/[switch word=no]to[/switch]/her.
 ===
