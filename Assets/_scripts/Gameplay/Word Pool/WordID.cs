@@ -14,13 +14,8 @@ public class WordID : MonoBehaviour
 
     public void AssigningWord(string word)
     {
+        this.word = word;
         wordText.text = word;
-    }
-
-    private void ResetWord()
-    {
-        word = "";
-        AssigningWord(word);
     }
 
     

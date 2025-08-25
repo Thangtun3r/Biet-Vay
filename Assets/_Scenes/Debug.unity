@@ -523,6 +523,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1001685823}
     m_Modifications:
+    - target: {fileID: 1394740235683746385, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1757046839355492618, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
       propertyPath: wordPooling
       value: 

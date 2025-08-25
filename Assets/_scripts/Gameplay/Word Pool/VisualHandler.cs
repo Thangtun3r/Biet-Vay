@@ -17,27 +17,26 @@ public class VisualHandler : MonoBehaviour
         WordPoolManager.OnWordCreated -= HandleWordCreated;
     }
 
-    private void HandleWordCreated(int id, string word, Transform logicRoot)
+    private void HandleWordCreated(GameObject logicWord)
     {
-        StartCoroutine(SpawnVisualsWithDelay(id, word, logicRoot));
+        StartCoroutine(SpawnVisualsWithDelay(logicWord));
     }
 
-    private IEnumerator SpawnVisualsWithDelay(int id, string word, Transform logicRoot)
+    private IEnumerator SpawnVisualsWithDelay(GameObject logicWord)
     {
         yield return new WaitForSeconds(delayBeforeSpawning); // Wait a short time
+        
+        var logicRoot = logicWord.transform;
 
         foreach (Transform child in logicRoot)
         {
             GameObject visObj = visualPooling.GetPooledObject();
             visObj.transform.SetParent(transform, false);
 
-            var visualWordID = visObj.GetComponent<WordID>();
-            visualWordID.id = id;
-            visualWordID.word = word;
-            visualWordID.wordText.text = word;
-
             var vw = visObj.GetComponent<VisualWord>();
+            vw.logicWordObject = logicWord;
             vw.target = child;
         }
     }
+    
 }

@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -349,9 +349,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   word: 
   id: 0
-  hasMarkup: 0
   wordText: {fileID: 4916858192676377033}
-  switchWord: 
 --- !u!114 &3343073463956201984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +362,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc4b940d5d570c4a95b45d24f3c7ec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualPooling: {fileID: 0}
+  switchWord: 
+  isSwitch: 0
+  isBietVay: 0
+  isVisual: 0
+  _originalWord: 
+  _words: {fileID: 7893412346723646125}
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,7 +422,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329238593558574151}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 

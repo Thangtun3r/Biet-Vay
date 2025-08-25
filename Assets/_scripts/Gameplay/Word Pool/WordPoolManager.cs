@@ -16,7 +16,7 @@ public class WordPoolManager : MonoBehaviour
     public WordsPooling wordPooling;
 
     public static WordPoolManager Instance;
-    public static event Action<int, string, Transform> OnWordCreated;
+    public static event Action<GameObject> OnWordCreated;
     public static event Action<List<OptionData>> OnPoolCreated;
 
     [Header("Options Presenter Section")]
@@ -82,9 +82,10 @@ public class WordPoolManager : MonoBehaviour
                 
 
                 createdObjects.Add(pooledObj);
-                OnWordCreated?.Invoke(wordComponent.id, word, pooledObj.transform);
                 
+                OnWordCreated?.Invoke(pooledObj.gameObject);
                 ApplyAttributesToWord(wordComponent,wordWMarkup, chunks, parsed);
+                
 
 
             }
@@ -230,14 +231,14 @@ public class WordPoolManager : MonoBehaviour
     private readonly Dictionary<string, Action<WordMarkup, MarkupAttribute>> 
         attributeHandlers = new Dictionary<string, Action<WordMarkup, MarkupAttribute>>(StringComparer.OrdinalIgnoreCase)
         {
-            ["switch"] = (wordMarkup, attr) =>
+            ["sw"] = (wordMarkup, attr) =>
             {
-                if (attr.Properties.TryGetValue("word", out var value)) {
+                if (attr.Properties.TryGetValue("w", out var value)) {
                     wordMarkup.isSwitch = true;
                     wordMarkup.switchWord = value.StringValue;
                 }
             },
-            ["bietvay"] = (wordMarkup, attr) =>
+            ["bv"] = (wordMarkup, attr) =>
             {
                     wordMarkup.isBietVay = true;
             }
