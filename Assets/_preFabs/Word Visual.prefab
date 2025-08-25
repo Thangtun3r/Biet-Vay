@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 1835007965656030314}
   - component: {fileID: 3679610692806508965}
   - component: {fileID: 5188328427308294304}
+  - component: {fileID: 5955987180439825962}
   m_Layer: 5
   m_Name: Word Visual
   m_TagString: Word
@@ -268,7 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2aae9ba0ddb6b9d4db9d22a86258deef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  theTransform: {fileID: 4314517540068783136}
   logicWordObject: {fileID: 0}
   target: {fileID: 0}
   logicWordText: 
@@ -314,6 +314,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 117a8a839635b0343b4edb5e95e771ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5955987180439825962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0
