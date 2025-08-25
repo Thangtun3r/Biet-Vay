@@ -1,25 +1,56 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Codice.CM.Client.Differences;
+using Gameplay;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class WordMarkup : MonoBehaviour
 {
+    
+    public WordsPooling visualPooling;  
     public string switchWord;
     public bool isSwitch = false;
     public bool isBietVay = false;
+    public bool isVisual = false;
     
     private WordID _wordID;
-    private string _originalWord;
+    public string _originalWord;
+    public Words _words;
     
     
-    
-    
-    
+    public static event Action OnBietVay;
+    public static event Action OnReleaseBietVay;
     
 
-    public static event Action onBietVay;
+    private void OnEnable()
+    {
+        if (!isVisual && _words != null)
+        {
+            _words.BeganDrag += BietVay;
+            _words.Dragged += BietVay;
+            _words.EndedDrag += ReleaseBietVay;
+            _words.PointerUpped += ReleaseBietVay;
+        }
+        WordMarkup.OnBietVay += Switch;
+        WordMarkup.OnReleaseBietVay += ResetWord;
+      
+    }
 
+    private void OnDisable()
+    {
+        if (!isVisual && _words != null)
+        {
+            _words.BeganDrag -= BietVay;
+            _words.Dragged -= BietVay;
+            _words.EndedDrag -= ReleaseBietVay;
+            _words.PointerUpped -= ReleaseBietVay;
+        }
+
+        WordMarkup.OnBietVay -= Switch;
+        WordMarkup.OnReleaseBietVay -= ResetWord;
+    }
 
     private void Start()
     {
@@ -28,15 +59,29 @@ public class WordMarkup : MonoBehaviour
     }
 
 
-    private void BietVay()
+    private void BietVay(PointerEventData eventData)
     {
-        onBietVay.Invoke();
+        if (isBietVay)
+        {
+            OnBietVay?.Invoke();
+        }
     }
 
+    private void ReleaseBietVay(PointerEventData eventData)
+    {
+        if (isBietVay)
+        {
+            OnReleaseBietVay?.Invoke();
+        }
+    }
 
     private void Switch()
     {
-        _wordID.AssigningWord(switchWord);
+        if (isSwitch)
+        {
+            _wordID.AssigningWord(switchWord);
+        }
+        
     }
     private void ResetWord()
     {

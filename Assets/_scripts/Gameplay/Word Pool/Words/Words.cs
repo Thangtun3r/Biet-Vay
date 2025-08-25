@@ -1,7 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
-using Yarn.Unity.ActionAnalyser;
 
 namespace Gameplay
 {
@@ -26,8 +26,7 @@ namespace Gameplay
         
         
         //I use non-static events here cuz i don't want other words to respond to the events
-        [Header(" non-static Events")]
-        public event Action<PointerEventData> PointerDowned;
+        public event Action<PointerEventData> onPointerDown;
         public event Action<PointerEventData> PointerUpped;
         public event Action<PointerEventData> BeganDrag;
         public event Action<PointerEventData> Dragged;
@@ -66,18 +65,21 @@ namespace Gameplay
         // ======= Unity Pointers Interaction for us to assign ========================================================================================================
 
         
-        public void OnPointerDown(PointerEventData eventData)
+        public void OnPointerDown(PointerEventData eventdata)
         {
             _isDragging = false;
+            onPointerDown?.Invoke(eventdata);
         }
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            HandleReleaseBackToPool();                              
+            HandleReleaseBackToPool();       
+            PointerUpped?.Invoke(eventData);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            BeganDrag?.Invoke(eventData);
             _isDragging = true;
             HandlePullOutOfPool();
         }
@@ -85,12 +87,14 @@ namespace Gameplay
         public void OnDrag(PointerEventData eventData)
         {
             transform.position = Input.mousePosition;
+            Dragged?.Invoke(eventData);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             _isDragging = false; 
             HandlePooolLocation();
+            EndedDrag?.Invoke(eventData);
         }
 
 

@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-
 [ExecuteAlways]
 public class TextScaler : MonoBehaviour
 {
