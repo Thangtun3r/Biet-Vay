@@ -8,28 +8,11 @@ public class WordID : MonoBehaviour
 {
     public string word;
     public int id;
-    private string defaulWord; // Store the default word to reset later
-    public bool hasMarkup;
     public TextMeshProUGUI wordText;
-    public string switchWord;
-
-
-    private void OnEnable()
-    {
-        Switcher.OnSwitch += SwitchWord;
-    }
+    
     
 
-    private void SwitchWord()
-    {
-        if (hasMarkup)
-        {
-            AssigningWord();
-        }
-        
-    }
-
-    private void AssigningWord()
+    public void AssigningWord(string word)
     {
         wordText.text = word;
     }
@@ -37,7 +20,7 @@ public class WordID : MonoBehaviour
     private void ResetWord()
     {
         word = "";
-        AssigningWord();
+        AssigningWord(word);
     }
 
     

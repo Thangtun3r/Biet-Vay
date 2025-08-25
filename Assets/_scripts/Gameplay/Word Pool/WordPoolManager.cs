@@ -36,6 +36,7 @@ public class WordPoolManager : MonoBehaviour
         Instance = this;
     }
 
+    //Need to clean the pool if not old words will persist. Very important.
     public void ResetPool()
     {
         OptionsCollection.Clear();
@@ -43,24 +44,21 @@ public class WordPoolManager : MonoBehaviour
     }
 
     
-    private static bool Overlaps(int aStart, int aEnd, int bStart, int bEnd) 
-    {
-        return aStart < bEnd && bStart < aEnd;
-    }
+    /// <summary>
+    /// This large method is responsible for creating words from the parsed text.
+    /// To-do: Break it down into smaller methods if needed. This shit is too coupled already.
+    /// </summary>
     public void CreateSentenceFromText(MarkupParseResult parsed, int optionID)
     {
         string sentence = parsed.Text;
         if (string.IsNullOrWhiteSpace(sentence)) return;
 
-        // Parse and keep the original per-option order
         var chunks = ParseChunksWithID(sentence);
         var singleOptionsOrder = new List<string>(chunks.Count);
         foreach (var c in chunks) singleOptionsOrder.Add(c.text);
-
-        // Count duplicates in THIS option only
+        
         var localCounts = CountLocalOccurrences(chunks);
-
-        // Only spawn the delta compared to what's already globally available
+        
         var createdObjects = new List<GameObject>();
         foreach (var kvp in localCounts)
         {
@@ -70,38 +68,23 @@ public class WordPoolManager : MonoBehaviour
             spawnedCountByWord.TryGetValue(word, out int spawnedSoFar);
             int toSpawn = localNeed - spawnedSoFar;
             if (toSpawn <= 0) continue;
-
-            // Use this option's IDs for this word (so each copy still has a sensible id)
             var idsForWord = GetIdsForWord(chunks, word);
             for (int i = 0; i < toSpawn && i < idsForWord.Count; i++)
             {
                 
                 GameObject pooledObj = wordPooling.GetPooledObject();
                 var wordComponent = pooledObj.GetComponent<WordID>();
+                var wordWMarkup = pooledObj.GetComponent<WordMarkup>();
 
                 wordComponent.word = word;
                 wordComponent.id = idsForWord[i];
                 wordComponent.wordText.text = word;
+                
 
                 createdObjects.Add(pooledObj);
                 OnWordCreated?.Invoke(wordComponent.id, word, pooledObj.transform);
                 
-                var chunk = chunks.Find(c => c.id == wordComponent.id);
-                
-                foreach (var attr in parsed.Attributes) {
-                    int attrStart = attr.Position;
-                    int attrEnd   = attr.Position + attr.Length;
-
-                    if (Overlaps(attrStart, attrEnd, chunk.start, chunk.end)) {
-                        if (attr.Name.Equals("switch", StringComparison.OrdinalIgnoreCase) &&
-                            attr.Properties.TryGetValue("word", out var switchValValue)) {
-            
-                            string switchVal = switchValValue.StringValue;
-                            wordComponent.hasMarkup = true;
-                            wordComponent.switchWord = switchVal;
-                        }
-                    }
-                }
+                ApplyAttributesToWord(wordComponent,wordWMarkup, chunks, parsed);
 
 
             }
@@ -109,9 +92,9 @@ public class WordPoolManager : MonoBehaviour
             spawnedCountByWord[word] = spawnedSoFar + toSpawn;
             
         }
-
-        // Record this option's sequence (including local duplicates)
-        OptionsCollection.Add(new OptionData {
+        
+        OptionsCollection.Add(new OptionData 
+        {
             id = optionID,
             words = singleOptionsOrder
         });
@@ -129,9 +112,50 @@ public class WordPoolManager : MonoBehaviour
     
     
 
-     // ======= Helper ========================================================================================================
+     // ======= Helpers ========================================================================================================
 
+    /// <summary>
+    /// This will check if two ranges overlap.
+    /// If overlap they will allow, the attribute to be applied.
+    /// </summary>
+     private static bool Overlaps(int aStart, int aEnd, int bStart, int bEnd) 
+     {
+         return aStart < bEnd && bStart < aEnd;
+     }
+    
+     
+    /// <summary>
+    /// This is where we apply the parsed attributes to the WordMarkup component of each word.
+    /// </summary>
+    private void ApplyAttributesToWord(
+        WordID wordComponent,
+        WordMarkup wordMarkup,
+        List<WordChunkData> chunks,
+        MarkupParseResult parsed
+    ) {
+        var chunk = chunks.Find(c => c.id == wordComponent.id);
+        if (chunk == null) return;
 
+        foreach (var attr in parsed.Attributes) {
+            int attrStart = attr.Position;
+            int attrEnd   = attr.Position + attr.Length;
+            if (!Overlaps(attrStart, attrEnd, chunk.start, chunk.end))
+                continue;
+
+            if (attributeHandlers.TryGetValue(attr.Name, out var handler)) 
+            {
+                handler(wordMarkup, attr);
+            }
+        }
+    }
+
+    
+    /// <summary>
+    /// This part meant to prevent over-spawning of the same word within a single option.
+    /// </summary>
+    /// <param name="chunks"></param>
+    /// <returns></returns>
+     
     private static Dictionary<string,int> CountLocalOccurrences(List<WordChunkData> chunks)
     {
         var counts = new Dictionary<string,int>(StringComparer.Ordinal);
@@ -142,6 +166,7 @@ public class WordPoolManager : MonoBehaviour
         }
         return counts;
     }
+    
 
     private static List<int> GetIdsForWord(List<WordChunkData> chunks, string word)
     {
@@ -160,7 +185,18 @@ public class WordPoolManager : MonoBehaviour
         }
     }
 
-    private List<WordChunkData> ParseChunksWithID(string input) {
+    
+    
+    
+    
+    /// <summary>
+    /// This chunk of method handles how the input string is parsed into chunks while also recording their IDs and positions.
+    /// Then it will return the information as a list of WordChunkData objects.
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    private List<WordChunkData> ParseChunksWithID(string input) 
+    {
         var result = new List<WordChunkData>();
         if (string.IsNullOrWhiteSpace(input)) return result;
 
@@ -172,7 +208,6 @@ public class WordPoolManager : MonoBehaviour
             string trimmed = token.Trim();
             if (string.IsNullOrEmpty(trimmed)) continue;
 
-            // Find this token’s position inside the original input
             int start = input.IndexOf(trimmed, index, StringComparison.Ordinal);
             int end = start + trimmed.Length;
             index = end;
@@ -189,12 +224,30 @@ public class WordPoolManager : MonoBehaviour
     }
 
     
+    /// <summary>
+    /// Add more custom attribute handlers here.
+    /// </summary>
+    private readonly Dictionary<string, Action<WordMarkup, MarkupAttribute>> 
+        attributeHandlers = new Dictionary<string, Action<WordMarkup, MarkupAttribute>>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["switch"] = (wordMarkup, attr) =>
+            {
+                if (attr.Properties.TryGetValue("word", out var value)) {
+                    wordMarkup.isSwitch = true;
+                    wordMarkup.switchWord = value.StringValue;
+                }
+            },
+            ["bietvay"] = (wordMarkup, attr) =>
+            {
+                    wordMarkup.isBietVay = true;
+            }
+        };
     
 
     private class WordChunkData {
         public int id;
         public string text;
-        public int start; // start index in parsed.Text
-        public int end;   // end index (exclusive)
+        public int start;
+        public int end; 
     }
 }

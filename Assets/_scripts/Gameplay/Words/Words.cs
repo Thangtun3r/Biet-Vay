@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using Yarn.Unity.ActionAnalyser;
 
 namespace Gameplay
 {
@@ -9,27 +10,35 @@ namespace Gameplay
     public class Words : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
                           IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        // OLD: [SerializeField] private Transform poolA;
-        // OLD: [SerializeField] private Transform poolB;
+   
 
         [Header("Pool Tag")]
-        [SerializeField] private string poolTag = "WordPool"; // NEW
+        [SerializeField] private string poolTag = "WordPool"; 
 
-        private Transform _overlappedWordTransform;   // pool or word currently hovered
+        private Transform _overlappedWordTransform;  
         private Transform _originalParent;
 
-        private bool _isDragging;             // distinguish click vs drag
+        private bool _isDragging;           
 
         public Collider2D detectorCollider;
         [SerializeField] private Collider2D buttonCollider;
         public Detector detectorScript;
+        
+        
+        //I use non-static events here cuz i don't want other words to respond to the events
+        [Header(" non-static Events")]
+        public event Action<PointerEventData> PointerDowned;
+        public event Action<PointerEventData> PointerUpped;
+        public event Action<PointerEventData> BeganDrag;
+        public event Action<PointerEventData> Dragged;
+        public event Action<PointerEventData> EndedDrag;
+        
+        
+        
 
         private void Start()
         {
             _originalParent = transform.parent;
-
-            // OLD auto-find for 2 pools removed.
-            // NEW: nothing to assign; we’ll discover by tag when needed.
         }
 
         private void OnEnable()
@@ -46,12 +55,16 @@ namespace Gameplay
         
         private void HandleWordDetected(Transform detectedObject)
         {
-            // CHANGED: use poolTag instead of hardcoded "WordPool"
-            if (detectedObject.CompareTag("Word") || detectedObject.CompareTag(poolTag)) // CHANGED
+            if (detectedObject.CompareTag("Word") || detectedObject.CompareTag(poolTag)) 
             {
                 _overlappedWordTransform = detectedObject;
             }
         }
+        
+
+
+        // ======= Unity Pointers Interaction for us to assign ========================================================================================================
+
         
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -60,43 +73,13 @@ namespace Gameplay
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            // CHANGED: click → send to the "opposite" pool discovered by tag
-            // OLD:
-            // if (!_isDragging)
-            // {
-            //     transform.SetParent(_originalParent);
-            // }
-
-            if (!_isDragging) // NEW
-            {                 
-                Transform currentPool = GetCurrentPool(); // NEW
-                if (currentPool != null)                  
-                {                                         
-                    JumpToOppositePoolByTag(currentPool); // NEW
-                    return;                               
-                }                                         
-                transform.SetParent(_originalParent);     // fallback (unchanged)
-            }                                             
+            HandleReleaseBackToPool();                              
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
             _isDragging = true;
-
-            // NEW: remember the pool we started from for snap-back
-            var currentPool = GetCurrentPool(); // NEW
-            if (currentPool != null)            // NEW
-                _originalParent = currentPool;  // NEW
-
-            transform.SetParent(transform.root);
-            transform.SetAsLastSibling();
-
-            if (detectorCollider != null)
-            {
-                detectorCollider.enabled = true;
-                if (buttonCollider != null) // NEW (null-guard)
-                    buttonCollider.enabled = false;
-            }
+            HandlePullOutOfPool();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -106,9 +89,48 @@ namespace Gameplay
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            _isDragging = false; // drag finished
-            Transform targetParent = null;
+            _isDragging = false; 
+            HandlePooolLocation();
+        }
 
+
+
+
+
+
+
+
+        // ======= Methods to handle inteactions ========================================================================================================
+
+        private void HandlePullOutOfPool()
+        {
+            var currentPool = GetCurrentPool(); 
+            if (currentPool != null)           
+                _originalParent = currentPool;  
+            transform.SetParent(transform.root);
+            transform.SetAsLastSibling();
+
+            if (detectorCollider != null)
+            {
+                detectorCollider.enabled = true;
+                if (buttonCollider != null) 
+                    buttonCollider.enabled = false;
+            }
+        }
+        
+        private void HandleReleaseBackToPool()
+        {
+            if (!_isDragging)
+            {
+                var currentPool = GetCurrentPool();
+                if (currentPool != null)           
+                    JumpToOppositePoolByTag(currentPool); 
+            }
+        }
+
+        private void HandlePooolLocation()
+        {
+            Transform targetParent = null;
             if (_overlappedWordTransform != null)
             {
                 // CASE 1: Hovered over another WORD (same as before)
@@ -142,30 +164,23 @@ namespace Gameplay
                 // NEW: update home after a valid drop
                 _originalParent = targetParent; // NEW
             }
-
-            // Re-enable colliders
             if (detectorCollider != null)
             {
                 detectorCollider.enabled = false;
-                if (buttonCollider != null) // NEW (null-guard)
+                if (buttonCollider != null)
                     buttonCollider.enabled = true;
             }
-
-            // reset hover tracking
+            
             _overlappedWordTransform = null;
         }
 
-        // --- Helpers ---
-
-        private Transform GetCurrentPool() // NEW
+        private Transform GetCurrentPool() 
         {
             var p = transform.parent;
-            return (p != null && p.CompareTag(poolTag)) ? p : null; // NEW
+            return (p != null && p.CompareTag(poolTag)) ? p : null; 
         }
-
-        // NEW: if exactly two pools share the tag, pick the other one;
-        // if more than two, "opposite" becomes the next pool in a stable round-robin by scene order.
-        private Transform GetOppositePoolByTag(Transform currentPool) // NEW
+        
+        private Transform GetOppositePoolByTag(Transform currentPool) 
         {
             var pools = GameObject.FindGameObjectsWithTag(poolTag)
                                   .Select(go => go.transform)
@@ -188,14 +203,14 @@ namespace Gameplay
             return pools[next];
         }
 
-        private void JumpToOppositePoolByTag(Transform currentPool) // NEW
+        private void JumpToOppositePoolByTag(Transform currentPool) 
         {
-            var opposite = GetOppositePoolByTag(currentPool); // NEW
+            var opposite = GetOppositePoolByTag(currentPool); 
             if (opposite == null) return;
 
-            transform.SetParent(opposite);        // NEW
-            transform.SetAsLastSibling();         // NEW
-            _originalParent = opposite;           // NEW
+            transform.SetParent(opposite);       
+            transform.SetAsLastSibling();        
+            _originalParent = opposite;          
         }
     }
 }
