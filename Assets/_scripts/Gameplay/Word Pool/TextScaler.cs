@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using DG.Tweening;   // 👈 DOTween namespace
 
 public class TextScaler : MonoBehaviour
 {
@@ -23,13 +22,10 @@ public class TextScaler : MonoBehaviour
     [Tooltip("When true, use visual padding instead of default padding.")]
     public bool isSpacingTextScaler = false;
 
-    [Header("Animation Settings")]
-    [SerializeField] private float tweenDuration = 0.25f;
-    [SerializeField] private Ease tweenEase = Ease.OutQuad;
+    [Header("Lerp Settings")]
+    [SerializeField] private float lerpSpeed = 10f; // Higher = snappier
 
-    // active tweens
-    private Tween widthTween;
-    private Tween heightTween;
+    private Vector2 targetSize;
 
     private void Awake()
     {
@@ -48,34 +44,28 @@ public class TextScaler : MonoBehaviour
             : verticalPadding;
 
         CalculatePreferredSize();
-        ScaleWithPreferredSize(currentHorizontalPadding, currentVerticalPadding);
+        SetTargetSize(currentHorizontalPadding, currentVerticalPadding);
+        SmoothResize();
     }
 
-    private void ScaleWithPreferredSize(float hPad, float vPad)
+    private void SetTargetSize(float hPad, float vPad)
+    {
+        targetSize = new Vector2(
+            Mathf.CeilToInt(preferredWidth) + hPad,
+            Mathf.CeilToInt(preferredHeight) + vPad
+        );
+    }
+
+    private void SmoothResize()
     {
         if (!rectTransform) return;
 
-        float targetWidth = Mathf.CeilToInt(preferredWidth) + hPad;
-        float targetHeight = Mathf.CeilToInt(preferredHeight) + vPad;
-
-        // Kill old tweens so they don’t overlap
-        widthTween?.Kill();
-        heightTween?.Kill();
-
-        // Animate floats separately
-        widthTween = DOTween.To(
-            () => rectTransform.sizeDelta.x,
-            x => rectTransform.sizeDelta = new Vector2(x, rectTransform.sizeDelta.y),
-            targetWidth,
-            tweenDuration
-        ).SetEase(tweenEase);
-
-        heightTween = DOTween.To(
-            () => rectTransform.sizeDelta.y,
-            y => rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x, y),
-            targetHeight,
-            tweenDuration
-        ).SetEase(tweenEase);
+        // Smoothly interpolate between current size and target size
+        rectTransform.sizeDelta = Vector2.Lerp(
+            rectTransform.sizeDelta,
+            targetSize,
+            Time.deltaTime * lerpSpeed
+        );
     }
 
     private void CalculatePreferredSize()

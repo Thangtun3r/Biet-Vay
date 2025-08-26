@@ -19,6 +19,7 @@ public class VisualWord : MonoBehaviour
     public TextScaler textScaler;
 
     [Header("Layout / Tween")]
+    public GameObject separator;
     public RectTransform layoutElement;
     public float spacing = 14f;          // target width when spacing
     public float spacingDuration = 0.25f;
@@ -58,9 +59,17 @@ public class VisualWord : MonoBehaviour
         if (isSpacing != lastSpacingState)
         {
             if (isSpacing)
+            {
+                separator.SetActive(true);
                 TweenToWidth(spacing, spacingDuration, spacingEase, true);
+            }
+
             else
+            {
+                separator.SetActive(false);
                 TweenToWidth(0f, resetDuration, resetEase, false);
+            }
+                
 
             lastSpacingState = isSpacing;
         }
@@ -93,6 +102,17 @@ public class VisualWord : MonoBehaviour
         if (!target) return;
         FollowTargetRect();
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     private void FollowTargetRect()
     {
