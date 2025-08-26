@@ -1,101 +1,108 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class VisualWord : MonoBehaviour
 {
     [Header("Logic References")]
-    public GameObject logicWordObject;   // The real "logic" word object in the layout
-    public Transform target;             // A child of the logic word we want to follow
-    public string logicWordText;         // Just a copy of the logic word text (for debugging)
+    public GameObject logicWordObject;
+    public Transform target;
+    public string logicWordText;
     private bool isSpacing = false;
+    private bool lastSpacingState = false;
 
     [Header("Visual References")]
-    public TextMeshProUGUI text;         // The TMP text on the visual
-    public float followSpeed = 10f;      // How quickly this visual moves to match its target
-    public float horizontalOffset = 0f;  // Optional side offset (positive = right, negative = left)
+    public TextMeshProUGUI text;
+    public float followSpeed = 11f;
+    public float horizontalOffset = 0f;
+    public TextScaler textScaler;
 
-    
-    public HorizontalLayoutGroup layoutElement;
-    public int spacing = 5;
-    private int originalPreferredWidth;
-    
-    private DragAndDrop dragAndDrop;
-    
+    [Header("Layout / Tween")]
+    public RectTransform layoutElement;
+    public float spacing = 14f;          // target width when spacing
+    public float spacingDuration = 0.25f;
+    public float resetDuration = 0.2f;
+    public Ease spacingEase = Ease.OutQuad;
+    public Ease resetEase = Ease.OutQuad;
 
-
+    private float originalWidth;
+    private Tween widthTween;
 
     private void Start()
     {
+        if (layoutElement == null)
+            layoutElement = GetComponent<RectTransform>();
+
         if (layoutElement != null)
-            originalPreferredWidth = layoutElement.padding.left;
-        
+            originalWidth = layoutElement.rect.width; // store starting width
     }
-    
+
     private void Update()
     {
-        // Keep the visual's text synced with the logic word's text
         if (text != null && logicWordObject != null)
         {
             var wordID = logicWordObject.GetComponent<WordID>();
             if (wordID != null)
+            {
                 text.text = wordID.word;
+                logicWordText = wordID.word; // (debug)
+            }
+
             var dragAndDrop = logicWordObject.GetComponentInChildren<DragAndDrop>();
-            isSpacing = dragAndDrop.isSpacing;
-
+            if (dragAndDrop != null)
+                isSpacing = dragAndDrop.isSpacing;
         }
-        SpacingOut();
-        ResetToOrigianlSize();
+
+        // React only when the state changes to avoid starting tweens every frame
+        if (isSpacing != lastSpacingState)
+        {
+            if (isSpacing)
+                TweenToWidth(spacing, spacingDuration, spacingEase, true);
+            else
+                TweenToWidth(0f, resetDuration, resetEase, false);
+
+            lastSpacingState = isSpacing;
+        }
     }
 
-    private void SpacingOut()
+    private void TweenToWidth(float targetWidth, float duration, Ease ease, bool spacingState)
     {
-        if (layoutElement != null && isSpacing)
-        {
-            layoutElement.padding = new RectOffset((int)spacing, 0, 0, 0);
-            ForceRefresh();
-        }
-    }
+        if (layoutElement == null) return;
 
-    private void ResetToOrigianlSize()
-    {
-        if (layoutElement != null && isSpacing == false)
-        {
-            layoutElement.padding = new RectOffset(originalPreferredWidth, 0, 0, 0);
-            ForceRefresh();
-        }
+        // Flip the scaler flag immediately
+        if (textScaler != null)
+            textScaler.isSpacingTextScaler = spacingState;
+
+        // Kill any running tween on width
+        widthTween?.Kill();
+
+        // Tween SetSizeWithCurrentAnchors via getter/setter
+        widthTween = DOTween.To(
+                () => layoutElement.rect.width,
+                w => layoutElement.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w),
+                targetWidth,
+                duration
+            )
+            .SetEase(ease)
+            .OnUpdate(ForceRefresh);
     }
 
     private void LateUpdate()
     {
         if (!target) return;
-
-        // Update the visual's position and size so it matches the logic target
         FollowTargetRect();
     }
 
-    /// <summary>
-    /// This method keeps the visual overlay aligned with the logic word.
-    /// 
-    /// Steps in plain English:
-    /// 1. Ask Unity for the 4 corners of the target rect in world space.
-    /// 2. Convert those corners into this visual's parent's local space.
-    ///    (so we’re in the same coordinate system).
-    /// 3. Work out the center and size of the target.
-    /// 4. Smoothly move the visual to that center and resize it to match.
-    /// </summary>
     private void FollowTargetRect()
     {
-        var rt = (RectTransform)transform;       // The visual rect (this object)
-        var parentRt = (RectTransform)rt.parent; // The container that holds all visuals
-        var targetRt = (RectTransform)target;    // The logic rect we want to copy
+        var rt = (RectTransform)transform;
+        var parentRt = (RectTransform)rt.parent;
+        var targetRt = (RectTransform)target;
 
-        // --- Step 1: get the target’s world corners
         var worldCorners = new Vector3[4];
         targetRt.GetWorldCorners(worldCorners);
 
-        // --- Step 2: convert world corners into parent local space
         var canvas = parentRt.GetComponentInParent<Canvas>();
         var cam = (canvas && canvas.renderMode == RenderMode.ScreenSpaceCamera)
             ? canvas.worldCamera
@@ -111,11 +118,9 @@ public class VisualWord : MonoBehaviour
         Vector2 bottomLeft = Local(worldCorners[0]);
         Vector2 topRight   = Local(worldCorners[2]);
 
-        // --- Step 3: compute center + size
         Vector2 center = (bottomLeft + topRight) * 0.5f;
-        Vector2 size   = (topRight - bottomLeft); // width = x, height = y
+        Vector2 size   = (topRight - bottomLeft);
 
-        // --- Step 4: apply center + size to the visual
         rt.anchoredPosition = Vector2.Lerp(
             rt.anchoredPosition,
             center + new Vector2(horizontalOffset, 0f),
@@ -125,9 +130,16 @@ public class VisualWord : MonoBehaviour
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,   size.y);
     }
+
     private void ForceRefresh()
     {
-        // Force Unity to recalculate the layout immediately
-        LayoutRebuilder.ForceRebuildLayoutImmediate(layoutElement.GetComponent<RectTransform>());
+        if (layoutElement != null)
+            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutElement);
+    }
+
+    private void OnDisable()
+    {
+        widthTween?.Kill();
+        widthTween = null;
     }
 }
