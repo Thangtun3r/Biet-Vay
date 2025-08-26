@@ -1,11 +1,13 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class VisualWord : MonoBehaviour
 {
     [Header("Logic References")]
     public GameObject logicWordObject;   // The real "logic" word object in the layout
+    public DragAndDrop dragAndDrop;
     public Transform target;             // A child of the logic word we want to follow
     public string logicWordText;         // Just a copy of the logic word text (for debugging)
 
@@ -14,6 +16,20 @@ public class VisualWord : MonoBehaviour
     public float followSpeed = 10f;      // How quickly this visual moves to match its target
     public float horizontalOffset = 0f;  // Optional side offset (positive = right, negative = left)
 
+    
+    public HorizontalLayoutGroup layoutElement;
+    public int spacing = 5;
+    private int originalPreferredWidth;
+
+    public bool isSpacing;
+
+    
+    private void Start()
+    {
+        if (layoutElement != null)
+            originalPreferredWidth = layoutElement.padding.left;
+    }
+    
     private void Update()
     {
         // Keep the visual's text synced with the logic word's text
@@ -22,6 +38,29 @@ public class VisualWord : MonoBehaviour
             var wordID = logicWordObject.GetComponent<WordID>();
             if (wordID != null)
                 text.text = wordID.word;
+
+
+        }
+        
+        SpacingOut();
+        ResetToOrigianlSize();
+    }
+
+    private void SpacingOut()
+    {
+        if (layoutElement != null /*dragAndDrop.isSpacing*/)
+        {
+            layoutElement.padding = new RectOffset((int)spacing, 0, 0, 0);
+            ForceRefresh();
+        }
+    }
+
+    private void ResetToOrigianlSize()
+    {
+        if (layoutElement != null && dragAndDrop.isSpacing == false)
+        {
+            layoutElement.padding = new RectOffset(originalPreferredWidth, 0, 0, 0);
+            ForceRefresh();
         }
     }
 
@@ -82,5 +121,10 @@ public class VisualWord : MonoBehaviour
 
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,   size.y);
+    }
+    private void ForceRefresh()
+    {
+        // Force Unity to recalculate the layout immediately
+        LayoutRebuilder.ForceRebuildLayoutImmediate(layoutElement.GetComponent<RectTransform>());
     }
 }

@@ -1,17 +1,23 @@
 using System;
 using TMPro;
 using UnityEngine;
+
 [ExecuteAlways]
 public class TextScaler : MonoBehaviour
 {
-    public TMP_Text text;
-    public RectTransform rectTransform;
+    [SerializeField] private TMP_Text text;
+    [SerializeField] private RectTransform rectTransform;
 
     private float preferredWidth;
     private float preferredHeight;
 
-    private int horizontalPadding = 20;
+    [Header("Default Padding")]
+    private int horizontalPadding = 28;
     private int verticalPadding = 7;
+
+    [Header("Visual Mode Padding")]
+    [SerializeField] private bool isVisual = false;
+    private int visualHorizontalPadding = 24; // 👈 this one used if isVisual = true
 
     private void Update()
     {
@@ -24,22 +30,27 @@ public class TextScaler : MonoBehaviour
 
     private void ScaleWithPreferredSize()
     {
-        if (rectTransform == null) 
+        if (rectTransform == null && text != null) 
             rectTransform = text.GetComponent<RectTransform>();
+
+        if (rectTransform == null) return;
 
         Vector2 size = rectTransform.sizeDelta;
 
-        // ✅ Add horizontal padding
-        size.x = Mathf.CeilToInt(preferredWidth) + horizontalPadding;
+        // Pick which padding to use
+        int usedHorizontalPadding = isVisual ? visualHorizontalPadding : horizontalPadding;
+        int usedVerticalPadding = verticalPadding; // you can also make a visualVerticalPadding if you want
 
-        // ✅ Add vertical padding
-        size.y = Mathf.CeilToInt(preferredHeight) + verticalPadding;
+        // Apply padding to preferred size
+        size.x = Mathf.CeilToInt(preferredWidth) + usedHorizontalPadding;
+        size.y = Mathf.CeilToInt(preferredHeight) + usedVerticalPadding;
 
         rectTransform.sizeDelta = size;
     }
 
     private void CalculatePreferredSize()
     {
+        if (text == null) return;
         preferredWidth = text.preferredWidth;
         preferredHeight = text.preferredHeight;
     }

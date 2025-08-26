@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 55, y: 18}
+  m_SizeDelta: {x: 59, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2452876824314676650
 CanvasRenderer:
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 4916858192676377033}
   rectTransform: {fileID: 5537709318452404726}
+  isVisual: 1
 --- !u!114 &5119855651370706735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,6 +276,7 @@ MonoBehaviour:
   text: {fileID: 4916858192676377033}
   followSpeed: 20
   horizontalOffset: 0
+  layoutElement: {fileID: 5152736865007008619}
 --- !u!114 &1835007965656030314
 MonoBehaviour:
   m_ObjectHideFlags: 0
