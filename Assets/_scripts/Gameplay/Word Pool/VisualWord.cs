@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,6 +30,8 @@ public class VisualWord : MonoBehaviour
 
     private float originalWidth;
     private Tween widthTween;
+
+    public event Action onSelected;
 
     private void Start()
     {
@@ -103,19 +106,12 @@ public class VisualWord : MonoBehaviour
         FollowTargetRect();
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 
     private void FollowTargetRect()
     {
+        
+        
         var rt = (RectTransform)transform;
         var parentRt = (RectTransform)rt.parent;
         var targetRt = (RectTransform)target;

@@ -144,8 +144,7 @@ MonoBehaviour:
   visualVerticalPadding: 7
   visualPaddingOverlapped: 14.4
   isSpacingTextScaler: 0
-  tweenDuration: 0.01
-  tweenEase: 5
+  lerpSpeed: 10
 --- !u!114 &5119855651370706735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +264,7 @@ GameObject:
   - component: {fileID: 3679610692806508965}
   - component: {fileID: 5188328427308294304}
   - component: {fileID: 5955987180439825962}
+  - component: {fileID: 6377124679383428973}
   m_Layer: 5
   m_Name: Word Visual
   m_TagString: Word
@@ -442,6 +442,18 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6377124679383428973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f863ec6a8db61408a510c0bbe8fd4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0
