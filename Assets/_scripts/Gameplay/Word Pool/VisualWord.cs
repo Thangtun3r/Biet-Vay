@@ -7,9 +7,9 @@ public class VisualWord : MonoBehaviour
 {
     [Header("Logic References")]
     public GameObject logicWordObject;   // The real "logic" word object in the layout
-    public DragAndDrop dragAndDrop;
     public Transform target;             // A child of the logic word we want to follow
     public string logicWordText;         // Just a copy of the logic word text (for debugging)
+    private bool isSpacing = false;
 
     [Header("Visual References")]
     public TextMeshProUGUI text;         // The TMP text on the visual
@@ -20,14 +20,17 @@ public class VisualWord : MonoBehaviour
     public HorizontalLayoutGroup layoutElement;
     public int spacing = 5;
     private int originalPreferredWidth;
-
-    public bool isSpacing;
-
     
+    private DragAndDrop dragAndDrop;
+    
+
+
+
     private void Start()
     {
         if (layoutElement != null)
             originalPreferredWidth = layoutElement.padding.left;
+        
     }
     
     private void Update()
@@ -38,17 +41,17 @@ public class VisualWord : MonoBehaviour
             var wordID = logicWordObject.GetComponent<WordID>();
             if (wordID != null)
                 text.text = wordID.word;
-
+            var dragAndDrop = logicWordObject.GetComponentInChildren<DragAndDrop>();
+            isSpacing = dragAndDrop.isSpacing;
 
         }
-        
         SpacingOut();
         ResetToOrigianlSize();
     }
 
     private void SpacingOut()
     {
-        if (layoutElement != null /*dragAndDrop.isSpacing*/)
+        if (layoutElement != null && isSpacing)
         {
             layoutElement.padding = new RectOffset((int)spacing, 0, 0, 0);
             ForceRefresh();
@@ -57,7 +60,7 @@ public class VisualWord : MonoBehaviour
 
     private void ResetToOrigianlSize()
     {
-        if (layoutElement != null && dragAndDrop.isSpacing == false)
+        if (layoutElement != null && isSpacing == false)
         {
             layoutElement.padding = new RectOffset(originalPreferredWidth, 0, 0, 0);
             ForceRefresh();

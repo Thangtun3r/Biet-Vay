@@ -7,9 +7,7 @@ public class DragAndDrop : MonoBehaviour
     public float spacing = 12f;
     [SerializeField] private HorizontalLayoutGroup layoutElement;
     
-    public event Action OnSpacingOutRequested;
-    public event Action OnResetToOriginalSizeRequested;
-    public static bool isSpacing = false;
+    public bool isSpacing = false;
 
     private int originalPreferredWidth;
 
@@ -28,7 +26,7 @@ public class DragAndDrop : MonoBehaviour
     {
         if (other.CompareTag("Detector"))
         {
-            SpacingOut();
+            isSpacing = true;
         }
     }
 
@@ -36,20 +34,9 @@ public class DragAndDrop : MonoBehaviour
     {
         if (other.CompareTag("Detector"))
         {
-            ResetToOriginalSize();
+            isSpacing = false;
         }
     }
-
-    private void SpacingOut()
-    {
-        Debug.Log("");
-        OnSpacingOutRequested?.Invoke();
-    }
     
-
-    public void ResetToOriginalSize()
-    {
-        OnResetToOriginalSizeRequested?.Invoke();
-    }
     
 }
