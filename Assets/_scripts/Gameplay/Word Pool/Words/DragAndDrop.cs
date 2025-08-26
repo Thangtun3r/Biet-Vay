@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,10 @@ public class DragAndDrop : MonoBehaviour
 {
     public float spacing = 12f;
     [SerializeField] private HorizontalLayoutGroup layoutElement;
+    
+    public event Action OnSpacingOutRequested;
+    public event Action OnResetToOriginalSizeRequested;
+    public static bool isSpacing = false;
 
     private int originalPreferredWidth;
 
@@ -12,6 +17,11 @@ public class DragAndDrop : MonoBehaviour
     {
         if (layoutElement != null)
             originalPreferredWidth = layoutElement.padding.left;
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -32,26 +42,14 @@ public class DragAndDrop : MonoBehaviour
 
     private void SpacingOut()
     {
-        if (layoutElement != null)
-        {
-            layoutElement.padding = new RectOffset((int)spacing, 0, 0, 0);
-            ForceRefresh();
-        }
+        Debug.Log("");
+        OnSpacingOutRequested?.Invoke();
     }
     
 
     public void ResetToOriginalSize()
     {
-        if (layoutElement != null)
-        {
-            layoutElement.padding = new RectOffset(originalPreferredWidth, 0, 0, 0);
-            ForceRefresh();
-        }
+        OnResetToOriginalSizeRequested?.Invoke();
     }
-
-    private void ForceRefresh()
-    {
-        // Force Unity to recalculate the layout immediately
-        LayoutRebuilder.ForceRebuildLayoutImmediate(layoutElement.GetComponent<RectTransform>());
-    }
+    
 }
