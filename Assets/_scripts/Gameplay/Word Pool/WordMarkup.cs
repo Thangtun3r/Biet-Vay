@@ -6,7 +6,7 @@ using Gameplay;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class WordMarkup : MonoBehaviour
+public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
 {
     
     public WordsPooling visualPooling;  
@@ -28,10 +28,10 @@ public class WordMarkup : MonoBehaviour
     {
         if (!isVisual && _words != null)
         {
-            _words.BeganDrag += BietVay;
-            _words.Dragged += BietVay;
-            _words.EndedDrag += ReleaseBietVay;
-            _words.PointerUpped += ReleaseBietVay;
+            // _words.BeganDrag += BietVay;
+            // _words.Dragged += BietVay;
+            //_words.EndedDrag += ReleaseBietVay;
+            //_words.PointerUpped += ReleaseBietVay;
         }
         WordMarkup.OnBietVay += Switch;
         WordMarkup.OnReleaseBietVay += ResetWord;
@@ -42,49 +42,52 @@ public class WordMarkup : MonoBehaviour
     {
         if (!isVisual && _words != null)
         {
-            _words.BeganDrag -= BietVay;
-            _words.Dragged -= BietVay;
-            _words.EndedDrag -= ReleaseBietVay;
-            _words.PointerUpped -= ReleaseBietVay;
+            
+            // _words.BeganDrag -= BietVay;
+            // _words.Dragged -= BietVay;
+            // _words.EndedDrag -= ReleaseBietVay;
+            // _words.PointerUpped -= ReleaseBietVay;
         }
 
         WordMarkup.OnBietVay -= Switch;
         WordMarkup.OnReleaseBietVay -= ResetWord;
     }
 
-    private void Start()
-    {
-        _wordID = GetComponent<WordID>();
-        _originalWord = _wordID.word;
-    }
-
-
-    private void BietVay(PointerEventData eventData)
+    public void RaiseBietVayEvent()
     {
         if (isBietVay)
         {
             OnBietVay?.Invoke();
         }
+        
     }
-
-    private void ReleaseBietVay(PointerEventData eventData)
+    
+    public void RaiseReleaseEvent()
     {
         if (isBietVay)
         {
             OnReleaseBietVay?.Invoke();
         }
     }
+    
+    private void Start()
+    {
+        _wordID = GetComponent<WordID>();
+        _originalWord = _wordID.word;
+    }
+
+    
 
     private void Switch()
     {
         if (isSwitch)
         {
-            _wordID.AssigningWord(switchWord);
+            _wordID.AssignVisualWord(switchWord);
         }
         
     }
     private void ResetWord()
     {
-        _wordID.AssigningWord(_originalWord);
+        _wordID.AssignVisualWord(_originalWord);
     }
 }
