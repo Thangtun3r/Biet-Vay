@@ -3558,6 +3558,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1001685823}
     m_Modifications:
+    - target: {fileID: 1394740235683746385, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
+      propertyPath: spacingX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1757046839355492618, guid: 3bf7df240f7620f41a88b83a70dd41cb, type: 3}
       propertyPath: wordPooling
       value: 
@@ -24601,7 +24605,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  spacingX: 5
+  spacingX: 0
   spacingY: 5
 --- !u!1001 &1327277595631243183
 PrefabInstance:
@@ -24706,7 +24710,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  spacingX: 5
+  spacingX: 0
   spacingY: 5
 --- !u!1 &4918885141867365314
 GameObject:

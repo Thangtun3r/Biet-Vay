@@ -196,30 +196,64 @@ public class WordPoolManager : MonoBehaviour
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
-    private List<WordChunkData> ParseChunksWithID(string input) 
+   
+    private List<WordChunkData> ParseChunksWithID(string input)
     {
         var result = new List<WordChunkData>();
         if (string.IsNullOrWhiteSpace(input)) return result;
 
         int id = 0;
-        int index = 0;
-        var split = input.Split('/', StringSplitOptions.RemoveEmptyEntries);
 
-        foreach (var token in split) {
-            string trimmed = token.Trim();
-            if (string.IsNullOrEmpty(trimmed)) continue;
+        // We'll scan once and split on '/' only when not inside [ ... ].
+        int bracketDepth = 0;      // > 0 while between '[' and ']'
+        int segmentStart = 0;      // start index (inclusive) of current segment
 
-            int start = input.IndexOf(trimmed, index, StringComparison.Ordinal);
+        void FlushSegment(int segStart, int segEndExclusive)
+        {
+            if (segEndExclusive <= segStart) return;
+
+            // Keep the original slice, then trim only *outer* whitespace, but keep true positions.
+            string raw = input.Substring(segStart, segEndExclusive - segStart);
+            string trimmed = raw.Trim();
+            if (trimmed.Length == 0) return;
+
+            int leadingTrim = raw.IndexOf(trimmed, StringComparison.Ordinal); // >= 0
+            int start = segStart + leadingTrim;
             int end = start + trimmed.Length;
-            index = end;
 
-            result.Add(new WordChunkData {
+            result.Add(new WordChunkData
+            {
                 id = id++,
                 text = trimmed,
                 start = start,
                 end = end
             });
         }
+
+        for (int i = 0; i < input.Length; i++)
+        {
+            char c = input[i];
+
+            // Track whether we're inside a [...] block (tags/attributes).
+            if (c == '[')
+            {
+                bracketDepth++;
+            }
+            else if (c == ']')
+            {
+                if (bracketDepth > 0) bracketDepth--;
+            }
+
+            // Split on '/' only when outside any bracketed block.
+            if (c == '/' && bracketDepth == 0)
+            {
+                FlushSegment(segmentStart, i);
+                segmentStart = i + 1; // next segment after the '/'
+            }
+        }
+
+        // Flush trailing segment.
+        FlushSegment(segmentStart, input.Length);
 
         return result;
     }
