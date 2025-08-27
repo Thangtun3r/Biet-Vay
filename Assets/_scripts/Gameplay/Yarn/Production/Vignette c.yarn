@@ -27,17 +27,17 @@ title: BietVay
 <<wait  0.5>>
 <<spawn Home>>
 <<PsudoTurnOn>>
--> Biết vậy/I/shouldn't/have/confessed/to/her.
+-> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw] /confess/[sw w="nrghgfgfdggo"]to[/sw]/her.
     <<PsudoTurnOff>>
     <<jump start>>
--> I/shouldn't/have/confessed/to/her.
-    Tam: I confessed to her 
-    Tam: She didn’t feel the same, but that’s okay.
-    Tam: We’re still friends — and that matters to me.
-    <<wait  1>>
-    Tam: Oh hey, Mai. Long time no see.
-    Mai: Woah, Tam! You look different.
-    Mai: It feels like ages since we last hung out.
+// -> I/have/confessed/to/her.
+//     Tam: I confessed to her 
+//     Tam: She didn’t feel the same, but that’s okay.
+//     Tam: We’re still friends — and that matters to me.
+//     <<wait  1>>
+//     Tam: Oh hey, Mai. Long time no see.
+//     Mai: Woah, Tam! You look different.
+//     Mai: It feels like ages since we last hung out.
 
 
 ===
