@@ -53,7 +53,7 @@ public class SentenceChecker : MonoBehaviour
         {
             Transform child = transform.GetChild(i);
             WordID wordID = child.GetComponent<WordID>();
-            userOrder.Add(wordID.word);
+            userOrder.Add(wordID.originalWord);
         }
     }
 

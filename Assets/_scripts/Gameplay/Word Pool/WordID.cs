@@ -6,17 +6,22 @@ using UnityEngine;
 
 public class WordID : MonoBehaviour
 {
+    public string originalWord;
     public string word;
     public int id;
     public TextMeshProUGUI wordText;
-    
-    
 
-    public void AssigningWord(string word)
+    private void Start()
+    {
+        word = originalWord;
+    }
+    
+    public void AssignVisualWord(string word)
     {
         this.word = word;
         wordText.text = word;
     }
+    
 
     
 }

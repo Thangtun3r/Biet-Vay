@@ -1,0 +1,11 @@
+﻿title: start
+---
+<<collapse>>
+<<wait  0.5>>
+
+<<PsudoTurnOn>>
+-> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw] /[sw w="confess"]confessed[/sw]/to/her.
+        Mai: yeh I shouldn't have confess to her.
+-> I/have/confessed/to/her.
+        Mai: I have confessed to her
+===
