@@ -1,11 +1,34 @@
 ﻿title: start
 ---
+<<PsudoTurnOff>>
+<<expand>>
+===
+
+title: SaleGretting
+---
 <<collapse>>
 <<wait  0.5>>
+<<once>>
+Toxos Staff: Welcome to Toxox! What would you like to order today?
+Toxos Staff: You should check out the promo for the best deals!
+Toxos Staff: You can right click to zoom in at the stuffs.
+-> Okay,/let me/see.
+<<else>>
+Toxos Staff: Have you make up your mind yet?
+-> The Happy Toxos 14th/, please.
+        Toxos Staff: Great choice, sir! Your order will be ready shortly.
+-> The Autumn Love/, please.
+        Toxos Staff: Great choice, sir! Perfect for a lovely autumn day!
+-> The Mitrax combo/, please.
+        Toxos Staff: Great choice, sir! One Mitrax combo coming right up!
+-> I'm/ still/ deciding./
+        Toxos Staff: Take your time, sir.
+<<endonce>>
+<<expand>>
+===
 
-<<PsudoTurnOn>>
--> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw] /[sw w="confess"]confessed[/sw]/to/her.
-        Mai: yeh I shouldn't have confess to her.
--> I/have/confessed/to/her.
-        Mai: I have confessed to her
+
+title: WaitingForOrder
+---
+
 ===

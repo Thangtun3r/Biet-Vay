@@ -20,7 +20,7 @@ public class WordsPooling : MonoBehaviour
         SentenceChecker.OnCheckCompleted -= ClearPool;
     }
 
-    private void Start()
+    private void Awake()
     {
         PopulateThePool();
     }
