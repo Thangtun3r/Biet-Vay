@@ -12,8 +12,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Caution
+    second: {fileID: 2100000, guid: 54765c53aa3d9864d93bd8bc31bee38d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: 6a787a677e54f414ba273f2612b08fa2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Gradient Black_
+    second: {fileID: 2100000, guid: b34867903a4ba1148b0c0d0351559728, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

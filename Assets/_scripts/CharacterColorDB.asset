@@ -19,3 +19,7 @@ MonoBehaviour:
     hexColor: '#7DB0C2'
   - characterName: Game
     hexColor: '#a7ca1c'
+  - characterName: Toxos Staff
+    hexColor: '#FF8A36'
+  - characterName: Duy
+    hexColor: '#42d4f5'

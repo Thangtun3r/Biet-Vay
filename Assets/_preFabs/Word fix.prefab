@@ -400,6 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1b5b80617ad8848ab23248aa877a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalWord: 
   word: 
   id: 0
   wordText: {fileID: 4916858192676377033}

@@ -16,12 +16,11 @@ public class WordID : MonoBehaviour
         word = originalWord;
     }
     
+
     public void AssignVisualWord(string word)
     {
         this.word = word;
         wordText.text = word;
     }
-    
-
     
 }

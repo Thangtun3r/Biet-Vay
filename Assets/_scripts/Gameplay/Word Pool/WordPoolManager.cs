@@ -77,6 +77,7 @@ public class WordPoolManager : MonoBehaviour
                 var wordWMarkup = pooledObj.GetComponent<WordMarkup>();
 
                 wordComponent.originalWord = word;
+                wordComponent.AssignVisualWord(word);
                 wordComponent.id = idsForWord[i];
                 wordComponent.wordText.text = word;
                 

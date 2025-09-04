@@ -26,32 +26,26 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
 
     private void OnEnable()
     {
-        if (!isVisual && _words != null)
-        {
-            // _words.BeganDrag += BietVay;
-            // _words.Dragged += BietVay;
-            //_words.EndedDrag += ReleaseBietVay;
-            //_words.PointerUpped += ReleaseBietVay;
-        }
         WordMarkup.OnBietVay += Switch;
         WordMarkup.OnReleaseBietVay += ResetWord;
-      
+       
+        
+       
     }
 
     private void OnDisable()
     {
-        if (!isVisual && _words != null)
-        {
-            
-            // _words.BeganDrag -= BietVay;
-            // _words.Dragged -= BietVay;
-            // _words.EndedDrag -= ReleaseBietVay;
-            // _words.PointerUpped -= ReleaseBietVay;
-        }
-
         WordMarkup.OnBietVay -= Switch;
         WordMarkup.OnReleaseBietVay -= ResetWord;
+        
+        // we flush the variables to avoid it being carried over to the next word
+        _originalWord = string.Empty;
+        switchWord = string.Empty;
+        isSwitch = false;
+        isBietVay = false;
+        isVisual = false;
     }
+
 
     public void RaiseBietVayEvent()
     {
@@ -80,14 +74,16 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
 
     private void Switch()
     {
-        if (isSwitch)
-        {
-            _wordID.AssignVisualWord(switchWord);
-        }
-        
+        if (!isSwitch || _wordID == null || string.IsNullOrEmpty(switchWord)) return;
+        _wordID.AssignVisualWord(switchWord);
+        // We need to assign new original words to avoid the old one being carried over
+        _wordID = GetComponent<WordID>();
+        _originalWord = _wordID.originalWord;
     }
+
     private void ResetWord()
     {
+        if (_wordID == null || string.IsNullOrEmpty(_originalWord)) return;
         _wordID.AssignVisualWord(_originalWord);
     }
 }
