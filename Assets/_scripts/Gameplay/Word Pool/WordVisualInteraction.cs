@@ -12,10 +12,10 @@ public class WordVisualInteraction : MonoBehaviour
     [Tooltip("Hover/exit tween duration.")]
     public float tweenDuration = 0.1f;
 
-    private float baseY;              // stable baseline
-    private bool hasBaseline;         // did we capture baseline?
-    private bool isHovering;          // debounce repeated enters
-    private Tween currentTween;       // keep a handle to the running tween
+    private float baseY; // stable baseline
+    private bool hasBaseline; // did we capture baseline?
+    private bool isHovering; // debounce repeated enters
+    private Tween currentTween; // keep a handle to the running tween
 
     private void Awake()
     {
@@ -50,10 +50,10 @@ public class WordVisualInteraction : MonoBehaviour
         transform.SetAsLastSibling();
         HandleExitVisual(_);
     }
-    
+
     public void HandleBeginDragVisual(PointerEventData _)
     {
-        
+
     }
 
     public void HandleHoverVisual(PointerEventData _)
@@ -96,6 +96,13 @@ public class WordVisualInteraction : MonoBehaviour
     {
         currentTween?.Kill();
         currentTween = null;
-        if (ButtonRectTransform != null) ButtonRectTransform.DOKill();
+
+        if (ButtonRectTransform != null)
+        {
+            ButtonRectTransform.DOKill();
+            ButtonRectTransform.anchoredPosition = new Vector2(
+                ButtonRectTransform.anchoredPosition.x, baseY);
+            ButtonRectTransform.localScale = Vector3.one;
+        }
     }
 }
