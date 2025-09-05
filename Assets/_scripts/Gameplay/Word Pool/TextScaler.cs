@@ -1,10 +1,12 @@
 using TMPro;
 using UnityEngine;
 
+[ExecuteAlways]
 public class TextScaler : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
     [SerializeField] private RectTransform rectTransform;
+    public VisualWord vw;
 
     private float preferredWidth;
     private float preferredHeight;
@@ -19,11 +21,10 @@ public class TextScaler : MonoBehaviour
     [SerializeField] private float visualVerticalPadding = 7f;
     [SerializeField] private float visualPaddingOverlapped = 14.4f;
 
-    [Tooltip("When true, use visual padding instead of default padding.")]
     public bool isSpacingTextScaler = false;
 
     [Header("Lerp Settings")]
-    [SerializeField] private float lerpSpeed = 10f; // Higher = snappier
+    [SerializeField] private float lerpSpeed = 10f;
 
     private Vector2 targetSize;
 
@@ -31,6 +32,21 @@ public class TextScaler : MonoBehaviour
     {
         if (!text) text = GetComponent<TMP_Text>();
         if (!rectTransform && text) rectTransform = text.GetComponent<RectTransform>();
+
+        if (vw != null)
+            vw.OnSpacingChanged += HandleSpacingChanged;
+    }
+
+    private void OnDestroy()
+    {
+        var vw = GetComponentInParent<VisualWord>();
+        if (vw != null)
+            vw.OnSpacingChanged -= HandleSpacingChanged;
+    }
+
+    private void HandleSpacingChanged(bool spacingState)
+    {
+        isSpacingTextScaler = spacingState;
     }
 
     private void Update()
@@ -59,8 +75,6 @@ public class TextScaler : MonoBehaviour
     private void SmoothResize()
     {
         if (!rectTransform) return;
-
-        // Smoothly interpolate between current size and target size
         rectTransform.sizeDelta = Vector2.Lerp(
             rectTransform.sizeDelta,
             targetSize,

@@ -10,19 +10,16 @@ public class VisualWord : MonoBehaviour
     public GameObject logicWordObject;
     public Transform target;
     public string logicWordText;
-    private bool isSpacing = false;
-    private bool lastSpacingState = false;
 
     [Header("Visual References")]
     public TextMeshProUGUI text;
     public float followSpeed = 11f;
     public float horizontalOffset = 0f;
-    public TextScaler textScaler;
 
     [Header("Layout / Tween")]
     public GameObject separator;
-    public RectTransform layoutElement;
-    public float spacing = 14f;          // target width when spacing
+    public RectTransform seperatorRect;
+    public float spacing = 14f;
     public float spacingDuration = 0.25f;
     public float resetDuration = 0.2f;
     public Ease spacingEase = Ease.OutQuad;
@@ -31,15 +28,19 @@ public class VisualWord : MonoBehaviour
     private float originalWidth;
     private Tween widthTween;
 
-    public event Action onSelected;
+    private bool isSpacing = false;
+    private bool lastSpacingState = false;
+
+    // 🔑 Non-static event
+    public event Action<bool> OnSpacingChanged;
 
     private void Start()
     {
-        if (layoutElement == null)
-            layoutElement = GetComponent<RectTransform>();
+        if (seperatorRect == null)
+            seperatorRect = GetComponent<RectTransform>();
 
-        if (layoutElement != null)
-            originalWidth = layoutElement.rect.width; // store starting width
+        if (seperatorRect != null)
+            originalWidth = seperatorRect.rect.width;
     }
 
     private void Update()
@@ -50,7 +51,7 @@ public class VisualWord : MonoBehaviour
             if (wordID != null)
             {
                 text.text = wordID.word;
-                logicWordText = wordID.word; // (debug)
+                logicWordText = wordID.word;
             }
 
             var dragAndDrop = logicWordObject.GetComponentInChildren<DragAndDrop>();
@@ -58,41 +59,34 @@ public class VisualWord : MonoBehaviour
                 isSpacing = dragAndDrop.isSpacing;
         }
 
-        // React only when the state changes to avoid starting tweens every frame
         if (isSpacing != lastSpacingState)
         {
             if (isSpacing)
             {
                 separator.SetActive(true);
-                TweenToWidth(spacing, spacingDuration, spacingEase, true);
+                TweenToWidth(spacing, spacingDuration, spacingEase);
             }
-
             else
             {
                 separator.SetActive(false);
-                TweenToWidth(0f, resetDuration, resetEase, false);
+                TweenToWidth(0f, resetDuration, resetEase);
             }
-                
+
+            // 🔑 Fire event
+            OnSpacingChanged?.Invoke(isSpacing);
 
             lastSpacingState = isSpacing;
         }
     }
 
-    private void TweenToWidth(float targetWidth, float duration, Ease ease, bool spacingState)
+    private void TweenToWidth(float targetWidth, float duration, Ease ease)
     {
-        if (layoutElement == null) return;
+        if (seperatorRect == null) return;
 
-        // Flip the scaler flag immediately
-        if (textScaler != null)
-            textScaler.isSpacingTextScaler = spacingState;
-
-        // Kill any running tween on width
         widthTween?.Kill();
-
-        // Tween SetSizeWithCurrentAnchors via getter/setter
         widthTween = DOTween.To(
-                () => layoutElement.rect.width,
-                w => layoutElement.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w),
+                () => seperatorRect.rect.width,
+                w => seperatorRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, w),
                 targetWidth,
                 duration
             )
@@ -105,13 +99,9 @@ public class VisualWord : MonoBehaviour
         if (!target) return;
         FollowTargetRect();
     }
-    
-
 
     private void FollowTargetRect()
     {
-        
-        
         var rt = (RectTransform)transform;
         var parentRt = (RectTransform)rt.parent;
         var targetRt = (RectTransform)target;
@@ -132,10 +122,10 @@ public class VisualWord : MonoBehaviour
         }
 
         Vector2 bottomLeft = Local(worldCorners[0]);
-        Vector2 topRight   = Local(worldCorners[2]);
+        Vector2 topRight = Local(worldCorners[2]);
 
         Vector2 center = (bottomLeft + topRight) * 0.5f;
-        Vector2 size   = (topRight - bottomLeft);
+        Vector2 size = (topRight - bottomLeft);
 
         rt.anchoredPosition = Vector2.Lerp(
             rt.anchoredPosition,
@@ -144,13 +134,13 @@ public class VisualWord : MonoBehaviour
         );
 
         rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size.x);
-        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,   size.y);
+        rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, size.y);
     }
 
     private void ForceRefresh()
     {
-        if (layoutElement != null)
-            LayoutRebuilder.ForceRebuildLayoutImmediate(layoutElement);
+        if (seperatorRect != null)
+            LayoutRebuilder.ForceRebuildLayoutImmediate(seperatorRect);
     }
 
     private void OnDisable()

@@ -8,7 +8,7 @@ namespace Gameplay
     //remember to revise this script as the function to jump to the opposite pool has changed
     //and may cause significant performance spikes
     public class Words : MonoBehaviour, IPointerDownHandler, IPointerUpHandler,
-                          IBeginDragHandler, IDragHandler, IEndDragHandler
+                          IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
     {
    
 
@@ -32,7 +32,10 @@ namespace Gameplay
         public event Action<PointerEventData> Dragged;
         public event Action<PointerEventData> EndedDrag;
         
+        public event Action<PointerEventData> PointerEntered;
+        public event Action<PointerEventData> PointerExited;
         
+        //end of event declarations
         
 
         private void Start()
@@ -96,13 +99,18 @@ namespace Gameplay
             HandlePooolLocation();
             EndedDrag?.Invoke(eventData);
         }
+        
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            PointerEntered?.Invoke(eventData);
+        }
 
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            PointerExited?.Invoke(eventData);
+        }
 
-
-
-
-
-
+        
 
         // ======= Methods to handle inteactions ========================================================================================================
 
@@ -216,5 +224,7 @@ namespace Gameplay
             transform.SetAsLastSibling();        
             _originalParent = opposite;          
         }
+
+
     }
 }
