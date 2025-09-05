@@ -4220,13 +4220,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 700314742}
-  snapThresholdPixels: 238.4
+  snapThresholdPixels: 180.5
   vertical: 1
   verticalAlign: 1
   horizontal: 0
   horizontalAlign: 1
-  tweenDuration: 1.58
-  ease: 6
+  tweenDuration: 0.22
+  ease: 9
   disableInertiaDuringSnap: 1
   useUnscaledTime: 0
   lockAfterSnap: 1
@@ -14648,7 +14648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe24f0cf52d6d148b711832f39601fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetFPS: 160
+  targetFPS: 60
 --- !u!114 &1325817450
 MonoBehaviour:
   m_ObjectHideFlags: 0

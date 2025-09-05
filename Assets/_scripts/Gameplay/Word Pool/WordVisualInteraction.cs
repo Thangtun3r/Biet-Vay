@@ -12,10 +12,17 @@ public class WordVisualInteraction : MonoBehaviour
     [Tooltip("Hover/exit tween duration.")]
     public float tweenDuration = 0.2f;
 
-    private float baseY; // stable baseline
-    private bool hasBaseline; // did we capture baseline?
-    private bool isHovering; // debounce repeated enters
-    private Tween currentTween; // keep a handle to the running tween
+    [Tooltip("Pixels of movement before we accept a new baseline.")]
+    public float baselineEpsilon = 1f;
+
+    [Tooltip("Seconds to wait after a tween ends/kills before baseline can refresh.")]
+    public float baselineCooldown = 0.2f;
+
+    private float baseY;               // stable baseline
+    private bool hasBaseline;          // did we capture baseline?
+    private bool isHovering;           // debounce repeated enters
+    private Tween currentTween;        // handle to running tween
+    private float lastTweenEndTime;    // for cooldown after tween end/kill
 
     private void Awake()
     {
@@ -25,23 +32,40 @@ public class WordVisualInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        // Capture baseline once at enable.
+        // Reset hover state on enable to avoid stale 'true' blocking handlers
+        isHovering = false;
+
+        // Capture baseline once at enable (if not already captured)
         if (ButtonRectTransform != null)
         {
-            baseY = ButtonRectTransform.anchoredPosition.y;
-            hasBaseline = true;
+            if (!hasBaseline)
+            {
+                baseY = ButtonRectTransform.anchoredPosition.y;
+                hasBaseline = true;
+            }
+            else
+            {
+                // Snap to known baseline on enable (optional but keeps things sane)
+                ButtonRectTransform.anchoredPosition = new Vector2(
+                    ButtonRectTransform.anchoredPosition.x, baseY);
+            }
         }
     }
 
-    // Optional: if layout moves us while NOT hovering, refresh the baseline.
     private void LateUpdate()
     {
         if (!hasBaseline || isHovering || ButtonRectTransform == null) return;
 
-        // If no tween is playing and layout shifted our Y, adopt the new rest position.
-        if (currentTween == null || !currentTween.IsActive() || !currentTween.IsPlaying())
+        bool tweenPlaying = currentTween != null && currentTween.IsActive() && currentTween.IsPlaying();
+        if (tweenPlaying) return;
+
+        // Respect a small cooldown after any tween end/kill to avoid learning mid-flight values
+        if (Time.unscaledTime - lastTweenEndTime < baselineCooldown) return;
+
+        float currentY = ButtonRectTransform.anchoredPosition.y;
+        if (Mathf.Abs(currentY - baseY) > baselineEpsilon)
         {
-            baseY = ButtonRectTransform.anchoredPosition.y;
+            baseY = currentY;
         }
     }
 
@@ -51,29 +75,24 @@ public class WordVisualInteraction : MonoBehaviour
         HandleExitVisual(_);
     }
 
-    public void HandleBeginDragVisual(PointerEventData _)
-    {
-
-    }
+    public void HandleBeginDragVisual(PointerEventData _) { }
 
     public void HandleHoverVisual(PointerEventData _)
     {
         if (ButtonRectTransform == null) return;
-        if (isHovering) return; // debounce extra enters over children
+        if (isHovering) return; // debounce
 
         isHovering = true;
 
-        // Kill any running tween on this target
-        currentTween?.Kill();
-        ButtonRectTransform.DOKill();
+        KillCurrentTween();
+        ButtonRectTransform.DOKill(); // kill any leftover tweens on the target
 
-        // Always tween relative to the STABLE baseline
         float targetY = baseY + hoverOffsetY;
 
         currentTween = ButtonRectTransform
             .DOAnchorPosY(targetY, tweenDuration)
             .SetEase(Ease.OutSine)
-            .OnComplete(() => { currentTween = null; });
+            .OnComplete(() => { currentTween = null; lastTweenEndTime = Time.unscaledTime; });
     }
 
     public void HandleExitVisual(PointerEventData _)
@@ -83,26 +102,40 @@ public class WordVisualInteraction : MonoBehaviour
 
         isHovering = false;
 
-        currentTween?.Kill();
+        KillCurrentTween();
         ButtonRectTransform.DOKill();
 
         currentTween = ButtonRectTransform
             .DOAnchorPosY(baseY, tweenDuration)
             .SetEase(Ease.OutSine)
-            .OnComplete(() => { currentTween = null; });
+            .OnComplete(() => { currentTween = null; lastTweenEndTime = Time.unscaledTime; });
     }
 
     private void OnDisable()
     {
-        currentTween?.Kill();
-        currentTween = null;
+        // Make sure state and visuals are fully reset
+        isHovering = false;
 
+        KillCurrentTween();
         if (ButtonRectTransform != null)
         {
-            ButtonRectTransform.DOKill();
+            ButtonRectTransform.DOKill(); // don't complete; we will snap ourselves
             ButtonRectTransform.anchoredPosition = new Vector2(
                 ButtonRectTransform.anchoredPosition.x, baseY);
             ButtonRectTransform.localScale = Vector3.one;
+        }
+
+        lastTweenEndTime = Time.unscaledTime;
+    }
+
+    private void KillCurrentTween()
+    {
+        if (currentTween != null)
+        {
+            // Kill without completing; we want to start next tween from current value
+            currentTween.Kill();
+            currentTween = null;
+            lastTweenEndTime = Time.unscaledTime;
         }
     }
 }
