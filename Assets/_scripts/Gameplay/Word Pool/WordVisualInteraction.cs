@@ -7,10 +7,10 @@ public class WordVisualInteraction : MonoBehaviour
     public RectTransform ButtonRectTransform;
 
     [Tooltip("How far to nudge on hover, in anchored Y units.")]
-    public float hoverOffsetY = 1.5f;
+    public float hoverOffsetY = 4f;
 
     [Tooltip("Hover/exit tween duration.")]
-    public float tweenDuration = 0.1f;
+    public float tweenDuration = 0.2f;
 
     private float baseY; // stable baseline
     private bool hasBaseline; // did we capture baseline?
@@ -72,7 +72,7 @@ public class WordVisualInteraction : MonoBehaviour
 
         currentTween = ButtonRectTransform
             .DOAnchorPosY(targetY, tweenDuration)
-            .SetEase(Ease.OutQuad)
+            .SetEase(Ease.OutSine)
             .OnComplete(() => { currentTween = null; });
     }
 
@@ -88,7 +88,7 @@ public class WordVisualInteraction : MonoBehaviour
 
         currentTween = ButtonRectTransform
             .DOAnchorPosY(baseY, tweenDuration)
-            .SetEase(Ease.OutQuad)
+            .SetEase(Ease.OutSine)
             .OnComplete(() => { currentTween = null; });
     }
 
