@@ -9576,6 +9576,7 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: 3138911f3ee21a045aff51dd391e5a4f, type: 2}
   nameDisplayer: {fileID: 1966423760}
   fallbackColor: {r: 1, g: 1, b: 1, a: 1}
+  presenter: {fileID: 0}
 --- !u!114 &833672374
 MonoBehaviour:
   m_ObjectHideFlags: 0

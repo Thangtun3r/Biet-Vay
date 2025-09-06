@@ -31,7 +31,7 @@ public class VisualWord : MonoBehaviour
     private bool isSpacing = false;
     private bool lastSpacingState = false;
 
-    // 🔑 Non-static event
+
     public event Action<bool> OnSpacingChanged;
 
     private void Start()
@@ -63,6 +63,7 @@ public class VisualWord : MonoBehaviour
         {
             if (isSpacing)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/UI/Spacing");
                 separator.SetActive(true);
                 TweenToWidth(spacing, spacingDuration, spacingEase);
             }
