@@ -18,13 +18,17 @@ public class LineOrOptionsStateManager : MonoBehaviour
     {
         WordDisplayManager.OnOptionsDisplayed -= OnEnableObjects;
         CustomLinePresenter.OnLineDisplayed -= OnDisableObjects;
+        GameTransition.OnExpandStarted -= OnDisableObjects; // Add this line to unsubscribe
     }
     
     public void OnEnableObjects()
     {
         foreach (var stuff in stuffsToDisableWhenOptionsDisplayed)
         {
-            stuff.SetActive(true);
+            if (stuff != null) // Add null check
+            {
+                stuff.SetActive(true);
+            }
         }
     }
     
@@ -32,9 +36,10 @@ public class LineOrOptionsStateManager : MonoBehaviour
     {
         foreach (var stuff in stuffsToDisableWhenOptionsDisplayed)
         {
-            stuff.SetActive(false);
+            if (stuff != null) // Add null check
+            {
+                stuff.SetActive(false);
+            }
         }
     }
-    
-
 }
