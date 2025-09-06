@@ -17,8 +17,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Caution 2
+    second: {fileID: 2100000, guid: 949588eb4053a8841be11176c2a61612, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: 6a787a677e54f414ba273f2612b08fa2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass.001
+    second: {fileID: 2100000, guid: cbac048184cef5a4a86ef5d78e328d94, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -39,6 +49,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Palette
     second: {fileID: 2100000, guid: 9423e38714000b94cb6a959687b06a33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Palette.001
+    second: {fileID: 2100000, guid: c1fee5fed4e6872468e88b6b7739a46f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
