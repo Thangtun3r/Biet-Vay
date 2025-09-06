@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI; // <-- needed for Image
 
 public class WordVisualInteraction : MonoBehaviour
 {
@@ -15,17 +16,21 @@ public class WordVisualInteraction : MonoBehaviour
     [Tooltip("Hover/exit tween duration.")]
     public float tweenDuration = 0.2f;
 
+    private float baseY;
+    private bool isHovering;
+    private Tween currentTween;
 
-
-    private float baseY;            // fixed baseline captured on enable or via RebaseNow
-    private bool isHovering;        // debounce repeated enters
-    private Tween currentTween;     // handle to running tween
+    // cache image reference
+    private Image buttonShadowImage;
 
     // --- Lifecycle ---
     private void Awake()
     {
         if (ButtonRectTransform == null)
             ButtonRectTransform = GetComponent<RectTransform>();
+
+        if (buttonShadow != null)
+            buttonShadowImage = buttonShadow.GetComponent<Image>();
     }
 
     private void OnEnable()
@@ -38,6 +43,9 @@ public class WordVisualInteraction : MonoBehaviour
             ButtonRectTransform.anchoredPosition = new Vector2(
                 ButtonRectTransform.anchoredPosition.x, baseY);
         }
+
+        if (buttonShadowImage != null)
+            buttonShadowImage.enabled = false; // start hidden
     }
 
     private void OnDisable()
@@ -90,21 +98,22 @@ public class WordVisualInteraction : MonoBehaviour
     public void HandleBeginDragVisual(PointerEventData _)
     {
         HandleExitVisual(_);
-        
-        buttonShadow.SetActive(true);
-        Vector3 targetPos = new Vector3(0f, -4f,0f);
+
+        if (buttonShadowImage != null)
+            buttonShadowImage.enabled = true;
+
+        Vector3 targetPos = new Vector3(0f, -4f, 0f);
         buttonShadow.transform
             .DOLocalMove(targetPos, 0.1f)
             .SetEase(Ease.OutSine);
-        
+
         if (WrapperButtonRect != null)
         {
-            WrapperButtonRect.DOKill(true); // stop old tweens
+            WrapperButtonRect.DOKill(true);
 
-            // Small Z-axis wiggle (rotation only)
             Sequence wiggle = DOTween.Sequence();
             wiggle.Append(WrapperButtonRect.DOLocalRotate(
-                    new Vector3(0, 0, 5f), 0.08f))
+                    new Vector3(0, 0, 8f), 0.04f))
                 .Append(WrapperButtonRect.DOLocalRotate(
                     new Vector3(0, 0, -5f), 0.16f))
                 .Append(WrapperButtonRect.DOLocalRotate(
@@ -113,13 +122,12 @@ public class WordVisualInteraction : MonoBehaviour
         }
     }
 
-
     public void HandleDragVisual(PointerEventData _)
     {
         transform.SetAsLastSibling();
         HandleExitVisual(_);
     }
-    
+
     public void HandleEndDragVisual(PointerEventData _)
     {
         Vector3 targetPos = new Vector3(0f, 0f, 0);
@@ -129,11 +137,10 @@ public class WordVisualInteraction : MonoBehaviour
             .SetEase(Ease.OutSine)
             .OnComplete(() =>
             {
-                buttonShadow.SetActive(false);
+                if (buttonShadowImage != null)
+                    buttonShadowImage.enabled = false;
             });
     }
-
-
 
     private void KillCurrentTween()
     {

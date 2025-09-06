@@ -437,9 +437,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c89ffdd9751f9d04384e0483ba567901, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dragAndDrop: {fileID: 9184029758125937647}
   eventPrefix: event:/UI/
   hoverSFX: Hover
   dragSFX: BeginDrag
+  clickSFX: Click
+  spacingSFX: Spacing
+  globalHoverCooldown: 0
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0
