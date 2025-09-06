@@ -15,11 +15,11 @@ public class CharacterColorApplier : MonoBehaviour
     public Image nameDisplayer;             // e.g., speaker name BG/panel
     public Color fallbackColor = Color.white;
 
-    private LinePresenter presenter;
+    public CustomLinePresenter presenter;
 
     private void Awake()
     {
-        presenter = GetComponent<LinePresenter>();
+        presenter = GetComponent<CustomLinePresenter>();
 
         // Auto-load from Resources if nothing assigned
         if (database == null)

@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 7893412346723646125}
   - component: {fileID: 461081831966515967}
   - component: {fileID: 3343073463956201984}
+  - component: {fileID: 3016013308229762764}
   m_Layer: 5
   m_Name: Word fix
   m_TagString: Word
@@ -424,6 +425,21 @@ MonoBehaviour:
   isVisual: 0
   _originalWord: 
   _words: {fileID: 7893412346723646125}
+--- !u!114 &3016013308229762764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89ffdd9751f9d04384e0483ba567901, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventPrefix: event:/UI/
+  hoverSFX: Hover
+  dragSFX: BeginDrag
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0

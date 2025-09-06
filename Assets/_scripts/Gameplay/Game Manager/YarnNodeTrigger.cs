@@ -1,79 +1,79 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 using Yarn.Unity;
 
 public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 {
     [SerializeField] private string yarnNodeName;
-    [SerializeField] private Material highlightMaterial;
-    [NonSerialized] private GameObject floatingLabel;
+
+    [Header("Highlight Settings")]
+    [SerializeField] private GameObject highlightTarget; // The object whose layer will change
+    [SerializeField] private string highlightLayerName = "Fill"; // Target layer name
+
+    private int defaultLayer;
+    private int highlightLayer;
+    private bool isHighlighting = false;
 
     [Header("Enable Look At for the girl ?")]
     public bool girlLookAt;
     [SerializeField] private GirlLookAt girlLookAtTarget;
-    
-    
-    
 
-    private bool isHighlighting = false;
-    private Material originalMaterial;
-    private Renderer renderer;
-    
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
-        originalMaterial = renderer.material;
+        if (highlightTarget == null)
+        {
+            Debug.LogWarning($"{name}: No highlightTarget assigned!");
+            return;
+        }
+
+        defaultLayer = highlightTarget.layer;
+        highlightLayer = LayerMask.NameToLayer(highlightLayerName);
+
+        if (highlightLayer == -1)
+        {
+            Debug.LogError($"Layer \"{highlightLayerName}\" not found! Please add it in Project Settings > Tags and Layers.");
+        }
     }
+
     private void Update()
     {
-        HandleMats();
+        HandleLayer();
     }
-
-   
-
 
     public void Interact()
     {
         YarnDialogueEventBridge.CallYarnEvent(yarnNodeName);
         HandleGirlLookAt();
     }
-    
-    
+
     private void HandleGirlLookAt()
     {
-        if (girlLookAt)
+        if (girlLookAt && girlLookAtTarget != null)
         {
             girlLookAtTarget.YawLookAtTarget();
         }
     }
-    
 
     public void Highlight()
     {
         isHighlighting = true;
     }
 
-    private void HandleMats()
+    private void HandleLayer()
     {
+        if (highlightTarget == null) return;
+
         if (isHighlighting)
         {
-            if (renderer.material != highlightMaterial)
-                renderer.material = highlightMaterial;
+            if (highlightTarget.layer != highlightLayer)
+                highlightTarget.layer = highlightLayer;
         }
         else
         {
-            if (renderer.material != originalMaterial)
-                renderer.material = originalMaterial;
+            if (highlightTarget.layer != defaultLayer)
+                highlightTarget.layer = defaultLayer;
         }
+
         isHighlighting = false;
     }
-    
-
-    
-
-    
-    
 }

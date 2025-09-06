@@ -1,8 +1,14 @@
 ﻿title: start
 ---
 -> [bv]Biet vay[/bv],/ I/ [sw w="shouldn't have"] have [/sw]/[sw w="order"] ordered [/sw]/ this/ combo./
-     <<expand>>
-     <<PsudoTurnOff>>
+        <<spawn ToxosOutside>>
+        <<expand>>
+        <<PsudoTurnOff>>
+
+===
+title: ToxosInside
+---
+<<spawn ToxosInside>>
 ===
 
 title: SaleGretting

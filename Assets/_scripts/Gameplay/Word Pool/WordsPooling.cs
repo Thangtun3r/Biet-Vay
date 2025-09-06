@@ -49,6 +49,8 @@ public class WordsPooling : MonoBehaviour
             {
                 obj.SetActive(true);
                 obj.transform.SetParent(transform, false);
+
+
                 return obj;
             }
         }

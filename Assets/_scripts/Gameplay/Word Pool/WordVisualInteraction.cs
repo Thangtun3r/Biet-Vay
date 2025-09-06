@@ -4,26 +4,24 @@ using UnityEngine.EventSystems;
 
 public class WordVisualInteraction : MonoBehaviour
 {
+    [Header("Target")]
     public RectTransform ButtonRectTransform;
+    public RectTransform WrapperButtonRect;
+    public GameObject buttonShadow;
 
-    [Tooltip("How far to nudge on hover, in anchored Y units.")]
+    [Header("Hover Motion")]
     public float hoverOffsetY = 4f;
 
     [Tooltip("Hover/exit tween duration.")]
     public float tweenDuration = 0.2f;
 
-    [Tooltip("Pixels of movement before we accept a new baseline.")]
-    public float baselineEpsilon = 1f;
 
-    [Tooltip("Seconds to wait after a tween ends/kills before baseline can refresh.")]
-    public float baselineCooldown = 0.2f;
 
-    private float baseY;               // stable baseline
-    private bool hasBaseline;          // did we capture baseline?
-    private bool isHovering;           // debounce repeated enters
-    private Tween currentTween;        // handle to running tween
-    private float lastTweenEndTime;    // for cooldown after tween end/kill
+    private float baseY;            // fixed baseline captured on enable or via RebaseNow
+    private bool isHovering;        // debounce repeated enters
+    private Tween currentTween;     // handle to running tween
 
+    // --- Lifecycle ---
     private void Awake()
     {
         if (ButtonRectTransform == null)
@@ -32,74 +30,52 @@ public class WordVisualInteraction : MonoBehaviour
 
     private void OnEnable()
     {
-        // Reset hover state on enable to avoid stale 'true' blocking handlers
         isHovering = false;
 
-        // Capture baseline once at enable (if not already captured)
         if (ButtonRectTransform != null)
         {
-            if (!hasBaseline)
-            {
-                baseY = ButtonRectTransform.anchoredPosition.y;
-                hasBaseline = true;
-            }
-            else
-            {
-                // Snap to known baseline on enable (optional but keeps things sane)
-                ButtonRectTransform.anchoredPosition = new Vector2(
-                    ButtonRectTransform.anchoredPosition.x, baseY);
-            }
+            baseY = ButtonRectTransform.anchoredPosition.y;
+            ButtonRectTransform.anchoredPosition = new Vector2(
+                ButtonRectTransform.anchoredPosition.x, baseY);
         }
     }
 
-    private void LateUpdate()
+    private void OnDisable()
     {
-        if (!hasBaseline || isHovering || ButtonRectTransform == null) return;
+        isHovering = false;
 
-        bool tweenPlaying = currentTween != null && currentTween.IsActive() && currentTween.IsPlaying();
-        if (tweenPlaying) return;
-
-        // Respect a small cooldown after any tween end/kill to avoid learning mid-flight values
-        if (Time.unscaledTime - lastTweenEndTime < baselineCooldown) return;
-
-        float currentY = ButtonRectTransform.anchoredPosition.y;
-        if (Mathf.Abs(currentY - baseY) > baselineEpsilon)
+        KillCurrentTween();
+        if (ButtonRectTransform != null)
         {
-            baseY = currentY;
+            ButtonRectTransform.DOKill();
+            ButtonRectTransform.anchoredPosition = new Vector2(
+                ButtonRectTransform.anchoredPosition.x, baseY);
+            ButtonRectTransform.localScale = Vector3.one;
         }
     }
 
-    public void HandleDragVisual(PointerEventData _)
-    {
-        transform.SetAsLastSibling();
-        HandleExitVisual(_);
-    }
-
-    public void HandleBeginDragVisual(PointerEventData _) { }
-
+    // --- Public hooks ---
     public void HandleHoverVisual(PointerEventData _)
     {
         if (ButtonRectTransform == null) return;
-        if (isHovering) return; // debounce
+        if (isHovering) return;
 
         isHovering = true;
 
         KillCurrentTween();
-        ButtonRectTransform.DOKill(); // kill any leftover tweens on the target
+        ButtonRectTransform.DOKill();
 
         float targetY = baseY + hoverOffsetY;
 
         currentTween = ButtonRectTransform
             .DOAnchorPosY(targetY, tweenDuration)
             .SetEase(Ease.OutSine)
-            .OnComplete(() => { currentTween = null; lastTweenEndTime = Time.unscaledTime; });
+            .OnComplete(() => currentTween = null);
     }
 
     public void HandleExitVisual(PointerEventData _)
     {
         if (ButtonRectTransform == null) return;
-        if (!isHovering) return; // debounce duplicate exits
-
         isHovering = false;
 
         KillCurrentTween();
@@ -108,34 +84,63 @@ public class WordVisualInteraction : MonoBehaviour
         currentTween = ButtonRectTransform
             .DOAnchorPosY(baseY, tweenDuration)
             .SetEase(Ease.OutSine)
-            .OnComplete(() => { currentTween = null; lastTweenEndTime = Time.unscaledTime; });
+            .OnComplete(() => currentTween = null);
     }
 
-    private void OnDisable()
+    public void HandleBeginDragVisual(PointerEventData _)
     {
-        // Make sure state and visuals are fully reset
-        isHovering = false;
-
-        KillCurrentTween();
-        if (ButtonRectTransform != null)
+        HandleExitVisual(_);
+        
+        buttonShadow.SetActive(true);
+        Vector3 targetPos = new Vector3(0f, -4f,0f);
+        buttonShadow.transform
+            .DOLocalMove(targetPos, 0.1f)
+            .SetEase(Ease.OutSine);
+        
+        if (WrapperButtonRect != null)
         {
-            ButtonRectTransform.DOKill(); // don't complete; we will snap ourselves
-            ButtonRectTransform.anchoredPosition = new Vector2(
-                ButtonRectTransform.anchoredPosition.x, baseY);
-            ButtonRectTransform.localScale = Vector3.one;
-        }
+            WrapperButtonRect.DOKill(true); // stop old tweens
 
-        lastTweenEndTime = Time.unscaledTime;
+            // Small Z-axis wiggle (rotation only)
+            Sequence wiggle = DOTween.Sequence();
+            wiggle.Append(WrapperButtonRect.DOLocalRotate(
+                    new Vector3(0, 0, 5f), 0.08f))
+                .Append(WrapperButtonRect.DOLocalRotate(
+                    new Vector3(0, 0, -5f), 0.16f))
+                .Append(WrapperButtonRect.DOLocalRotate(
+                    Vector3.zero, 0.08f))
+                .SetEase(Ease.InOutSine);
+        }
     }
+
+
+    public void HandleDragVisual(PointerEventData _)
+    {
+        transform.SetAsLastSibling();
+        HandleExitVisual(_);
+    }
+    
+    public void HandleEndDragVisual(PointerEventData _)
+    {
+        Vector3 targetPos = new Vector3(0f, 0f, 0);
+
+        buttonShadow.transform
+            .DOLocalMove(targetPos, 0.1f)
+            .SetEase(Ease.OutSine)
+            .OnComplete(() =>
+            {
+                buttonShadow.SetActive(false);
+            });
+    }
+
+
 
     private void KillCurrentTween()
     {
         if (currentTween != null)
         {
-            // Kill without completing; we want to start next tween from current value
             currentTween.Kill();
             currentTween = null;
-            lastTweenEndTime = Time.unscaledTime;
         }
     }
 }

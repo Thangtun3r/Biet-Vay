@@ -48,7 +48,7 @@ public class VisualHandler : MonoBehaviour
             words.PointerEntered += wvi.HandleHoverVisual;
             words.PointerExited  += wvi.HandleExitVisual;
             words.PointerUpped += wvi.HandleExitVisual;
-            words.EndedDrag += wvi.HandleExitVisual;
+            words.EndedDrag += wvi.HandleEndDragVisual;
         }
     }
 
