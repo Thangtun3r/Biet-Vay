@@ -1,22 +1,15 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private float raycastDistance = 5f;
-    [SerializeField] private RectTransform renderImageRect;
-    [SerializeField] private GameObject crosshair; // ✅ Crosshair UI element
 
     private Camera mainCamera;
 
     private void Start()
     {
         mainCamera = Camera.main;
-
-        // Make sure crosshair is off at start
-        if (crosshair != null)
-            crosshair.SetActive(false);
     }
 
     private void Update()
@@ -26,39 +19,27 @@ public class PlayerInteraction : MonoBehaviour
 
     private void HandleInteraction()
     {
-        Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        Vector2 localPoint;
-
         bool interactableInSight = false;
 
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(renderImageRect, screenCenter, null, out localPoint))
+        // Get the ray from the center of the screen
+        Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance))
         {
-            Vector2 normalizedPoint = Rect.PointToNormalized(renderImageRect.rect, localPoint);
-            Ray ray = mainCamera.ViewportPointToRay(normalizedPoint);
+            IPlayerInteraction interactable = hit.collider.GetComponent<IPlayerInteraction>();
 
-            Debug.DrawRay(ray.origin, ray.direction * raycastDistance, Color.red);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, raycastDistance))
+            if (interactable != null)
             {
-                IPlayerInteraction interactable = hit.collider.GetComponent<IPlayerInteraction>();
+                interactable.Highlight();
+                interactableInSight = true;
 
-                if (interactable != null)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    interactable.Highlight();
-                    interactableInSight = true;
-
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        interactable.Interact();
-                    }
+                    interactable.Interact();
                 }
             }
-        }
-
-        // ✅ Toggle crosshair based on interactable presence
-        if (crosshair != null)
-        {
-            crosshair.SetActive(interactableInSight);
         }
     }
 }

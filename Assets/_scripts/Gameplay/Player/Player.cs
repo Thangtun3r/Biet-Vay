@@ -56,9 +56,18 @@ public class Player : MonoBehaviour
         movement.IsFrozen = false;
     }
 
-void SetPlayerSpawnPoint(Transform spawnPoint)
+    void SetPlayerSpawnPoint(Transform spawnPoint)
     {
+        
+        
+
+        // Disable CharacterController to allow position changes
+        characterController.enabled = false;
         transform.position = spawnPoint.position;
         transform.rotation = spawnPoint.rotation;
+        movement.ResetHead();
+        
+        // Re-enable CharacterController
+        characterController.enabled = true;
     }
 }

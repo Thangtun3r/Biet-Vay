@@ -92,4 +92,11 @@ public class PlayerMovement : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, minAngle, maxAngle);
         cameraView.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
     }
+
+    public void ResetHead()
+    {
+        xRotation = 0f;  // reset stored vertical rotation
+        Debug.Log("heading reset " + cameraView.localRotation.eulerAngles);
+    }
+
 }
