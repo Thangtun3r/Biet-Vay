@@ -444,7 +444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ButtonRectTransform: {fileID: 6376323234603043194}
   hoverOffsetY: 2
-  tweenDuration: 0.2
+  tweenDuration: 0.1
+  baselineEpsilon: 1
+  baselineCooldown: 0.2
 --- !u!1 &4626605331339697412
 GameObject:
   m_ObjectHideFlags: 0

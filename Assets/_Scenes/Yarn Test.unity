@@ -9686,10 +9686,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 833672370}
-  - component: {fileID: 833672371}
   - component: {fileID: 833672372}
   - component: {fileID: 833672373}
   - component: {fileID: 833672374}
+  - component: {fileID: 833672375}
   m_Layer: 5
   m_Name: Custom Line presenter
   m_TagString: Untagged
@@ -9719,32 +9719,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -539}
   m_SizeDelta: {x: 1050.8, y: 237.39252}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &833672371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 833672369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dd50f871a60b4bbe88a71d308b2613f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup: {fileID: 833672372}
-  lineText: {fileID: 717629288}
-  showCharacterNameInLineView: 1
-  characterNameText: {fileID: 550043866}
-  characterNameContainer: {fileID: 1966423758}
-  useFadeEffect: 0
-  useCanvasFade: 1
-  fadeUpDuration: 0.25
-  fadeDownDuration: 0.1
-  autoAdvance: 0
-  autoAdvanceDelay: 1
-  useTypewriterEffect: 1
-  typewriterEffectSpeed: 30
-  eventHandlers: []
 --- !u!225 &833672372
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9753,7 +9727,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833672369}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -9789,6 +9763,31 @@ MonoBehaviour:
   transitionDuration: 0.4
   fadeOutDuration: 0.2
   canvasGroup: {fileID: 833672372}
+--- !u!114 &833672375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833672369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b489df63348943438515d6e71f48157, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 833672372}
+  lineText: {fileID: 717629288}
+  showCharacterNameInLineView: 1
+  characterNameText: {fileID: 550043866}
+  characterNameContainer: {fileID: 0}
+  useFadeEffect: 0
+  fadeUpDuration: 0.25
+  fadeDownDuration: 0.1
+  autoAdvance: 0
+  autoAdvanceDelay: 1
+  useTypewriterEffect: 1
+  typewriterEffectSpeed: 60
+  eventHandlers: []
 --- !u!1 &849498804
 GameObject:
   m_ObjectHideFlags: 0
@@ -12096,7 +12095,7 @@ PrefabInstance:
     - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: presenter
       value: 
-      objectReference: {fileID: 833672371}
+      objectReference: {fileID: 833672375}
     - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: nextLineKeyCode
       value: 0
@@ -12216,7 +12215,7 @@ PrefabInstance:
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: dialoguePresenters.Array.data[1]
       value: 
-      objectReference: {fileID: 833672371}
+      objectReference: {fileID: 833672375}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: dialoguePresenters.Array.data[2]
       value: 

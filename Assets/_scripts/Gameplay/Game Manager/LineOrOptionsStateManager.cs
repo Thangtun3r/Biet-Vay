@@ -10,14 +10,14 @@ public class LineOrOptionsStateManager : MonoBehaviour
     public void OnEnable()
     {
         WordDisplayManager.OnOptionsDisplayed += OnEnableObjects;
-        LinePresenter.OnLineDisplayed += OnDisableObjects;
+        CustomLinePresenter.OnLineDisplayed += OnDisableObjects;
         GameTransition.OnExpandStarted += OnDisableObjects; // Ensure line is displayed when expanding
     }
     
     public void OnDisable()
     {
         WordDisplayManager.OnOptionsDisplayed -= OnEnableObjects;
-        LinePresenter.OnLineDisplayed -= OnDisableObjects;
+        CustomLinePresenter.OnLineDisplayed -= OnDisableObjects;
     }
     
     public void OnEnableObjects()
