@@ -21,7 +21,7 @@ public class DiaglogueTransition : MonoBehaviour
 
     private void OnEnable()
     {
-        LinePresenter.OnLineDisplayed += HandleLineIntransition;
+        CustomLinePresenter.OnLineDisplayed += HandleLineIntransition;
         WordDisplayManager.OnOptionsDisplayed += HandleLineOuttransition;
         GameTransition.OnCollapseCompleted += HandleCollapseCompleted;
         GameTransition.OnExpandStarted += HandleLineOuttransition;
@@ -30,7 +30,7 @@ public class DiaglogueTransition : MonoBehaviour
 
     private void OnDisable()
     {
-        LinePresenter.OnLineDisplayed -= HandleLineIntransition;
+        CustomLinePresenter.OnLineDisplayed -= HandleLineIntransition;
         WordDisplayManager.OnOptionsDisplayed -= HandleLineOuttransition;
         GameTransition.OnCollapseCompleted -= HandleCollapseCompleted;
         GameTransition.OnExpandStarted -= HandleLineOuttransition;

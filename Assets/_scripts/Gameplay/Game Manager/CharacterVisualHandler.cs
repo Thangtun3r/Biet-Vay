@@ -25,12 +25,12 @@ public class CharacterColorApplier : MonoBehaviour
         if (database == null)
             database = Resources.Load<CharacterColorDatabase>("CharacterColorDB");
 
-        LinePresenter.OnLineDisplayed += HandleLineDisplayed;
+        CustomLinePresenter.OnLineDisplayed += HandleLineDisplayed;
     }
 
     private void OnDestroy()
     {
-        LinePresenter.OnLineDisplayed -= HandleLineDisplayed;
+        CustomLinePresenter.OnLineDisplayed -= HandleLineDisplayed;
     }
 
     private void HandleLineDisplayed()
