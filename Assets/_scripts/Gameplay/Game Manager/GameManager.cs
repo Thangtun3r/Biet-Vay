@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     
     public static event Action OnFreeze;
     public static event Action OnUnFreeze;
-    public static event Action OnTransition;
+    public static event Action<int> OnTransition;
     public static event Action OnWeather;
     public static event Action<int> OnVMBoost;
     public static event Action OnVMReset;
@@ -48,11 +48,6 @@ public class GameManager : MonoBehaviour
 
     [YarnCommand("unfreeze")]
     public static void Unfreeze() => OnUnFreeze?.Invoke();
-    [YarnCommand("transition")]
-    public static void Transition()
-    {
-        OnTransition?.Invoke();
-    }
 
     //temporary weather command for testing purposes
     [YarnCommand("weather")]
@@ -88,6 +83,14 @@ public class GameManager : MonoBehaviour
     {
         OnPsudoTurnOn?.Invoke();
         Debug.Log("Psudo Turn Off Called");
+    }
+    
+    [YarnCommand("transition")]
+
+    public static IEnumerator Transition(int transitionID)
+    {
+        OnTransition?.Invoke(transitionID);
+        yield return new WaitForSeconds(1f);
     }
     
 }

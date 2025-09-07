@@ -72,6 +72,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{bdf7abfb-b131-4c70-a9e6-243cae6e8bfa}">
+		<property name="volume">
+			<value>2.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{1a5571cc-9ff9-445f-9fcc-75ddad33c2a2}</destination>
 		</relationship>
@@ -90,16 +93,16 @@
 	<object class="MixerBusPanner" id="{cecbccc9-c04d-4db1-8fb0-845f65d7ecb1}" />
 	<object class="SingleSound" id="{25498b76-27c1-44a6-9289-3c95bf1ba845}">
 		<property name="length">
-			<value>0.15000000000000002</value>
+			<value>0.14300000000000002</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.0070000000000000001</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{01872544-a29a-4c8b-835b-e9c50c8f2c10}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{00068e3f-5668-4e99-a2f5-4761a7b1af25}">
-		<property name="volume">
-			<value>-2</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -135,15 +138,15 @@
 			<value>-15.5</value>
 		</property>
 		<property name="midGain">
-			<value>-25.5</value>
+			<value>-56</value>
 		</property>
 		<property name="highGain">
-			<value>-35</value>
+			<value>-9.5</value>
 		</property>
 	</object>
 	<object class="LowpassEffect" id="{27d77923-d643-427a-b8ed-6b1de812dc38}">
 		<property name="cutoff">
-			<value>720</value>
+			<value>2800</value>
 		</property>
 	</object>
 </objects>
