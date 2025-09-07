@@ -11,6 +11,8 @@
 
 title: ToxosInside
 ---
+<<transition 2>>
+<<wait 2>>
 <<spawn ToxosInside>>
 ===
 

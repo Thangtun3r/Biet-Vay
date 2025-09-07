@@ -135,18 +135,18 @@
 	<object class="MixerBusFader" id="{6d78bf93-2c0a-4978-a468-da6e38b2d942}" />
 	<object class="ThreeEQEffect" id="{205b63c3-5af5-4f55-ba3d-98fe82ae39eb}">
 		<property name="lowGain">
-			<value>-15.5</value>
+			<value>-25</value>
 		</property>
 		<property name="midGain">
-			<value>-56</value>
+			<value>-48</value>
 		</property>
 		<property name="highGain">
-			<value>-9.5</value>
+			<value>-21</value>
 		</property>
 	</object>
 	<object class="LowpassEffect" id="{27d77923-d643-427a-b8ed-6b1de812dc38}">
 		<property name="cutoff">
-			<value>2800</value>
+			<value>1750</value>
 		</property>
 	</object>
 </objects>
