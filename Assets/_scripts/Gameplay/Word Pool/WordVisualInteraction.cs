@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,6 +23,8 @@ public class WordVisualInteraction : MonoBehaviour
 
     // cache image reference
     private Image buttonShadowImage;
+    public static event Action OnDragging;
+    
 
     // --- Lifecycle ---
     private void Awake()
@@ -113,18 +116,19 @@ public class WordVisualInteraction : MonoBehaviour
 
             Sequence wiggle = DOTween.Sequence();
             wiggle.Append(WrapperButtonRect.DOLocalRotate(
-                    new Vector3(0, 0, 8f), 0.04f))
+                    new Vector3(0, 0, 7f), 0.04f))
                 .Append(WrapperButtonRect.DOLocalRotate(
                     new Vector3(0, 0, -5f), 0.16f))
                 .Append(WrapperButtonRect.DOLocalRotate(
                     Vector3.zero, 0.08f))
-                .SetEase(Ease.InOutSine);
+                .SetEase(Ease.OutSine);
         }
     }
 
     public void HandleDragVisual(PointerEventData _)
     {
         transform.SetAsLastSibling();
+        OnDragging?.Invoke();
         HandleExitVisual(_);
     }
 

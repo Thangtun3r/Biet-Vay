@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 3679610692806508965}
   - component: {fileID: 5955987180439825962}
   - component: {fileID: 2361634362557049334}
+  - component: {fileID: 7239475783720786254}
   m_Layer: 5
   m_Name: Word Visual
   m_TagString: Word
@@ -407,9 +408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b95aaa3c7eed5da4a984b75df0f479c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popDuration: 0.3
-  popOvershoot: 1.2
-  popEase: 3
+  popDuration: 0.1
+  popOvershoot: 4.62
+  popEase: 5
+  startDelay: 0.05
 --- !u!114 &5955987180439825962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +449,22 @@ MonoBehaviour:
   buttonShadow: {fileID: 4626605331339697412}
   hoverOffsetY: 2
   tweenDuration: 0.1
+--- !u!114 &7239475783720786254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fd36cd28439124888104b9606f6910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonVisual: {fileID: 6376323234603043194}
+  frozenAnchoredY: -9
+  useInitialYFromInspector: 0
+  dragGraceSeconds: 0.05
 --- !u!1 &4626605331339697412
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8235294}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.47058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

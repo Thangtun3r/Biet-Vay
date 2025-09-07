@@ -15,12 +15,12 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 1.bank
   Name: Vignette 1
   StudioPath: bank:/Vignette 1
-  lastModified: 638928013595785692
+  lastModified: 638928675743496321
   FileSizes:
   - Name: Desktop
-    Value: 2085984
+    Value: 5615232
   Exists: 1
---- !u!114 &-6350452981338110494
+--- !u!114 &-6564563347543725749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,34 +46,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 158764
---- !u!114 &-4849721527870368999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/bgm
-  m_EditorClassIdentifier: 
-  Path: event:/bgm
-  Guid:
-    Data1: 1727756824
-    Data2: 1336479230
-    Data3: 612332685
-    Data4: -946053167
-  Banks:
-  - {fileID: -1232821717831486065}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2397119
+  Length: 248487
 --- !u!114 &-2108073099346764782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +73,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 150
+  Length: 143
 --- !u!114 &-1232821717831486065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,10 +89,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638928087884497899
+  lastModified: 638928640285162018
   FileSizes:
   - Name: Desktop
-    Value: 26808288
+    Value: 83264
   Exists: 1
 --- !u!114 &-51215200050033188
 MonoBehaviour:
@@ -147,7 +120,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 160
+  Length: 112
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,18 +138,18 @@ MonoBehaviour:
   - {fileID: -1232821717831486065}
   - {fileID: -8895227409773713057}
   EditorEvents:
-  - {fileID: -6350452981338110494}
   - {fileID: -51215200050033188}
   - {fileID: 792035040451904442}
-  - {fileID: -4849721527870368999}
   - {fileID: -2108073099346764782}
   - {fileID: 9035418597557777614}
+  - {fileID: -6564563347543725749}
+  - {fileID: 6536474148519541492}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638928087884507963
+  cacheTime: 638928675743496321
   cacheVersion: 131623
 --- !u!114 &792035040451904442
 MonoBehaviour:
@@ -204,7 +177,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 35
+  Length: 33
+--- !u!114 &6536474148519541492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Transition/ArrivedToxos
+  m_EditorClassIdentifier: 
+  Path: event:/Transition/ArrivedToxos
+  Guid:
+    Data1: 2055005621
+    Data2: 1156331945
+    Data3: 823909817
+    Data4: -490570968
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 158564
 --- !u!114 &7705571881547959551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,10 +220,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638928087884507963
+  lastModified: 638928640285184179
   FileSizes:
   - Name: Desktop
-    Value: 1030
+    Value: 1050
   Exists: 1
 --- !u!114 &9035418597557777614
 MonoBehaviour:

@@ -1,11 +1,14 @@
 ﻿title: start
 ---
 -> [bv]Biet vay[/bv],/ I/ [sw w="shouldn't have"] have [/sw]/[sw w="order"] ordered [/sw]/ this/ combo./
-        <<spawn ToxosOutside>>
+        <<transition 1>>
         <<expand>>
         <<PsudoTurnOff>>
-
+        <<wait 2>>
+        <<spawn ToxosOutside>>
+        
 ===
+
 title: ToxosInside
 ---
 <<spawn ToxosInside>>
