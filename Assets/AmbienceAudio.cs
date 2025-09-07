@@ -2,48 +2,72 @@ using System.Collections;
 using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AmbienceAudio : MonoBehaviour
 {
     [Header("Primary (inspector)")]
-    public EventReference ambienceEvent;                 // assign your Ambience event here
+    public EventReference ambienceEvent;
+
     [Header("Fallback by path (optional)")]
     public string ambienceEventPath = "event:/Ambience Outside";
 
     public bool attachToGameObject = true;
 
     private EventInstance _inst;
+    private Coroutine _bootRoutine;
+
+    // IMPORTANT: keep a strong reference to the callback delegate to prevent GC crashes
+    private EVENT_CALLBACK _eventCallback; 
 
     private void OnEnable()
     {
-        StartCoroutine(Bootstrap());
+        _bootRoutine = StartCoroutine(Bootstrap());
         TransitionSFX.OnTransition += OnTransitionParam;
     }
 
     private void OnDisable()
     {
         TransitionSFX.OnTransition -= OnTransitionParam;
+
+        if (_bootRoutine != null)
+        {
+            StopCoroutine(_bootRoutine);
+            _bootRoutine = null;
+        }
+
+        // Detach callback BEFORE releasing the instance
         if (_inst.isValid())
         {
-            _inst.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            // Remove callback to drop native -> managed calls during shutdown/reload
+            _inst.setCallback(null);
+            _eventCallback = null;
+
+            _inst.stop(STOP_MODE.ALLOWFADEOUT);
             _inst.release();
         }
     }
 
     private IEnumerator Bootstrap()
     {
-        // Ensure banks are loaded before creating instances
-        RuntimeManager.WaitForAllLoads();
-        yield return null;
+        // If FMOD not initialized (rare during editor reload), bail out safely
+#if FMOD_ENABLED
+        if (!RuntimeManager.IsInitialized)
+            yield break;
+#endif
 
-        // Try create from serialized EventReference first
+        RuntimeManager.WaitForAllLoads();
+        yield return null; // one frame for safety
+
+        if (!isActiveAndEnabled) yield break;
+
+        // Try EventReference first
         if (!ambienceEvent.IsNull)
         {
             _inst = RuntimeManager.CreateInstance(ambienceEvent);
             if (_inst.isValid())
             {
-                HookDebugCallbacks(_inst, "[Ambience]");
-                StartInstance();
+                StartInstanceWithCallback();
                 yield break;
             }
             else
@@ -52,17 +76,16 @@ public class AmbienceAudio : MonoBehaviour
             }
         }
 
-        // Fallback: resolve by path (avoids stale GUIDs)
+        // Fallback by path (avoids stale GUIDs)
         if (!string.IsNullOrEmpty(ambienceEventPath))
         {
             var r = RuntimeManager.StudioSystem.getEvent(ambienceEventPath, out EventDescription desc);
-            if (r == FMOD.RESULT.OK)
+            if (r == FMOD.RESULT.OK && desc.isValid())
             {
                 r = desc.createInstance(out _inst);
                 if (r == FMOD.RESULT.OK && _inst.isValid())
                 {
-                    HookDebugCallbacks(_inst, "[Ambience]");
-                    StartInstance();
+                    StartInstanceWithCallback();
                     yield break;
                 }
                 Debug.LogError($"[Ambience] createInstance from path failed: {r}");
@@ -78,13 +101,29 @@ public class AmbienceAudio : MonoBehaviour
         }
     }
 
-    private void StartInstance()
+    private void StartInstanceWithCallback()
     {
         if (attachToGameObject)
         {
             var rb = GetComponent<Rigidbody>();
             RuntimeManager.AttachInstanceToGameObject(_inst, transform, rb);
         }
+
+        // --- SAFE CALLBACK SETUP ---
+        // keep a strong reference in a field so GC won't collect it on domain reload
+        _eventCallback = (type, _evt, _params) =>
+        {
+            // optional: keep minimal logging; remove if you want it ultra-quiet
+            // if (type == EVENT_CALLBACK_TYPE.START_FAILED)
+            //     Debug.LogWarning("[Ambience] START_FAILED");
+            return FMOD.RESULT.OK;
+        };
+        _inst.setCallback(_eventCallback,
+            EVENT_CALLBACK_TYPE.STARTING |
+            EVENT_CALLBACK_TYPE.STARTED |
+            EVENT_CALLBACK_TYPE.START_FAILED |
+            EVENT_CALLBACK_TYPE.STOPPED);
+
         var res = _inst.start();
         if (res != FMOD.RESULT.OK)
             Debug.LogWarning($"[Ambience] start() => {res}");
@@ -92,35 +131,11 @@ public class AmbienceAudio : MonoBehaviour
 
     private void OnTransitionParam(string paramName, float value)
     {
-        if (!_inst.isValid()) return;
-
-        var res = _inst.setParameterByName(paramName, value);
-        // Per manual: ERR_EVENT_NOTFOUND => no such parameter on this event
-        //             ERR_INVALID_PARAM  => param not game-controlled / read-only / automatic
-        if (res != FMOD.RESULT.OK)
-            Debug.LogWarning($"[Ambience] setParameterByName('{paramName}', {value}) => {res}");
-    }
-
-    private void HookDebugCallbacks(EventInstance inst, string tag)
-    {
-        inst.setCallback((type, _event, _params) =>
+        if (_inst.isValid())
         {
-            switch (type)
-            {
-                case EVENT_CALLBACK_TYPE.STARTING:
-                    Debug.Log($"{tag} CALLBACK: STARTING");
-                    break;
-                case EVENT_CALLBACK_TYPE.STARTED:
-                    Debug.Log($"{tag} CALLBACK: STARTED");
-                    break;
-                case EVENT_CALLBACK_TYPE.START_FAILED:
-                    Debug.LogWarning($"{tag} CALLBACK: START_FAILED (polyphony/sample data/banks?)");
-                    break;
-                case EVENT_CALLBACK_TYPE.STOPPED:
-                    Debug.Log($"{tag} CALLBACK: STOPPED");
-                    break;
-            }
-            return FMOD.RESULT.OK;
-        }, EVENT_CALLBACK_TYPE.STARTING | EVENT_CALLBACK_TYPE.STARTED | EVENT_CALLBACK_TYPE.START_FAILED | EVENT_CALLBACK_TYPE.STOPPED);
+            var r = _inst.setParameterByName(paramName, value);
+            // You can comment this out for max silence:
+            // if (r != FMOD.RESULT.OK) Debug.LogWarning($"Param '{paramName}' => {r}");
+        }
     }
 }
