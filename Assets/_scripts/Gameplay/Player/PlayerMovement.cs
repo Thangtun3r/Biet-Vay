@@ -96,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
     public void ResetHead()
     {
         xRotation = 0f;  // reset stored vertical rotation
-        Debug.Log("heading reset " + cameraView.localRotation.eulerAngles);
     }
 
 }

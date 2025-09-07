@@ -15,143 +15,12 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 1.bank
   Name: Vignette 1
   StudioPath: bank:/Vignette 1
-  lastModified: 638928675743496321
+  lastModified: 638929025268767750
   FileSizes:
   - Name: Desktop
-    Value: 5615232
+    Value: 8432512
   Exists: 1
---- !u!114 &-6564563347543725749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience Outside
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience Outside
-  Guid:
-    Data1: -1395819359
-    Data2: 1173335919
-    Data3: 1559662776
-    Data4: -188957435
-  Banks:
-  - {fileID: -8895227409773713057}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 248487
---- !u!114 &-2108073099346764782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/Hover
-  m_EditorClassIdentifier: 
-  Path: event:/UI/Hover
-  Guid:
-    Data1: 874445393
-    Data2: 1152742969
-    Data3: 38401960
-    Data4: 481715382
-  Banks:
-  - {fileID: -1232821717831486065}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 143
---- !u!114 &-1232821717831486065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638928640285162018
-  FileSizes:
-  - Name: Desktop
-    Value: 83264
-  Exists: 1
---- !u!114 &-51215200050033188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/UI/Spacing
-  m_EditorClassIdentifier: 
-  Path: event:/UI/Spacing
-  Guid:
-    Data1: -830541312
-    Data2: 1315750263
-    Data3: 1630423683
-    Data4: 295153995
-  Banks:
-  - {fileID: -1232821717831486065}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 112
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 7705571881547959551}
-  - {fileID: -1232821717831486065}
-  - {fileID: -8895227409773713057}
-  EditorEvents:
-  - {fileID: -51215200050033188}
-  - {fileID: 792035040451904442}
-  - {fileID: -2108073099346764782}
-  - {fileID: 9035418597557777614}
-  - {fileID: -6564563347543725749}
-  - {fileID: 6536474148519541492}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -1232821717831486065}
-  StringsBanks:
-  - {fileID: 7705571881547959551}
-  cacheTime: 638928675743496321
-  cacheVersion: 131623
---- !u!114 &792035040451904442
+--- !u!114 &-7948058007449436636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,7 +47,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 33
---- !u!114 &6536474148519541492
+--- !u!114 &-6564563347543725749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,24 +57,128 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Transition/ArrivedToxos
+  m_Name: event:/Ambience Outside
   m_EditorClassIdentifier: 
-  Path: event:/Transition/ArrivedToxos
+  Path: event:/Ambience Outside
   Guid:
-    Data1: 2055005621
-    Data2: 1156331945
-    Data3: 823909817
-    Data4: -490570968
+    Data1: -1395819359
+    Data2: 1173335919
+    Data3: 1559662776
+    Data4: -188957435
   Banks:
   - {fileID: -8895227409773713057}
   IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1250377997437489719}
+  - {fileID: -6434961819305469389}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 267032
+--- !u!114 &-6434961819305469389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience Outside/PlayAmbience
+  m_EditorClassIdentifier: 
+  Name: PlayAmbience
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1016596082
+    data2: 2388852834
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-5613287546400000174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Hover
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Hover
+  Guid:
+    Data1: 874445393
+    Data2: 1152742969
+    Data3: 38401960
+    Data4: 481715382
+  Banks:
+  - {fileID: -1232821717831486065}
+  IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 158564
---- !u!114 &7705571881547959551
+  Length: 143
+--- !u!114 &-3747526738752376379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Spacing
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Spacing
+  Guid:
+    Data1: -830541312
+    Data2: 1315750263
+    Data3: 1630423683
+    Data4: 295153995
+  Banks:
+  - {fileID: -1232821717831486065}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 112
+--- !u!114 &-1250377997437489719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience Outside/Inside
+  m_EditorClassIdentifier: 
+  Name: Inside
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2380029219
+    data2: 263312783
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-1232821717831486065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -215,17 +188,103 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638928640285184179
+  Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638928997359534263
   FileSizes:
   - Name: Desktop
-    Value: 1050
+    Value: 26808992
   Exists: 1
---- !u!114 &9035418597557777614
+--- !u!114 &-1056075810727517894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Transition/EnteringToxos
+  m_EditorClassIdentifier: 
+  Path: event:/Transition/EnteringToxos
+  Guid:
+    Data1: -1056300184
+    Data2: 1274061084
+    Data3: -1948630641
+    Data4: -1545187689
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2090
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 7705571881547959551}
+  - {fileID: -1232821717831486065}
+  - {fileID: -8895227409773713057}
+  EditorEvents:
+  - {fileID: -6564563347543725749}
+  - {fileID: 6536474148519541492}
+  - {fileID: -3747526738752376379}
+  - {fileID: -7948058007449436636}
+  - {fileID: -5613287546400000174}
+  - {fileID: 1205983830768049823}
+  - {fileID: 134979026080793406}
+  - {fileID: -1056075810727517894}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -1232821717831486065}
+  StringsBanks:
+  - {fileID: 7705571881547959551}
+  cacheTime: 638929025268767750
+  cacheVersion: 131623
+--- !u!114 &134979026080793406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Florence
+  m_EditorClassIdentifier: 
+  Path: event:/Florence
+  Guid:
+    Data1: 2087430646
+    Data2: 1261583745
+    Data3: 2110980242
+    Data4: -1055535739
+  Banks:
+  - {fileID: -1232821717831486065}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 240000
+--- !u!114 &1205983830768049823
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,3 +311,50 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &6536474148519541492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Transition/ArrivedToxos
+  m_EditorClassIdentifier: 
+  Path: event:/Transition/ArrivedToxos
+  Guid:
+    Data1: 2055005621
+    Data2: 1156331945
+    Data3: 823909817
+    Data4: -490570968
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 13400
+--- !u!114 &7705571881547959551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638928997359544277
+  FileSizes:
+  - Name: Desktop
+    Value: 1248
+  Exists: 1
