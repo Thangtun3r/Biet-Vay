@@ -26,17 +26,17 @@ MonoBehaviour:
   alphaCutoutThreshold: 0.5
   materialType: 0
   customMaterial: {fileID: 0}
-  pattern: 3
-  primaryColor: {r: 0.81761, g: 0.81761, b: 0.81761, a: 0.3019608}
-  secondaryColor: {r: 0.9989302, g: 1, b: 0.90880495, a: 0.6509804}
+  pattern: 1
+  primaryColor: {r: 1, g: 1, b: 1, a: 0.5176471}
+  secondaryColor: {r: 0.9989302, g: 1, b: 0.90880495, a: 0.69411767}
   texture: {fileID: 2800000, guid: 7a184148437294a7b8d96378a700727d, type: 3}
   channel: 1
-  frequencyX: 36
+  frequencyX: 50
   frequencyY: 2
-  density: 0.272
+  density: 0.712
   rotation: 231
-  direction: 0
-  offset: 0
+  direction: 119
+  offset: 0.14
   speed: 0.018
   scale: 33.2
   width: 0.3

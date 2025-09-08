@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 77ecfe792458f9c45baaed0e07068542, type: 2}
+  - {fileID: 3856804323524850862, guid: 94c9e2f6ba7972e40a16f217585eda45, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,8 +102,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Underpaid Toxos worker
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1098287fc21190e4893d1a1705a01882, type: 2}
-  m_sharedMaterial: {fileID: 3856804323524850862, guid: 1098287fc21190e4893d1a1705a01882, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 94c9e2f6ba7972e40a16f217585eda45, type: 2}
+  m_sharedMaterial: {fileID: 3856804323524850862, guid: 94c9e2f6ba7972e40a16f217585eda45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

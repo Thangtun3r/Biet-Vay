@@ -12,6 +12,8 @@ public class SentenceChecker : MonoBehaviour
     private List<string> userOrder;
     private bool isCorrect = false;
 
+    
+    private bool isResolved = false;
     private void OnEnable()
     {
         WordPoolManager.OnPoolCreated += GetCorrectOrder;
@@ -21,7 +23,7 @@ public class SentenceChecker : MonoBehaviour
     {
         WordPoolManager.OnPoolCreated -= GetCorrectOrder;
     }
-
+    
     public void Check()
     {
         if (correctOrder == null || correctOrder.Count == 0 || transform.childCount == 0) return;
@@ -74,4 +76,5 @@ public class SentenceChecker : MonoBehaviour
             if (a[i] != b[i]) return false;
         return true;
     }
+    
 }

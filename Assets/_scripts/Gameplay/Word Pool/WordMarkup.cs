@@ -17,6 +17,7 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
     public Words _words;
     
     
+    
     public static event Action OnBietVay;
     public static event Action OnReleaseBietVay;
     

@@ -6,13 +6,19 @@ using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
-    
+    public static event Action OnExpand;
     public static event Action OnFreeze;
     public static event Action OnUnFreeze;
     public static event Action<int> OnTransition;
     public static event Action OnWeather;
     public static event Action<int> OnVMBoost;
     public static event Action OnVMReset;
+    
+    public static event Action OnResetScene;
+    
+    public static event Action<int> OnPropEnable;
+    
+    public static event Action OnResolveAnim;
     
     // deltete after testing
     public static event Action OnPsudoTurnOff;
@@ -29,6 +35,7 @@ public class GameManager : MonoBehaviour
     [YarnCommand("expand")]
     public static void Expand()
     {
+        OnExpand?.Invoke();
         GameTransition.Instance.Expand();
     } 
 
@@ -100,4 +107,21 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
     
+    [YarnCommand("prop")]
+    public static void PropEnable(int propID)
+    {
+        OnPropEnable?.Invoke(propID);
+    }
+    
+    [YarnCommand("restartScene")]
+    public static void RestartScene()
+    {
+        OnResetScene?.Invoke();
+    }
+
+    [YarnCommand("resolve")]
+    public static void Resolve()
+    {
+        OnResolveAnim?.Invoke();
+    }
 }

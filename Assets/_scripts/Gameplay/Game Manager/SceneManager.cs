@@ -22,4 +22,25 @@ public class SceneLoader : MonoBehaviour
         }
       
     }
+
+    private void OnEnable()
+    {
+
+        GameManager.OnResetScene += ReloadCurrentScene;
+    }
+    
+    private void OnDisable()
+    {
+        GameManager.OnResetScene -= ReloadCurrentScene;
+    }
+
+    private void ReloadCurrentScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void TransitionToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
