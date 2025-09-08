@@ -6,6 +6,8 @@ using UnityEngine.UI; // <-- needed for Image
 
 public class WordVisualInteraction : MonoBehaviour
 {
+    [SerializeField] private float defaultBaseY = -9f;
+    
     [Header("Target")]
     public RectTransform ButtonRectTransform;
     public RectTransform WrapperButtonRect;
@@ -42,13 +44,13 @@ public class WordVisualInteraction : MonoBehaviour
 
         if (ButtonRectTransform != null)
         {
-            baseY = ButtonRectTransform.anchoredPosition.y;
+            baseY = defaultBaseY;
             ButtonRectTransform.anchoredPosition = new Vector2(
                 ButtonRectTransform.anchoredPosition.x, baseY);
         }
 
         if (buttonShadowImage != null)
-            buttonShadowImage.enabled = false; // start hidden
+            buttonShadowImage.enabled = false;
     }
 
     private void OnDisable()

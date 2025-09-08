@@ -1,4 +1,16 @@
-﻿title: start
+﻿title: Setup
+---
+<<set $hasOrdered = false>>
+<<set $orderNumber = 0>>
+===
+
+
+
+
+
+
+
+title: start
 ---
 <<collapse>>
 -> [bv]Biet vay[/bv],/ I/ [sw w="shouldn't have"] have [/sw]/[sw w="order"] ordered [/sw]/ this/ combo./
@@ -20,28 +32,65 @@ title: ToxosInside
 title: SaleGretting
 ---
 <<collapse>>
-<<wait  0.5>>
 <<once>>
 Toxos Staff: Welcome to Toxox! What would you like to order today?
 Toxos Staff: You should check out the promo for the best deals!
-Toxos Staff: You can right click to zoom in at the stuffs.
+Toxos Staff: Ah also, you can right click to zoom in at the stuffs.
 -> Okay,/let me/see.
 <<else>>
+<<if $hasOrdered is false>>
 Toxos Staff: Have you make up your mind yet?
 -> The Happy Toxos 14th/, please.
-        Toxos Staff: Great choice, sir! Your order will be ready shortly.
+        Toxos Staff: Alright, Your order will be ready shortly.
+        <<set $hasOrdered = true>>
+        <<set $orderNumber = 1>>
 -> The Autumn Love/, please.
-        Toxos Staff: Great choice, sir! Perfect for a lovely autumn day!
+        Toxos Staff: Alright, Perfect for a lovely autumn day!
+        <<set $hasOrdered = true>>
+        <<set $orderNumber = 2>>
 -> The Mitrax combo/, please.
-        Toxos Staff: Great choice, sir! One Mitrax combo coming right up!
+        Toxos Staff: Alright, One Mitrax combo coming right up!
+        <<set $hasOrdered = true>>
+        <<set $orderNumber = 3>>
 -> I'm/ still/ deciding./
         Toxos Staff: Take your time, sir.
+<<endif>>
 <<endonce>>
+<<if $hasOrdered is true>>
+        Toxos Staff: Your order will be ready shortly. You can take a sit over there to wait.
+<<endif>>
 <<expand>>
+
 ===
 
 
+
 title: WaitingForOrder
+---
+<<if $hasOrdered is false>>
+<<collapse>>
+Chair: How can you wait when you have nothing to wait for :D
+        -> Mind/your/own/ business./
+                Duy: Mind your own business of being a chair.
+                Chair: Just saying. But am I really a chair? Or it's just a name we give to a collection of objects that resemble each other in certain way.
+                -> What/do/you/mean?/
+                Duy: What do you mean??
+                Chair: I mean, what defines a chair? Is it the material, the shape, or the function?
+                -> S/Y/B/A/U.
+                Duy: Sybau.
+        -> Yeh,/you're right.
+                Duy: Yeh, you're right.
+                Chair: Well go find something to wait for then.
+<<else>>
+<<transition 3>>
+<<endif>>
+<<expand>>
+
+
+===
+
+
+title: OrderReady
 ---
 
 ===

@@ -17,13 +17,20 @@ public class GameManager : MonoBehaviour
     // deltete after testing
     public static event Action OnPsudoTurnOff;
     public static event Action OnPsudoTurnOn;
-    
-    
+
+
     [YarnCommand("collapse")]
-    public static void Collapse() => GameTransition.Instance.Collapse();
+    public static IEnumerator Collapse()
+    {
+        GameTransition.Instance.Collapse();
+        yield return new WaitForSeconds(0.6f);
+    } 
 
     [YarnCommand("expand")]
-    public static void Expand() => GameTransition.Instance.Expand();
+    public static void Expand()
+    {
+        GameTransition.Instance.Expand();
+    } 
 
     [YarnCommand("spawn")]
     public static IEnumerator SpawnPoint(string spawnPointName)

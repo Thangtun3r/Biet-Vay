@@ -22,4 +22,6 @@ MonoBehaviour:
   - characterName: Toxos Staff
     hexColor: '#FF8A36'
   - characterName: Duy
-    hexColor: '#42d4f5'
+    hexColor: '#42D4F5'
+  - characterName: Chair
+    hexColor: '#874A33'
