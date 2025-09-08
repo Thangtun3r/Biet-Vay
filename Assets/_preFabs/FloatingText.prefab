@@ -26,13 +26,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8343351615301486997}
-  m_LocalRotation: {x: -0, y: -0.0031012555, z: -0, w: 0.99999523}
+  m_LocalRotation: {x: 0, y: -0.0030979172, z: 0, w: 0.99999523}
   m_LocalPosition: {x: 0, y: 0, z: -0.5742283}
-  m_LocalScale: {x: 0.040000014, y: 0.04, z: 0.040000014}
+  m_LocalScale: {x: 0.05602802, y: 0.056027997, z: 0.05602802}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -180.354, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -0.355, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.1163311, y: -0.62399983}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 3856804323524850862, guid: 1098287fc21190e4893d1a1705a01882, type: 2}
+  - {fileID: 2100000, guid: 77ecfe792458f9c45baaed0e07068542, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mai's Piano
+  m_text: Underpaid Toxos worker
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1098287fc21190e4893d1a1705a01882, type: 2}
   m_sharedMaterial: {fileID: 3856804323524850862, guid: 1098287fc21190e4893d1a1705a01882, type: 2}

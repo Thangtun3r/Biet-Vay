@@ -8,7 +8,7 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 
     [Header("Highlight Settings")]
     [SerializeField] private GameObject highlightTarget; // The object whose layer will change
-    [SerializeField] private string highlightLayerName = "Fill"; // Target layer name
+    private string highlightLayerName = "Fill";
 
     private int defaultLayer;
     private int highlightLayer;
