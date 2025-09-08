@@ -7,6 +7,8 @@ public class BietVayTriggerForSentencePool : MonoBehaviour
 
     [Tooltip("Only trigger events for objects on this layer.")]
     public LayerMask detectionLayer;
+    
+    
 
 
     private void Awake()
@@ -17,15 +19,15 @@ public class BietVayTriggerForSentencePool : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         if (!IsInDetectionLayer(other.gameObject)) return;
-
-
+        
+       
         _wordMarkup?.RaiseBietVayEvent();
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (!IsInDetectionLayer(other.gameObject)) return;
-
+        
         _wordMarkup?.RaiseReleaseEvent();
     }
 

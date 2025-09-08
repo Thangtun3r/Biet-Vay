@@ -45,7 +45,14 @@ public class VisualWord : MonoBehaviour
 
     private void Update()
     {
-        if (text != null && logicWordObject != null)
+        if (logicWordObject == null || !logicWordObject.activeInHierarchy)
+        {
+            // If the linked object is gone or inactive → disable this VisualWord
+            gameObject.SetActive(false);
+            return;
+        }
+
+        if (text != null)
         {
             var wordID = logicWordObject.GetComponent<WordID>();
             if (wordID != null)
@@ -73,12 +80,11 @@ public class VisualWord : MonoBehaviour
                 TweenToWidth(0f, resetDuration, resetEase);
             }
 
-            // 🔑 Fire event
             OnSpacingChanged?.Invoke(isSpacing);
-
             lastSpacingState = isSpacing;
         }
     }
+
 
     private void TweenToWidth(float targetWidth, float duration, Ease ease)
     {

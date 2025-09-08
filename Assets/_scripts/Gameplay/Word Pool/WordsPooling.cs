@@ -6,24 +6,41 @@ public class WordsPooling : MonoBehaviour
 {
     public GameObject wordPoolPrefab;
     public int poolSize = 10; 
-    
     private List<GameObject> _wordPool = new List<GameObject>();
+    
 
-
+    private bool isResolved = true;
+    
     private void OnEnable()
     {
         SentenceChecker.OnCheckCompleted += ClearPool;
+        WordMarkup.OnReleaseBietVay += HandleReleaseBietVay;
+        WordMarkup.OnBietVay += HandleBietVay;
+        GameManager.OnExpand += HandleBietVay;
     }
 
     private void OnDisable()
     {
         SentenceChecker.OnCheckCompleted -= ClearPool;
+        WordMarkup.OnReleaseBietVay -= HandleReleaseBietVay;
+        WordMarkup.OnBietVay -= HandleBietVay;
+        GameManager.OnExpand -= HandleBietVay;
+    }
+
+    private void HandleBietVay()
+    {
+        isResolved = false;
+    }
+    private void HandleReleaseBietVay()
+    {
+        isResolved = true;
     }
 
     private void Awake()
     {
         PopulateThePool();
     }
+    
     
     private void PopulateThePool()
     {
@@ -57,10 +74,11 @@ public class WordsPooling : MonoBehaviour
         return CreateNewPooledObject(); // Expand pool if none available
     }
     
-    
+
     public void ClearPool()
     {
-        foreach (GameObject obj in _wordPool)
+        if(isResolved) return;
+        foreach (var obj in _wordPool)
         {
             if (obj.activeInHierarchy)
             {

@@ -1,7 +1,9 @@
 ﻿title: Setup
 ---
-<<set $hasOrdered = false>>
-<<set $orderNumber = 0>>
+<<declare $hasOrdered = false>>
+<<declare $orderNumber = 0>>
+<<declare $hasPickedUp = false>>
+<<declare $foodReady = false>>
 ===
 
 
@@ -19,6 +21,8 @@ title: start
         <<PsudoTurnOff>>
         <<wait 2>>
         <<spawn ToxosOutside>>
+-> I/have/ordered/ this/ combo./
+        <<resolve>>
         
 ===
 
@@ -56,8 +60,10 @@ Toxos Staff: Have you make up your mind yet?
         Toxos Staff: Take your time, sir.
 <<endif>>
 <<endonce>>
-<<if $hasOrdered is true>>
+<<if $hasOrdered is true and $foodReady is false>>
         Toxos Staff: Your order will be ready shortly. You can take a sit over there to wait.
+<<elseif $hasOrdered is true and $foodReady is true>>
+        Toxos Staff: Have a nice meal!
 <<endif>>
 <<expand>>
 
@@ -69,7 +75,7 @@ title: WaitingForOrder
 ---
 <<if $hasOrdered is false>>
 <<collapse>>
-Chair: How can you wait when you have nothing to wait for :D
+Chair: How can you wait when you have nothing to wait for?
         -> Mind/your/own/ business./
                 Duy: Mind your own business of being a chair.
                 Chair: Just saying. But am I really a chair? Or it's just a name we give to a collection of objects that resemble each other in certain way.
@@ -83,6 +89,8 @@ Chair: How can you wait when you have nothing to wait for :D
                 Chair: Well go find something to wait for then.
 <<else>>
 <<transition 3>>
+<<prop 1>>
+<<set $foodReady = true>>
 <<endif>>
 <<expand>>
 
@@ -90,7 +98,39 @@ Chair: How can you wait when you have nothing to wait for :D
 ===
 
 
-title: OrderReady
+title: FoodPickedUp
 ---
+<<set $hasPickedUp = true>>
+===
 
+title: GoHome
+---
+<<collapse>>
+<<if $hasPickedUp == false>>
+Duy: Hmm...I need to order something before going home
+// <<else>>
+// <<endonce>>
+// <<once>>
+// Duy: Am I getting some ahzemier why I keep trying to go home when I haven't order anything yet 
+// <<else>>
+// <<endonce>>
+// <<once>>
+// Duy: Feels like somebody is controlling me towards the exit 
+//         Duy: Hey you. STOP moving me towards the entrance 
+//         -> Sure.
+//                 Duy: Yeh you better be.
+//         -> No.
+//                 Duy: Well you're just making the game session longer.
+//                 Duy: You will procastinate on your work, your study and your life.
+//                 Duy: Like me. Shit.
+// <<else>>
+// <<endonce>>
+
+<<else>>
+Duy: Damn. This combo is alot but damm I got to tight my belly this month cuz the cost<<if $orderNumber == 1>>
+Duy: What a steal deal. But I need to buy something to stuff me at night cuz the portion is so small<<if $orderNumber == 2>>
+Duy: Hmmm great deal but why I eat seafood in a chicken restaurant?<<if $orderNumber == 3>>        
+<<restartScene>>
+<<endif>>
+<<expand>>
 ===
