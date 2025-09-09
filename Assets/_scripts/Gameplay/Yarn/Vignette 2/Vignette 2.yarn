@@ -1,4 +1,16 @@
-﻿title: start
+﻿title: setup
+---
+<<declare $CurrentBalance = 1000000>>
+<<declare $CurrentEarning = 1000>>
+<<declare $FiatMoney = 0>>
+<<declare $HorseID = 0>>
+===
+
+
+
+
+
+title: start
 ---
 -> [bv]Bietvay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
     <<expand>>
@@ -15,8 +27,26 @@ title: PlaceBet
 <<collapse>>
 Recieptionist: Hello sir, how can I help you today?
 -> I would like to place a bet.
-Recieptionist: Certainly, which horse would you like to bet on?
+Recieptionist: Certainly, which horse would you like to bet on?  
 
 
+===
+
+title: ATM
+---
+<<PsudoTurnOff>>
+<<collapse>>
+-> Insert/the/card.
+    <<cardInsert>>
+    -> Withdraw
+        <<withdraw>>
+        <<set $FiatMoney = $FiatMoney + $CurrentBalance>>
+        <<set $CurrentBalance = 0>>
+        ATM: You withdraw {$FiatMoney} 
+    -> Deposit
+        <<deposit>>
+        <<set $CurrentBalance = $CurrentBalance + $FiatMoney>>
+        <<set $FiatMoney = 0>>
+        ATM: You deposite {$FiatMoney}
 
 ===
