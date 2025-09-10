@@ -12,21 +12,25 @@ public class Horse2D : MonoBehaviour
     [Header("Tuning")]
     [Tooltip("Global scaler to make races faster/slower (e.g., 1.5 = 50% faster).")]
     [Min(0f)] public float speedMultiplier = 1f;
-    
 
-    [SerializeField] private SpeedAffectoManager speedManager;
+    public SpeedAffectoManager speedManager;
     public float currentSpeed;
 
     [Header("Smoothing")]
     [Tooltip("How quickly speed moves toward the target (units: 1/seconds). Higher = snappier.")]
     public float speedLerpPerSecond = 8f;
-    
-    
+
+    // --- ADDED ---
+    [Header("Telemetry")]
+    [Range(0f, 1f)]
+    [Tooltip("Race progress from 0 (start) to 1 (finish). Updated by RaceManager each frame.")]
+    public float progress01 = 0f;
 
     void Start()
     {
         currentSpeed = speed; // start near base so we don't lerp up from 0
     }
+
     void Update()
     {
         // Drain stamina
@@ -58,6 +62,10 @@ public class Horse2D : MonoBehaviour
         transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
     }
 
-
-
+    // --- ADDED ---
+    /// <summary>Set by RaceManager. Clamped to [0,1].</summary>
+    public void UpdateProgress(float p)
+    {
+        progress01 = Mathf.Clamp01(p);
+    }
 }
