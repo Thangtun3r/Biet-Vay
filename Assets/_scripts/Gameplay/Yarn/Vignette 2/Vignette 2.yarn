@@ -1,12 +1,11 @@
-﻿title: setup
+
+title: setup
 ---
-<<declare $CurrentBalance = 1000000>>
-<<declare $CurrentEarning = 1000>>
-<<declare $FiatMoney = 0>>
-<<declare $HorseID = 0>>
+<<declare $horseID = 0>>
+<<declare $currentBalance = 100000>>
+<<declare $currentHolding = 0>>
+
 ===
-
-
 
 
 
@@ -27,26 +26,33 @@ title: PlaceBet
 <<collapse>>
 Recieptionist: Hello sir, how can I help you today?
 -> I would like to place a bet.
-Recieptionist: Certainly, which horse would you like to bet on?  
+Recieptionist: Certainly, which horse would you like to bet on?
+
 
 
 ===
 
 title: ATM
 ---
-<<PsudoTurnOff>>
+<<VMBoost 1>>
 <<collapse>>
--> Insert/the/card.
+-> *Insert/card* 
     <<cardInsert>>
-    -> Withdraw
-        <<withdraw>>
-        <<set $FiatMoney = $FiatMoney + $CurrentBalance>>
-        <<set $CurrentBalance = 0>>
-        ATM: You withdraw {$FiatMoney} 
-    -> Deposit
+    -> *Deposit
+        <<set $currentBalance = $currentHolding + $currentBalance>>
+        <<set $currentHolding = 0>>
         <<deposit>>
-        <<set $CurrentBalance = $CurrentBalance + $FiatMoney>>
-        <<set $FiatMoney = 0>>
-        ATM: You deposite {$FiatMoney}
+    -> *Withdraw
+        <<set $currentHolding = $currentHolding + $currentBalance>>
+        <<set $currentBalance = 0>>
+        <<withdraw>>
+        
+<<VMReset>>
 
+<<expand>>
+===
+
+title: Money
+---
+<<set $currentHolding = $currentHolding + 56000000>>
 ===

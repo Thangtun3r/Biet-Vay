@@ -8,6 +8,7 @@ public class CineMachineManager : MonoBehaviour
     [Serializable]
     public class CineMachine
     {
+        public string name;
         public int id;
         public CinemachineVirtualCamera vcam;
         [HideInInspector] public int basePriority;

@@ -11,21 +11,24 @@ public class ATMMachineEvent : MonoBehaviour
     public static event Action OnWithdraw;
     
     [YarnCommand ("cardInsert")]
-    public static void CardInsert()
+    public static IEnumerator CardInsert()
     {
       OnCardInsert?.Invoke();
+        yield return new WaitForSeconds(0.4f);
     }
     
     [YarnCommand ("deposit")]
-    public static void Deposit()
+    public static IEnumerator Deposit()
     {
         OnDeposit?.Invoke();
+        yield return new WaitForSeconds(4f);
     }
     
     [YarnCommand ("withdraw")]
-    public static void Withdraw()
+    public static IEnumerator Withdraw()
     {
         OnWithdraw?.Invoke();
+        yield return new WaitForSeconds(4f);
     }
     
 }
