@@ -29,7 +29,21 @@ public class RaceManager : MonoBehaviour
     [Header("Flow")]
     public float preRaceDelay = 3f;
 
+    // --- NEW ---
+    [Header("Course")]
+    [Tooltip("Drag the finish line Transform here (e.g., a sprite or empty).")]
+    public Transform finishLine;
+
+    [Tooltip("Optional: drag a start line Transform. If null, uses startX.")]
+    public Transform startLine;
+
     private readonly List<Horse2D> horses = new List<Horse2D>();
+
+    // --- NEW ---
+    private float startXLocal;
+    private float finishXLocal;
+    private float courseLengthAbs;
+    private float courseDirSign;
 
     private void Start()
     {
@@ -39,12 +53,11 @@ public class RaceManager : MonoBehaviour
     private IEnumerator RunRace()
     {
         SpawnHorsesAndInjectStats();
+        InitCourse();
         LogOddsAndRename();
 
-        // Let players read the board
         yield return new WaitForSeconds(preRaceDelay);
 
-        // Go! (enable movement by enabling the component)
         foreach (var h in horses)
             h.enabled = true;
     }
@@ -55,43 +68,72 @@ public class RaceManager : MonoBehaviour
 
         for (int i = 0; i < horseCount; i++)
         {
-            // Instantiate as a CHILD of RaceManager, then place using localPosition
             Horse2D horse = Instantiate(horsePrefab, transform);
 
-            // Local layout: startX on local X, stacked on local Y
             horse.transform.localPosition = new Vector3(startX, i * ySpacing, 0f);
             horse.transform.localRotation = Quaternion.identity;
 
-            // Inject stats
             horse.speed   = Random.Range(speedRange.x, speedRange.y);
             horse.stamina = Random.Range(staminaRange.x, staminaRange.y);
 
-            // Keep them still until the start
             horse.enabled = false;
-
             horses.Add(horse);
+        }
+    }
+
+    // --- NEW ---
+    private void InitCourse()
+    {
+        startXLocal = (startLine != null)
+            ? transform.InverseTransformPoint(startLine.position).x
+            : startX;
+
+        if (finishLine != null)
+            finishXLocal = transform.InverseTransformPoint(finishLine.position).x;
+        else
+            Debug.LogWarning("RaceManager: finishLine not set. Progress will not be computed.");
+
+        float delta = finishXLocal - startXLocal;
+        courseDirSign = Mathf.Sign(delta == 0f ? 1f : delta);
+        courseLengthAbs = Mathf.Max(0.0001f, Mathf.Abs(delta));
+    }
+
+    // --- NEW ---
+    private void Update()
+    {
+        if (horses.Count == 0 || finishLine == null) return;
+
+        finishXLocal = transform.InverseTransformPoint(finishLine.position).x;
+        float delta = finishXLocal - startXLocal;
+        courseDirSign = Mathf.Sign(delta == 0f ? 1f : delta);
+        courseLengthAbs = Mathf.Max(0.0001f, Mathf.Abs(delta));
+
+        foreach (var h in horses)
+        {
+            float hx = h.transform.localPosition.x;
+            float covered = (hx - startXLocal) * courseDirSign;
+            float progress = covered / courseLengthAbs;
+            h.UpdateProgress(progress);
         }
     }
 
     private void LogOddsAndRename()
     {
-        // 1) Raw scores based on SPEED ONLY so higher speed => higher probability => LOWER odds
+        // unchanged from your original
         List<float> rawScores = horses
             .Select(h => Mathf.Max(0.0001f, h.speed))
             .ToList();
 
-        // 2) Sharpen to widen variance: p_i ∝ (score_i)^gamma
         float gamma = Mathf.Max(0.001f, oddsSharpness);
         List<float> sharpScores = rawScores.Select(s => Mathf.Pow(s, gamma)).ToList();
 
         float sharpSum = sharpScores.Sum();
         if (sharpSum <= 0f) sharpSum = 1f;
 
-        // 3) Implied probabilities & decimal odds
         int n = horses.Count;
         float[] prob = new float[n];
-        float[] decOdds = new float[n];     // decimal: 1/prob
-        float[] fracN = new float[n];       // fractional N in "N:1" (profit per 1 stake)
+        float[] decOdds = new float[n];
+        float[] fracN = new float[n];
 
         for (int i = 0; i < n; i++)
         {
@@ -104,14 +146,12 @@ public class RaceManager : MonoBehaviour
             else
             {
                 decOdds[i] = 1f / prob[i];
-                fracN[i] = decOdds[i] - 1f; // fractional N:1
+                fracN[i] = decOdds[i] - 1f;
             }
         }
 
-        // 4) Enforce a minimum gap on fractional odds so labels aren't too close.
-        // Sort by favorability (favorites have SMALLER N:1), then push neighbors apart.
         int[] order = Enumerable.Range(0, n)
-            .OrderBy(i => fracN[i]) // ascending N:1
+            .OrderBy(i => fracN[i])
             .ToArray();
 
         for (int k = 1; k < order.Length; k++)
@@ -119,7 +159,6 @@ public class RaceManager : MonoBehaviour
             int iPrev = order[k - 1];
             int iCur  = order[k];
 
-            // Only adjust finite values
             if (float.IsInfinity(fracN[iPrev]) || float.IsInfinity(fracN[iCur])) continue;
 
             float target = fracN[iPrev] + minFractionalGap;
@@ -127,7 +166,6 @@ public class RaceManager : MonoBehaviour
                 fracN[iCur] = target;
         }
 
-        // 5) Display + rename using DECIMAL fractional (no integer rounding)
         Debug.Log($"--- Betting Board ({n} horses) ---");
         for (int i = 0; i < n; i++)
         {
@@ -135,7 +173,6 @@ public class RaceManager : MonoBehaviour
             string decLabel  = float.IsInfinity(decOdds[i]) ? "∞" : decOdds[i].ToString("0.00");
             string probLabel = prob[i].ToString("P1");
 
-            // Rename horse to include fractional odds label (e.g., "2.5:1")
             horses[i].name = $"Horse #{i + 1} ({fracLabel})";
 
             Debug.Log($"Horse #{i + 1}: Speed {horses[i].speed:F1}, " +
@@ -147,7 +184,6 @@ public class RaceManager : MonoBehaviour
     private string FormatFractionLabel(float n, int precision)
     {
         if (float.IsInfinity(n) || n < 0f) return "∞:1";
-        // e.g., precision=1 -> "0.#", precision=2 -> "0.##"
         string fmt = precision <= 0 ? "0" : "0." + new string('#', precision);
         return n.ToString(fmt) + ":1";
     }
