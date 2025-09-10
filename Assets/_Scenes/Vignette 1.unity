@@ -6542,9 +6542,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2564122594245162279, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
+      propertyPath: field of view
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 5068450352551309792, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

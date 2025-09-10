@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,7 @@ public class ATMMachineManager : MonoBehaviour
     [Header(("ATM Component here"))]
     public GameObject CardInsertedUI;
     public TextMeshProUGUI balanceText;
+    public Animator ATMAnimator;
 
     private float currentBalance = 0f;
     private float depositAmount = 0f;
@@ -34,21 +36,23 @@ public class ATMMachineManager : MonoBehaviour
     
     private void HideCardInsertedUI()
     {
-        CardInsertedUI.SetActive(false);
-        dialogueRunner.VariableStorage.TryGetValue("$CurrentBalance", out currentBalance);
-        balanceText.text = "$" + currentBalance.ToString("F2");
+        ATMAnimator.SetInteger("ActionID", 1);
     }
     
     
     private void HandleWithdraw()
     {
-        dialogueRunner.VariableStorage.TryGetValue("$CurrentBalance", out currentBalance);
-        balanceText.text = "$" + currentBalance.ToString("F2");
+        ATMAnimator.SetInteger("ActionID", 2);
     }
     
     private void HandleDeposit()
     {
-        dialogueRunner.VariableStorage.TryGetValue("$CurrentBalance", out currentBalance);
-        balanceText.text = "$" + currentBalance.ToString("F2");
+        ATMAnimator.SetInteger("ActionID", 3);
+    }
+
+    private void Update()
+    {
+        dialogueRunner.VariableStorage.TryGetValue("$currentBalance", out currentBalance);
+        balanceText.text =currentBalance.ToString("N2") + "VND";
     }
 }
