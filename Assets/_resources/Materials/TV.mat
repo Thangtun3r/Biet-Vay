@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: TV
-  m_Shader: {fileID: 4800000, guid: 65f8982ee37c28d45a36fa523f1d4950, type: 3}
+  m_Shader: {fileID: 4800000, guid: 22c8483a0088cff4ea29f92544b8304b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
@@ -104,7 +104,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AdvancedTab: 0
+    - _AdvancedTab: 1
     - _AlbedoMapIntensity: 1
     - _AlphaClip: 0
     - _AlphaClipping: 0
@@ -147,7 +147,7 @@ Material:
     - _OcclusionStrength: 1
     - _OptionsTab: 1
     - _Parallax: 0.005
-    - _ParticlesTab: 0
+    - _ParticlesTab: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RenderFace: 2
@@ -169,7 +169,7 @@ Material:
     - _StencilRef: 0
     - _StencilWriteMask: 255
     - _StencilZFail: 0
-    - _StylizeTab: 0
+    - _StylizeTab: 1
     - _Surface: 0
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
