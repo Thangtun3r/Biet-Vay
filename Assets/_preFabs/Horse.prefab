@@ -134,14 +134,14 @@ MonoBehaviour:
     value: 0.5
     mode: 0
     cooldown: 5
-  - name: ToTheGlueFactory
+  - name: To The Glue Factory
     enabled: 1
     chancePerSecond: 0.00001
     duration: 99999
     value: 0
     mode: 0
     cooldown: 21.23
-  - name: 'Super super fast speed '
+  - name: 'DUI Speed '
     enabled: 1
     chancePerSecond: 0.005
     duration: 3
