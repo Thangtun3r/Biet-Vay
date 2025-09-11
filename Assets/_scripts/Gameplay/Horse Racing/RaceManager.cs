@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RaceManager : MonoBehaviour
 {
@@ -29,7 +31,7 @@ public class RaceManager : MonoBehaviour
     [Header("Flow")]
     public float preRaceDelay = 3f;
 
-    // --- NEW ---
+    // --- Course ---
     [Header("Course")]
     [Tooltip("Drag the finish line Transform here (e.g., a sprite or empty).")]
     public Transform finishLine;
@@ -38,12 +40,69 @@ public class RaceManager : MonoBehaviour
     public Transform startLine;
 
     private readonly List<Horse2D> horses = new List<Horse2D>();
+    public IReadOnlyList<Horse2D> Horses => horses;  // expose
 
-    // --- NEW ---
+    public event Action<IReadOnlyList<Horse2D>> HorsesSpawned;
+
     private float startXLocal;
     private float finishXLocal;
     private float courseLengthAbs;
     private float courseDirSign;
+
+    // --- Halfway Catch-up (one-time rubber-banding) ---
+    [Header("Halfway Catch-up")]
+    [Tooltip("Enable the one-time halfway event.")]
+    public bool enableHalfwayEvent = true;
+
+    [Range(0f, 1f)]
+    [Tooltip("All horses must be at/over this progress for the event to be eligible.")]
+    public float halfwayThreshold = 0.5f;
+
+    [Range(0f, 1f)]
+    [Tooltip("Chance the event fires once when threshold condition is first met.")]
+    public float halfwayEventChance = 0.6f;
+
+    [Tooltip("Buff mode for the last horse when event fires.")]
+    public SpeedBuffMode halfwayBuffMode = SpeedBuffMode.Multiplier;
+
+    [Tooltip("If Multiplier: 1.35 = +35%. If Additive: ignored.")]
+    public float halfwayMultiplier = 1.35f;
+
+    [Tooltip("If Additive: flat speed added. If Multiplier: ignored.")]
+    public float halfwayAdditive = 2.0f;
+
+    [Tooltip("How long the special modifier lasts.")]
+    public float halfwayDuration = 3f;
+
+    private bool _halfwayRolled = false;
+
+    // --- Leader Debuff (first-to-threshold) ---
+    [Header("Leader Debuff (first to reach threshold)")]
+    [Tooltip("Enable a one-time chance-based debuff for the first horse that reaches the threshold.")]
+    public bool enableLeaderDebuff = true;
+
+    [Range(0f, 1f)]
+    [Tooltip("Progress threshold that, once first reached by any horse, may trigger a debuff.")]
+    public float leaderDebuffThreshold = 0.5f;
+
+    [Range(0f, 1f)]
+    [Tooltip("Chance to apply the debuff once the first horse reaches the threshold.")]
+    public float leaderDebuffChance = 0.4f;
+
+    [Tooltip("Debuff mode for the leader when event fires.")]
+    public SpeedBuffMode leaderDebuffMode = SpeedBuffMode.Multiplier;
+
+    [Tooltip("If Multiplier: <1 slows (e.g., 0.8 = -20%). If Additive: ignored.")]
+    public float leaderDebuffMultiplier = 0.8f;
+
+    [Tooltip("If Additive: negative slows (e.g., -2). If Multiplier: ignored.")]
+    public float leaderDebuffAdditive = -2.0f;
+
+    [Tooltip("How long the leader debuff lasts.")]
+    public float leaderDebuffDuration = 2.5f;
+
+    private bool _leaderDebuffRolled = false;      // ensures one-time roll
+    private Horse2D _firstAtLeaderThreshold = null; // who hit the threshold first
 
     private void Start()
     {
@@ -55,6 +114,9 @@ public class RaceManager : MonoBehaviour
         SpawnHorsesAndInjectStats();
         InitCourse();
         LogOddsAndRename();
+
+        // notify visuals that horses exist and are positioned
+        HorsesSpawned?.Invoke(horses);
 
         yield return new WaitForSeconds(preRaceDelay);
 
@@ -70,7 +132,21 @@ public class RaceManager : MonoBehaviour
         {
             Horse2D horse = Instantiate(horsePrefab, transform);
 
-            horse.transform.localPosition = new Vector3(startX, i * ySpacing, 0f);
+            Vector3 spawnPos;
+
+            if (startLine != null)
+            {
+                // Use startLine world position, offset each horse on Y
+                Vector3 basePos = transform.InverseTransformPoint(startLine.position);
+                spawnPos = new Vector3(basePos.x, i * ySpacing, 0f);
+            }
+            else
+            {
+                // Fall back to startX if no startLine is set
+                spawnPos = new Vector3(startX, i * ySpacing, 0f);
+            }
+
+            horse.transform.localPosition = spawnPos;
             horse.transform.localRotation = Quaternion.identity;
 
             horse.speed   = Random.Range(speedRange.x, speedRange.y);
@@ -79,9 +155,13 @@ public class RaceManager : MonoBehaviour
             horse.enabled = false;
             horses.Add(horse);
         }
+
+        // reset one-time flags for a new race
+        _halfwayRolled = false;
+        _leaderDebuffRolled = false;
+        _firstAtLeaderThreshold = null;
     }
 
-    // --- NEW ---
     private void InitCourse()
     {
         startXLocal = (startLine != null)
@@ -98,22 +178,135 @@ public class RaceManager : MonoBehaviour
         courseLengthAbs = Mathf.Max(0.0001f, Mathf.Abs(delta));
     }
 
-    // --- NEW ---
     private void Update()
     {
         if (horses.Count == 0 || finishLine == null) return;
 
+        // Recompute in case finish line moves
         finishXLocal = transform.InverseTransformPoint(finishLine.position).x;
         float delta = finishXLocal - startXLocal;
         courseDirSign = Mathf.Sign(delta == 0f ? 1f : delta);
         courseLengthAbs = Mathf.Max(0.0001f, Mathf.Abs(delta));
 
-        foreach (var h in horses)
+        // Update progress for each horse
+        for (int i = 0; i < horses.Count; i++)
         {
+            var h = horses[i];
             float hx = h.transform.localPosition.x;
             float covered = (hx - startXLocal) * courseDirSign;
             float progress = covered / courseLengthAbs;
             h.UpdateProgress(progress);
+        }
+
+        // One-time events
+        CheckHalfwayCatchup();
+        CheckLeaderDebuff();
+    }
+
+    private void CheckHalfwayCatchup()
+    {
+        if (!enableHalfwayEvent || _halfwayRolled || horses.Count == 0) return;
+
+        // Find last place & min progress
+        float minP = 1f;
+        int lastIdx = -1;
+
+        for (int i = 0; i < horses.Count; i++)
+        {
+            float p = horses[i].progress01;
+            if (p < minP) { minP = p; lastIdx = i; }
+        }
+
+        // Fire only after EVERY horse has reached the threshold (min >= threshold)
+        if (minP >= halfwayThreshold)
+        {
+            _halfwayRolled = true; // roll only once per race
+
+            if (Random.value <= halfwayEventChance && lastIdx >= 0)
+            {
+                var lastHorse = horses[lastIdx];
+                var sm = lastHorse.speedManager;
+                if (sm != null)
+                {
+                    if (halfwayBuffMode == SpeedBuffMode.Multiplier)
+                    {
+                        sm.TriggerTimedMultiplier(halfwayDuration, halfwayMultiplier);
+                        Debug.Log($"[Halfway] {lastHorse.name} gets x{halfwayMultiplier:0.##} for {halfwayDuration:0.##}s.");
+                    }
+                    else
+                    {
+                        sm.TriggerTimedAdditive(halfwayDuration, halfwayAdditive);
+                        Debug.Log($"[Halfway] {lastHorse.name} gets +{halfwayAdditive:0.##} for {halfwayDuration:0.##}s.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("[Halfway] Last horse has no SpeedAffectoManager; cannot apply catch-up.");
+                }
+            }
+            else
+            {
+                Debug.Log("[Halfway] Catch-up roll failed or no valid last horse. No buff this race.");
+            }
+        }
+    }
+
+    private void CheckLeaderDebuff()
+    {
+        if (!enableLeaderDebuff || _leaderDebuffRolled || horses.Count == 0) return;
+
+        // If we haven't locked in who reached the threshold first yet, check if any horse crossed it.
+        if (_firstAtLeaderThreshold == null)
+        {
+            Horse2D candidate = null;
+            float bestProg = leaderDebuffThreshold;
+
+            // Pick the first frame a horse crosses the threshold.
+            // If multiple cross in the same frame, choose the one with the highest progress (furthest ahead).
+            for (int i = 0; i < horses.Count; i++)
+            {
+                var h = horses[i];
+                if (h.progress01 >= leaderDebuffThreshold && h.progress01 >= bestProg)
+                {
+                    if (candidate == null || h.progress01 > bestProg)
+                    {
+                        candidate = h;
+                        bestProg = h.progress01;
+                    }
+                }
+            }
+
+            if (candidate != null)
+            {
+                _firstAtLeaderThreshold = candidate;
+                _leaderDebuffRolled = true; // one-time roll
+
+                if (Random.value <= leaderDebuffChance)
+                {
+                    var sm = candidate.speedManager;
+                    if (sm != null)
+                    {
+                        if (leaderDebuffMode == SpeedBuffMode.Multiplier)
+                        {
+                            sm.TriggerTimedMultiplier(leaderDebuffDuration, leaderDebuffMultiplier);
+                            Debug.Log($"[LeaderDebuff] {candidate.name} slowed x{leaderDebuffMultiplier:0.##} for {leaderDebuffDuration:0.##}s.");
+                        }
+                        else
+                        {
+                            sm.TriggerTimedAdditive(leaderDebuffDuration, leaderDebuffAdditive);
+                            Debug.Log($"[LeaderDebuff] {candidate.name} slowed {leaderDebuffAdditive:+0.##;-0.##} for {leaderDebuffDuration:0.##}s.");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[LeaderDebuff] Leader has no SpeedAffectoManager; cannot apply debuff.");
+                    }
+                }
+                else
+                {
+                    Debug.Log("[LeaderDebuff] Roll failed. No debuff this race.");
+                }
+            }
         }
     }
 
