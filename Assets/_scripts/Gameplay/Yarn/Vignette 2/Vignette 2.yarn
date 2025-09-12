@@ -1,9 +1,10 @@
 
 title: setup
 ---
-<<declare $horseID = 0>>
+<<declare $horseToken = "horseName">>
 <<declare $currentBalance = 100000>>
 <<declare $currentHolding = 0>>
+<<declare $payoutMoney = 0>>
 
 ===
 
@@ -27,10 +28,49 @@ title: PlaceBet
 Recieptionist: Hello sir, how can I help you today?
 -> I would like to place a bet.
 Recieptionist: Certainly, which horse would you like to bet on?
+    -> TYPICAL DAY
+        <<horse "TYPICAL DAY">>
+    -> SUPER FREAK
+        <<horse "SUPER FREAK">>
+    -> UGURI HAT
+        <<horse "UGURI HAT">>
+    -> LOUD SUZUKI
+        <<horse "LOUD SUZUKI">>
+    -> XICH MA
+        <<horse "XICH MA">>
+    -> SKIBIDI HUZZ
+        <<horse "SKIBIDI HUZZ">>
+<<bet $currentHolding>>
+<<set $currentHolding = 0>>
+<<betdone>>
+<<jump RaceStart>>
+===
 
+title: RaceStart
+---
+<<raceStart>>
 
 
 ===
+
+title: Payout
+---
+
+<<set $payoutMoney = payout_amount()>>
+
+<<if payout_won()>>
+    Receptionist: Congratulations! Your horse won.
+    Receptionist: Here are your winnings of {$payoutMoney} VND.
+    <<set $currentHolding = $currentHolding + $payoutMoney>>
+    <<set $payoutMoney = 0>>
+<<else>>
+    Receptionist: Sorry sir, better luck next time.
+    <<set $payoutMoney = 0>>
+<<endif>>
+
+===
+
+
 
 title: ATM
 ---
