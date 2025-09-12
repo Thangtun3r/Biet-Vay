@@ -1,96 +1,120 @@
 using UnityEngine;
-using DG.Tweening;
+using UnityEngine.UI;
+using TMPro;
 
-public class RandomLocalStrafe2D : MonoBehaviour
+[DisallowMultipleComponent]
+public class HorseVisual : MonoBehaviour
 {
-    [Header("Local X Drift (visual-only)")]
-    [Tooltip("Max small step to the LEFT (negative local X).")]
-    public float maxLeftStep = 0.25f;
+    [Header("References")]
+    [Tooltip("Optional: explicit reference to the horse logic. If null, will search in parents.")]
+    public Horse2D horse;
 
-    [Tooltip("Max small drift to the RIGHT (positive local X).")]
-    public float maxRightDrift = 0.6f;
+    [Header("UI Visual")]
+    public Image uiImage;
 
-    [Tooltip("Chance that a cycle starts with a little left nudge before drifting right.")]
-    [Range(0f, 1f)] public float leftNudgeChance = 0.35f;
+    [Header("Name UI")]
+    public TextMeshProUGUI nameTMP;
 
-    [Header("Timing")]
-    public Vector2 moveDurRange = new Vector2(0.12f, 0.35f);   // single leg duration
-    public Vector2 holdRange    = new Vector2(0.00f, 0.25f);   // pause between legs
+    [Header("Result Display")]
+    public GameObject resultPanel;
+    public TextMeshProUGUI positionTMP;
+    public TextMeshProUGUI timeTMP;
 
-    [Header("Ease")]
-    public Ease ease = Ease.InOutSine;
+    [Header("Colors")]
+    [Tooltip("Color used for normal (non-first) results.")]
+    public Color regularColor = Color.white;
+    [Tooltip("Color used when this horse finishes 1st.")]
+    public Color goldColor = new Color(1f, 0.84f, 0f); // nice gold
 
-    [Header("Advanced")]
-    [Tooltip("Clamp final local X offset around base (avoid drifting away forever).")]
-    public float clampAbsX = 1.0f;
-
-    private Vector3 _baseLocal;
-    private Sequence _seq;
+    private bool _shown;
 
     void Awake()
     {
-        _baseLocal = transform.localPosition;
+        if (horse == null) horse = GetComponentInParent<Horse2D>();
+        if (uiImage == null) uiImage = GetComponentInChildren<Image>();
+        if (nameTMP == null) nameTMP = GetComponentInChildren<TextMeshProUGUI>();
+        if (resultPanel != null) resultPanel.SetActive(false);
     }
 
-    void OnEnable()
+    void Update()
     {
-        _baseLocal = transform.localPosition; // rebase if you enable while moving
-        StartCycle();
-    }
+        if (horse == null) return;
 
-    void OnDisable()
-    {
-        if (_seq != null) _seq.Kill();
-        DOTween.Kill(this);
-    }
-
-    void OnDestroy()
-    {
-        if (_seq != null) _seq.Kill();
-        DOTween.Kill(this);
-    }
-
-    void LateUpdate()
-    {
-        // keep the wiggle bounded around base
-        var lp = transform.localPosition;
-        float dx = Mathf.Clamp(lp.x - _baseLocal.x, -clampAbsX, clampAbsX);
-        transform.localPosition = new Vector3(_baseLocal.x + dx, lp.y, lp.z);
-    }
-
-    void StartCycle()
-    {
-        if (_seq != null) _seq.Kill();
-        _seq = DOTween.Sequence().SetTarget(this);
-
-        // Randomly decide if we do a small LEFT nudge first
-        bool doLeft = Random.value < leftNudgeChance;
-
-        if (doLeft && maxLeftStep > 0f)
+        if (!_shown && horse.progress01 >= 1f)
         {
-            float leftAmt = -Random.Range(maxLeftStep * 0.2f, maxLeftStep);     // small left step
-            float leftDur = Random.Range(moveDurRange.x, moveDurRange.y);
-            float leftHold = Random.Range(holdRange.x, holdRange.y);
+            ShowResult(horse.progress01);
+            _shown = true;
+        }
+    }
 
-            _seq.Append(transform.DOLocalMoveX(_baseLocal.x + leftAmt, leftDur).SetEase(ease));
-            _seq.AppendInterval(leftHold);
+    public void ApplyIdentity(string displayName, Color color, bool renameGameObject = false)
+    {
+        ApplyDisplayName(displayName, renameGameObject);
+        ApplyColor(color);
+    }
+
+    public void ApplyDisplayName(string displayName, bool renameGameObject = false)
+    {
+        string safe = string.IsNullOrWhiteSpace(displayName) ? "" : displayName.Trim();
+        if (nameTMP != null) nameTMP.text = safe;
+        if (renameGameObject && safe.Length > 0) gameObject.name = safe;
+    }
+
+    public void ApplyColor(Color c)
+    {
+        if (uiImage != null) uiImage.color = c;
+    }
+
+    public void ShowResult(float timeSeconds, int place = -1)
+    {
+        Color chosenColor = (place == 1) ? goldColor : regularColor;
+
+        if (positionTMP != null && place > 0)
+        {
+            positionTMP.text = place.ToString("0");
+            positionTMP.color = chosenColor;
         }
 
-        // Then drift right a little (or sometimes just tiny)
-        float rightAmt = Random.Range(maxRightDrift * 0.15f, maxRightDrift);
-        float rightDur = Random.Range(moveDurRange.x, moveDurRange.y);
-        float rightHold = Random.Range(holdRange.x, holdRange.y);
+        if (timeTMP != null)
+        {
+            timeTMP.text = FormatTime(timeSeconds);
+            timeTMP.color = chosenColor;
+        }
 
-        _seq.Append(transform.DOLocalMoveX(_baseLocal.x + rightAmt, rightDur).SetEase(ease));
-        _seq.AppendInterval(rightHold);
+        if (nameTMP != null)
+            nameTMP.color = chosenColor;
 
-        // Ease back near base (not always perfectly to 0 so it feels alive)
-        float settleAmt = Random.Range(-maxLeftStep * 0.1f, maxRightDrift * 0.2f);
-        float settleDur = Random.Range(moveDurRange.x, moveDurRange.y);
+        if (resultPanel != null)
+            resultPanel.SetActive(true);
+    }
 
-        _seq.Append(transform.DOLocalMoveX(_baseLocal.x + settleAmt, settleDur).SetEase(ease));
+    public void HideResult()
+    {
+        if (resultPanel != null) resultPanel.SetActive(false);
 
-        // When done, start another randomized cycle
-        _seq.OnComplete(StartCycle);
+        if (positionTMP != null)
+        {
+            positionTMP.text = "";
+            positionTMP.color = regularColor;
+        }
+
+        if (timeTMP != null)
+        {
+            timeTMP.text = "";
+            timeTMP.color = regularColor;
+        }
+
+        if (nameTMP != null)
+            nameTMP.color = regularColor;
+
+        _shown = false;
+    }
+
+    private static string FormatTime(float seconds)
+    {
+        if (seconds < 0f) seconds = 0f;
+        int minutes = Mathf.FloorToInt(seconds / 60f);
+        float sec = seconds % 60f;
+        return $"{minutes}:{sec:00.00}";
     }
 }
