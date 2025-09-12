@@ -43,9 +43,20 @@ public class RaceManager : MonoBehaviour
     public IReadOnlyList<Horse2D> Horses => horses;
 
     // ── Events ─────────────────────────────────────────────────────────────────
-    public event Action<IReadOnlyList<Horse2D>> HorsesSpawned;        // after collect/inject
+    public event Action<IReadOnlyList<Horse2D>> HorsesSpawned;         // after collect/inject
     public event Action<IReadOnlyList<Horse2D>> HorsesProgressUpdated; // every Update after progress computed
     public event Action RaceStarted;                                   // after enabling horses
+
+    // New: odds event payload (emitted after odds computed)
+    public struct OddsEntry
+    {
+        public int index;            // index in RaceManager.Horses
+        public Horse2D horse;        // horse reference
+        public float probability;    // 0..1
+        public float decimalOdds;    // 1/p (∞ if p=0)
+        public string fractional;    // "N:1" label
+    }
+    public event Action<IReadOnlyList<OddsEntry>> OddsComputed;
 
     // course caches
     private float startXLocal;
@@ -62,7 +73,7 @@ public class RaceManager : MonoBehaviour
     {
         CollectHorsesAndInjectStats();
         InitCourse();
-        LogOddsOnly();               // keeps odds but doesn't rename
+        LogOddsAndPublish();        // keep your odds logic, but now publish an event
 
         HorsesSpawned?.Invoke(horses);
 
@@ -135,18 +146,19 @@ public class RaceManager : MonoBehaviour
             float hx = h.transform.localPosition.x;        // progress uses horse local X
             float covered = (hx - startXLocal) * courseDirSign;
             float progress = covered / courseLengthAbs;
-            h.UpdateProgress(progress);                    // Horse2D exposes this setter. 
+            h.UpdateProgress(progress);                    // Horse2D exposes this setter.
         }
 
         // notify subscribers (halfway/debuff handlers, UI, etc.)
         HorsesProgressUpdated?.Invoke(horses);
     }
 
-    // ── Odds (no renaming) ────────────────────────────────────────────────────
-    private void LogOddsOnly()
+    // ── Odds (publish event) ──────────────────────────────────────────────────
+    private void LogOddsAndPublish()
     {
         if (horses.Count == 0) return;
 
+        // Base scores from speed (can be swapped to any performance metric)
         List<float> rawScores = horses
             .Select(h => Mathf.Max(0.0001f, h.speed))
             .ToList();
@@ -165,10 +177,19 @@ public class RaceManager : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             prob[i] = sharpScores[i] / sharpSum;
-            if (prob[i] <= 0f) { decOdds[i] = float.PositiveInfinity; fracN[i] = float.PositiveInfinity; }
-            else               { decOdds[i] = 1f / prob[i];           fracN[i] = decOdds[i] - 1f;       }
+            if (prob[i] <= 0f)
+            {
+                decOdds[i] = float.PositiveInfinity;
+                fracN[i]   = float.PositiveInfinity;
+            }
+            else
+            {
+                decOdds[i] = 1f / prob[i];   // decimal odds
+                fracN[i]   = decOdds[i] - 1f; // fractional "N:1"
+            }
         }
 
+        // Enforce minimum gaps on fractional odds in ascending order
         int[] order = Enumerable.Range(0, n).OrderBy(i => fracN[i]).ToArray();
         for (int k = 1; k < order.Length; k++)
         {
@@ -179,14 +200,29 @@ public class RaceManager : MonoBehaviour
             float target = fracN[iPrev] + minFractionalGap;
             if (fracN[iCur] < target) fracN[iCur] = target;
         }
-        
+
+        // Build payload & (optionally) log
+        var list = new List<OddsEntry>(n);
         for (int i = 0; i < n; i++)
         {
             string fracLabel = FormatFractionLabel(fracN[i], fractionalPrecision);
             string decLabel  = float.IsInfinity(decOdds[i]) ? "∞" : decOdds[i].ToString("0.00");
             string probLabel = prob[i].ToString("P1");
-            
+
+            // Debug.Log($"Horse[{i}] {horses[i].name} → {fracLabel} (dec {decLabel}, p {probLabel})");
+
+            list.Add(new OddsEntry
+            {
+                index        = i,
+                horse        = horses[i],
+                probability  = prob[i],
+                decimalOdds  = decOdds[i],
+                fractional   = fracLabel
+            });
         }
+
+        // Publish to listeners (e.g., HorseRosterAssigner will push to BettingInfoDisplay rows)
+        OddsComputed?.Invoke(list);
     }
 
     private string FormatFractionLabel(float n, int precision)
