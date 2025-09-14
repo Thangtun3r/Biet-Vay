@@ -105,6 +105,7 @@ public class HorseRosterAssigner : MonoBehaviour
                 visual.ApplyColor(id.color);
 
                 // Remember mapping for odds UI later
+                horse.horseIndex = (id.index >= 0) ? id.index : i;   // ← add this line
                 _assigned[horse] = new HorseIdentity { displayName = chosenName, color = id.color };
             }
             else

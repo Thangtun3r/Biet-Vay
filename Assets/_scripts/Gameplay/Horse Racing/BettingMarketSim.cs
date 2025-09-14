@@ -163,9 +163,25 @@ public class BettingMarketSimulator : MonoBehaviour
     private void OnRaceStarted()
     {
         _frozen = true;
+
         if (_poolChooserLoop != null) StopCoroutine(_poolChooserLoop);
         if (_oddsJitterLoop != null) StopCoroutine(_oddsJitterLoop);
+
+        // Snap pools: shown == target, so no post-freeze lerp creep
+        for (int i = 0; i < _poolTarget.Count && i < _poolShown.Count; i++)
+        {
+            long snap = (long)System.Math.Round(_poolShown[i]);
+            _poolTarget[i] = snap;
+            _poolShown[i]  = snap;
+            if (i < _rows.Count) _rows[i].SetPerHorsePool(snap);
+        }
+        UpdateTotalLabel();
+
+        // Snap odds too (optional)
+        for (int i = 0; i < _oddsTargetN.Count && i < _oddsShownN.Count; i++)
+            _oddsTargetN[i] = _oddsShownN[i];
     }
+
 
     // ── Target selection loops (only some rows each tick) ─────────────────────
     private IEnumerator PickNewPoolTargetsLoop()
@@ -217,6 +233,7 @@ public class BettingMarketSimulator : MonoBehaviour
     void Update()
     {
         if (_rows.Count == 0) return;
+        if (_frozen) return; // hard lock during race
 
         // Smoothly move displayed pools toward targets
         double total = 0;

@@ -10,6 +10,8 @@ public class Horse2D : MonoBehaviour
         public float threshold;
         public float multiplier;
     }
+    
+   public int horseIndex = -1; // set by HorseRosterAssigner
 
     [Header("Base Stats")]
     public float speed = 8f;
