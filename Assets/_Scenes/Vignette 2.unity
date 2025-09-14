@@ -1145,6 +1145,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horse Line (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].threshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].threshold
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].threshold
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].threshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].threshold
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].threshold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[0].multiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].multiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].multiplier
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].multiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].multiplier
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].multiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3001,6 +3061,8 @@ GameObject:
   - component: {fileID: 834977974}
   - component: {fileID: 834977976}
   - component: {fileID: 834977977}
+  - component: {fileID: 834977978}
+  - component: {fileID: 834977979}
   m_Layer: 0
   m_Name: Horse Racing Manager
   m_TagString: Untagged
@@ -3049,7 +3111,8 @@ MonoBehaviour:
   oddsSharpness: 4.5
   minFractionalGap: 0.78
   fractionalPrecision: 1
-  preRaceDelay: 10
+  autoPrepareOnStart: 1
+  preRaceDelay: 3
   finishLine: {fileID: 1856983947}
   startLine: {fileID: 503172033}
   startX: -8
@@ -3066,17 +3129,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rosterPool:
-  - displayName: TYPICAL DAY
+  - index: 0
+    displayName: TYPICAL DAY
     color: {r: 1, g: 0.6509433, b: 0.98194426, a: 1}
-  - displayName: SUPER FREAK
+  - index: 1
+    displayName: SUPER FREAK
     color: {r: 0.71383643, g: 0.8457749, b: 1, a: 1}
-  - displayName: UGURI HAT
+  - index: 2
+    displayName: UGURI HAT
     color: {r: 1, g: 1, b: 1, a: 1}
-  - displayName: LOUD SUZUKI
+  - index: 3
+    displayName: LOUD SUZUKI
     color: {r: 0.717166, g: 1, b: 0.56289303, a: 1}
-  - displayName: XICH MA
+  - index: 4
+    displayName: XICH MA
     color: {r: 1, g: 0.39308167, b: 0.39308167, a: 1}
-  - displayName: SKIBIDI HUZZ
+  - index: 5
+    displayName: SKIBIDI HUZZ
     color: {r: 1, g: 0.8123786, b: 0.43710685, a: 1}
   randomSeed: -1
   allowReuseIfPoolTooSmall: 1
@@ -3159,6 +3228,35 @@ MonoBehaviour:
   oddsJitterRange: 0.03
   oddsLerpPerSecond: 10.14
   fractionalClampN: {x: 1, y: 99}
+--- !u!114 &834977978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834977970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38acf2c42c4ff9f4f89b39d4c4910fb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueRunner: {fileID: 8888377626674662495}
+--- !u!114 &834977979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834977970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f94ba360740d874cb0bb6b1d2b3bd7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabledRig: 1
+  chance: 1
+  multiplier: 16.3
+  duration: 15
 --- !u!1 &853161427
 GameObject:
   m_ObjectHideFlags: 0
@@ -3834,6 +3932,66 @@ PrefabInstance:
     - target: {fileID: 1530161667036197710, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Name
       value: Horse Line (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].threshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].threshold
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].threshold
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].threshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].threshold
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].threshold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[0].multiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].multiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].multiplier
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].multiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].multiplier
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].multiplier
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Pivot.x
@@ -5028,6 +5186,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horse Line (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].threshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].threshold
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].threshold
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].threshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].threshold
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].threshold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[0].multiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].multiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].multiplier
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].multiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].multiplier
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].multiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5786,6 +6004,66 @@ PrefabInstance:
       propertyPath: m_Name
       value: Horse Line (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].threshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].threshold
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].threshold
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].threshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].threshold
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].threshold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[0].multiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].multiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].multiplier
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].multiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].multiplier
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].multiplier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5909,6 +6187,66 @@ PrefabInstance:
     - target: {fileID: 1530161667036197710, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Name
       value: Horse Line (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].threshold
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].threshold
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].threshold
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].threshold
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].threshold
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].threshold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[0].multiplier
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[1].multiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[2].multiplier
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[3].multiplier
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[4].multiplier
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[5].multiplier
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858910505150318781, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
+      propertyPath: animStages.Array.data[6].multiplier
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
       propertyPath: m_Pivot.x
@@ -8414,9 +8752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b2e51ea0c5f23e428242f988d0872ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raceManager: {fileID: 0}
-  bettingSim: {fileID: 0}
-  disableRaceManagerUntilStart: 1
 --- !u!1 &2118485532
 GameObject:
   m_ObjectHideFlags: 0
@@ -8959,7 +9294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2564122594245162279, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: field of view
-      value: 70
+      value: 69.99995
       objectReference: {fileID: 0}
     - target: {fileID: 5068450352551309792, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Name
@@ -8971,7 +9306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 70
+      value: 69.99995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

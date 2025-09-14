@@ -1,15 +1,17 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class RaceResultsTracker : MonoBehaviour
 {
-    [System.Serializable]
+    [Serializable]
     public class HorseResult
     {
         public Horse2D horse;
-        public int place;
-        public float finishTime;
+        public int index;        // index in RaceManager.Horses (per-race ID)
+        public int place;        // 1 = winner
+        public float finishTime; // seconds since RaceStarted
     }
 
     private RaceManager _raceManager;
@@ -19,8 +21,10 @@ public class RaceResultsTracker : MonoBehaviour
 
     public IReadOnlyList<HorseResult> Results => _results;
 
-    public event System.Action<HorseResult> HorseFinished;
-    public event System.Action RaceCompleted;
+    public event Action<HorseResult> HorseFinished;
+
+    // Now this passes just the int ID (index) of the winner
+    public static event Action<int> OnRaceCompleted;
 
     private void Awake()
     {
@@ -67,26 +71,45 @@ public class RaceResultsTracker : MonoBehaviour
         for (int i = 0; i < horses.Count; i++)
         {
             var h = horses[i];
+
             if (h.progress01 >= 1f && !_results.Exists(r => r.horse == h))
             {
+                int idx = GetHorseIndex(h);
+                if (idx < 0)
+                {
+          
+                    continue;
+                }
+
                 var result = new HorseResult
                 {
                     horse = h,
+                    index = idx,
                     place = _results.Count + 1,
                     finishTime = _raceTime
                 };
+
                 _results.Add(result);
                 HorseFinished?.Invoke(result);
-
-                Debug.Log($"🏁 {h.name} finished place #{result.place} at {result.finishTime:0.00}s");
+                
                 h.enabled = false; // optional: stop movement
 
-                if (_results.Count == horses.Count)
+                if (_results.Count == 1)
                 {
                     _raceRunning = false;
-                    RaceCompleted?.Invoke();
+                    OnRaceCompleted?.Invoke(_results[0].index);
                 }
             }
         }
+    }
+
+    private int GetHorseIndex(Horse2D horse)
+    {
+        for (int i = 0; i < _raceManager.Horses.Count; i++)
+        {
+            if (_raceManager.Horses[i] == horse)
+                return i;
+        }
+        return -1; // not found
     }
 }

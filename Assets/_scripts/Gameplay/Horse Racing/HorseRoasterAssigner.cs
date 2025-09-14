@@ -9,6 +9,7 @@ public class HorseRosterAssigner : MonoBehaviour
     [Serializable]
     public struct HorseIdentity
     {
+        public int index; // optional, for reference
         public string displayName;
         public Color color;
     }

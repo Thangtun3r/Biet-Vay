@@ -1,10 +1,15 @@
 
 title: setup
 ---
-<<declare $horseToken = "horseName">>
-<<declare $currentBalance = 100000>>
+<<declare $horseToken = 0>>
+<<declare $currentBalance = 1600000>>
 <<declare $currentHolding = 0>>
 <<declare $payoutMoney = 0>>
+
+
+///bool for betting result
+<<declare $winningBet = false>>
+<<declare $raceCompleted = false>>
 
 ===
 
@@ -29,43 +34,40 @@ Recieptionist: Hello sir, how can I help you today?
 -> I would like to place a bet.
 Recieptionist: Certainly, which horse would you like to bet on?
     -> TYPICAL DAY
-        <<horse "TYPICAL DAY">>
+        <<placeBet 0>>
     -> SUPER FREAK
-        <<horse "SUPER FREAK">>
+        <<placeBet 1>>
     -> UGURI HAT
-        <<horse "UGURI HAT">>
+        <<placeBet 2>>
     -> LOUD SUZUKI
-        <<horse "LOUD SUZUKI">>
+        <<placeBet 3>>
     -> XICH MA
-        <<horse "XICH MA">>
+        <<placeBet 4>>
     -> SKIBIDI HUZZ
-        <<horse "SKIBIDI HUZZ">>
-<<bet $currentHolding>>
-<<set $currentHolding = 0>>
-<<betdone>>
+        <<placeBet 5>>
+<<expand>>
 <<jump RaceStart>>
 ===
 
 title: RaceStart
 ---
-<<raceStart>>
+<<startRace>>
 
 
 ===
 
 title: Payout
 ---
+<<if $raceCompleted == true>>
+Recieptionist: It seems like your unlucky day today.
+    <<if $winningBet == false>>
+    Recieptionist: It seems like your unlucky day today.
+    <<else>>
+    Recieptionist: Congrats sir.
+    <<payOut>>
 
-<<set $payoutMoney = payout_amount()>>
 
-<<if payout_won()>>
-    Receptionist: Congratulations! Your horse won.
-    Receptionist: Here are your winnings of {$payoutMoney} VND.
-    <<set $currentHolding = $currentHolding + $payoutMoney>>
-    <<set $payoutMoney = 0>>
-<<else>>
-    Receptionist: Sorry sir, better luck next time.
-    <<set $payoutMoney = 0>>
+    <<endif>>
 <<endif>>
 
 ===

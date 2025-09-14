@@ -6,6 +6,12 @@ using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
+    // For horse Betting event
+    public static event Action<int> OnBetPlaced;
+    public static event Action OnRaceStart;
+    public static event Action OnPayout;
+    
+    //For controlling the UI 
     public static event Action OnExpand;
     public static event Action OnFreeze;
     public static event Action OnUnFreeze;
@@ -123,5 +129,30 @@ public class GameManager : MonoBehaviour
     public static void Resolve()
     {
         OnResolveAnim?.Invoke();
+    }
+    
+    
+    /// <summary>
+    /// Horse betting command
+    /// </summary>
+    /// <param name="horseIndex"></param>
+    /// <param name="amount"></param>
+    
+    [YarnCommand("placeBet")]
+    public static void PlacedBet(int horseIndex)
+    {
+        OnBetPlaced?.Invoke(horseIndex);
+    }
+
+    [YarnCommand("startRace")]
+    public static void StartRace()
+    {
+        OnRaceStart?.Invoke();
+    }
+    
+    [YarnCommand("payOut")]
+    public static void PayOut()
+    {
+        OnPayout.Invoke();
     }
 }
