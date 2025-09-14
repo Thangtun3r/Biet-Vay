@@ -7,12 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TV
-  m_Shader: {fileID: 4800000, guid: 65f8982ee37c28d45a36fa523f1d4950, type: 3}
+  m_Name: ATM
+  m_Shader: {fileID: 4800000, guid: 22c8483a0088cff4ea29f92544b8304b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _MK_ALBEDO_MAP
+  - _MK_COLOR_GRADING_ALBEDO
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -27,11 +28,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AlbedoMap:
-        m_Texture: {fileID: 8400000, guid: 86105458e6c5dc6428ed891c0886fbd3, type: 2}
+        m_Texture: {fileID: 8400000, guid: cbab17d7362425941a7eebc2809ef8f9, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 8400000, guid: 86105458e6c5dc6428ed891c0886fbd3, type: 2}
+        m_Texture: {fileID: 8400000, guid: 9458ba713f30fbf469485723fa8f9fa7, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -63,7 +64,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: 86105458e6c5dc6428ed891c0886fbd3, type: 2}
+        m_Texture: {fileID: 8400000, guid: cbab17d7362425941a7eebc2809ef8f9, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -104,7 +105,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AdvancedTab: 0
+    - _AdvancedTab: 1
     - _AlbedoMapIntensity: 1
     - _AlphaClip: 0
     - _AlphaClipping: 0
@@ -118,13 +119,9 @@ Material:
     - _BlendSrcAlpha: 1
     - _Brightness: 1
     - _BumpScale: 1
-    - _CameraFade: 0
-    - _CameraFadeFarDistance: 2
-    - _CameraFadeNearDistance: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorBlend: 0
-    - _ColorGrading: 0
+    - _ColorGrading: 1
     - _Contrast: 1
     - _Cull: 2
     - _Cutoff: 0.5
@@ -137,7 +134,6 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Flipbook: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -147,7 +143,6 @@ Material:
     - _OcclusionStrength: 1
     - _OptionsTab: 1
     - _Parallax: 0.005
-    - _ParticlesTab: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RenderFace: 2
@@ -155,9 +150,6 @@ Material:
     - _Saturation: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SoftFade: 0
-    - _SoftFadeFarDistance: 1
-    - _SoftFadeNearDistance: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -169,7 +161,7 @@ Material:
     - _StencilRef: 0
     - _StencilWriteMask: 255
     - _StencilZFail: 0
-    - _StylizeTab: 0
+    - _StylizeTab: 1
     - _Surface: 0
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
@@ -180,11 +172,9 @@ Material:
     m_Colors:
     - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SoftFadeModeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []

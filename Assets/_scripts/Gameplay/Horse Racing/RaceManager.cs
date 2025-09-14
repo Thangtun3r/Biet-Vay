@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Unity.VisualStudio.Editor;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class RaceManager : MonoBehaviour
@@ -128,6 +129,7 @@ public class RaceManager : MonoBehaviour
     /// </summary>
     public void TriggerStart()
     {
+        preRaceFill.DOFade(0, 0.5f);
         if (!isPrepared)
         {
             // If not prepared yet, prepare once so odds are published

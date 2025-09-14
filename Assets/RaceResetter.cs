@@ -1,17 +1,20 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class RaceResetter : MonoBehaviour
 {
     public static event Action OnRaceReset;
-    private RaceManager m_RaceManager;
+    public Image preRaceFill;
+    private RaceManager raceManager;
 
     private void Awake()
     {
-        m_RaceManager = GetComponent<RaceManager>();
+        raceManager = GetComponent<RaceManager>();
     }
 
 
@@ -29,10 +32,11 @@ public class RaceResetter : MonoBehaviour
     
     private void HandleResetRace()
     {
+        preRaceFill.DOFade(1, 0f);
         OnRaceReset?.Invoke();
     }
     private void HandleStartRace()
     {
-        m_RaceManager.TriggerStart();
+        raceManager.TriggerStart();
     }
 }
