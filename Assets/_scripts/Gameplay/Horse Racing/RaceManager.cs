@@ -26,6 +26,8 @@ public class RaceManager : MonoBehaviour
     [Range(0, 3)] public int fractionalPrecision = 1;
 
     [Header("Flow")]
+    [Tooltip("If true, compute odds & publish on Start, but do NOT auto-start the race.")]
+    public bool autoPrepareOnStart = true;
     public float preRaceDelay = 3f;
 
     [Header("Course")]
@@ -64,24 +66,76 @@ public class RaceManager : MonoBehaviour
     private float courseLengthAbs;
     private float courseDirSign;
 
+    // state
+    private bool isPrepared;
+    private bool isRunning;
+    private Coroutine startRoutine;
+
     private void Start()
     {
-        StartCoroutine(RunRace());
+        // Show odds immediately (and publish HorsesSpawned) but do NOT start the race automatically.
+        if (autoPrepareOnStart)
+        {
+            PrepareRace(); // odds/UI first
+        }
     }
 
-    private IEnumerator RunRace()
+
+    private void OnEnable()
+    {
+        GameManager.OnRaceStart += TriggerStart;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnRaceStart -= TriggerStart;
+    }
+
+    
+    
+    /// <summary>
+    /// Prepare horses, course, compute & publish odds. Does NOT start the race.
+    /// Call this if you want to refresh odds (e.g., after changing ranges).
+    /// </summary>
+    public void PrepareRace()
     {
         CollectHorsesAndInjectStats();
         InitCourse();
-        LogOddsAndPublish();        // keep your odds logic, but now publish an event
-
+        LogOddsAndPublish();        // betting odds first, always visible
         HorsesSpawned?.Invoke(horses);
+        isPrepared = horses.Count > 0;
+        isRunning = false;
 
+        // Ensure horses are disabled until TriggerStart is called
+        foreach (var h in horses)
+            h.enabled = false;
+    }
+
+    /// <summary>
+    /// Trigger starting the race after preRaceDelay.
+    /// Safe to call from UI button or another script once odds are displayed.
+    /// </summary>
+    public void TriggerStart()
+    {
+        if (!isPrepared)
+        {
+            // If not prepared yet, prepare once so odds are published
+            PrepareRace();
+        }
+        if (isRunning || horses.Count == 0) return;
+
+        if (startRoutine != null) StopCoroutine(startRoutine);
+        startRoutine = StartCoroutine(StartRaceAfterDelay());
+    }
+
+    private IEnumerator StartRaceAfterDelay()
+    {
         yield return new WaitForSeconds(preRaceDelay);
 
         foreach (var h in horses)
             h.enabled = true;
 
+        isRunning = true;
         RaceStarted?.Invoke();
     }
 
@@ -91,7 +145,6 @@ public class RaceManager : MonoBehaviour
 
         if (horsesParent == null)
         {
-            Debug.LogError("[RaceManager] No horsesParent assigned!");
             return;
         }
 
@@ -99,16 +152,12 @@ public class RaceManager : MonoBehaviour
         {
             var child = horsesParent.GetChild(i);
             var horse = child.GetComponent<Horse2D>();
-            if (horse == null)
-            {
-                Debug.LogWarning($"[RaceManager] Child '{child.name}' has no Horse2D. Skipping.");
-                continue;
-            }
+            if (horse == null) continue;
 
             horse.speed   = Random.Range(speedRange.x, speedRange.y);
             horse.stamina = Random.Range(staminaRange.x, staminaRange.y);
 
-            horse.enabled = false; // will be enabled at race start
+            horse.enabled = false; // remain off until TriggerStart
             horses.Add(horse);
         }
     }
@@ -206,10 +255,6 @@ public class RaceManager : MonoBehaviour
         for (int i = 0; i < n; i++)
         {
             string fracLabel = FormatFractionLabel(fracN[i], fractionalPrecision);
-            string decLabel  = float.IsInfinity(decOdds[i]) ? "∞" : decOdds[i].ToString("0.00");
-            string probLabel = prob[i].ToString("P1");
-
-            // Debug.Log($"Horse[{i}] {horses[i].name} → {fracLabel} (dec {decLabel}, p {probLabel})");
 
             list.Add(new OddsEntry
             {
@@ -221,7 +266,7 @@ public class RaceManager : MonoBehaviour
             });
         }
 
-        // Publish to listeners (e.g., HorseRosterAssigner will push to BettingInfoDisplay rows)
+        // Publish to listeners (e.g., a BettingInfoDisplay can subscribe and render rows)
         OddsComputed?.Invoke(list);
     }
 

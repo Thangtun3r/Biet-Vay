@@ -109,7 +109,7 @@ namespace Yarn.Unity
         public bool useFadeEffect = true;
 
         /// <summary>
-        /// The time that the fade effect will take to fade lines in.
+        /// The time that the fade effect will take to fade lines in.sds
         /// </summary>
         /// <remarks>This value is only used when <see cref="useFadeEffect"/> is
         /// <see langword="true"/>.</remarks>
