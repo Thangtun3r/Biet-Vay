@@ -2,11 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class RaceManager : MonoBehaviour
 {
+    [Header("PreRace Fill")]
+    public Image preRaceFill;
+    
     [Header("Horse Layout (Scene Children)")]
     [Tooltip("Parent that contains Horse2D children (one per horse).")]
     public Transform horsesParent;
@@ -84,11 +88,13 @@ public class RaceManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnRaceStart += TriggerStart;
+        RaceResetter.OnRaceReset += PrepareRace;
     }
 
     private void OnDisable()
     {
         GameManager.OnRaceStart -= TriggerStart;
+        RaceResetter.OnRaceReset -= PrepareRace;
     }
 
     
@@ -101,15 +107,20 @@ public class RaceManager : MonoBehaviour
     {
         CollectHorsesAndInjectStats();
         InitCourse();
-        LogOddsAndPublish();        // betting odds first, always visible
+
+        // Call this first so HorseRosterAssigner can set IDs
         HorsesSpawned?.Invoke(horses);
+
+        // Now compute and publish odds (which can read horse.horseIndex)
+        LogOddsAndPublish();
+
         isPrepared = horses.Count > 0;
         isRunning = false;
 
-        // Ensure horses are disabled until TriggerStart is called
         foreach (var h in horses)
             h.enabled = false;
     }
+
 
     /// <summary>
     /// Trigger starting the race after preRaceDelay.
@@ -254,17 +265,20 @@ public class RaceManager : MonoBehaviour
         var list = new List<OddsEntry>(n);
         for (int i = 0; i < n; i++)
         {
+            var h = horses[i];
             string fracLabel = FormatFractionLabel(fracN[i], fractionalPrecision);
 
             list.Add(new OddsEntry
             {
-                index        = i,
-                horse        = horses[i],
+                // Prefer roster-assigned ID; fall back to position if not set
+                index        = (h.horseIndex >= 0) ? h.horseIndex : i,
+                horse        = h,
                 probability  = prob[i],
                 decimalOdds  = decOdds[i],
                 fractional   = fracLabel
             });
         }
+
 
         // Publish to listeners (e.g., a BettingInfoDisplay can subscribe and render rows)
         OddsComputed?.Invoke(list);
@@ -276,4 +290,5 @@ public class RaceManager : MonoBehaviour
         string fmt = precision <= 0 ? "0" : "0." + new string('#', precision);
         return n.ToString(fmt) + ":1";
     }
+    
 }

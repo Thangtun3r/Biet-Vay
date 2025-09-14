@@ -58,18 +58,22 @@ title: RaceStart
 
 title: Payout
 ---
+<<collapse>>
 <<if $raceCompleted == true>>
-Recieptionist: It seems like your unlucky day today.
+Recieptionist: Hi Sir. Do you want to check if your horse won?
+    -> Yes
+        <<payOut>>
     <<if $winningBet == false>>
     Recieptionist: It seems like your unlucky day today.
     <<else>>
     Recieptionist: Congrats sir.
-    <<payOut>>
+
+    Recieptionist: You have won {$currentHolding} VND
 
 
     <<endif>>
 <<endif>>
-
+<<expand>>
 ===
 
 
@@ -97,4 +101,11 @@ title: ATM
 title: Money
 ---
 <<set $currentHolding = $currentHolding + 56000000>>
+===
+
+title: Debug
+---
+
+<<payOut>>
+
 ===
