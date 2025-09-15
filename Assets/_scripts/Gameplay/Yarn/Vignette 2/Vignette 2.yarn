@@ -17,15 +17,19 @@ title: setup
 
 title: start
 ---
+<<disablePlayer>>
 -> [bv]Bietvay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
-    <<expand>>
+     <<isBietVay>>
+    <<transition 1>>
     <<PsudoTurnOff>>
-    <<wait 2>>
-    <<spawn InsideParlor>>
+    <<jump ATM>>
 -> I/had/bet/on/that/horse.
     <<resolve>>
 
 ===
+
+
+
 
 title: PlaceBet
 ---
@@ -94,7 +98,6 @@ title: ATM
         <<withdraw>>
         
 <<VMReset>>
-
 <<expand>>
 ===
 
