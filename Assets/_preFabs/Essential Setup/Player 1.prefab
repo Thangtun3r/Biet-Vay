@@ -152,7 +152,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 1
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -345,7 +345,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.0449794, z: 0, w: 0.998988}
   m_LocalPosition: {x: -109.30005, y: 1.2299805, z: 14.5}
-  m_LocalScale: {x: 0.40561953, y: 0.8275854, z: 0.2809312}
+  m_LocalScale: {x: 0.40561953, y: 0.9032842, z: 0.2809312}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 837794142892329306}
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  vcam: {fileID: 5482214019488786950}
   cameraView: {fileID: 837794142892329306}
   maxAngle: 90
   minAngle: -90
@@ -482,7 +483,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4762195398416547493}
   - component: {fileID: 464552694327560906}
-  - component: {fileID: 2558768363413826438}
   - component: {fileID: 1643572061632180764}
   m_Layer: 0
   m_Name: cm
@@ -518,19 +518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2558768363413826438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6692748526206529276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Damping: 0
 --- !u!114 &1643572061632180764
 MonoBehaviour:
   m_ObjectHideFlags: 0
