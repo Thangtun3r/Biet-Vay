@@ -1,11 +1,14 @@
 
 title: setup
 ---
-<<declare $horseToken = 0>>
+
+<<declare $horseToken = -1>>
 <<declare $currentBalance = 1600000>>
 <<declare $currentHolding = 0>>
-<<declare $payoutMoney = 0>>
+<<declare $betPlaced = false>>
+<<declare $horseNames = "snicker">>
 
+<<declare $payOutDone = false>>
 
 ///bool for betting result
 <<declare $winningBet = false>>
@@ -13,16 +16,46 @@ title: setup
 
 ===
 
+title: Exit
+---
+<<if $payOutDone == true >>
+<<transition 1>>
+<<jump RestartTheLoop>>
+<<else>>
+<<collapse>>
+Liem: I haven't bet on anything yet.
+Liem: I should go place a bet first.
+<<expand>>
+<<endif>>
+===
+
+title: RestartTheLoop
+---
+<<spawn start>>
+<<newBettingDay>>
+<<set $payOutDone = false>>
+<<set $winningBet = false>>
+<<set $raceCompleted = false>>
+<<set $betPlaced = false>>
+<<set $currentBalance = $currentBalance + $currentHolding>>
+<<set $currentHolding = 0>>
+
+<<collapse>>
+Liem: Another day, another chance to win big.
+Liem: Let's see if I can turn my luck around today.
+<<jump ATM>>
+===
 
 
 title: start
 ---
+<<collapse>>
 <<disablePlayer>>
--> [bv]Bietvay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
-     <<isBietVay>>
+-> [bv]Biet vay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
+    <<isBietVay>>
     <<transition 1>>
     <<PsudoTurnOff>>
-    <<jump ATM>>
+    <<jump WifePhoneCall>>
 -> I/had/bet/on/that/horse.
     <<resolve>>
 
@@ -31,56 +64,171 @@ title: start
 
 
 
-title: PlaceBet
+title: BettingCorner
 ---
+
+<<VMBoost 2>>
 <<collapse>>
-Recieptionist: Hello sir, how can I help you today?
--> I would like to place a bet.
-Recieptionist: Certainly, which horse would you like to bet on?
-    -> TYPICAL DAY
-        <<placeBet 0>>
-    -> SUPER FREAK
-        <<placeBet 1>>
-    -> UGURI HAT
-        <<placeBet 2>>
-    -> LOUD SUZUKI
-        <<placeBet 3>>
-    -> XICH MA
-        <<placeBet 4>>
-    -> SKIBIDI HUZZ
-        <<placeBet 5>>
+
+
+Recieptionist: Welcome to NRA off-course betting center.
+Recieptionist: How can I help you, sir?
+<<if $raceCompleted == false && $betPlaced == false && $payOutDone == false>>
+<<jump placeBet>>>>
+<<elseif $raceCompleted == true && $betPlaced == true && $payOutDone == false>>
+<<jump Payout>>
+<<else>>
+-> Nevermind./
+    Recieptionist: Alright, have a nice day sir.
+<<endif>>
+
+
+  
+<<VMReset>>
 <<expand>>
-<<jump RaceStart>>
+
 ===
 
-title: RaceStart
+
+title: placeBet
 ---
-<<startRace>>
-
-
+-> I /would like/ to /place a bet./
+    <<if $currentHolding > 0>>
+        <<jump PlaceBet>>
+    <<else>>
+        Recieptionist: What with the empty hand ??
+        Recieptionist: You need money to place a bet.
+        Recieptionist: If you don't have money, don't think about betting at all.
+    <<endif>>
+-> How/should/I/place a bet./
+    Liem: So how should I bet?
+    Recieptionist: You can place a bet on any horse you like. The lower the odds, the lower the risk.
+    Recieptionist: However, the payout will also be lower.
+    Recieptionist: The higher the odds, the higher the risk.
+    Recieptionist: But remember 99.8% gamblers quit before winning big.
+    Recieptionist: So never give up!
+-> Nevermind./
+    Recieptionist: Alright, have a nice day sir.
+<<VMReset>>
+<<expand>>
 ===
 
 title: Payout
 ---
-<<collapse>>
-<<if $raceCompleted == true>>
-Recieptionist: Hi Sir. Do you want to check if your horse won?
-    -> Yes
-        <<payOut>>
+
+-> I/would/like/to/redeem/my/ticket./
+Recieptionist: Okay, let me check your ticket.
+<<payOut>>
     <<if $winningBet == false>>
-    Recieptionist: It seems like your unlucky day today.
+    Recieptionist: I'm sorry sir.
+    Recieptionist: This ticket didn't win anything.
+    Recieptionist: Better luck next time.
     <<else>>
     Recieptionist: Congrats sir.
-
     Recieptionist: You have won {$currentHolding} VND
-
-
+    Recieptionist: Here is your payout with your stake and your winning combined.
     <<endif>>
-<<endif>>
+<<set $payOutDone = true>>
+<<VMReset>>
 <<expand>>
 ===
 
+title: PlaceBet
+---
+Recieptionist: Certainly, which horse would you like to bet on?
+    -> Typical Day
+        <<placeBet 0>>
+        <<set $horseNames = "Typical Day">>
+        <<jump ConfirmBet>>
+    -> Super Freak
+        <<placeBet 1>>
+        <<set $horseNames = "Super Freak">>
+        <<jump ConfirmBet>>
+    -> Uguri Hat
+        <<placeBet 2>>
+        <<set $horseNames = "Uguri Hat">>
+        <<jump ConfirmBet>>
+    -> Loud Suzuki
+        <<placeBet 3>>
+        <<set $horseNames = "Loud Suzuki">>
+        <<jump ConfirmBet>>
+    -> Phi Cuong
+        <<placeBet 4>>
+        <<set $horseNames = "Phi Cuong">>
+        <<jump ConfirmBet>>
+    -> Skibidi Huzz
+        <<placeBet 5>>
+        <<set $horseNames = "Skibidi Huzz">>
+        <<jump ConfirmBet>>
+    -> Nevermind./
+        Recieptionist: Alright, if you have any questions, feel free to ask.
+<<VMReset>>
+<<expand>>
 
+===
+
+title: ConfirmBet
+---
+    Recieptionist: Right got it.
+    Recieptionist: Let me re-confirm, so you would like to all-in on {$horseNames}. Correct ?
+    -> Yes.
+        Recieptionist: Alright, your bet has been placed.
+        Recieptionist: Please take the printed ticket to later claim your payout.
+        Recieptionist: After the race finished, you can come back here to redeem your ticket.
+        Recieptionist: Good luck sir.
+        <<set $betPlaced = true>>
+        <<VMReset>>
+        <<expand>>
+        <<prop 0>>
+
+===
+
+title: BettingSlip
+---
+<<transition 1>>
+<<spawn race>>
+<<jump RaceStart>>
+===
+
+
+title: RaceStart
+---
+<<expand>>
+<<wait  2>>
+<<startRace>>
+===
+
+
+
+title: WifePhoneCall
+---
+<<collapse>>
+(Phone ringing): .....
+(Phone ringing): .........
+-> Pick up
+    <<jump PickUpPhone>>
+-> Hang up
+    <<jump ATM>>
+===
+
+
+title: PickUpPhone
+---
+Disturbing Woman: ....
+Disturbing Woman: Alo?
+-> What/ do/ you/ want?
+Disturbing Woman: Why you haven't answeared my call ?
+Disturbing Woman: Have you pay for Tam's tuition yet? His teacher has been calling me that we have late for the fee.
+Disturbing Woman: Please don't say that you are going to the casino again.
+-> No,/I'm/working/for/the money.
+Liem: No, I am working for the money.
+Liem: I will triple it-
+Liem: I mean I promised I will pay for Tam and also sign up for his extra Math class aswell.
+Liem: And also pay the remaining debt for the house.
+Disturbing Woman: Please, I'm begging you. It's our son's future---
+<<jump ATM>>
+
+===
 
 title: ATM
 ---
@@ -88,15 +236,15 @@ title: ATM
 <<collapse>>
 -> *Insert/card* 
     <<cardInsert>>
-    -> *Deposit
+    -> *Deposit*
         <<set $currentBalance = $currentHolding + $currentBalance>>
         <<set $currentHolding = 0>>
         <<deposit>>
-    -> *Withdraw
+    -> *Withdraw*
         <<set $currentHolding = $currentHolding + $currentBalance>>
         <<set $currentBalance = 0>>
         <<withdraw>>
-        
+-> No.        
 <<VMReset>>
 <<expand>>
 ===

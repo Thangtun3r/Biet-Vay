@@ -89,13 +89,13 @@ public class RaceManager : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnRaceStart += TriggerStart;
-        RaceResetter.OnRaceReset += PrepareRace;
+        AnotherBettingDay.OnRaceReset += PrepareRace;
     }
 
     private void OnDisable()
     {
         GameManager.OnRaceStart -= TriggerStart;
-        RaceResetter.OnRaceReset -= PrepareRace;
+        AnotherBettingDay.OnRaceReset -= PrepareRace;
     }
 
     

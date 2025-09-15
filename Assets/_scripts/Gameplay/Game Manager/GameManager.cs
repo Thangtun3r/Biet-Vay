@@ -157,7 +157,12 @@ public class GameManager : MonoBehaviour
     {
         OnResolveAnim?.Invoke();
     }
-    
+        
+    [YarnCommand("isBietVay")]
+    public static void IsBietvay()
+    {
+        OnBietvay?.Invoke();
+    }
     
     /// <summary>
     /// Horse betting command
@@ -183,10 +188,5 @@ public class GameManager : MonoBehaviour
         OnPayout.Invoke();
     }
     
-    
-    [YarnCommand("isBietVay")]
-    public static void IsBietvay()
-    {
-        OnBietvay?.Invoke();
-    }
+
 }
