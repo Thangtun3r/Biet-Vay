@@ -17,6 +17,7 @@ public class WordsPooling : MonoBehaviour
         WordMarkup.OnReleaseBietVay += HandleReleaseBietVay;
         WordMarkup.OnBietVay += HandleBietVay;
         GameManager.OnExpand += HandleBietVay;
+        GameManager.OnBietvay += HandleBietVay;
     }
 
     private void OnDisable()
@@ -25,6 +26,7 @@ public class WordsPooling : MonoBehaviour
         WordMarkup.OnReleaseBietVay -= HandleReleaseBietVay;
         WordMarkup.OnBietVay -= HandleBietVay;
         GameManager.OnExpand -= HandleBietVay;
+        GameManager.OnBietvay -= HandleBietVay;
     }
 
     private void HandleBietVay()

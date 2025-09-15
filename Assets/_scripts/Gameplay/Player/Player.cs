@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
         GameTransition.OnCollapseStarted += DisablePlayer;
         GameTransition.OnExpandStarted += EnablePlayer;
         SpawnPointHandler.OnPlayerSpawn += SetPlayerSpawnPoint;
+        GameManager.disablePlayerMovement += DisablePlayer;
+        GameManager.enablePlayerMovement += EnablePlayer;
     }
 
     private void OnDisable()
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
         GameTransition.OnCollapseStarted -= DisablePlayer;
         GameTransition.OnExpandStarted -= EnablePlayer;
         SpawnPointHandler.OnPlayerSpawn -= SetPlayerSpawnPoint;
+        GameManager.disablePlayerMovement -= DisablePlayer;
+        GameManager.enablePlayerMovement -= EnablePlayer;
     }
 
     private void DisablePlayer()

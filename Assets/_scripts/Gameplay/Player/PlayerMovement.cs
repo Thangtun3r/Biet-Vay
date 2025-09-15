@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
 
     [Header("View")]
+    public Cinemachine.CinemachineVirtualCamera vcam; // assign in Inspector
     public Transform cameraView;
     public float maxAngle = 90f;
     public float minAngle = -90f;
@@ -37,11 +38,20 @@ public class PlayerMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
     }
+    
 
     private void LateUpdate()
     {
-         HandleCameraRotation();
+        HandleCameraRotation();
+
+        if (vcam != null)
+        {
+            // keep position coming from Body: Hard Lock To Target (Follow = Head)
+            // but we control rotation because Aim = Do Nothing
+            vcam.transform.rotation = cameraView.rotation;
+        }
     }
+
 
     private void Update()
     {

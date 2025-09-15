@@ -94,6 +94,7 @@ Transform:
   - {fileID: 6682465499132265241}
   - {fileID: 5601653612212845084}
   - {fileID: 6335441230326003117}
+  - {fileID: 4132192700478282307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5997642550760653138
@@ -213,16 +214,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameras:
-  - id: 1
+  - name: 
+    id: 1
     vcam: {fileID: 0}
     basePriority: 0
-  - id: 2
+  - name: 
+    id: 2
     vcam: {fileID: 0}
     basePriority: 0
-  - id: 3
+  - name: 
+    id: 3
     vcam: {fileID: 0}
     basePriority: 0
-  - id: 4
+  - name: 
+    id: 4
     vcam: {fileID: 0}
     basePriority: 0
 --- !u!114 &7570548196240584338
@@ -238,6 +243,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   psudoImagg: {fileID: 0}
+--- !u!1 &2761299218407802006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4132192700478282307}
+  - component: {fileID: 1244365300328259439}
+  m_Layer: 0
+  m_Name: FMOD Oneshot Yarn Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4132192700478282307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2761299218407802006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6717509717384395828}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1244365300328259439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2761299218407802006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2add0b3703b1a8a47a9c3c47abcfe7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundPrefix: event:/Yarn/
 --- !u!1 &3086608956075189025
 GameObject:
   m_ObjectHideFlags: 0

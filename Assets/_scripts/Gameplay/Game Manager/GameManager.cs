@@ -6,6 +6,9 @@ using Yarn.Unity;
 
 public class GameManager : MonoBehaviour
 {
+    //This part is very hard coded, will change later but this is use to flag for the wordpool to clear the pool setting it's isResolved bool 
+    public static event Action OnBietvay;
+    
     // For horse Betting event
     public static event Action<int> OnBetPlaced;
     public static event Action OnRaceStart;
@@ -13,13 +16,21 @@ public class GameManager : MonoBehaviour
     
     //For controlling the UI 
     public static event Action OnExpand;
+    //Control player
     public static event Action OnFreeze;
     public static event Action OnUnFreeze;
+    
+    public static event Action disablePlayerMovement;
+    public static event Action enablePlayerMovement;
+    //Control scene transition
     public static event Action<int> OnTransition;
     public static event Action OnWeather;
+    
+    //Control Cinemachine
     public static event Action<int> OnVMBoost;
     public static event Action OnVMReset;
     
+    //Control Scene Reset
     public static event Action OnResetScene;
     
     public static event Action<int> OnPropEnable;
@@ -31,6 +42,13 @@ public class GameManager : MonoBehaviour
     public static event Action OnPsudoTurnOn;
 
 
+    [YarnCommand("disablePlayer")]
+    public static void DisablePlayer()
+    {
+        disablePlayerMovement?.Invoke();
+    }
+    
+
     [YarnCommand("collapse")]
     public static IEnumerator Collapse()
     {
@@ -39,10 +57,12 @@ public class GameManager : MonoBehaviour
     } 
 
     [YarnCommand("expand")]
-    public static void Expand()
+    public static IEnumerator Expand()
     {
         OnExpand?.Invoke();
         GameTransition.Instance.Expand();
+        yield return new WaitForSeconds(1f);
+        enablePlayerMovement?.Invoke();
     } 
 
     [YarnCommand("spawn")]
@@ -78,15 +98,20 @@ public class GameManager : MonoBehaviour
 
 
     [YarnCommand("VMBoost")]
-    public static void cinemachine(int cinemachineID)
+    public static IEnumerator cinemachine(int cinemachineID)
     {
+        disablePlayerMovement?.Invoke();
         OnVMBoost?.Invoke(cinemachineID);
+        yield return new WaitForSeconds(1.1f);
     }
 
     [YarnCommand("VMReset")]
-    public static void cinemachineReset()
+    public static  IEnumerator cinemachineReset()
     {
+        disablePlayerMovement?.Invoke();
         OnVMReset?.Invoke();
+        yield return new WaitForSeconds(1.1f);
+        enablePlayerMovement?.Invoke();
     }
     
     
@@ -109,8 +134,10 @@ public class GameManager : MonoBehaviour
 
     public static IEnumerator Transition(int transitionID)
     {
+        disablePlayerMovement.Invoke();
         OnTransition?.Invoke(transitionID);
         yield return new WaitForSeconds(1f);
+        enablePlayerMovement.Invoke();
     }
     
     [YarnCommand("prop")]
@@ -154,5 +181,12 @@ public class GameManager : MonoBehaviour
     public static void PayOut()
     {
         OnPayout.Invoke();
+    }
+    
+    
+    [YarnCommand("isBietVay")]
+    public static void IsBietvay()
+    {
+        OnBietvay?.Invoke();
     }
 }

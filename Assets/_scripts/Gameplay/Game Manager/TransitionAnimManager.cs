@@ -22,7 +22,6 @@ public class TransitionAnimManager : MonoBehaviour
     {
     
         TransitionAnimator.SetInteger("AnimID", transitionID);
-        //TransitionAnimator.SetInteger("AnimID", 0);
     }
     
     
