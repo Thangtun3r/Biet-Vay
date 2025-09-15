@@ -23,13 +23,13 @@ public class HorseStartPos : MonoBehaviour
 
     private void OnEnable()
     {
-        RaceResetter.OnRaceReset += HandleRaceReset;
+        AnotherBettingDay.OnRaceReset += HandleRaceReset;
     }
     
     
     private void OnDisable()
     {
-        RaceResetter.OnRaceReset -= HandleRaceReset;
+        AnotherBettingDay.OnRaceReset -= HandleRaceReset;
     }
     
     
