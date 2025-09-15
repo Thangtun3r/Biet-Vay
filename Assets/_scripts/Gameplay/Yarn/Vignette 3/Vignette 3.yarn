@@ -27,7 +27,7 @@ title: BietVay
 <<wait  0.5>>
 <<spawn Home>>
 <<PsudoTurnOn>>
--> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw] /confess/[sw w="nrghgfgfdggo"]to[/sw]/her.
+-> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/her.
     <<PsudoTurnOff>>
     <<jump start>>
 // -> I/have/confessed/to/her.
@@ -48,7 +48,6 @@ title: morningCall
 position: -725,100
 ---
 <<collapse>>
-<<wait 0.5>>
 <<if $laterRejection == true>>
 Mai: Hey Tam, after thinking a lot about it—
 Mai: I truly value our time together and appreciate your feelings.
@@ -83,7 +82,6 @@ title: toPark
 position: -356,48
 ---
 <<collapse>>
-<<wait 0.5>>
 Game: Ready to go?  
 -> Yes/ let's/ go.
     <<spawn Mall>>
@@ -100,8 +98,6 @@ title: park
 position: -336,-191
 ---
 <<collapse>>
-<<wait 0.5>>
-
 -> Did/I/keep/you/waiting?
 Tam: Did I keep you waiting?
 Mai: Not really. Just arrived here for a bit.
@@ -134,7 +130,6 @@ title: ParkChitchat
 ---
 <<VMBoost 1>>
 <<collapse>>
-<<wait 0.5>>
 <<once>>
 -> The cheesecake/ was/ very /delicious!
     Tam: The cheesecake was very delicious!
@@ -192,7 +187,6 @@ Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
         <<set $affection += 1>>
 <<VMReset>>
 <<transition>>
-<<wait  2>>
 <<weather>>
 <<jump insidePark>>
 <<endonce>>
@@ -245,7 +239,6 @@ title: MaiAtGashapon
 ---
 <<VMBoost 2>>
 <<collapse>>
-<<wait 0.5>>
 <<once>>
 Mai: Hey look! Let's try out this one!
 Mai: It's the newest goods from the classic series of Heroes Chunker!
@@ -419,7 +412,6 @@ title: Convenince_store_mai
 <<freeze>>
 <<VMBoost 4>>
 <<collapse>>
-<<wait  0.5>>
 -> Lucky/ that/ we/ stopped/ here.
     Tam: Lucky that we stopped here.
 Mai: Yep—if we’d gone earlier, we’d be soaked.
