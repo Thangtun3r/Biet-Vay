@@ -60,8 +60,6 @@ Mai: So… still friends?
     Tam: Yeah, still friends.
         <<jump BietVay>>
 
-
-
 <<else>>
 <<once>>
 Mai: <shake a=0.5>Heyyy...</shake>
@@ -230,8 +228,13 @@ Mai: Hey, It's evening already, you got any plans?
 
 title: Gashapon
 ---
+<<expand>>
+<<PsudoTurnOff>>
 <<spawn gashapon>>
 <<unfreeze>>
+
+<<isBietVay>>
+
 ===
 
 
@@ -262,26 +265,29 @@ title: GachaMachineGame
 <<collapse>>
 -> *Turning the crank*
     <<roll>>
-    <<if $favoriteGashapon>>
-    Mai: Oh it's my favorite character in the cartoon!
-    ->Well/ you/ can/ have it./
-    Tam: Well you can have it.
-    Mai: Really? Thanks alot!
-    Tam: I have alot at home already.
-    <<set $affection += 111>>
-    <<else>>
-    Mai: A Normal one is fine too!
-    <<endif>>
-    Mai: Wanna try again?
-    -> Sure,/why/not!
-        <<jump GachaMachineGame>>
-    -> Eh,/that's/enough.
-        Mai: Well that's was pretty fun but costly aswell.
-        Mai: I thought when we have a job it will be cheaper
-        Mai: But it's actually more expensive.
-        -> Yeh,/got to/pay for/ our own /gashapon now./
-        Tam: Yeh, got to pay for our own gashapon now..
-        <<jump Convenience_store_transition>>
+    <<wait  0.5>>
+
+    
+    // <<if $favoriteGashapon>>
+    // Mai: Oh it's my favorite character in the cartoon!
+    // ->Well/ you/ can/ have it./
+    // Tam: Well you can have it.
+    // Mai: Really? Thanks alot!
+    // Tam: I have alot at home already.
+    // <<set $affection += 111>>
+    // <<else>>
+    // Mai: A Normal one is fine too!
+    // <<endif>>
+    // Mai: Wanna try again?
+    // -> Sure,/why/not!
+    //     <<jump GachaMachineGame>>
+    // -> Eh,/that's/enough.
+    //     Mai: Well that's was pretty fun but costly aswell.
+    //     Mai: I thought when we have a job it will be cheaper
+    //     Mai: But it's actually more expensive.
+    //     -> Yeh,/got to/pay for/ our own /gashapon now./
+    //     Tam: Yeh, got to pay for our own gashapon now..
+    //     <<jump Convenience_store_transition>>
         
                 
 

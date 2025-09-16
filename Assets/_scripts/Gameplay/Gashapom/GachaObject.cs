@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening; // <-- add this for DOTween
 
 public class GachaObject : MonoBehaviour
 {
@@ -30,7 +31,14 @@ public class GachaObject : MonoBehaviour
         // Reset transform under parent
         currentInstance.transform.localPosition = Vector3.zero;
         currentInstance.transform.localRotation = Quaternion.identity;
-        currentInstance.transform.localScale    = Vector3.one;
+
+        // Start at scale 0
+        currentInstance.transform.localScale = Vector3.zero;
+
+        // Animate to full size (Vector3.one = initial scale)
+        currentInstance.transform
+            .DOScale(Vector3.one, 0.5f) // duration 0.5s
+            .SetEase(Ease.OutBack);     // nice "pop" effect
 
         currentName = data.displayName;
     }
