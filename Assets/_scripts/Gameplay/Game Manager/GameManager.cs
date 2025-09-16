@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     // deltete after testing
     public static event Action OnPsudoTurnOff;
     public static event Action OnPsudoTurnOn;
+    
+    //Event for gacha machine
+    public static event Action OnRollGacha;
 
 
     [YarnCommand("disablePlayer")]
@@ -186,6 +189,14 @@ public class GameManager : MonoBehaviour
     public static void PayOut()
     {
         OnPayout.Invoke();
+    }
+    
+    
+    // This part is to control the gacha machine
+    [YarnCommand("roll")]
+    public static void HandleRoll()
+    {
+        OnRollGacha?.Invoke();
     }
     
 
