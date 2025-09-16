@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 08f2e1d00a0d250479b282f219802681
+guid: a99ba29e45d3b7e48aba0f323eedbfce
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,28 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: 602cb2a94669a854d9839fbf176fb762, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass.001
-    second: {fileID: 2100000, guid: e27f0c0b8c1cf01419c5080543025116, type: 2}
+      name: Journalist
+    second: {fileID: 2100000, guid: d4ed2dfe047a760429911f4b8f73a152, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material.001
-    second: {fileID: 2100000, guid: 58fe95e7277d4c3498f59a882d83d00a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Palette
-    second: {fileID: 2100000, guid: 4cd6012f4c97e514e81aaaffe0cb5e72, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Palette.001
-    second: {fileID: 2100000, guid: 088736318d3a4044c93cf3182fb10495, type: 2}
+    second: {fileID: 2100000, guid: 6df83da72bb1216459cfb0079611199e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

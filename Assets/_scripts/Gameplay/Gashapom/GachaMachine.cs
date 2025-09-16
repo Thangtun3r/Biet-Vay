@@ -9,30 +9,32 @@ public class GachaMachine : MonoBehaviour
     [SerializeField] private List<GachaObjectSO> pool = new();
 
     [SerializeField] private bool rollOnStart = true;
+    
+    public Animator gachaMachineAnimator;
+
+    private void OnEnable()
+    {
+        GameManager.OnRollGacha += Roll;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnRollGacha -= Roll;
+    }
 
     private void Start()
     {
         if (rollOnStart) Roll();
     }
-
-    private void Update()
-    {
-        // Press R to roll
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Roll();
-        }
-    }
-
-    [ContextMenu("Roll Now")]
+    
+    
+    
     public void Roll()
     {
-        if (pool == null || pool.Count == 0)
-        {
-            Debug.LogWarning("GachaMachine: Pool is empty.");
-            return;
-        }
-
+        gachaMachineAnimator.SetTrigger("Roll");
+    }
+    
+    public void HandleDisplayGachaItem()
+    {
         var pick = pool[UnityEngine.Random.Range(0, pool.Count)];
         OnGachaRolled?.Invoke(pick);
     }
