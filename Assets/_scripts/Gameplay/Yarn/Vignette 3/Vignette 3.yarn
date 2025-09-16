@@ -262,7 +262,6 @@ title: GachaMachineGame
 <<collapse>>
 -> *Turning the crank*
     <<roll>>
-    <<wait  0.5>>
     <<if $favoriteGashapon>>
     Mai: Oh it's my favorite character in the cartoon!
     ->Well/ you/ can/ have it./
