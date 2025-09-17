@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Exit
+    second: {fileID: 2100000, guid: 39b03de23088d684ba52066d82a84c7b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GashaponSubWall
+    second: {fileID: 2100000, guid: 37254efebc0c7d3498535d091c393098, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: 602cb2a94669a854d9839fbf176fb762, type: 2}
   - first:
@@ -29,6 +39,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Palette.001
     second: {fileID: 2100000, guid: 088736318d3a4044c93cf3182fb10495, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Palette.002
+    second: {fileID: 2100000, guid: d347117bb0cb8b44c87b8cd4455b8974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gashaponWall
+    second: {fileID: 2100000, guid: 51e491aa51938594f8ef99af33ff7a70, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
