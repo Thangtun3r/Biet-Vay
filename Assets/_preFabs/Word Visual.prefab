@@ -481,10 +481,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canFollowMouse: 0
   followSpeed: 22.66
-  stopRadius: 10
-  referenceTransform: {fileID: 6376323234603043194}
-  shakeStrength: 10
-  shakeDuration: 0.5
 --- !u!1 &4626605331339697412
 GameObject:
   m_ObjectHideFlags: 0

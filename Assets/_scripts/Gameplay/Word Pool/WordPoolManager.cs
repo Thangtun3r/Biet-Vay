@@ -283,6 +283,12 @@ public class WordPoolManager : MonoBehaviour
             {
                 wordMarkup.isFriction = true;
             }
+            
+            ,
+            ["fade"] = (wordMarkup, attr) =>
+            {
+                wordMarkup.isFade = true;
+            }
         };
     
 

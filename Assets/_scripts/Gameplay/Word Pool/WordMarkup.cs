@@ -21,7 +21,7 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
     
     public FrictionWord frictionWord;  // Drag the FrictionWord object in the inspector
 
-    
+    public FadeWord fadeWord;
     
     
     public static event Action OnBietVay;
@@ -73,7 +73,22 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
         _wordID = GetComponent<WordID>();
         _originalWord = _wordID.word;
         frictionWord = GetComponent<FrictionWord>();
+        fadeWord = GetComponent<FadeWord>();
         UpdateFrictionState();
+    }
+
+
+    private void Update()
+    {
+        UpdateFadeLogic();
+    }
+
+    private void UpdateFadeLogic()
+    {
+        if (frictionWord != null)
+        {
+            fadeWord.isFadeWord = isFade;
+        }
     }
 
     
