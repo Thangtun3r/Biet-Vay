@@ -2,12 +2,12 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI; // <-- needed for Image
+using UnityEngine.UI;
 
 public class WordVisualInteraction : MonoBehaviour
 {
     [SerializeField] private float defaultBaseY = -9f;
-    
+
     [Header("Target")]
     public RectTransform ButtonRectTransform;
     public RectTransform WrapperButtonRect;
@@ -23,12 +23,9 @@ public class WordVisualInteraction : MonoBehaviour
     private bool isHovering;
     private Tween currentTween;
 
-    // cache image reference
     private Image buttonShadowImage;
     public static event Action OnDragging;
-    
 
-    // --- Lifecycle ---
     private void Awake()
     {
         if (ButtonRectTransform == null)
@@ -67,7 +64,6 @@ public class WordVisualInteraction : MonoBehaviour
         }
     }
 
-    // --- Public hooks ---
     public void HandleHoverVisual(PointerEventData _)
     {
         if (ButtonRectTransform == null) return;
@@ -148,12 +144,23 @@ public class WordVisualInteraction : MonoBehaviour
             });
     }
 
-    private void KillCurrentTween()
+    // Stop any active tween
+    public void KillCurrentTween()
     {
         if (currentTween != null)
         {
             currentTween.Kill();
             currentTween = null;
+        }
+    }
+
+    // Reset position back to the base Y
+    public void ResetToBaseY()
+    {
+        if (ButtonRectTransform != null)
+        {
+            ButtonRectTransform.anchoredPosition = new Vector2(
+                ButtonRectTransform.anchoredPosition.x, baseY);
         }
     }
 }

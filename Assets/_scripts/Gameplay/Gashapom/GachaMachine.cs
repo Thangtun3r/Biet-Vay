@@ -9,13 +9,15 @@ public class GachaMachine : MonoBehaviour
     [SerializeField] private List<GachaObjectSO> pool = new();
 
     [SerializeField] private bool rollOnStart = true;
-    
+
     public Animator gachaMachineAnimator;
+    
 
     private void OnEnable()
     {
         GameManager.OnRollGacha += Roll;
     }
+
     private void OnDisable()
     {
         GameManager.OnRollGacha -= Roll;
@@ -25,17 +27,16 @@ public class GachaMachine : MonoBehaviour
     {
         if (rollOnStart) Roll();
     }
-    
-    
-    
+
     public void Roll()
     {
         gachaMachineAnimator.SetTrigger("Roll");
     }
-    
+
     public void HandleDisplayGachaItem()
     {
         var pick = pool[UnityEngine.Random.Range(0, pool.Count)];
         OnGachaRolled?.Invoke(pick);
     }
+    
 }

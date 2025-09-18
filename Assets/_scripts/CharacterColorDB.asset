@@ -33,3 +33,5 @@ MonoBehaviour:
     hexColor: '#A294F2'
   - characterName: (Phone ringing)
     hexColor: '#DCDE62'
+  - characterName: Mom
+    hexColor: '#ec4887'

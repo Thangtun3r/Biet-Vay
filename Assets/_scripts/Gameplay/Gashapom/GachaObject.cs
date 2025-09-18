@@ -1,8 +1,12 @@
 using UnityEngine;
-using DG.Tweening; // <-- add this for DOTween
+using DG.Tweening;
+using Yarn.Unity; // <-- add this for DOTween
 
 public class GachaObject : MonoBehaviour
 {
+    
+    public DialogueRunner dialogueRunner;
+    
     [Header("Where to spawn the selected prefab")]
     [SerializeField] private Transform spawnRoot;  // leave null = use this.transform
 
@@ -40,6 +44,22 @@ public class GachaObject : MonoBehaviour
             .DOScale(Vector3.one, 0.5f) // duration 0.5s
             .SetEase(Ease.OutBack);     // nice "pop" effect
 
+        // Set the current name for reference
         currentName = data.displayName;
+
+        // Check if the displayed gacha item is the favorite one
+        CheckForFavoriteGashapon(data);
+    }
+    
+    private void CheckForFavoriteGashapon(GachaObjectSO data)
+    {
+        if (data.isFavorite)
+        {
+            dialogueRunner.VariableStorage.SetValue("$favoriteGashapon", true);
+        }
+        else
+        {
+            dialogueRunner.VariableStorage.SetValue("$favoriteGashapon", false);
+        }
     }
 }

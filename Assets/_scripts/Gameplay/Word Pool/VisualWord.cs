@@ -55,6 +55,8 @@ public class VisualWord : MonoBehaviour
         if (text != null)
         {
             var wordID = logicWordObject.GetComponent<WordID>();
+            var LogicToVisulBridge = logicWordObject.GetComponent<VisualToLogic>();
+            LogicToVisulBridge.SetVisualWord(this.gameObject);
             if (wordID != null)
             {
                 text.text = wordID.word;
