@@ -23,6 +23,11 @@ public class DebugTool : MonoBehaviour
         {
             ResetScene();
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            BackToOne();
+        }
     }
 
     private void ResetScene()
@@ -39,5 +44,10 @@ public class DebugTool : MonoBehaviour
         // 3. Force cleanup of destroyed objects/resources
         Resources.UnloadUnusedAssets();
         GC.Collect();
+    }
+
+    private void BackToOne()
+    {
+        SceneManager.LoadScene("Vignette 1");
     }
 }

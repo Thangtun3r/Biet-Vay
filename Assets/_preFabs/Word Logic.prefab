@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 3016013308229762764}
   - component: {fileID: 2722496367998514348}
   - component: {fileID: 6921715558822060125}
+  - component: {fileID: 8959692582464166274}
   m_Layer: 5
   m_Name: Word Logic
   m_TagString: Word
@@ -429,6 +430,8 @@ MonoBehaviour:
   isFade: 0
   _originalWord: 
   _words: {fileID: 7893412346723646125}
+  frictionWord: {fileID: 0}
+  fadeWord: {fileID: 0}
 --- !u!114 &3016013308229762764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,6 +478,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isFriction: 0
   _words: {fileID: 0}
+--- !u!114 &8959692582464166274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3df9d708131723646b69380a87f0d916, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFadeWord: 0
+  _words: {fileID: 7893412346723646125}
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0
