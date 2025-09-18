@@ -12,9 +12,15 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
     public bool isBietVay = false;
     public bool isVisual = false;
     
+    public bool isFriction = false;
+    public bool isFade = false;
+    
     private WordID _wordID;
     public string _originalWord;
     public Words _words;
+    
+    public FrictionWord frictionWord;  // Drag the FrictionWord object in the inspector
+
     
     
     
@@ -27,7 +33,7 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
         WordMarkup.OnBietVay += Switch;
         WordMarkup.OnReleaseBietVay += ResetWord;
        
-        
+        UpdateFrictionState();
        
     }
 
@@ -66,8 +72,12 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
     {
         _wordID = GetComponent<WordID>();
         _originalWord = _wordID.word;
+        frictionWord = GetComponent<FrictionWord>();
+        UpdateFrictionState();
     }
 
+    
+    
     
 
     private void Switch()
@@ -83,5 +93,20 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
     {
         if (_wordID == null || string.IsNullOrEmpty(_originalWord)) return;
         _wordID.AssignVisualWord(_originalWord);
+    }
+    
+    
+    //friction word logic
+    private void UpdateFrictionState()
+    {
+        if (frictionWord != null)
+        {
+            frictionWord.isFriction = isFriction;
+        }
+    }
+    public void SetFriction(bool value)
+    {
+        isFriction = value;
+        UpdateFrictionState(); // Make sure to sync the state
     }
 }

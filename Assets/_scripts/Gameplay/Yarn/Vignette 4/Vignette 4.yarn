@@ -1,0 +1,147 @@
+﻿
+title: setup
+---
+<<declare $hasBackpack = false>>
+<<declare $loopCount = 0>>
+
+===
+
+
+
+
+title: start
+---
+<<collapse>>
+<<disablePlayer>>
+<<PsudoTurnOn>>
+-> [bv]Biet vay,[/bv]/I/ [sw w="should've said"] didn't say [/sw]/love you/to/my mom/[sw w="more."]enough.[/sw]
+    <<isBietVay>>
+    <<PsudoTurnOff>>
+
+    <<expand>>
+    <<if $loopCount == 0>>
+    <<jump GoToSchool>>
+    <<elseif $loopCount == 1>>
+    <<jump GoToDate>>
+    <<elseif $loopCount == 2>>
+    <<jump Office>>
+    <<elseif $loopCount == 3>>
+    <<jump Funeral>>
+    <<endif>>
+-> I/didn't say/love you/to/my mom/enough.
+    <<resolve>>
+===
+
+
+
+
+
+title: GoToSchool
+---
+<<spawn Home1>>
+<<wait  3>>
+<<VMBoost 1>>
+<<collapse>>
+Mom: Hey
+Mom: Remember to take your backpack.
+Mom: You always forget it
+Mom: Also to stay inside until dad come and get you Mai.
+-> I/know/Mom.
+Mai: I know Mom.
+
+Mom: Oh. Also today is kinda breezing you should bring your jacket.
+Mom: Tell Dad to buy for me 3kg of meat too.
+Mom: Remember to check if you bring your pencil yet and also did you remember to refill the ink in the pen yet?
+-> Already Mom,/I'm/all good.
+Mai: Already Mom, I'm all good.
+<<VMReset>>
+<<expand>>
+
+===
+
+title: BackpackTaken
+---
+<<set $hasBackpack = true>>
+
+===
+
+
+title: WalkOutside
+---
+<<collapse>>
+<<if $hasBackpack == false>>
+Mai: (How can I study if I didn't bring my backpack?)
+<<else>>
+-> Mom,/I'm/going to school/now.
+Mai: Mom, I'm going to school now.
+Mom: Take care!
+<<endif>>
+<<expand>>
+<<resetScene>>
+===
+
+
+title: GoToDate
+---
+<<spawn Home2>>
+<<wait  3>>
+<<VMBoost 2>>
+<<collapse>>
+Mom: Where are you going today?
+-> Just/meet/a/friend.
+Mai: I’m just meeting a friend.
+Mai: He’s an old high school friend.
+Mom: Oh, a boy? I guess you’re a university student now.
+Mai: No, no, he’s just a friend.
+Mom: Why don’t you bring this durian cheesecake with you?
+Mai: Oh, we can eat it while hanging out.
+-> Thanks/mom.
+Mai: Thanks Mom.
+<<VMReset>>
+<<expand>>
+===
+
+title: WalkOutsideDate
+---
+-> Mom,/I'm/going now!/
+Mai: Mom, I'm going now!
+Mom: Take care!
+===
+
+
+title: Office
+---
+<<expand>>
+<<PsudoTurnOff>>
+<<spawn office>>
+<<freeze>>
+<<wait 4>>
+<<collapse>>
+
+(Phone ringing): .....
+(Phone ringing): ........
+(Phone ringing): ..........
+-> What's/going/on/, Mom?
+Mai: What's going on, Mom?
+Mom: Can you come home this Tet?
+Mom: I know you have alot of work in the city.
+Mom: But it would be great if you can come home this year.
+Mom: I know you're busy with work, but—
+Mom: Nevermind, just don't eat noodles at night. 
+-> I/Know/ Mom.
+Mai: I know Mom. I'm not a child anymore.
+Mom: Also, don’t eat out. I’ll send you some food we grew here.
+-> I/Know/,thanks Mom.
+Mai: I know, thanks Mom.
+Mai: I’ve got to work now.
+-> Take /care/, Mom.
+Mai: Take care, Mom. I'll call you again later. 
+<<resetScene>>
+===
+
+title: funeral
+---
+Dad: Mai, please come home.
+
+
+===

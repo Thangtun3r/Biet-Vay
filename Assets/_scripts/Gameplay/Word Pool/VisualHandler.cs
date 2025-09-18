@@ -29,7 +29,9 @@ public class VisualHandler : MonoBehaviour
 
         var logicRoot = logicWord.transform;
         var words = logicWord.GetComponent<Words>();
-
+        
+   
+        
         foreach (Transform child in logicRoot)
         {
             GameObject visObj = visualPooling.GetPooledObject();

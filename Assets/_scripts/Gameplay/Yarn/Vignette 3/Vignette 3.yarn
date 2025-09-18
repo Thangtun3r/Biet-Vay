@@ -21,27 +21,26 @@ title: Setup
 
 ===
 
-title: BietVay
+title: start
 ---
 <<collapse>>
-<<wait  0.5>>
-<<spawn Home>>
+<<disablePlayer>>
 <<PsudoTurnOn>>
--> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/her.
+-> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/[fr]her.[/fr]
+    <<isBietVay>>
     <<PsudoTurnOff>>
-    <<jump start>>
-// -> I/have/confessed/to/her.
-//     Tam: I confessed to her 
-//     Tam: She didn’t feel the same, but that’s okay.
-//     Tam: We’re still friends — and that matters to me.
-//     <<wait  1>>
-//     Tam: Oh hey, Mai. Long time no see.
-//     Mai: Woah, Tam! You look different.
-//     Mai: It feels like ages since we last hung out.
+    <<spawn Home>>
+    <<jump Home>>
+-> I/have/confessed/to/her.
+    <<resolve>>
+===
+
+title: Home
+---
+<<expand>>
 
 
 ===
-
 
 
 title: morningCall
@@ -195,7 +194,7 @@ Mai: Yeh, very chill indeed.
 Mai: It's was so long since I am this relaxed.
 Mai: Hey, It's evening already, you got any plans?
 
-        -> How/ about/ we/ go/ to/ play some gashapon?
+        -> Let's/ go/to/the gashapen!
             Tam: How about we go to play some gashapon? 
             Mai: Okay. That's sound fun!
             Tam: Let's hit the Mall!
@@ -204,26 +203,6 @@ Mai: Hey, It's evening already, you got any plans?
             <<expand>>
             <<wait  2>>
             <<jump Gashapon>>
-        -> How/ about/ we/ go/ to/ the cinema?
-            Tam: How about we go to the cinema?  
-            Mai: Sureee.
-            <<VMReset>>
-            <<transition>>
-            <<wait  2>>
-            <<jump Cinema>>
-        -> How/ about/ we/ go/ to/ eat some street food?
-            Tam: How about we go to eat some street food?
-            Mai: Okay, it's your call.
-            Tam: Let's go for <wiggle a=0.5>the usual</wiggle>
-            Mai: The usual?
-            Tam: You will know when we get there.
-            <<VMReset>>
-            <<transition>>
-            <<wait  2>>
-            <<jump StreetVendor>>
-
-
-
 ===
 
 title: Gashapon
@@ -244,11 +223,11 @@ title: MaiAtGashapon
 <<collapse>>
 <<once>>
 Mai: Hey look! Let's try out this one!
-Mai: It's the newest goods from the classic series of Heroes Chunker!
-Mai: And I heard that the special figure is super limited in stock
-Tam: Really!?! Well we must get the special one.
--> Let/me/show/you/my/luck.
-Tam: Let me show you my luck.
+Mai: It’s the gacha with cats and ID cards, something like that.
+Mai: Superrr cool, they even make a parody card of Severence.
+Tam: Really!?! Well we better get the special one.
+-> Aight,/watch/this.
+Tam: Aight, watch this.
 Mai: Ok, the stage is all yours.
 <<else>>
 Mai: What do you waiting for. Show me your SSR luck!
@@ -263,35 +242,130 @@ title: GachaMachineGame
 ---
 <<VMBoost 3>>
 <<collapse>>
--> *Turning the crank*
+-> *Turn/ the crank*
     <<roll>>
-    <<wait  0.5>>
-
-    
-    // <<if $favoriteGashapon>>
-    // Mai: Oh it's my favorite character in the cartoon!
-    // ->Well/ you/ can/ have it./
-    // Tam: Well you can have it.
-    // Mai: Really? Thanks alot!
-    // Tam: I have alot at home already.
-    // <<set $affection += 111>>
-    // <<else>>
-    // Mai: A Normal one is fine too!
-    // <<endif>>
-    // Mai: Wanna try again?
-    // -> Sure,/why/not!
-    //     <<jump GachaMachineGame>>
-    // -> Eh,/that's/enough.
-    //     Mai: Well that's was pretty fun but costly aswell.
-    //     Mai: I thought when we have a job it will be cheaper
-    //     Mai: But it's actually more expensive.
-    //     -> Yeh,/got to/pay for/ our own /gashapon now./
-    //     Tam: Yeh, got to pay for our own gashapon now..
-    //     <<jump Convenience_store_transition>>
+    <<wait  5>>
+    <<if $favoriteGashapon>>
+    Mai: Oh it's McLovin parody cat!
+    Mai: It's the limitied oneee.
+    ->Well/ you/ can/ have it./
+    Tam: Well you can have it.
+    Mai: Really? Thanks alot!
+    Tam: Yep yep.
+    Mai: Let's play a few more.
+    <<set $affection += 10>>
+    <<else>>
+    Mai: The card looks very nice!
+    Mai: Let's play a few more till we get the special one!
+    <<endif>>
+    //add transition
+    <<transition 2>>
+    Mai: Well, that was fun but expesive as hell.
+    -> Yeh,/but/worth it/right?
+    Tam: Yeh, but worth it, right?
+    Mai: Yeh maybe haha.
+    <<jump Convenience_store_transition>>
         
                 
 
 ===
+
+
+
+
+title: Convenience_store_transition
+---
+Mai: Looks like it’s going to rain soon. We should head home.  
+Tam: Ah, wait.  
+-> How about/ we/ swing/ by /the convenience store/
+Tam: How about we swing by the convenience store. To wait out the rain?
+
+<<if $affection >= 3 >>
+    Mai: Oh, that’s a good idea.  
+    Mai: I need to buy some stuff anyway.  
+    -> Alright/ let’s/ go then.
+        <<VMReset>>
+        <<expand>>
+        <<transition 2>>
+        <<jump Convenience_store>>      
+
+<<else>>
+    <<jump suddenGoHome>>
+
+<<endif>>
+===
+
+
+title: Convenience_store
+---
+<<freeze>>
+<<spawn ConvenienceStore>>
+    
+===
+
+title: Convenince_store_mai
+---
+<<freeze>>
+<<VMBoost 4>>
+<<collapse>>
+-> Lucky/ we/ stopped/ here.
+    Tam: Lucky we stopped here.
+Mai: Yep—if we’d gone earlier, we’d be soaked.
+Mai: So...real talk! Are you interested in anyone in your class?
+-> WHAT!/ why/ so/ sudden?
+    Tam: <shake a=0.5>WHAT!</shake> Why so sudden?
+    Tam: My class is all male, so… yeah.
+Mai: I can help you find someone! Let me be your wingman.
+Mai: And maybe you can help me find someone too.
+-> No,/ I’m/ good.
+    Tam: No, I’m good.
+Mai: Aww, come on. I could introduce you to Linh she’s really nice.
+Mai: Or Thảo from my club. She loves games!
+-> How about/ the girl/ named/ Mai?
+    Tam: How about the girl named Mai?
+    Mai: ...
+    Mai: Huh?
+    Mai: <shake a=0.5>Huhhhhh?</shake>
+    -> Honestly,/ [fr]I like you.[/fr]
+        Tam: Honestly, I like you.
+        Mai: Whoa—hold up. This is very sudden.
+        -> I’ve/ had/ a crush/on you/ since/ high school.
+            Tam: I’ve had a crush on you since high school.
+            Mai: ...
+            Mai: I thought we were just friends.
+            Mai: Tam, I truly appreciate your feelings.
+
+<<if $affection > 5>>
+    Mai: It’s sudden… Let me think about it, okay? I’ll text you.
+    Mai: Today was fun. Thanks for hanging out with me.
+        <<VMReset>>
+        <<spawn Home>>
+
+<<elseif $affection >= 3>>
+    Mai: And I truly value our friendship.
+    Mai: And I don't want to break it.
+    Mai: So...I hope we can still be friends. Still friends?
+    -> Sure./ I/ understand.
+        Tam: Sure, I understand.
+    
+<<else>>
+    <<jump suddenGoHome>>
+<<endif>>
+===
+
+title: suddenGoHome
+---
+Mai: I have to go home now.
+Tam: What? Why?
+Mai: Sorry, Tam. My mom texted—she needs my help.
+Mai: Maybe we can hang out another time?
+-> Sure,/ I/ understand.
+    Tam: Sure, I understand.
+    <<jump BietVay>>
+
+===
+
+
 
 
 title: Cinema
@@ -379,117 +453,4 @@ Mai: Thanks for treating me.
 Tam: It's what gentlemen do.
 <<jump Convenience_store_transition>>
 
-===
-
-title: Convenience_store_transition
----
-Mai: Looks like it’s going to rain soon. We should head home.  
-Tam: Ah, wait.  
--> How/ about we/ swing/ by /the convenience store/
-Tam: How about we swing by the convenience store. To wait out the rain?
-
-<<if $affection >= 3 >>
-    Mai: Oh, that’s a good idea.  
-    Mai: I need to buy some stuff anyway.  
-    -> Alright/ let’s/ go then.
-        <<expand>>
-        <<VMReset>>
-        <<transition>>
-        <<wait  2>>
-        <<jump Convenience_store>>      
-
-<<else>>
-    <<jump suddenGoHome>>
-
-<<endif>>
-===
-
-
-title: Convenience_store
----
-<<freeze>>
-<<spawn ConvenienceStore>>
-    
-===
-
-title: Convenince_store_mai
----
-<<freeze>>
-<<VMBoost 4>>
-<<collapse>>
--> Lucky/ that/ we/ stopped/ here.
-    Tam: Lucky that we stopped here.
-Mai: Yep—if we’d gone earlier, we’d be soaked.
-Mai: So...real talk! Are you interested in anyone in your class?
--> WHAT!/ why/ so/ sudden?
-    Tam: <shake a=0.5>WHAT!</shake> Why so sudden?
-    Tam: My class is all male, so… yeah.
-Mai: I can help you find someone! Let me be your wingman.
-Mai: And maybe you can help me find someone too.
--> No,/ I’m/ good.
-    Tam: No, I’m good.
-Mai: Aww, come on. I could introduce you to Linh she’s really nice.
-Mai: Or Thảo from my club. She loves games!
--> How about/ the girl/ named/ Mai?
-    Tam: How about the girl named Mai?
-    Mai: ...
-    Mai: Huh?
-    Mai: <shake a=0.5>Huhhhhh?</shake>
-    -> Honestly,/ I/ like/ you.
-        Tam: Honestly, I like you.
-        Mai: Whoa—hold up. This is very sudden.
-        -> I’ve/ had/ a crush/on you/ since/ high school.
-            Tam: I’ve had a crush on you since high school.
-            Mai: ...
-            Mai: I thought we were just friends.
-            Mai: Tam, I truly appreciate your feelings.
-
-<<if $affection > 5>>
-    Mai: It’s sudden… Let me think about it, okay? I’ll text you.
-    Mai: Today was fun. Thanks for hanging out with me.
-        <<VMReset>>
-        <<spawn Home>>
-
-<<elseif $affection >= 3>>
-    Mai: And I truly value our friendship.
-    Mai: And I don't want to break it.
-    Mai: So...I hope we can still be friends. Still friends?
-    -> Sure./ I/ understand.
-        Tam: Sure, I understand.
-    
-<<else>>
-    <<jump suddenGoHome>>
-<<endif>>
-
-
-
-
-
-
-title: gohome
----
-
-
-title: startTransition
----
-
-===
-
-title: start
-position: 20,20
----
-
-
-<<unfreeze>>
-<<expand>>
-===
-title: suddenGoHome
----
-Mai: I have to go home now.
-Tam: What? Why?
-Mai: Sorry, Tam. My mom texted—she needs my help.
-Mai: Maybe we can hang out another time?
--> Sure./ I/ understand.
-    Tam: Sure, I understand.
-    <<jump BietVay>>
 ===

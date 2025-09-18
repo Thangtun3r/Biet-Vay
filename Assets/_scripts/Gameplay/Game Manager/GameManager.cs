@@ -199,5 +199,11 @@ public class GameManager : MonoBehaviour
         OnRollGacha?.Invoke();
     }
     
+    
+    [YarnCommand("resetScene")]
+    public static void ResetScene()
+    {
+        OnResetScene?.Invoke();
+    }
 
 }

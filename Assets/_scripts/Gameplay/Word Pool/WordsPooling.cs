@@ -64,7 +64,7 @@ public class WordsPooling : MonoBehaviour
     {
         foreach (GameObject obj in _wordPool)
         {
-            if (!obj.activeInHierarchy)
+            if (obj != null && !obj.activeInHierarchy)
             {
                 obj.SetActive(true);
                 obj.transform.SetParent(transform, false);
@@ -82,7 +82,7 @@ public class WordsPooling : MonoBehaviour
         if(isResolved) return;
         foreach (var obj in _wordPool)
         {
-            if (obj.activeInHierarchy)
+            if (obj != null && obj.activeInHierarchy)
             {
                 obj.SetActive(false);
                 obj.transform.SetParent(transform, false);

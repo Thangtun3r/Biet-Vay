@@ -7,6 +7,16 @@ public class DebugTool : MonoBehaviour
 {
     [SerializeField] private DialogueRunner dialogueRunner; // assign in Inspector if you use Yarn
 
+    private void OnEnable()
+    {
+        GameManager.OnResetScene += ResetScene;
+    }
+    
+    private void OnDisable()
+    {
+        GameManager.OnResetScene -= ResetScene;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

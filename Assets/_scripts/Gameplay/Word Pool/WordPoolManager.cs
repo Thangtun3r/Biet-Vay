@@ -277,6 +277,12 @@ public class WordPoolManager : MonoBehaviour
             {
                     wordMarkup.isBietVay = true;
             }
+            
+            ,
+            ["fr"] = (wordMarkup, attr) =>
+            {
+                wordMarkup.isFriction = true;
+            }
         };
     
 
