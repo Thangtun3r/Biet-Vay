@@ -33,8 +33,6 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
         WordMarkup.OnBietVay += Switch;
         WordMarkup.OnReleaseBietVay += ResetWord;
        
-        UpdateFrictionState();
-       
     }
 
     private void OnDisable()
@@ -74,13 +72,13 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
         _originalWord = _wordID.word;
         frictionWord = GetComponent<FrictionWord>();
         fadeWord = GetComponent<FadeWord>();
-        UpdateFrictionState();
     }
 
 
     private void Update()
     {
         UpdateFadeLogic();
+        UpdateFrictionState();
     }
 
     private void UpdateFadeLogic()

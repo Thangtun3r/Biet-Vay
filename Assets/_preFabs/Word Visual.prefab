@@ -479,8 +479,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9b788fc8c3bfad488bfe4f1f06e3a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  visualButtonWrapper: {fileID: 5537709318452404726}
   canFollowMouse: 0
   followSpeed: 22.66
+  thresholdDis: 50
 --- !u!1 &4626605331339697412
 GameObject:
   m_ObjectHideFlags: 0
