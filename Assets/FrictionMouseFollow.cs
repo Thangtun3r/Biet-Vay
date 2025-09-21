@@ -1,45 +1,108 @@
+using System;
 using UnityEngine;
+using DG.Tweening; // for ClickShake
 
 public class FrictionMouseFollow : MonoBehaviour
 {
-    public bool canFollowMouse = false; // Control to start/stop following the mouse
-    public float followSpeed = 5f; // Speed at which the object will follow the mouse
+    [Header("Follow")] public RectTransform visualButtonWrapper;
+    [Min(0f)] public float followSpeed = 5f;
+    
+    [Header("Distance Threshold")]
+    [Min(0f)] public float thresholdDis = 100f;   // UI units (resolution-independent)
+    public float currentDistance { get; private set; }
 
+    private VisualWord _visualWord;
     private RectTransform rectTransform;
-    private WordVisualInteraction wordVisualInteraction;
+
+    // Snapshot (in UI local space)
+    private bool _hasSnapshot = false;
+    private Vector2 _snapshotAnchoredPos;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        wordVisualInteraction = GetComponent<WordVisualInteraction>(); // Reference to WordVisualInteraction
+        _visualWord = GetComponent<VisualWord>();
     }
+    
+    
 
-    void Update()
+
+    public void FollowMouse()
     {
-        if (canFollowMouse)
+        if (_visualWord) _visualWord.enabled = false;
+
+        // Take snapshot once when follow starts
+        if (!_hasSnapshot)
         {
-            FollowMouse();
+            _hasSnapshot = true;
+            _snapshotAnchoredPos = rectTransform.anchoredPosition;
+        }
+
+        // Convert mouse position to local space
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                rectTransform.parent as RectTransform,
+                Input.mousePosition,
+                null, // Overlay canvas
+                out var localPoint))
+        {
+            // Calculate distance from snapshot
+            currentDistance = Vector2.Distance(rectTransform.anchoredPosition, _snapshotAnchoredPos);
+
+            // Base follow target = mouse position
+            Vector2 target = localPoint;
+
+            // If distance exceeds threshold, add offset
+            if (currentDistance > thresholdDis)
+            {
+                float exceed = currentDistance - thresholdDis;
+
+                // Direction from snapshot to mouse
+                Vector2 dir = (localPoint - _snapshotAnchoredPos).normalized;
+
+                // Offset grows with exceed (tweak multiplier as you like)
+                Vector2 offset = dir * exceed * 1f;
+
+                target -= offset;
+                DragShake();
+            }
+
+            // Smoothly move toward target
+            rectTransform.anchoredPosition = Vector2.Lerp(
+                rectTransform.anchoredPosition,
+                target,
+                followSpeed * Time.deltaTime
+            );
         }
     }
 
-    private void FollowMouse()
-    {
-        // Stop any ongoing tweens and reset the position to base Y
-        if (wordVisualInteraction != null)
-        {
-            wordVisualInteraction.KillCurrentTween(); // Stop current tweens
-            wordVisualInteraction.ResetToBaseY(); // Reset position
-        }
-
-        // Get the mouse position in screen space
-        Vector2 mousePosition = Input.mousePosition;
-
-        // Smoothly move the object towards the mouse position
-        rectTransform.position = Vector2.Lerp(rectTransform.position, mousePosition, followSpeed * Time.deltaTime);
-    }
 
     public void StopFollowMouse()
     {
-        canFollowMouse = false;
+        if (_visualWord) _visualWord.enabled = true;
+
+        // Reset snapshot to current
+        _hasSnapshot = false;
+        _snapshotAnchoredPos = rectTransform.anchoredPosition;
+
+        // Distance resets (optional: keep last value if you prefer)
+        currentDistance = 0f;
+    }
+
+    public void ClickShake()
+    {
+        rectTransform.DOKill();
+        rectTransform.DOShakePosition(
+            0.2f,
+            strength: 5f,
+            vibrato: 20,
+            randomness: 90,
+            snapping: false,
+            fadeOut: true
+        );
+    }
+
+    public void DragShake()
+    {
+        
     }
 }
