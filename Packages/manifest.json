@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git#4.9.0",
     "com.febucci.custom-hierarchy": "https://github.com/febucci/unitypackage-custom-hierarchy.git",
     "com.unity.animation.rigging": "1.2.1",
     "com.unity.cinemachine": "2.10.4",

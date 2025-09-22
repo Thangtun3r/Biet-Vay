@@ -4,6 +4,10 @@ using DG.Tweening; // for ClickShake
 
 public class FrictionMouseFollow : MonoBehaviour
 {
+    [Header("Ice Breaker script")]
+    public IceBreaker iceBreaker;
+    public GameObject iceBreakerGameObject;
+    
     [Header("Follow")] public RectTransform visualButtonWrapper;
     [Min(0f)] public float followSpeed = 5f;
     
@@ -23,8 +27,11 @@ public class FrictionMouseFollow : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         _visualWord = GetComponent<VisualWord>();
     }
-    
-    
+
+    public void isFriction()
+    {
+        iceBreakerGameObject.SetActive(true);
+    }
 
 
     public void FollowMouse()
@@ -90,6 +97,10 @@ public class FrictionMouseFollow : MonoBehaviour
 
     public void ClickShake()
     {
+        if (iceBreaker != null)
+        {
+            iceBreaker.BreakIce();
+        }
         rectTransform.DOKill();
         rectTransform.DOShakePosition(
             0.2f,
