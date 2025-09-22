@@ -33,10 +33,11 @@ public class FrictionWord : MonoBehaviour,
         var visualToLogic = GetComponent<VisualToLogic>();
         if (visualToLogic != null)
             visualToLogic.OnVisualWordSet += HandleVisualWordSet;
-
-        if (visualWordObject != null)
-            frictionMouseFollow = visualWordObject.GetComponent<FrictionMouseFollow>();
+        
+         
+            
     }
+    
 
     private void OnDisable()
     {
@@ -50,6 +51,10 @@ public class FrictionWord : MonoBehaviour,
         visualWordObject = visualWord;
         if (visualWordObject != null)
             frictionMouseFollow = visualWordObject.GetComponent<FrictionMouseFollow>();
+        if (isFriction)
+        {
+            frictionMouseFollow.isFriction();
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData) { }
