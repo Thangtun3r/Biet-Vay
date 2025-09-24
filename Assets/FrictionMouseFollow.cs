@@ -67,7 +67,7 @@ public class FrictionMouseFollow : MonoBehaviour
                 Vector2 dir = (localPoint - _snapshotAnchoredPos).normalized;
 
                 // Offset grows with exceed (tweak multiplier as you like)
-                Vector2 offset = dir * exceed * 1f;
+                Vector2 offset = dir * exceed * 3f;
 
                 target -= offset;
                 DragShake();
