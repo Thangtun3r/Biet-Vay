@@ -54,6 +54,7 @@ public class FrictionWord : MonoBehaviour,
         if (isFriction)
         {
             frictionMouseFollow.isFriction();
+            _words.enabled = false;
         }
     }
 
