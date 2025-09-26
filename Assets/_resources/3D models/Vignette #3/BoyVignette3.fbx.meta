@@ -1,79 +1,9 @@
 fileFormatVersion: 2
-guid: ea593a16478db1747a8fcd72ff6ae2a7
+guid: 395eb04aa2048d94f94fbcc36392f45c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eye Out
-    second: {fileID: 2100000, guid: 86bdd271d38eacc438cb8be3a79298d0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Gun_Accent
-    second: {fileID: 2100000, guid: 90ca15490eb2b9944b479b42242f194d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Gun_prome
-    second: {fileID: 2100000, guid: 52ccd3f3c4f03354d9858b781a8f2a04, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Gun_trigger
-    second: {fileID: 2100000, guid: 97ee4f7cabfaaa24787a3fccc9cc8f49, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material__26
-    second: {fileID: 2100000, guid: 3212162eb1966e9469c0f2f5d030bb8b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Nozzle
-    second: {fileID: 2100000, guid: f47834afcdbaed042bb31acce7409387, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Nozzle_In
-    second: {fileID: 2100000, guid: 4652cf7b9faf26f43ae05f6390f050b8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pigeon Beak
-    second: {fileID: 2100000, guid: 08d8945203b4bfd45a765defefdeaf76, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pigeon Neck 1
-    second: {fileID: 2100000, guid: 142cefaeb4599e540a61fbf380af731d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pigeon Neck 2
-    second: {fileID: 2100000, guid: b7553df5455718544913c47e1d42685e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pigeon leg
-    second: {fileID: 2100000, guid: 13b53119592cf6b42a8fa6099f6b0925, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pigeon wing
-    second: {fileID: 2100000, guid: b76fa66d6e03e2c40831e978fbcfd022, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: PigeonBody
-    second: {fileID: 2100000, guid: b463224a8d3587044b7f6f6132664cfb, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: pupils
-    second: {fileID: 2100000, guid: 75e19de8f834a194c8270537dfdc402d, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
