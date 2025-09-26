@@ -7,13 +7,13 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Pigeon Neck 1
-  m_Shader: {fileID: 4800000, guid: 317e3d3b84bf0a741a3e867e27dfa7bb, type: 3}
+  m_Name: Paints
+  m_Shader: {fileID: 4800000, guid: 22c8483a0088cff4ea29f92544b8304b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _MK_OUTLINE_HULL_CLIP
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -137,13 +137,12 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _GlossMapScale: 1
-    - _Glossiness: 0.5
-    - _GlossyReflections: 1
+    - _GlossMapScale: 0
+    - _Glossiness: 0
+    - _GlossyReflections: 0
     - _Initialized: 0
     - _InputTab: 1
     - _Metallic: 0
-    - _Mode: 0
     - _OcclusionStrength: 1
     - _OptionsTab: 1
     - _Outline: 3
@@ -153,7 +152,7 @@ Material:
     - _OutlineNoise: 0
     - _OutlineSize: 10
     - _OutlineTab: 1
-    - _Parallax: 0.02
+    - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _RenderFace: 2
@@ -174,7 +173,6 @@ Material:
     - _StencilZFail: 0
     - _StylizeTab: 0
     - _Surface: 0
-    - _UVSec: 0
     - _VertexAnimation: 0
     - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
@@ -182,16 +180,16 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.345098, g: 0.30196074, b: 0.38823527, a: 1}
-    - _BaseColor: {r: 0.9064574, g: 0.7756279, b: 0.8088971, a: 1}
-    - _Color: {r: 0.34509796, g: 0.3019607, b: 0.38823524, a: 1}
+    - _AlbedoColor: {r: 0.33962262, g: 0.32840866, b: 0.32840866, a: 1}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.3396226, g: 0.32840863, b: 0.32840863, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _OutlineColor: {r: 0.4745098, g: 0.4392157, b: 0.65882355, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.9811321, g: 0.49928617, b: 0.254539, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &8395807624212500415
+--- !u!114 &7061618637602570251
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
