@@ -1,33 +1,33 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Yarn;
 using Yarn.Unity;
 
 public class YarnDialogueController : MonoBehaviour
 {
     [Tooltip("The DialogueRunner component that runs the dialogue.")]
     public DialogueRunner Runner;
-    
+        
     private void OnEnable()
     {
-        YarnDialogueEventBridge.OnYarnEventCalled += startNode;
+        YarnDialogueEventBridge.OnYarnEventCalled += StartNode;
     }
+
     private void OnDisable()
     {
-        YarnDialogueEventBridge.OnYarnEventCalled -= startNode;
+        YarnDialogueEventBridge.OnYarnEventCalled -= StartNode;
     }
     
-    public void startNode(string nodeName)
+    public void StartNode(string nodeName)
     {
+        if (Runner == null || string.IsNullOrEmpty(nodeName))
+            return;
+
         if (Runner.IsDialogueRunning)
         {
-            Debug.Log("Dialogue is running");
+            Debug.Log($"Dialogue is running, stopping and switching to node {nodeName}");
+            Runner.Stop();  // cancel current line/options cleanly
         }
-        else
-        {
-            Runner.StartDialogue(nodeName);
-        }
+
+        Runner.StartDialogue(nodeName); // start fresh
     }
 }

@@ -9,6 +9,16 @@
 // Act like she optimistic about things
 // Very active
 
+title: PauseMenu
+---
+<<collapse>>
+->Main Menu
+    <<expand>>
+->To Desktop
+    <<expand>>
+
+
+===
 
 
 title: Setup
@@ -25,9 +35,10 @@ title: introduce
 <<expand>>
 
 ===
+
 title: start
 ---
-<<<collapse>>
+<<collapse>>
 <<disablePlayer>>
 <<PsudoTurnOn>>
 -> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/her.
