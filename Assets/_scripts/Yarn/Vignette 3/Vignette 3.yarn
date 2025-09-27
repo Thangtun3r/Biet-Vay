@@ -20,13 +20,17 @@ title: Setup
 
 
 ===
+title: introduce
+---
+<<expand>>
 
+===
 title: start
 ---
-<<collapse>>
+<<<collapse>>
 <<disablePlayer>>
 <<PsudoTurnOn>>
--> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/[fr]her.[/fr]
+-> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/her.
     <<isBietVay>>
     <<PsudoTurnOff>>
     <<spawn Home>>
