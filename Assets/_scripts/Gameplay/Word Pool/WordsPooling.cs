@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class WordsPooling : MonoBehaviour
 {
     public GameObject wordPoolPrefab;
@@ -16,7 +17,8 @@ public class WordsPooling : MonoBehaviour
         SentenceChecker.OnCheckCompleted += ClearPool;
         WordMarkup.OnReleaseBietVay += HandleReleaseBietVay;
         WordMarkup.OnBietVay += HandleBietVay;
-        GameManager.OnExpand += HandleBietVay;
+        //GameManager.OnExpand += HandleBietVay;
+        GameManager.OnExpand += ClearPool;
         GameManager.OnBietvay += HandleBietVay;
     }
 
@@ -26,6 +28,7 @@ public class WordsPooling : MonoBehaviour
         WordMarkup.OnReleaseBietVay -= HandleReleaseBietVay;
         WordMarkup.OnBietVay -= HandleBietVay;
         GameManager.OnExpand -= HandleBietVay;
+        GameManager.OnExpand -= ClearPool;
         GameManager.OnBietvay -= HandleBietVay;
     }
 

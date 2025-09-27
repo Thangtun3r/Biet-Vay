@@ -37,13 +37,21 @@ public class WordDisplayManager : DialoguePresenterBase
 
         for (int i = 0; i < options.Length; i++)
         {
-            var parsed = options[i].Line.Text; // MarkupParseResult
+            var parsed = options[i].Line.Text; 
             WordPoolManager.Instance.CreateSentenceFromText(parsed, i);
         }
 
         while (selectedOption == null && !cancellationToken.IsCancellationRequested)
             await YarnTask.Yield();
 
+        if (cancellationToken.IsCancellationRequested)
+        {
+            //Clean up on cancel the options
+            WordPoolManager.Instance.ResetPool();
+            return null; // no option selected
+        }
+
         return selectedOption;
     }
+
 }
