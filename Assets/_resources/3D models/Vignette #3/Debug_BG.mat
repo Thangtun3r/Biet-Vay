@@ -7,12 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shirt_collumn
-  m_Shader: {fileID: 4800000, guid: 317e3d3b84bf0a741a3e867e27dfa7bb, type: 3}
+  m_Name: Debug_BG
+  m_Shader: {fileID: 4800000, guid: 22c8483a0088cff4ea29f92544b8304b, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _MK_OUTLINE_HULL_CLIP
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -75,10 +74,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _OutlineMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -145,17 +140,10 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OptionsTab: 1
-    - _Outline: 3
-    - _OutlineData: 0
-    - _OutlineFadeMax: 2
-    - _OutlineFadeMin: 0.25
-    - _OutlineNoise: 0
-    - _OutlineSize: 10
-    - _OutlineTab: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RenderFace: 0
+    - _RenderFace: 2
     - _RenderPriority: 0
     - _Saturation: 1
     - _Smoothness: 0.5
@@ -180,16 +168,15 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.8679245, g: 0.84818566, b: 0.68369526, a: 1}
+    - _AlbedoColor: {r: 0.1481844, g: 0.6393382, b: 0.8490566, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.8679245, g: 0.84818566, b: 0.68369526, a: 1}
+    - _Color: {r: 0.14818436, g: 0.6393381, b: 0.8490566, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.7921569, g: 0.6862745, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _VertexAnimationFrequency: {r: 2.5, g: 2.5, b: 2.5, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &7061618637602570251
+--- !u!114 &1633248314122036714
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
