@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class PsudoTurnOff : MonoBehaviour
 {
-    public GameObject psudoImagg;
+    [Header("Assign multiple GameObjects here")]
+    public GameObject[] psudoImaggArray; // <-- Now it's an array
 
     private void OnEnable()
     {
@@ -19,14 +20,21 @@ public class PsudoTurnOff : MonoBehaviour
         GameManager.OnPsudoTurnOn -= psudoTurnOn;
     }
 
-
     private void psudoTurnOff()
     {
-        psudoImagg.SetActive(false);
+        foreach (GameObject obj in psudoImaggArray)
+        {
+            if (obj != null)
+                obj.SetActive(false);
+        }
     }
-    
+
     private void psudoTurnOn()
     {
-        psudoImagg.SetActive(true);
+        foreach (GameObject obj in psudoImaggArray)
+        {
+            if (obj != null)
+                obj.SetActive(true);
+        }
     }
 }

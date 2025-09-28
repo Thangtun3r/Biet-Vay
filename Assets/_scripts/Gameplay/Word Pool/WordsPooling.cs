@@ -89,6 +89,7 @@ public class WordsPooling : MonoBehaviour
             {
                 obj.SetActive(false);
                 obj.transform.SetParent(transform, false);
+                
             }
         }
     }

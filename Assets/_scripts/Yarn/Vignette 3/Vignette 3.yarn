@@ -43,6 +43,7 @@ title: start
 <<disablePlayer>>
 <<PsudoTurnOn>>
 -> [bv]Biet vay,[/bv]/I/ [sw w="shouldn't have"] have [/sw]/[sw w="confess"]confessed[/sw]/to/her.
+    <<transition 1>>
     <<isBietVay>>
     <<PsudoTurnOff>>
     <<spawn Home>>
@@ -97,6 +98,7 @@ position: -356,48
 <<collapse>>
 Game: Ready to go?  
 -> Yes/ let's/ go.
+    <<transition 2>>
     <<spawn Mall>>
     <<expand>>
 -> No
@@ -124,6 +126,7 @@ Mai: I know, right?
 Mai: Let's go inside and enjoy it.
 ->Yeh/let's/go.
 Tam: Yeh, let’s go.
+    <<transition 2>>
     <<jump insidePark>>
 ===
 
@@ -199,7 +202,7 @@ Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
         Mai: Okay, let's see how it goes.
         <<set $affection += 1>>
 <<VMReset>>
-<<transition>>
+<<transition 2>>
 <<weather>>
 <<jump insidePark>>
 <<endonce>>
@@ -215,9 +218,8 @@ Mai: Hey, It's evening already, you got any plans?
             Mai: Okay. That's sound fun!
             Tam: Let's hit the Mall!
             <<VMReset>>
-            <<transition>>
+            <<transition 1>>
             <<expand>>
-            <<wait  2>>
             <<jump Gashapon>>
 ===
 
@@ -274,8 +276,6 @@ title: GachaMachineGame
     Mai: The card looks very nice!
     Mai: Let's play a few more till we get the special one!
     <<endif>>
-    //add transition
-    <<transition 2>>
     Mai: Well, that was fun but expesive as hell.
     -> Yeh,/but/worth it/right?
     Tam: Yeh, but worth it, right?

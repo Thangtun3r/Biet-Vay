@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using DG.Tweening;
 
@@ -22,12 +23,20 @@ public class GirlLookAt : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GameManager.OnExpand += ResetRotation;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnExpand -= ResetRotation;
+    }
+
     /// <summary>
     /// Rotates the object toward the target with yaw-only and damping.
     /// </summary>
     public void YawLookAtTarget()
     {
-        Debug.Log("rotate");
         if (target == null || objectToRotate == null) return;
 
         Vector3 direction = target.position - objectToRotate.position;

@@ -24,7 +24,6 @@ public class YarnDialogueController : MonoBehaviour
 
         if (Runner.IsDialogueRunning)
         {
-            Debug.Log($"Dialogue is running, stopping and switching to node {nodeName}");
             Runner.Stop();  // cancel current line/options cleanly
         }
 
