@@ -32,6 +32,7 @@ title: Setup
 ===
 title: introduce
 ---
+<<isBietVay>>
 <<expand>>
 
 ===
@@ -116,7 +117,7 @@ Mai: Not really. Just arrived here for a bit.
 Mai: Ah before heading to the park. Wanna eat some Durian cheescake?
 //this to create connection with vignette 4
 Mai: Freshly baked from my mom.  
--> It's/looks/yummy.
+-> It/looks/yummy.
 Tam: Looks amazing Mai.
 Tam: And smells amazing too.
 Mai: I know, right?  
