@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     //This part is very hard coded, will change later but this is use to flag for the wordpool to clear the pool setting it's isResolved bool 
     public static event Action OnBietvay;
+    public static event Action OnNotBietvay;
     
     // For horse Betting event
     public static event Action<int> OnBetPlaced;
@@ -214,6 +215,12 @@ public class GameManager : MonoBehaviour
     public static void ResetScene()
     {
         OnResetScene?.Invoke();
+    }
+    
+    [YarnCommand("isNotBietVay")]
+    public static void OnNotBietVay()
+    {
+        OnNotBietvay?.Invoke();
     }
     
     [YarnCommand("UnlockMouse")]

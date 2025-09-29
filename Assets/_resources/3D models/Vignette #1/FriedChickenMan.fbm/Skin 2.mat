@@ -204,10 +204,10 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _AlbedoColor: {r: 1, g: 0.74873066, b: 0.6745283, a: 1}
+    - _AlbedoColor: {r: 0.8867924, g: 0.58143467, b: 0.6241847, a: 1}
     - _BaseColor: {r: 0.9063317, g: 0.9063317, b: 0.9063317, a: 1}
     - _CameraFadeParams: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 0.7487306, b: 0.6745283, a: 1}
+    - _Color: {r: 0.8867924, g: 0.5814346, b: 0.62418467, a: 1}
     - _DissolveBorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
     - _OutlineColor: {r: 0.98039216, g: 0.49803922, b: 0.25490198, a: 1}

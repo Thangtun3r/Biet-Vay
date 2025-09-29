@@ -2207,9 +2207,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "It didn\u2019t go the way I hoped. But it\u2019s out there now, and we\u2019re\nSo....That\u2019s
-    okay. I don\u2019t have to carry this like a heavy weight. No more pounding myself
-    with endless what-if"
+  m_text: 'Well, it didn''t turn out the way I hoped.
+
+    But I guess we can strike
+    a better deal in the future.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1098287fc21190e4893d1a1705a01882, type: 2}
   m_sharedMaterial: {fileID: 3856804323524850862, guid: 1098287fc21190e4893d1a1705a01882, type: 2}
@@ -3968,7 +3969,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Vignette 4
+          m_StringArgument: Vignette 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &8002213436862963946
@@ -4239,15 +4240,15 @@ RectTransform:
   m_GameObject: {fileID: 8407012313637139667}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.00000023841858}
-  m_LocalScale: {x: 0.8072327, y: 0.7164189, z: 0.8072327}
+  m_LocalScale: {x: 0.9018991, y: 0.91503805, z: 1.1153921}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 592968841332233371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000005722046, y: 7}
-  m_SizeDelta: {x: 2139, y: 1487.2734}
+  m_AnchoredPosition: {x: 0, y: -1}
+  m_SizeDelta: {x: 1928, y: 1088}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6128423119722788229
 CanvasRenderer:
@@ -4277,7 +4278,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c7c54ad2756348444ae15c6d6f915d95, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eaa828c242cd06348b18633da7848019, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
