@@ -45,6 +45,7 @@ title: ToxosInside
 
 title: SaleGretting
 ---
+<<VMBoost 1>>
 <<collapse>>
 <<once>>
 Toxos Staff: Welcome to Toxox! What would you like to order today?
@@ -75,6 +76,7 @@ Toxos Staff: Have you make up your mind yet?
 <<elseif $hasOrdered is true and $foodReady is true>>
         Toxos Staff: Have a nice meal!
 <<endif>>
+<<VMReset>>
 <<expand>>
 
 ===
