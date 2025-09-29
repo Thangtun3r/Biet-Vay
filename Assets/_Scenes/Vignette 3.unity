@@ -10525,7 +10525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2564122594245162279, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: field of view
-      value: 69.99996
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2564122594245162279, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: near clip plane
@@ -10537,7 +10537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 69.99996
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
