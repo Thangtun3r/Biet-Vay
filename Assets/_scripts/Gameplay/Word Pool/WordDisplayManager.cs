@@ -46,7 +46,6 @@ public class WordDisplayManager : DialoguePresenterBase
 
         if (cancellationToken.IsCancellationRequested)
         {
-            //Clean up on cancel the options
             WordPoolManager.Instance.ResetPool();
             return null; // no option selected
         }

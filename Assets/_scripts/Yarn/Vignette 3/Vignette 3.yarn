@@ -20,6 +20,12 @@ title: PauseMenu
 
 ===
 
+title: BietVay
+---
+<<restartScene>>
+<<jump start>>
+
+===
 
 title: Setup
 ---
@@ -32,9 +38,12 @@ title: Setup
 ===
 title: introduce
 ---
-<<isBietVay>>
+<<UnlockMouse>>
+===
+title: backToPrevious
+---
 <<expand>>
-
+<<UnlockMouse>>
 ===
 
 title: start
@@ -276,10 +285,6 @@ title: GachaMachineGame
     Mai: The card looks very nice!
     Mai: Let's play a few more till we get the special one!
     <<endif>>
-    Mai: Well, that was fun but expesive as hell.
-    -> Yeh,/but/worth it/right?
-    Tam: Yeh, but worth it, right?
-    Mai: Yeh maybe haha.
     <<jump Convenience_store_transition>>
         
                 
@@ -291,6 +296,11 @@ title: GachaMachineGame
 
 title: Convenience_store_transition
 ---
+
+Mai: Well, that was fun but expesive as hell.
+    -> Yeh,/but/worth it/right?
+    Tam: Yeh, but worth it, right?
+    Mai: Yeh maybe haha.
 Mai: Looks like it’s going to rain soon. We should head home.  
 Tam: Ah, wait.  
 -> How about/ we/ swing/ by /the convenience store/
@@ -300,10 +310,13 @@ Tam: How about we swing by the convenience store. To wait out the rain?
     Mai: Oh, that’s a good idea.  
     Mai: I need to buy some stuff anyway.  
     -> Alright/ let’s/ go then.
-        <<VMReset>>
-        <<expand>>
+        Tam: Alright let's go then.
         <<transition 2>>
-        <<jump Convenience_store>>      
+        <<expand>>
+        <<VMReset>>
+        <<jump Convenience_store>>
+        
+
 
 <<else>>
     <<jump suddenGoHome>>
@@ -314,6 +327,9 @@ Tam: How about we swing by the convenience store. To wait out the rain?
 
 title: Convenience_store
 ---
+<<isBietVay>>
+<<PsudoTurnOff>>
+<<expand>>
 <<freeze>>
 <<spawn ConvenienceStore>>
     
@@ -350,7 +366,6 @@ Mai: Or Thảo from my club. She loves games!
             Mai: ...
             Mai: I thought we were just friends.
             Mai: Tam, I truly appreciate your feelings.
-
 <<if $affection > 5>>
     Mai: It’s sudden… Let me think about it, okay? I’ll text you.
     Mai: Today was fun. Thanks for hanging out with me.
@@ -383,6 +398,18 @@ Mai: Maybe we can hang out another time?
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+//bye-bye
 
 title: Cinema
 ---
