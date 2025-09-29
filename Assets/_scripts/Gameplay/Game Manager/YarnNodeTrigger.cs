@@ -4,6 +4,7 @@ using FMODUnity;
 using UnityEngine;
 using Yarn.Unity;
 using TMPro; // <-- TextMeshPro
+using System.Collections; // for IEnumerator
 
 public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 {
@@ -33,11 +34,19 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
     [Header("Enable Look At for the girl ?")]
     public bool girlLookAt;
     [SerializeField] private GirlLookAt girlLookAtTarget;
-    
+
     [Header("Is this a prop object ?")]
     [Tooltip("If true, it will be disabled after interaction.")]
     public bool isProp;
     public EventReference propSound;
+
+    [Header("Re-enable interaction after Expand")]
+    [Tooltip("How long to wait after GameTransition.OnExpandCompleted before allowing interaction again.")]
+    private float reenableDelay = 0.7f;
+
+    // Internal lock that gates Interact + highlight while cooling down.
+    private bool canInteract = true;
+    private Coroutine cooldownRoutine;
 
     private void Start()
     {
@@ -73,10 +82,31 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
         }
     }
 
+    private void OnEnable()
+    {
+        // Subscribe to expand completed -> trigger cooldown
+        GameTransition.OnExpandCompleted += HandleExpandCompleted;
+    }
+
+    private void OnDisable()
+    {
+        GameTransition.OnExpandCompleted -= HandleExpandCompleted;
+        if (cooldownRoutine != null)
+        {
+            StopCoroutine(cooldownRoutine);
+            cooldownRoutine = null;
+        }
+        // Ensure UI reflects unlocked state on disable (optional)
+        ApplyHighlightState(false);
+        wasHighlighted = false;
+        isHighlighting = false;
+        canInteract = true;
+    }
+
     private void Update()
     {
         // consume the one-frame pulse
-        bool wantsHighlight = isHighlighting;
+        bool wantsHighlight = isHighlighting && canInteract;
         isHighlighting = false;
 
         // Only apply changes when the state flips
@@ -89,6 +119,13 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
 
     public void Interact()
     {
+        if (!canInteract)
+        {
+            // Optional: feedback when locked
+            // Debug.Log($"{name}: Interaction blocked during cooldown.");
+            return;
+        }
+
         YarnDialogueEventBridge.CallYarnEvent(yarnNodeName);
         HandleGirlLookAt();
         HandleDisableProp();
@@ -107,6 +144,8 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
     /// </summary>
     public void Highlight()
     {
+        // Don't show highlight while locked
+        if (!canInteract) return;
         isHighlighting = true;
     }
 
@@ -153,7 +192,7 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
             gameObject.SetActive(false);
         }
     }
-    
+
     private void SetLayerRecursively(GameObject obj, int newLayer)
     {
         if (obj == null) return;
@@ -164,5 +203,28 @@ public class YarnNodeTrigger : MonoBehaviour, IPlayerInteraction
         {
             SetLayerRecursively(child.gameObject, newLayer);
         }
+    }
+
+    // ===== Expand Completed -> Cooldown =====
+
+    private void HandleExpandCompleted()
+    {
+        // Lock immediately, then re-enable after delay
+        if (cooldownRoutine != null) StopCoroutine(cooldownRoutine);
+        cooldownRoutine = StartCoroutine(ReenableAfterDelay());
+    }
+
+    private IEnumerator ReenableAfterDelay()
+    {
+        canInteract = false;
+        // Hide highlight instantly when locking
+        ApplyHighlightState(false);
+        wasHighlighted = false;
+
+        if (reenableDelay > 0f)
+            yield return new WaitForSeconds(reenableDelay);
+
+        canInteract = true;
+        cooldownRoutine = null;
     }
 }

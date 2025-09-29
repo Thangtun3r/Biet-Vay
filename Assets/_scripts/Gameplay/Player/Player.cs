@@ -18,7 +18,8 @@ public class Player : MonoBehaviour
         GameManager.OnFreeze += FreezeMovementOnly;
         GameManager.OnUnFreeze += UnFreezeMovementOnly;
         GameTransition.OnCollapseStarted += DisablePlayer;
-        GameTransition.OnExpandStarted += EnablePlayer;
+        GameTransition.OnExpandStarted += DisablePlayer;
+        GameTransition.OnExpandCompleted += EnablePlayer;
         SpawnPointHandler.OnPlayerSpawn += SetPlayerSpawnPoint;
         GameManager.disablePlayerMovement += DisablePlayer;
         GameManager.enablePlayerMovement += EnablePlayer;
@@ -29,7 +30,8 @@ public class Player : MonoBehaviour
         GameManager.OnFreeze -= FreezeMovementOnly;
         GameManager.OnUnFreeze -= UnFreezeMovementOnly;
         GameTransition.OnCollapseStarted -= DisablePlayer;
-        GameTransition.OnExpandStarted -= EnablePlayer;
+        GameTransition.OnExpandStarted -= DisablePlayer;
+        GameTransition.OnExpandCompleted -= EnablePlayer;
         SpawnPointHandler.OnPlayerSpawn -= SetPlayerSpawnPoint;
         GameManager.disablePlayerMovement -= DisablePlayer;
         GameManager.enablePlayerMovement -= EnablePlayer;
