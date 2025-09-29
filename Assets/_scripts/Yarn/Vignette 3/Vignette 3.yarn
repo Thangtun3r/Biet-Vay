@@ -48,6 +48,7 @@ title: backToPrevious
 
 title: start
 ---
+<<isNotBietVay>>
 <<collapse>>
 <<disablePlayer>>
 <<PsudoTurnOn>>
