@@ -123,14 +123,12 @@ public class GameManager : MonoBehaviour
     public static void PsudoTurnOff()
     {
         OnPsudoTurnOff?.Invoke();
-        Debug.Log("Psudo Turn Off Called");
     }
     
     [YarnCommand("PsudoTurnOn")]
     public static void PsudoTurnOn()
     {
         OnPsudoTurnOn?.Invoke();
-        Debug.Log("Psudo Turn Off Called");
     }
     
     [YarnCommand("transition")]
@@ -194,9 +192,21 @@ public class GameManager : MonoBehaviour
     
     // This part is to control the gacha machine
     [YarnCommand("roll")]
-    public static void HandleRoll()
+    public static IEnumerator HandleRoll()
     {
-        OnRollGacha?.Invoke();
+        // Let the VM exit the option-selection phase
+        yield return null;
+
+        bool done = false;
+        void OnDone(GachaObjectSO _) { done = true; }
+
+        GachaMachine.OnGachaRolled += OnDone;
+        OnRollGacha?.Invoke();          // triggers animator.SetTrigger("Roll")
+
+        // Wait until the result event fires (this is when $favoriteGashapon is set)
+        while (!done) yield return null;
+
+        GachaMachine.OnGachaRolled -= OnDone;
     }
     
     
@@ -204,6 +214,13 @@ public class GameManager : MonoBehaviour
     public static void ResetScene()
     {
         OnResetScene?.Invoke();
+    }
+    
+    [YarnCommand("UnlockMouse")]
+    public static void UnlockMouse()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
 }

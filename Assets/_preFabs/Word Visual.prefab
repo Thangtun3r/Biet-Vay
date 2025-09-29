@@ -5819,7 +5819,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5d6926e01eb28224e93e4417b73bab23, type: 3}
   - {fileID: 21300000, guid: 48809f9da71f2c5458b3ccbd4cb34b9a, type: 3}
   - {fileID: 21300000, guid: dca83a08d5bcb2741853573c74645318, type: 3}
-  - {fileID: 21300000, guid: 41999330d0374704d9d4bbb5df8d3b2d, type: 3}
   breakParticles: {fileID: 4004058480472464432}
   minClicksToAdvance: 2
   maxClicksToAdvance: 4

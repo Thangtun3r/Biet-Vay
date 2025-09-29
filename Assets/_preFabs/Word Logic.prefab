@@ -476,7 +476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1658fd8d0e054b4fabfddb09bf34813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFrictionCount: 150
   isFriction: 0
   _words: {fileID: 0}
   followSpeed: 12

@@ -30,7 +30,7 @@ public class GameTransition : MonoBehaviour
 
     void Start()
     {
-        targetRect.sizeDelta = startSize;
+        //targetRect.sizeDelta = startSize;
     }
 
     public void Expand()

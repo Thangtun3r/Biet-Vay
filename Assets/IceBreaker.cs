@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI; // For Image component
+using UnityEngine.UI;
+using Random = UnityEngine.Random; // For Image component
 
 public class IceBreaker : MonoBehaviour
 {
@@ -18,6 +20,9 @@ public class IceBreaker : MonoBehaviour
     private int clicksRemaining = 1;       // how many more BreakIce() calls until we advance
     private Image imageComponent;
 
+    
+    public static event Action OnIceBroken;
+    
     void Awake()
     {
         imageComponent = GetComponent<Image>();
@@ -49,6 +54,11 @@ public class IceBreaker : MonoBehaviour
         // If we're already showing the last sprite, one more trigger disables.
         if (currentIndex >= iceSprites.Length - 1)
         {
+            // Invoke the event before disabling
+            
+            OnIceBroken?.Invoke();
+            Debug.Log("iceBroken");
+
             gameObject.SetActive(false);
             return;
         }
@@ -67,6 +77,7 @@ public class IceBreaker : MonoBehaviour
         // Otherwise, roll a new random click budget for the next advance.
         clicksRemaining = RollClicks();
     }
+
 
     private int RollClicks()
     {

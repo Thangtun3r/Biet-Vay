@@ -117,9 +117,9 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
             frictionWord.isFriction = isFriction;
         }
     }
-    public void SetFriction(bool value)
+    
+    public void StopFriction()
     {
-        isFriction = value;
-        UpdateFrictionState(); // Make sure to sync the state
+        isFriction = false;
     }
 }

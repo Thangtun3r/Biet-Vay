@@ -3,15 +3,10 @@ using Gameplay;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FrictionWord : MonoBehaviour,
-    IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler,
-    IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
+public class FrictionWord : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
-    private int frictionCount = 0;
-    public int maxFrictionCount = 0;
-    public bool isFriction = false;
-    
 
+    public bool isFriction = false;
     public Words _words;
 
     [SerializeField] private float followSpeed = 12f;
@@ -19,11 +14,13 @@ public class FrictionWord : MonoBehaviour,
     private FrictionMouseFollow frictionMouseFollow;
     private GameObject visualWordObject;
     private RectTransform rectTransform;
+    private WordMarkup wordMarkup;
 
     private bool isDragging; // tracks drag state
 
     private void Awake()
     {
+        wordMarkup = GetComponent<WordMarkup>();
         _words = GetComponent<Words>();
         rectTransform = GetComponent<RectTransform>();
     }
@@ -33,9 +30,7 @@ public class FrictionWord : MonoBehaviour,
         var visualToLogic = GetComponent<VisualToLogic>();
         if (visualToLogic != null)
             visualToLogic.OnVisualWordSet += HandleVisualWordSet;
-        
-         
-            
+        IceBreaker.OnIceBroken += StopFriction;
     }
     
 
@@ -44,6 +39,7 @@ public class FrictionWord : MonoBehaviour,
         var visualToLogic = FindObjectOfType<VisualToLogic>();
         if (visualToLogic != null)
             visualToLogic.OnVisualWordSet -= HandleVisualWordSet;
+        IceBreaker.OnIceBroken -= StopFriction;
     }
 
     private void HandleVisualWordSet(GameObject visualWord)
@@ -69,7 +65,6 @@ public class FrictionWord : MonoBehaviour,
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (_words != null) _words.enabled = true;
         if (isFriction && frictionMouseFollow != null) frictionMouseFollow.StopFollowMouse();
     }
 
@@ -88,9 +83,6 @@ public class FrictionWord : MonoBehaviour,
     {
         isDragging = true;
         eventData.eligibleForClick = false; // prevent click firing at end of drag
-
-        IncrementFrictionCount();
-
         if (isFriction && _words != null) _words.enabled = false;
         if (isFriction && frictionMouseFollow != null) frictionMouseFollow.FollowMouse();
     }
@@ -108,17 +100,15 @@ public class FrictionWord : MonoBehaviour,
         if (_words != null) _words.enabled = true;
         if (frictionMouseFollow != null) frictionMouseFollow.StopFollowMouse();
     }
+    
 
-    private void Update()
+    private void StopFriction()
     {
-        if (frictionCount > maxFrictionCount && _words != null)
-        {
-            _words.enabled = true;
-            isFriction = false;
-            if (frictionMouseFollow != null)
-                frictionMouseFollow.StopFollowMouse();
-        }
+        Debug.Log("StopFriction");
+        _words.enabled = true;
+        isFriction = false;
+        wordMarkup.isFriction = false;
+        if (frictionMouseFollow != null)
+            frictionMouseFollow.StopFollowMouse();
     }
-
-    public void IncrementFrictionCount() => frictionCount++;
 }

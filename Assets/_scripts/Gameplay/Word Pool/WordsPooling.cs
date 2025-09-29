@@ -20,6 +20,7 @@ public class WordsPooling : MonoBehaviour
         //GameManager.OnExpand += HandleBietVay;
         GameManager.OnExpand += ClearPool;
         GameManager.OnBietvay += HandleBietVay;
+        GameManager.OnResolveAnim += HandleReleaseBietVay;
     }
 
     private void OnDisable()
@@ -30,6 +31,7 @@ public class WordsPooling : MonoBehaviour
         GameManager.OnExpand -= HandleBietVay;
         GameManager.OnExpand -= ClearPool;
         GameManager.OnBietvay -= HandleBietVay;
+        GameManager.OnResolveAnim -= HandleReleaseBietVay;
     }
 
     private void HandleBietVay()
@@ -82,14 +84,13 @@ public class WordsPooling : MonoBehaviour
 
     public void ClearPool()
     {
-        if(isResolved) return;
+        if(isResolved == true) return;
         foreach (var obj in _wordPool)
         {
             if (obj != null && obj.activeInHierarchy)
             {
                 obj.SetActive(false);
                 obj.transform.SetParent(transform, false);
-                
             }
         }
     }
