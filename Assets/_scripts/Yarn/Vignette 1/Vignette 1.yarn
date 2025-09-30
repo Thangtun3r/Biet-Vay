@@ -9,6 +9,7 @@
 
 title: introduce
 ---
+<<expand>>
 <<UnlockMouse>>
 ===
 title: backToPrevious
@@ -100,8 +101,13 @@ Chair: How can you wait when you have nothing to wait for?
                 Duy: Yeh, you're right.
                 Chair: Well go find something to wait for then.
 <<else>>
-<<transition 3>>
 <<prop 1>>
+<<transition 3>>
+<<spawn WaitingChair>>
+<<wait 2.5>>
+<<VMBoost 2>>
+<<wait 1.5>>
+<<VMReset>>
 <<set $foodReady = true>>
 <<endif>>
 <<expand>>
@@ -139,9 +145,12 @@ Duy: Hmm...I need to order something before going home
 // <<endonce>>
 
 <<else>>
-Duy: Damn. This combo is alot but damm I got to tight my belly this month cuz the cost<<if $orderNumber == 1>>
-Duy: What a steal deal. But I need to buy something to stuff me at night cuz the portion is so small<<if $orderNumber == 2>>
-Duy: Hmmm great deal but why I eat seafood in a chicken restaurant?<<if $orderNumber == 3>>        
+Duy: ...
+Duy: Damn, this combo is a lot, but I gotta tighten my belly this month cuz of the cost.<<if $orderNumber == 1>>
+Duy: What a steal of a deal! But I need to buy something to stuff myself at night cuz the portion is so small<<if $orderNumber == 2>>
+Duy: Hmmm, great deal… But why did I want to eat seafood at a chicken restaurant?<<if $orderNumber == 3>>
+<<transition 4>>
+<<expand>>        
 <<restartScene>>
 <<endif>>
 <<expand>>

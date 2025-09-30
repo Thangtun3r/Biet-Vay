@@ -9079,31 +9079,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9047415
+      value: 0.89844495
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.084216416
+      value: 0.09611592
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.24594118
+      value: 0.25453258
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.3374365
+      value: 0.34463248
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.779
+      value: -0.156
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 390.126
+      value: 391.575
       objectReference: {fileID: 0}
     - target: {fileID: 8695800668120228878, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 400.698
+      value: 401.928
       objectReference: {fileID: 0}
     - target: {fileID: 8779429299052884645, guid: 79e2a8f93ac336e459132a42653d0c39, type: 3}
       propertyPath: boneSize
@@ -10525,7 +10525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2564122594245162279, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: field of view
-      value: 70
+      value: 69.99997
       objectReference: {fileID: 0}
     - target: {fileID: 2564122594245162279, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: near clip plane
@@ -10537,7 +10537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Lens.FieldOfView
-      value: 70
+      value: 69.99997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
