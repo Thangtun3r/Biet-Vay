@@ -20,14 +20,23 @@ public class AnotherBettingDay : MonoBehaviour
         OnRaceReset?.Invoke();
     }
 
+    private void OnEnable()
+    {
+        AnotherBettingDay.OnRaceReset += HandleResetRace;
+    }
+
+    private void OnDisable()
+    {
+        AnotherBettingDay.OnRaceReset -= HandleResetRace;
+    }
+
     private void Awake()
     {
         raceManager = GetComponent<RaceManager>();
     }
     
-    private void HandleResetRace()
+    public void HandleResetRace()
     {
         preRaceFill.DOFade(1, 0f);
-        OnRaceReset?.Invoke();
     }
 }
