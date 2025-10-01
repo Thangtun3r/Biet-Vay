@@ -16,6 +16,22 @@ title: setup
 
 ===
 
+title: introduce
+---
+<<expand>>
+<<UnlockMouse>>
+===
+title: backToPrevious
+---
+<<disablePlayer>>
+<<expand>>
+<<UnlockMouse>>
+===
+
+
+
+
+
 title: Exit
 ---
 <<if $payOutDone == true >>
@@ -49,9 +65,11 @@ Liem: Let's see if I can turn my luck around today.
 
 title: start
 ---
+
 <<collapse>>
 <<disablePlayer>>
 -> [bv]Biet vay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
+    <<spawn start>>
     <<isBietVay>>
     <<transition 1>>
     <<PsudoTurnOff>>
@@ -116,7 +134,8 @@ title: placeBet
 title: Payout
 ---
 
--> I/would/like/to/redeem/my/ticket./
+-> I/would like/to/redeem/my ticket./
+Liem: I would like to redeem my ticket.
 Recieptionist: Okay, let me check your ticket.
 <<payOut>>
     <<if $winningBet == false>>

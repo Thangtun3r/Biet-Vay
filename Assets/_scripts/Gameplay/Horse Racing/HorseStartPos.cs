@@ -36,11 +36,11 @@ public class HorseStartPos : MonoBehaviour
     private void HandleRaceReset()
     {
         rectTransform.anchoredPosition = initialPos;
-        horse.speed = 0;
-        horse.currentSpeed = 0;
-        animator.SetFloat("Speed", 0);
+
+        animator.SetFloat("Speed", 0.7f);
         animator.SetTrigger("Restart");
         resultPanel.SetActive(false);
         horseNameTMP.color = Color.white;
     }
+
 }
