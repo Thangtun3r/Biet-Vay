@@ -42,7 +42,6 @@ public class WordsPooling : MonoBehaviour
 
     private void HandleReleaseBietVay()
     {
-        Debug.Log("[WordsPooling] HandleReleaseBietVay called, setting isResolved to true");
         isResolved = true;
     }
 
@@ -96,8 +95,6 @@ public class WordsPooling : MonoBehaviour
     {
         if (isResolved == true) return;
         
-        Debug.Log($"[WordsPooling] ClearPool called (isResolved={isResolved})\n" +
-                  $"Caller: {GetCaller()}");
         
         foreach (var obj in _wordPool)
         {
@@ -113,7 +110,6 @@ public class WordsPooling : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log($"[WordsPooling] isResolved = {isResolved}");
         logTimer += Time.deltaTime;
 
         if (logTimer >= 0.1f) // 0.1s = 1/10th second
