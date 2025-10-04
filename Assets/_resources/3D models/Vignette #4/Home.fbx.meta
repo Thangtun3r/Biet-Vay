@@ -7,8 +7,108 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Amplifier
+    second: {fileID: 2100000, guid: 052845fc3bb1f824e82dd090e57cc03e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Amplifier Knobs
+    second: {fileID: 2100000, guid: 847d1d27a4b812c4ca6098b992115c76, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Amplifier Switch cover
+    second: {fileID: 2100000, guid: bc91a3ca780723646a930fb93ca51cee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Amplifier switch
+    second: {fileID: 2100000, guid: 735fa5b561052ef4bb3ebac7b3864126, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Amplifier_signal
+    second: {fileID: 2100000, guid: 740b2f80e5b5236408f1c36a9e57c919, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabinet
+    second: {fileID: 2100000, guid: 7e5e0991348129a41b034108165cc347, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabinet Knob
+    second: {fileID: 2100000, guid: 9068941b13b233f45ad7a8ad04744e52, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabinet accent
+    second: {fileID: 2100000, guid: 43d555049b4423443935f92d5c38858a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabinet.001
+    second: {fileID: 2100000, guid: f527c9ab81894b24b90282a475171dca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabinet_window
+    second: {fileID: 2100000, guid: 5b478205f9282004e8859f69de394138, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default knob fill
+    second: {fileID: 2100000, guid: ca757830c4ad1df479e2d3a3028ffb40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FloorInside
+    second: {fileID: 2100000, guid: c72fe6a8ad35e9a44a8846facbb1d3ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass
     second: {fileID: 2100000, guid: 975a15bc8ca321b43b1d0ae4419d2613, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammock
+    second: {fileID: 2100000, guid: 6c7f3204c79b3904ebe88a7ad64c3dc2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hammock holder
+    second: {fileID: 2100000, guid: a813f40720c8cf845ae68722c4528b4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Helmet_cap
+    second: {fileID: 2100000, guid: 94945a5848731654f91f838811888776, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Helmet_inside
+    second: {fileID: 2100000, guid: f5facf31d04e8f54fa361833c64e26c6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mic Surrond
+    second: {fileID: 2100000, guid: 3e06abb062519e243aef3a5cdd393675, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mic Top
+    second: {fileID: 2100000, guid: 09969842a87943e4e8686d13fb299d86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mic body
+    second: {fileID: 2100000, guid: 22aae5a23e998af45904bddd9b1451ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mic holder
+    second: {fileID: 2100000, guid: 346fde9834e430043815d5ff85d6aae2, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -24,6 +124,101 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: PaletteNoFlat
     second: {fileID: 2100000, guid: e80c63315c8d32f48a25e3089d6b631c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red knob fill
+    second: {fileID: 2100000, guid: 6581e99428084fa499b5b27e9adf41f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shoe shelf
+    second: {fileID: 2100000, guid: ada20637fe9458e449ef7530df76884d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Speaker
+    second: {fileID: 2100000, guid: c34bc4e4a420e2543ab3436b96f46e00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Speaker Inside
+    second: {fileID: 2100000, guid: 00a45a1b773bd83449d1d5de348fd784, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Speaker bass
+    second: {fileID: 2100000, guid: 6b61aebcaef03374caee13e0beab25f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Speaker cover
+    second: {fileID: 2100000, guid: 6fd48ee79d0bdd34bacfaae8da144c0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stair frame
+    second: {fileID: 2100000, guid: f46afc15033ad7147a061748caf63de9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Star Slope
+    second: {fileID: 2100000, guid: b551fb3c89e6d714696a1e992ad4251d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: The wine
+    second: {fileID: 2100000, guid: eedfe7052dd0c97459a8f9c56d3ae7cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Umbrella
+    second: {fileID: 2100000, guid: d38de89f2a501524ea10c57194011e36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Umbrella_2
+    second: {fileID: 2100000, guid: bcc29d8e1fb611f43bf9d1386f9c3b66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wine Cap
+    second: {fileID: 2100000, guid: fa86bf0d699ed874a932df493c595dcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wine paper
+    second: {fileID: 2100000, guid: e768c2df0fb4d29448d0c0fae70d70e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WineBody
+    second: {fileID: 2100000, guid: c6daf7ff50ef18a40a857881dd60d8b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow knob fill
+    second: {fileID: 2100000, guid: 74a391dc20f6cbe48a417548d58c0fc3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: helmet accent
+    second: {fileID: 2100000, guid: 34c307b26bc50924299ec964488cb5ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: helmet_outside_1
+    second: {fileID: 2100000, guid: a2e53d022a503d24eacfd2598adeb043, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: helmet_outside_2
+    second: {fileID: 2100000, guid: 67d9c3c82a0269d44a3905ea87554f80, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: umbrella_cane
+    second: {fileID: 2100000, guid: b013680147aa2144490cef38b8d72583, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
