@@ -5,36 +5,31 @@ using Yarn.Unity;
 public class Vignette4Looper : MonoBehaviour
 {
     public DialogueRunner dialogueRunner;
-    // The public field to store the integer
     public int vignetteCounter = 0;
 
-    // A note in the script for reference (visible in the Inspector)
     [TextArea]
-    public string resetNote = "Press the 9 key to reset the vignette counter.";
+    public string resetNote = 
+        "Press number keys (1–8 or 0) to set the vignette counter directly.\nPress 9 to reset the counter.";
 
     private void Awake()
     {
-        // Ensure the data persists across scene resets
         if (PlayerPrefs.HasKey("VignetteCounter"))
         {
-            // Load saved data if it exists
             vignetteCounter = PlayerPrefs.GetInt("VignetteCounter");
         }
         else
         {
-            // Initialize it if no saved data is found
             vignetteCounter = 0;
         }
 
-        // Ensure this object is not destroyed when the scene resets
         DontDestroyOnLoad(gameObject);
     }
-
 
     private void OnEnable()
     {
         GameManager.OnResetScene += IncrementVignetteCounter;
     }
+
     private void OnDisable()
     {
         GameManager.OnResetScene -= IncrementVignetteCounter;
@@ -42,38 +37,57 @@ public class Vignette4Looper : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        // Save the current value of vignetteCounter when the application closes
-        PlayerPrefs.SetInt("VignetteCounter", vignetteCounter);
-        PlayerPrefs.Save();
+        SaveCounter();
     }
 
     private void Update()
     {
+        // Sync with Yarn variable
         dialogueRunner.VariableStorage.SetValue("$loopCount", vignetteCounter);
-        // Listen for the 9 key press to reset the vignette counter
-        if (Input.GetKeyDown(KeyCode.Alpha9))
+
+        // Check for numeric key input (1–9 and 0)
+        for (int i = 0; i <= 9; i++)
+        {
+            KeyCode key = KeyCode.Alpha0 + i;
+            if (Input.GetKeyDown(key))
+            {
+                HandleNumberInput(i);
+                break;
+            }
+        }
+    }
+
+    private void HandleNumberInput(int number)
+    {
+        if (number == 9)
         {
             ResetVignetteCounter();
+        }
+        else
+        {
+            // Special case: 0 sets the counter to 0, others set to their number
+            vignetteCounter = number;
+            SaveCounter();
+            Debug.Log($"Vignette counter set to {vignetteCounter}");
         }
     }
 
     public void IncrementVignetteCounter()
     {
-        // Increment the counter
         vignetteCounter++;
-        
-        
-        // Save the updated counter value
-        PlayerPrefs.SetInt("VignetteCounter", vignetteCounter);
-        PlayerPrefs.Save();
+        SaveCounter();
     }
 
-    // Reset the vignette counter to 0 and update PlayerPrefs
     private void ResetVignetteCounter()
     {
         vignetteCounter = 0;
+        SaveCounter();
+        Debug.Log("Vignette counter has been reset.");
+    }
+
+    private void SaveCounter()
+    {
         PlayerPrefs.SetInt("VignetteCounter", vignetteCounter);
         PlayerPrefs.Save();
-        Debug.Log("Vignette counter has been reset.");
     }
 }

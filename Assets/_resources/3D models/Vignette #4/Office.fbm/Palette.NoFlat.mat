@@ -31,8 +31,10 @@ Material:
   - _MK_ENVIRONMENT_REFLECTIONS_ADVANCED
   - _MK_FRESNEL_HIGHLIGHTS
   - _MK_SPECULAR_ISOTROPIC
+  - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _FRESNELHIGHLIGHTS_ON
+  - _WRAPPEDLIGHTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -207,7 +209,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AdvancedTab: 0
+    - _AdvancedTab: 1
     - _AlbedoMapIntensity: 1
     - _AlphaClip: 0
     - _AlphaClipping: 0
@@ -289,7 +291,7 @@ Material:
     - _OutlineNoise: 0
     - _OutlineSize: 5
     - _Parallax: 0.02
-    - _ParticlesTab: 0
+    - _ParticlesTab: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 0
     - _RenderFace: 2
@@ -301,7 +303,7 @@ Material:
     - _Roughness: 0.5
     - _Saturation: 1
     - _SketchMapScale: 1
-    - _Smoothness: 0.5
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SoftFade: 0
     - _SoftFadeFarDistance: 1
@@ -330,7 +332,7 @@ Material:
     - _VertexAnimationStutter: 0
     - _Workflow: 0
     - _WorkflowMode: 1
-    - _WrappedLighting: 0
+    - _WrappedLighting: 1
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:

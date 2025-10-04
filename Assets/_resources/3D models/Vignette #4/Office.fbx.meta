@@ -7,6 +7,41 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Baord
+    second: {fileID: 2100000, guid: f7af30d6a8edc424392908b4fa9e9fba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Board_fill
+    second: {fileID: 2100000, guid: 5f965fc70672cf74390340981e19546f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FrontMonitor.001
+    second: {fileID: 2100000, guid: 09b8e227a03441b45844bb434ab1e836, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Keyboard
+    second: {fileID: 2100000, guid: 205903f1b0f90c545bd24060b60073d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Keyboard_keycap
+    second: {fileID: 2100000, guid: 24509b71452a1c640b1f9a0d5167f6e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Monitor
+    second: {fileID: 2100000, guid: d375547a88b480944af6dd92f2c4d79c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Monitor_screen
+    second: {fileID: 2100000, guid: 3f5652cf7f2b53247a87267f901aa549, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Palette
     second: {fileID: 2100000, guid: 72478727b00198e47a5d5e869b51e3b1, type: 2}
   - first:
@@ -14,6 +49,56 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Palette.NoFlat
     second: {fileID: 2100000, guid: 89d89712b6ba69f40a3d9ffed677fa98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plant_pot
+    second: {fileID: 2100000, guid: 03d121d4cbbf75c48889c784e328df4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plants
+    second: {fileID: 2100000, guid: ea6deaef0e4e6d04187cbf22e34ad3cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wall
+    second: {fileID: 2100000, guid: ab5560335d20c474b9dff3f61ace2ba1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Webcam
+    second: {fileID: 2100000, guid: c0696d6192582884b9485718b54a5af8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Webcam_lens
+    second: {fileID: 2100000, guid: 2a5f9752ce0bee84ead5fdaf8ca80cca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Webcam_lense_inner
+    second: {fileID: 2100000, guid: 077dd663e711a6347b202f5502500ad8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 2c95a5bb373525643be09d37dbbc1b9b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window_frame
+    second: {fileID: 2100000, guid: b57cd3b0b02faa446a45e3dddc468eeb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dark plastic
+    second: {fileID: 2100000, guid: 768b9d9974444714d849a41403e6de20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: monitor_crane
+    second: {fileID: 2100000, guid: a06229fcd9b16504d965f6968761640e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
