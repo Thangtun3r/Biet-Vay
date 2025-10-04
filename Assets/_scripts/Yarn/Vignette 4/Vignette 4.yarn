@@ -28,17 +28,18 @@ title: start
 <<PsudoTurnOn>>
     -> [bv]Biet vay,[/bv]/I/ [sw w="should've said"] didn't say [/sw]/love you/to/my mom/[sw w="more."]enough.[/sw]
             <<isBietVay>>
-            <<PsudoTurnOff>>
             <<transition 2>>
-
+            <<PsudoTurnOff>>
             <<expand>>
             <<if $loopCount == 0>>
             <<jump GoToSchool>>
             <<elseif $loopCount == 1>>
             <<jump GoToDate>>
             <<elseif $loopCount == 2>>
-            <<jump Office>>
+            <<jump choosingUni>>
             <<elseif $loopCount == 3>>
+            <<jump Office>>
+            <<elseif $loopCount == 4>>
             <<jump Funeral>>
             <<endif>>
     -> I/didn't say/love you/to/my mom/enough.
@@ -97,6 +98,8 @@ Mom: Love you too, have a safe trip.
 
 title:GoToDate
 ---
+<<spawn Park>>
+<<expand>>
 
 ===
 
@@ -108,7 +111,8 @@ Phone: beep beep beep.
 -> *Pick up*
 Mai: Hi Mom!
 Mom: Arrived yet, honey?
--> Yeah, Mom. I just got here.
+-> Yeah,/ Mom./ I/ just /got here.
+Mai: Yeah, Mom. I just got here.
 Mom: I heard on the news that people are getting kidnapped.
 Mom: They even take them across the border.
 Mom: Stay in crowded places, okay?
@@ -123,5 +127,94 @@ Mai: Bye Mom, love you.
 <<restartScene>>
 ===
 
+title: choosingUni
+---
+<<VMBoost 3>>
+<<wait  4>>
+<<VMBoost 4>>
+<<collapse>>
+-> Mom./
+Mai: Mom.
+Mai: Mommmm.
+Mom: What is it, honey?
+Mai: I’m thinking about enrolling in University of Architecture. What do you think ?
+Mom: What? To study architecture?
+-> No,/I'm/enrolling for/a fine arts major./
+Mai: No, I'm enrolling for a fine arts major.
+Mom: What about a computer science University?
+Mom: You good at math right?
+Mom: Uncle Nam said that his son got really high salary just after graduating!
+-> But/I don't like/to work/with/coding and stuff.
+Mai: But I don't like to work with coding and stuff.
+Mom: But art won't make you any dimes! You need to listen to me!
+Mom: Think about your future, don't let your studies go to waste.
+-> Why /are you/ like this?/
+Mai: Why are you like this? 
+Mia: Why you keep telling me to do that do this?
+Mom: No, I'm worry for you. This is what good for you.
+Mom: I do this because I love you.
+Mai: REALLY? GOOD FOR ME? Do you even take "me" in account?
+Mai: All you do is trying to impose your fears on me.
+Mom: HEY, enough of that misbehavior.
+Mom: WHO raise you up?
+Mom: WHO gives you a place to live, and WHO pays for your tuition?
+Mom: Why you only think about yourself?
+Mom: Ok.
+Mom: If you want to study art that much, pay to get it.
+Mom: And I won't pay a single dime for your intuition.
+-> I/hate you.
+Mai: I hate you. You never let me choose, you never let me have control over my life. 
+Mai: Every single time you just kept saying and saying and forcing me to do as you say. 
+Mai: Like, do you even consider taking the time to understand or even listen to me? 
+Mai: That’s it, I have had enough of this nonsense.
+<<transition 2>>
+<<expand>>        
+<<restartScene>>
+===
 
 
+
+title: Office
+---
+<<VMBoost 5>>
+<<wait  5>>
+<<collapse>>
+Phone: ring ring ring.
+-> Alo?
+Mai: Alo?
+Mom: Can you come home this Tet ?
+Mom: I know you have alot of work at the company. 
+Mom: But it would be great if you can come home this year.
+-> I/think/I can't.
+Mai: I think I can't.
+Mai: Thanks to somebody.
+Mai: I have to crunch in this dry company and don’t have spare time to do anything else.
+Mom: Mai, I’m sorry, I know that you’re busy with your work.
+Mom: But if you can I truly want you to come back home. 
+Mom: Please Ma— Nevermind, even if you are overtime don’t eat noodles at night it’s not good for your health.
+-> I/know/Mom.
+Mai: I know Mom.
+Mai: Ok. If there is nothing more, I got to work now.
+Mai: Bye, take care Mom.
+<<transition 2>>
+<<expand>>        
+<<restartScene>>
+===
+
+title: PickupPhoneAgain
+---
+
+===
+
+title: Funeral
+---
+<<spawn funeral>>
+<<expand>>
+===
+
+title: enterFunaral
+---
+<<transition 2>>
+<<expand>>        
+<<restartScene>>
+===

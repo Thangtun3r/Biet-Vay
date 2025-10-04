@@ -7,6 +7,71 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Backdrop
+    second: {fileID: 2100000, guid: c5de3b8738750d84c9f875cf9c623d57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Candle
+    second: {fileID: 2100000, guid: 1c4eaa9b7b0884f4f91a353cbdbd1b99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Candle_Stick
+    second: {fileID: 2100000, guid: b58d8212bfa8d1445920f9396a623c74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Candle_stick_cover
+    second: {fileID: 2100000, guid: b4ec3a004849bf741b8290674c6bff2d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Coffin
+    second: {fileID: 2100000, guid: 9d0b1581d2575b54680b854247fadf30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cup
+    second: {fileID: 2100000, guid: 869c8e0d9b62bda46b0c4e57cb195574, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flower
+    second: {fileID: 2100000, guid: 9aceb2085fc402345a3559fc9aab7823, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flower tem
+    second: {fileID: 2100000, guid: d43b149c8f7278d4280deceb9e915c84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Flower_leaf
+    second: {fileID: 2100000, guid: a38f4011808430a448f96a09209c2695, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nhan
+    second: {fileID: 2100000, guid: b7c7dc18730cea042a4a60a678efa1fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nhan_holder
+    second: {fileID: 2100000, guid: 7726cc1764d21a04a8224288dc5caf26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nhan_holder_accent
+    second: {fileID: 2100000, guid: a8bf60bbb99203c489cbd4506d8a59b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nhan_holder_inside
+    second: {fileID: 2100000, guid: 74569c0c1c319ad4a8c611a99fc43a4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Palette
     second: {fileID: 2100000, guid: fa03e67ab56e6a34ca457c18e33885b9, type: 2}
   - first:
@@ -19,6 +84,31 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: PaletteNoFlat
     second: {fileID: 2100000, guid: 0ba33c408924b7541b2d43fdcb3413df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Picture
+    second: {fileID: 2100000, guid: d0b76d0e30690954bbf0efccfbb1548d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Picture Frame
+    second: {fileID: 2100000, guid: 7bd0c7463643cfd43879d61dbda0899a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: VASE_inner
+    second: {fileID: 2100000, guid: 89d74566b143273478e81cd82cb9116a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Vase
+    second: {fileID: 2100000, guid: 0bc42cabae8a30e428aab9b80b949f77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mat
+    second: {fileID: 2100000, guid: bdd5a8861cfda79408552bce52aa59f6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
