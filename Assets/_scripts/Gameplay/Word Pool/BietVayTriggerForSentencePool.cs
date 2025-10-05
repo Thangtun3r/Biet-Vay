@@ -22,6 +22,7 @@ public class BietVayTriggerForSentencePool : MonoBehaviour
         
        
         _wordMarkup?.RaiseBietVayEvent();
+        _wordMarkup?.RaiseFadeWord();
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -29,6 +30,7 @@ public class BietVayTriggerForSentencePool : MonoBehaviour
         if (!IsInDetectionLayer(other.gameObject)) return;
         
         _wordMarkup?.RaiseReleaseEvent();
+        _wordMarkup?.LowerFadeWord();
     }
 
     private bool IsInDetectionLayer(GameObject obj)

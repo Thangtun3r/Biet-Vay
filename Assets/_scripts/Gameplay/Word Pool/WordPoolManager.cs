@@ -276,6 +276,7 @@ public class WordPoolManager : MonoBehaviour
             ["bv"] = (wordMarkup, attr) =>
             {
                     wordMarkup.isBietVay = true;
+                    wordMarkup.FlagBietvay();
             }
             
             ,
@@ -289,6 +290,17 @@ public class WordPoolManager : MonoBehaviour
             {
                 wordMarkup.isFade = true;
             }
+            ,
+            ["fadeTrigger"] = (wordMarkup, attr) =>
+            {
+                wordMarkup.isFadeTrigger = true;
+            }
+            ,
+            ["word2Fade"] = (wordMarkup, attr) =>
+            {
+                wordMarkup.isBeingFade = true;
+            }
+            
         };
     
 

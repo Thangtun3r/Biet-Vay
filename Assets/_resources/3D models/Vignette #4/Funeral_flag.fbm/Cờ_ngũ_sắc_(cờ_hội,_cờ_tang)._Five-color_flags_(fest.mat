@@ -171,7 +171,7 @@ Material:
     - _ParticlesTab: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 0
-    - _RenderFace: 2
+    - _RenderFace: 0
     - _RenderPriority: 0
     - _Saturation: 1
     - _Smoothness: 0
