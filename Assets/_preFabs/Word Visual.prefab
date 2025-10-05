@@ -5255,6 +5255,8 @@ GameObject:
   - component: {fileID: 2361634362557049334}
   - component: {fileID: 7239475783720786254}
   - component: {fileID: 735199336432883490}
+  - component: {fileID: 932650443543971765}
+  - component: {fileID: 2889567290690991222}
   m_Layer: 5
   m_Name: Word Visual
   m_TagString: Word
@@ -5471,6 +5473,47 @@ MonoBehaviour:
   visualButtonWrapper: {fileID: 5537709318452404726}
   followSpeed: 22.66
   thresholdDis: 50
+--- !u!114 &932650443543971765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9262e9c9596aa5d4a8a891d5fd82ac59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteMappings:
+  - nameLabel: Default
+    typeID: 0
+    sprite: {fileID: 21300000, guid: 6274d3ccfcedcc449b12b5ffa8de72f8, type: 3}
+    hexColor: '#A4C8DB'
+  - nameLabel: Biet Vay
+    typeID: 1
+    sprite: {fileID: 21300000, guid: 1bd7cb4da4336cd4ca4bc54b2288279f, type: 3}
+    hexColor: '#E4B8ED'
+  - nameLabel: Fade
+    typeID: 2
+    sprite: {fileID: 21300000, guid: e7a57c39f58ba96418565dca3ed787f0, type: 3}
+    hexColor: '#E2E2E2'
+  buttonVisual: {fileID: 8483525757221605422}
+  buttonWrapper: {fileID: 5503621556693247118}
+  defaultSprite: {fileID: 0}
+  defaultWrapperColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &2889567290690991222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314517540068783136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bd3c5bdf1be81b40b9608e617d75ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4626605331339697412
 GameObject:
   m_ObjectHideFlags: 0

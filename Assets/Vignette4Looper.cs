@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Yarn.Unity;
 
 public class Vignette4Looper : MonoBehaviour
@@ -8,31 +9,42 @@ public class Vignette4Looper : MonoBehaviour
     public int vignetteCounter = 0;
 
     [TextArea]
-    public string resetNote = 
+    public string resetNote =
         "Press number keys (1–8 or 0) to set the vignette counter directly.\nPress 9 to reset the counter.";
+
+    private const string PlayerPrefsKey = "VignetteCounter";
+    private static Vignette4Looper _instance;
 
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("VignetteCounter"))
+        // Ensure a single persistent instance
+        if (_instance != null && _instance != this)
         {
-            vignetteCounter = PlayerPrefs.GetInt("VignetteCounter");
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            vignetteCounter = 0;
-        }
-
+        _instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Load saved vignette counter
+        vignetteCounter = PlayerPrefs.GetInt(PlayerPrefsKey, 0);
+
+        // Try to bind DialogueRunner immediately
+        TryRebindDialogueRunner(logIfMissing: false);
     }
 
     private void OnEnable()
     {
         GameManager.OnResetScene += IncrementVignetteCounter;
+        GameManager.OnResetScene += TryRebindDialogueRunner;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
         GameManager.OnResetScene -= IncrementVignetteCounter;
+        GameManager.OnResetScene -= TryRebindDialogueRunner;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnApplicationQuit()
@@ -42,10 +54,19 @@ public class Vignette4Looper : MonoBehaviour
 
     private void Update()
     {
-        // Sync with Yarn variable
-        dialogueRunner.VariableStorage.SetValue("$loopCount", vignetteCounter);
+        // If the DialogueRunner reference was destroyed, rebind occasionally
+        if (dialogueRunner == null && Time.frameCount % 60 == 0)
+        {
+            TryRebindDialogueRunner(logIfMissing: false);
+        }
 
-        // Check for numeric key input (1–9 and 0)
+        // Sync Yarn variable if available
+        if (dialogueRunner != null)
+        {
+            dialogueRunner.VariableStorage.SetValue("$loopCount", vignetteCounter);
+        }
+
+        // Handle numeric key input (0–9)
         for (int i = 0; i <= 9; i++)
         {
             KeyCode key = KeyCode.Alpha0 + i;
@@ -65,8 +86,7 @@ public class Vignette4Looper : MonoBehaviour
         }
         else
         {
-            // Special case: 0 sets the counter to 0, others set to their number
-            vignetteCounter = number;
+            vignetteCounter = number; // 0 sets to 0; 1–8 set to their number
             SaveCounter();
             Debug.Log($"Vignette counter set to {vignetteCounter}");
         }
@@ -87,7 +107,36 @@ public class Vignette4Looper : MonoBehaviour
 
     private void SaveCounter()
     {
-        PlayerPrefs.SetInt("VignetteCounter", vignetteCounter);
+        PlayerPrefs.SetInt(PlayerPrefsKey, vignetteCounter);
         PlayerPrefs.Save();
+    }
+
+    // --- Rebinding logic ---
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TryRebindDialogueRunner(logIfMissing: false);
+    }
+
+    private void TryRebindDialogueRunner()
+    {
+        TryRebindDialogueRunner(logIfMissing: true);
+    }
+
+    private void TryRebindDialogueRunner(bool logIfMissing)
+    {
+        if (dialogueRunner != null) return;
+
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+
+        if (dialogueRunner != null)
+        {
+            Debug.Log("Vignette4Looper: Rebound DialogueRunner.");
+            dialogueRunner.VariableStorage.SetValue("$loopCount", vignetteCounter);
+        }
+        else if (logIfMissing)
+        {
+            Debug.LogWarning("Vignette4Looper: No DialogueRunner found after scene change.");
+        }
     }
 }
