@@ -161,6 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 0}
+  startMenuSceneName: Start Menu
+  holdDuration: 1
 --- !u!114 &2720387137655865459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,6 +247,7 @@ MonoBehaviour:
   psudoImaggArray:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2761299218407802006
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2add0b3703b1a8a47a9c3c47abcfe7e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundPrefix: event:/Yarn/
 --- !u!1 &3086608956075189025
 GameObject:
   m_ObjectHideFlags: 0

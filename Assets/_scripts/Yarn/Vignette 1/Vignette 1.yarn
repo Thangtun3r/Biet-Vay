@@ -7,24 +7,20 @@ title: Setup
 ===
 
 
-title: introduce
----
-<<disablePlayer>>
-<<expand>>
-<<UnlockMouse>>
-===
 
 title: FMODOpener
 ---
 <<playFMODEvent event:/Transition/ExitingToxs>>
 ===
 
-
+title: introduce
+---
+<<UnlockMouse>>
+===
 title: backToPrevious
 ---
-
-<<expand>>
-<<UnlockMouse>>
+<<disablePlayer>>
+<<expandIntro>>
 ===
 
 
