@@ -68,6 +68,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         enablePlayerMovement?.Invoke();
     } 
+    
+    [YarnCommand("expandIntro")]
+    public static IEnumerator ExpandIntro()
+    {
+        OnExpand?.Invoke();
+        GameTransition.Instance.ExpandIntro();
+        yield return new WaitForSeconds(0.4f);
+    } 
+    
+    
 
     [YarnCommand("spawn")]
     public static IEnumerator SpawnPoint(string spawnPointName)

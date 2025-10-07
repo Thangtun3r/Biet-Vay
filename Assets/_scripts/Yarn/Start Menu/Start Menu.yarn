@@ -5,16 +5,16 @@ title: introduce
 ===
 title: backToPrevious
 ---
-
-<<expand>>
-<<UnlockMouse>>
+<<wait 0.14>>
+<<expandIntro>>
 ===
 
 title: start
 ---
+<<wait  0.2>>
 <<collapse>>
 <<isBietVay>>
--> Experience regrets.
+-> New game.
     <<transition 3>>
     <<expand>>
     <<startGame>>

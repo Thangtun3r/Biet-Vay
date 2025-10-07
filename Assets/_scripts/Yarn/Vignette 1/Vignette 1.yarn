@@ -1,4 +1,4 @@
-﻿title: Setup
+title: Setup
 ---
 <<declare $hasOrdered = false>>
 <<declare $orderNumber = 0>>
@@ -9,9 +9,17 @@
 
 title: introduce
 ---
+<<disablePlayer>>
 <<expand>>
 <<UnlockMouse>>
 ===
+
+title: FMODOpener
+---
+<<playFMODEvent event:/Transition/ExitingToxs>>
+===
+
+
 title: backToPrevious
 ---
 
@@ -26,13 +34,15 @@ title: start
 ---
 <<isNotBietVay>>
 <<collapse>>
--> [bv]Biet vay[/bv],/ I/ [sw w="shouldn't have"] have [/sw]/[sw w="order"] ordered [/sw]/ this/combo./
+-> [bv]Biet vay[/bv],/ I/ [sw w="shouldn't have"] have [/sw]/[sw w="order"] ordered [/sw]/ this/ combo./
+        <<killFMODEvent>>
         <<transition 1>>
         <<expand>>
         <<PsudoTurnOff>>
         <<wait 2>>
         <<spawn ToxosOutside>>
 -> I/have/ordered/ this/ combo./
+        <<killFMODEvent>>
         <<resolve>>
         
 ===
@@ -95,16 +105,17 @@ Chair: How can you wait when you have nothing to wait for?
                 -> What/do/you/mean?/
                 Duy: What do you mean??
                 Chair: I mean, what defines a chair? Is it the material, the shape, or the function?
-                -> S/Y/B/A/U.
+                -> Shut up.
                 Duy: Sybau.
         -> Yeh,/you're right.
                 Duy: Yeh, you're right.
                 Chair: Well go find something to wait for then.
 <<else>>
 <<prop 1>>
+<<playFMODEvent event:/Vignette 1/FoodCooking>>
 <<transition 3>>
 <<spawn WaitingChair>>
-<<wait 2.5>>
+<<wait 2.7>>
 <<VMBoost 2>>
 <<wait 1.5>>
 <<VMReset>>
@@ -150,6 +161,7 @@ Duy: Damn, this combo is a lot, but I gotta tighten my belly this month cuz of t
 Duy: What a steal of a deal! But I need to buy something to stuff myself at night cuz the portion is so small<<if $orderNumber == 2>>
 Duy: Hmmm, great deal… But why did I want to eat seafood at a chicken restaurant?<<if $orderNumber == 3>>
 <<transition 4>>
+<<killFMODEvent>>
 <<expand>>        
 <<restartScene>>
 <<endif>>

@@ -185,9 +185,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{930f12c4-93dc-4f63-905f-98c8c00c2412}">
-		<property name="volume">
-			<value>5.5</value>
-		</property>
 		<property name="name">
 			<value>Audio 7</value>
 		</property>
@@ -233,6 +230,7 @@
 			<destination>{8e6b9a24-e91f-431e-bb45-c64e4e67c7a2}</destination>
 			<destination>{ddcfd623-08b3-4cde-99b6-8306cc5bb4d8}</destination>
 			<destination>{eabe0d90-3b64-428e-b32e-21aae72ec1d0}</destination>
+			<destination>{6794b0bd-f514-4306-a78a-2175aa0cd607}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e605566b-1ea8-4ff4-ad50-e5af95276218}" />
@@ -275,4 +273,5 @@
 			<value>3800</value>
 		</property>
 	</object>
+	<object class="PannerEffect" id="{6794b0bd-f514-4306-a78a-2175aa0cd607}" />
 </objects>

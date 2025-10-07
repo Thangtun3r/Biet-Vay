@@ -56,4 +56,14 @@ public class GameTransition : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         
     }
+    
+    public void ExpandIntro()
+    {
+        targetRect.DOSizeDelta(endSize, transitionDuration)
+            .SetEase(Ease.InOutSine).OnComplete(() => {
+                OnExpandCompleted?.Invoke();
+            });
+        OnExpandStarted?.Invoke();
+    }
+
 }

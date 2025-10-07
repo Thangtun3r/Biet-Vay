@@ -25,15 +25,20 @@ public class SpriteColorChangerCommander : MonoBehaviour
         // Guard in case visualToLogic isn't assigned yet
         if (visualToLogic != null)
             visualToLogic.OnVisualWordSet += HandleSetVisualWord;
-        wordMarkup.OnBietVaySpriteChange += RequestTypeChange;
+        if (wordMarkup != null)
+            wordMarkup.OnBietVaySpriteChange += RequestTypeChange;
+        if (fadeWord != null)
+            fadeWord.OnFadeWord += RequestTypeChange;
     }
 
     private void OnDisable()
     {
         if (visualToLogic != null)
             visualToLogic.OnVisualWordSet -= HandleSetVisualWord;
+        if (wordMarkup != null)
         wordMarkup.OnBietVaySpriteChange -= RequestTypeChange;
-
+        if (fadeWord != null)
+            fadeWord.OnFadeWord -= RequestTypeChange;
         // unsubscribe worker if we had one
         UnwireWorker();
     }

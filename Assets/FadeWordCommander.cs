@@ -4,99 +4,50 @@ using Gameplay;
 
 public class FadeWordCommander : MonoBehaviour
 {
-    // Event the trigger will listen to
+    public VisualToLogic visualToLogic;
+    public static event Action OnFadeWordEvent;
     public event Action<int> OnFadeWord;
 
-    [Header("Logic")]
-    [SerializeField] private Words _words;
-
-    [Header("Who tells us the current visual word?")]
-    [SerializeField] private VisualToLogic visualToLogic; // assign in Inspector
-
-    // Current wired worker
-    private GameObject visualWordObject;
-    private FadeWordTrigger fadeWordTrigger;
-
-    [Header("State")]
     public bool isFadeWord;
+
+    private Words _words;
+    private Transform _originalParent; // store where it came from
 
     private void Awake()
     {
-        if (_words == null) _words = GetComponent<Words>();
+        _words = GetComponent<Words>();
+        _originalParent = transform.parent; // remember its original pool
     }
 
-    private void OnEnable()
-    {
-        if (visualToLogic != null)
-            visualToLogic.OnVisualWordSet += HandleSetVisualWord;
-
-        if (_words != null)
-            _words.enabled = true;
-    }
-
-    private void OnDisable()
-    {
-        if (visualToLogic != null)
-            visualToLogic.OnVisualWordSet -= HandleSetVisualWord;
-
-        UnwireWorker();
-    }
-
-    // ----- This is the key wiring method you asked for -----
-    private void HandleSetVisualWord(GameObject visualWord)
-    {
-        // Unwire previous worker (if any)
-        UnwireWorker();
-
-        visualWordObject = visualWord;
-        fadeWordTrigger = visualWordObject != null
-            ? visualWordObject.GetComponent<FadeWordTrigger>()
-            : null;
-
-        if (fadeWordTrigger != null)
-        {
-            // Wire the worker (trigger) to our instance event
-            OnFadeWord += fadeWordTrigger.HandleFadeWord;
-        }
-        else
-        {
-            Debug.LogWarning("FadeWordCommander: FadeWordTrigger not found on visual word object.", this);
-        }
-    }
-
-    private void UnwireWorker()
-    {
-        if (fadeWordTrigger != null)
-        {
-            OnFadeWord -= fadeWordTrigger.HandleFadeWord;
-            fadeWordTrigger = null;
-        }
-        visualWordObject = null;
-    }
-
+    
     private void Update()
     {
         if (isFadeWord)
         {
+            _words.enabled = false;
             OnFadeWord?.Invoke(2);
-            if (_words != null) _words.enabled = false;
-            // prevent spamming every frame unless you want continuous
-            isFadeWord = false;
         }
     }
 
-    // Public APIs you can call from anywhere
     public void TriggerFadeWord()
     {
         isFadeWord = true;
+        _words.enabled = false;
         OnFadeWord?.Invoke(2);
-        if (_words != null) _words.enabled = false;
+        OnFadeWordEvent?.Invoke();
+        ReturnToOriginalParent();
     }
 
     public void ReleaseFadeWord()
     {
         isFadeWord = false;
-        if (_words != null) _words.enabled = true;
+        _words.enabled = true;
         OnFadeWord?.Invoke(0);
+    }
+    private void ReturnToOriginalParent()
+    {
+        if (_originalParent == null) return;
+        transform.SetParent(_originalParent, worldPositionStays: false);
+        transform.SetAsLastSibling();
     }
 }

@@ -266,6 +266,7 @@ public class WordPoolManager : MonoBehaviour
     private readonly Dictionary<string, Action<WordMarkup, MarkupAttribute>> 
         attributeHandlers = new Dictionary<string, Action<WordMarkup, MarkupAttribute>>(StringComparer.OrdinalIgnoreCase)
         {
+            //switch word is the word that will replace the original word when biet vay placed into the sentence.
             ["sw"] = (wordMarkup, attr) =>
             {
                 if (attr.Properties.TryGetValue("w", out var value)) {
@@ -273,6 +274,7 @@ public class WordPoolManager : MonoBehaviour
                     wordMarkup.switchWord = value.StringValue;
                 }
             },
+            // Biet vay is biet vay
             ["bv"] = (wordMarkup, attr) =>
             {
                     wordMarkup.isBietVay = true;
@@ -280,23 +282,27 @@ public class WordPoolManager : MonoBehaviour
             }
             
             ,
+            //for real. Jk this word will have friction effects (or freeze fx) applied to it.
             ["fr"] = (wordMarkup, attr) =>
             {
                 wordMarkup.isFriction = true;
             }
             
             ,
-            ["fade"] = (wordMarkup, attr) =>
+            // Fade means this word will be faded as default.
+            ["f"] = (wordMarkup, attr) =>
             {
                 wordMarkup.isFade = true;
             }
             ,
-            ["fadeTrigger"] = (wordMarkup, attr) =>
+            // Fade trigger means this word will trigger fading of other words when it is being placed to the sentence.
+            ["ft"] = (wordMarkup, attr) =>
             {
                 wordMarkup.isFadeTrigger = true;
             }
             ,
-            ["word2Fade"] = (wordMarkup, attr) =>
+            // Word to fade means this word will be faded when another word with "ft" attribute is being placed to the sentence.
+            ["w2f"] = (wordMarkup, attr) =>
             {
                 wordMarkup.isBeingFade = true;
             }

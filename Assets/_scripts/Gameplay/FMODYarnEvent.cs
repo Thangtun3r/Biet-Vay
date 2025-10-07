@@ -1,32 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Yarn.Unity;
+using FMOD.Studio;
+using FMODUnity;
 
 public class FMODYarnEvent : MonoBehaviour
 {
-    [Header("FMOD Settings")]
-    [Tooltip("Prefix that will be added before the sound name.")]
-    public string soundPrefix = "event:/SFX/";  // Default prefix
-
     private static FMODYarnEvent instance;
+    private EventInstance currentEventInstance;
 
-    private void Awake()
+    private void Awake() => instance = this;
+
+    [YarnCommand("playFMOD1shot")]
+    public static void PlaySound(params string[] pathParts)
     {
-        // Store reference so static method can access instance fields
-        instance = this;
+        if (instance == null) { Debug.LogError("FMODYarnEvent instance not found in the scene."); return; }
+        var path = string.Join(" ", pathParts);
+        RuntimeManager.PlayOneShot(path);
     }
 
-    [YarnCommand("playSound")]
-    public static void PlaySound(string soundName)
+    [YarnCommand("playFMODEvent")]
+    public static void PlayEvent(params string[] pathParts)
     {
-        if (instance == null)
-        {
-            Debug.LogError("FMODYarnEvent instance not found in the scene.");
-            return;
-        }
+        if (instance == null) { Debug.LogError("FMODYarnEvent instance not found in the scene."); return; }
+        var eventPath = string.Join(" ", pathParts);
 
-        string fullPath = instance.soundPrefix + soundName;
-        FMODUnity.RuntimeManager.PlayOneShot(fullPath);
+        instance.KillCurrentEvent(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        instance.currentEventInstance = RuntimeManager.CreateInstance(eventPath);
+        instance.currentEventInstance.start();
+    }
+
+    [YarnCommand("killFMODEvent")]
+    public static void KillEvent()
+    {
+        if (instance == null) { Debug.LogError("FMODYarnEvent instance not found in the scene."); return; }
+        instance.KillCurrentEvent(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+    }
+
+    private void KillCurrentEvent(FMOD.Studio.STOP_MODE mode)
+    {
+        if (currentEventInstance.isValid())
+        {
+            currentEventInstance.stop(mode);
+            currentEventInstance.release();
+            currentEventInstance.clearHandle();
+        }
     }
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Severance
   prefab: {fileID: 3603189658369067197, guid: ba7f2a7c2ff5c634cae64f99ae7bd900, type: 3}
-  isFavorite: 1
+  isFavorite: 0

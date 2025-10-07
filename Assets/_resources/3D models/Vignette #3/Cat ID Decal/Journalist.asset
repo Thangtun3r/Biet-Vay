@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayName: Driver License
   prefab: {fileID: 5856923127384013453, guid: ba66c9dc7bb5710468b5fafb74d4719e, type: 3}
-  isFavorite: 1
+  isFavorite: 0

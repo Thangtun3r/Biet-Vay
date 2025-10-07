@@ -5,7 +5,10 @@ using Yarn.Unity;
 
 public class Vignette4Looper : MonoBehaviour
 {
+    [Header("Yarn Integration")]
     public DialogueRunner dialogueRunner;
+
+    [Header("Counter")]
     public int vignetteCounter = 0;
 
     [TextArea]
@@ -14,6 +17,13 @@ public class Vignette4Looper : MonoBehaviour
 
     private const string PlayerPrefsKey = "VignetteCounter";
     private static Vignette4Looper _instance;
+
+    [Header("Auto Reset Settings")]
+    [Tooltip("If the current scene name matches this, the looper counter will reset to 0 automatically.")]
+    [SerializeField] private string resetSceneName = "Start Menu";
+
+    [Tooltip("How long to wait for DialogueRunner to appear after scene load (seconds).")]
+    [SerializeField] private float findTimeout = 3f;
 
     private void Awake()
     {
@@ -111,13 +121,20 @@ public class Vignette4Looper : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // --- Rebinding logic ---
-
+    // --- Scene handling ---
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         TryRebindDialogueRunner(logIfMissing: false);
+
+        // If this scene matches the resetSceneName, reset automatically
+        if (scene.name == resetSceneName)
+        {
+            Debug.Log($"[Vignette4Looper] Scene '{scene.name}' matches resetSceneName '{resetSceneName}'. Resetting counter.");
+            ResetVignetteCounter();
+        }
     }
 
+    // --- Rebinding logic ---
     private void TryRebindDialogueRunner()
     {
         TryRebindDialogueRunner(logIfMissing: true);
