@@ -20,12 +20,16 @@ public class SpriteSwitcherSimple : MonoBehaviour
 
     [Header("Timing")]
     [Tooltip("Wait time that matches your transition animation length before swapping the sprite.")]
-    private float commitDelay = 0.25f;
-    private float inputCooldown = 0.25f;
+    [SerializeField] private float commitDelay = 0.25f;
+    [SerializeField] private float inputCooldown = 0.25f;
 
     [Header("Yarn")]
     public string lastNodeName = "LastNode";
     public string previousNodeName = "PreviousNode";
+
+    [Header("Safety")]
+    [Tooltip("If other systems re-enable the buttons, enforce the correct visibility every frame.")]
+    [SerializeField] private bool enforceVisibilityEveryFrame = true;
 
     private int currentIndex = 0;
     private bool isProcessing = false;
@@ -40,7 +44,8 @@ public class SpriteSwitcherSimple : MonoBehaviour
         if (!targetImage || sprites == null || sprites.Length == 0)
         {
             Debug.LogWarning("SpriteSwitcherSimple: assign targetImage and at least 1 sprite.");
-            enabled = false; return;
+            enabled = false; 
+            return;
         }
 
         // initial load
@@ -53,9 +58,27 @@ public class SpriteSwitcherSimple : MonoBehaviour
         UpdateButtonStates();
     }
 
+    void OnEnable()
+    {
+        // In case a parent Canvas/Panel was re-enabled by another system
+        UpdateButtonStates();
+    }
+
+    void LateUpdate()
+    {
+        if (!enforceVisibilityEveryFrame) return;
+
+        // Continuously enforce visibility so no other system can flip it
+        if (forwardButton)
+            forwardButton.gameObject.SetActive(currentIndex < LastIndex);
+
+        if (backButton)
+            backButton.gameObject.SetActive(currentIndex > 0);
+    }
+
     public void Next()
     {
-        TryStartChange(NextIndex(currentIndex), triggerPrevNodeIfBackingFromLast:false);
+        TryStartChange(NextIndex(currentIndex), triggerPrevNodeIfBackingFromLast: false);
     }
 
     public void Back()
@@ -67,8 +90,7 @@ public class SpriteSwitcherSimple : MonoBehaviour
 
     public void GoTo(int index)
     {
-        // GoTo doesn't imply "backing from last", so no previous-node trigger here
-        TryStartChange(Mathf.Clamp(index, 0, LastIndex), triggerPrevNodeIfBackingFromLast:false);
+        TryStartChange(Mathf.Clamp(index, 0, LastIndex), triggerPrevNodeIfBackingFromLast: false);
     }
 
     void TryStartChange(int targetIndex, bool triggerPrevNodeIfBackingFromLast)
@@ -87,18 +109,16 @@ public class SpriteSwitcherSimple : MonoBehaviour
         if (animator && !string.IsNullOrEmpty(transitionTrigger))
             animator.SetTrigger(transitionTrigger);
 
-        // Swap after the transition completes
+        // Wait for transition before swapping
         if (commitDelay > 0f) yield return new WaitForSeconds(commitDelay);
 
         currentIndex = targetIndex;
         targetImage.sprite = sprites[currentIndex];
 
         // --- Yarn hooks ---
-        // If we just moved *to* the last sprite, fire last node
         if (currentIndex == LastIndex && !string.IsNullOrEmpty(lastNodeName))
             CallYarnEventSafe(lastNodeName);
 
-        // If we pressed Back while we were on last, fire previous node
         if (triggerPrevNodeIfBackingFromLast && !string.IsNullOrEmpty(previousNodeName))
             CallYarnEventSafe(previousNodeName);
         // ------------------
@@ -111,14 +131,18 @@ public class SpriteSwitcherSimple : MonoBehaviour
 
     void UpdateButtonStates()
     {
-        if (forwardButton) forwardButton.gameObject.SetActive(currentIndex < LastIndex);
-        if (backButton)    backButton.gameObject.SetActive(currentIndex > 0);
+        // Hide next button on last sprite
+        if (forwardButton)
+            forwardButton.gameObject.SetActive(currentIndex < LastIndex);
+
+        // Hide back button on first sprite
+        if (backButton)
+            backButton.gameObject.SetActive(currentIndex > 0);
     }
 
     void CallYarnEventSafe(string nodeName)
     {
-
-        // Expecting a method with this exact signature on your bridge
+        // Expecting a static method with this exact signature on your bridge
         YarnDialogueEventBridge.CallYarnEvent(nodeName);
     }
 }

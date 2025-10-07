@@ -8389,7 +8389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7570548196240584338, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: psudoImaggArray.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7570548196240584338, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: psudoImaggArray.Array.data[0]
@@ -8398,7 +8398,11 @@ PrefabInstance:
     - target: {fileID: 7570548196240584338, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: psudoImaggArray.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1181870820}
+    - target: {fileID: 7570548196240584338, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: psudoImaggArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 1181870819}
     - target: {fileID: 8348385306437430461, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 5
@@ -11538,6 +11542,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+--- !u!1 &1181870819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5878945531869464214, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+  m_PrefabInstance: {fileID: 1181870818}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1181870820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6469149343736025317, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+  m_PrefabInstance: {fileID: 1181870818}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1192642596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1662616379218952914, guid: 911281a571e41e446a22571e1cbdbc56, type: 3}
