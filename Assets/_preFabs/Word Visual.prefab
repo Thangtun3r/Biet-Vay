@@ -5490,18 +5490,25 @@ MonoBehaviour:
     typeID: 0
     sprite: {fileID: 21300000, guid: 6274d3ccfcedcc449b12b5ffa8de72f8, type: 3}
     hexColor: '#A4C8DB'
+    shake: 0
   - nameLabel: Biet Vay
     typeID: 1
     sprite: {fileID: 21300000, guid: 1bd7cb4da4336cd4ca4bc54b2288279f, type: 3}
     hexColor: '#E4B8ED'
+    shake: 0
   - nameLabel: Fade
     typeID: 2
     sprite: {fileID: 21300000, guid: e7a57c39f58ba96418565dca3ed787f0, type: 3}
     hexColor: '#E2E2E2'
+    shake: 1
   buttonVisual: {fileID: 8483525757221605422}
   buttonWrapper: {fileID: 5503621556693247118}
   defaultSprite: {fileID: 0}
   defaultWrapperColor: {r: 1, g: 1, b: 1, a: 1}
+  shakeDuration: 0.35
+  shakeAngleZ: 15
+  shakeVibrato: 18
+  shakeElasticity: 0.5
 --- !u!114 &2889567290690991222
 MonoBehaviour:
   m_ObjectHideFlags: 0

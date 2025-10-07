@@ -148,7 +148,6 @@ public class WordMarkup : MonoBehaviour,IBietVaySentenceChecker
 
     public void FlagBietvay()
     {
-        Debug.Log("this is biet vay");
         OnBietVaySpriteChange?.Invoke(1);
     }
     

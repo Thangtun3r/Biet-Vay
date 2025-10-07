@@ -2,142 +2,123 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class SpriteSwitcher : MonoBehaviour
+public class SpriteSwitcherSimple : MonoBehaviour
 {
-    [Header("Yarn nodes")]
-    public string yarnLastNodeName;   // called when we land on the last sprite
-    public string yarnIntroNodeName;  // called ONLY when we move back from last to a non-last sprite
+    [Header("UI")]
+    public Image targetImage;            // single image to display the sprite
 
-    [Header("Assign UI Image and Sprites")]
-    public Image targetImage;
+    [Header("Sprites in order")]
     public Sprite[] sprites;
 
     [Header("Animator")]
-    public Animator animator;     // has "NextFrame" trigger
+    public Animator animator;            // uses ONE trigger for any transition
+    public string transitionTrigger = "Transition";
 
-    [Header("Buttons")]
-    public Button forwardButton;  // click → go forward
-    public Button backButton;     // click → go backward
+    [Header("Buttons (optional)")]
+    public Button forwardButton;         // cycles +1
+    public Button backButton;            // cycles -1 (still uses the same trigger)
 
-    [Header("Settings")]
-    public float delayBeforeChange = 0.2f; // delay before sprite updates
-    public float inputCooldown = 0.5f;     // cooldown AFTER sprite change
+    [Header("Timing")]
+    [Tooltip("Wait time that matches your transition animation length before swapping the sprite.")]
+    private float commitDelay = 0.25f;
+    private float inputCooldown = 0.25f;
+
+    [Header("Yarn")]
+    public string lastNodeName = "LastNode";
+    public string previousNodeName = "PreviousNode";
 
     private int currentIndex = 0;
-    private Coroutine changeRoutine;
-    private float nextAllowedTime = 0f;
     private bool isProcessing = false;
+    private float nextAllowedTime = 0f;
 
     int LastIndex => Mathf.Max(0, sprites.Length - 1);
-
-    void OnEnable()
-    {
-        // subscribe to external shutdown event
-        GameManager.OnPsudoTurnOff += HandlePsudoTurnOff;
-    }
-
-    void OnDisable()
-    {
-        // unsubscribe to avoid leaks / duplicate handlers
-        GameManager.OnPsudoTurnOff -= HandlePsudoTurnOff;
-    }
+    int NextIndex(int i) => Mathf.Min(i + 1, LastIndex);
+    int PrevIndex(int i) => Mathf.Max(i - 1, 0);
 
     void Start()
     {
-        if (sprites.Length > 0 && targetImage != null)
-            targetImage.sprite = sprites[currentIndex];
+        if (!targetImage || sprites == null || sprites.Length == 0)
+        {
+            Debug.LogWarning("SpriteSwitcherSimple: assign targetImage and at least 1 sprite.");
+            enabled = false; return;
+        }
 
-        if (forwardButton) forwardButton.onClick.AddListener(() => TryStartChange(+1));
-        if (backButton)    backButton.onClick.AddListener(() => TryStartChange(-1));
+        // initial load
+        currentIndex = Mathf.Clamp(currentIndex, 0, LastIndex);
+        targetImage.sprite = sprites[currentIndex];
+
+        if (forwardButton) forwardButton.onClick.AddListener(Next);
+        if (backButton)    backButton.onClick.AddListener(Back);
 
         UpdateButtonStates();
     }
 
-    void TryStartChange(int dir)
+    public void Next()
     {
-        if (!enabled) return; // safety if invoked by UI while disabled
-        if (sprites.Length == 0 || targetImage == null) return;
-        if (Time.time < nextAllowedTime) return; // cooldown active
-        if (isProcessing) return;                // waiting for delayed change
-
-        int newIndex = Mathf.Clamp(currentIndex + dir, 0, LastIndex);
-        if (newIndex == currentIndex) return;
-
-        // detect if we're going BACK from the LAST sprite
-        bool fromLastToNotLast = (currentIndex == LastIndex) && (newIndex < LastIndex);
-
-        if (animator) animator.SetTrigger("NextFrame");
-        changeRoutine = StartCoroutine(ChangeSpriteAfterDelay(newIndex, fromLastToNotLast));
+        TryStartChange(NextIndex(currentIndex), triggerPrevNodeIfBackingFromLast:false);
     }
 
-    // accept a flag telling us if we moved back from last
-    IEnumerator ChangeSpriteAfterDelay(int newIndex, bool fromLastToNotLast)
+    public void Back()
+    {
+        // Only trigger the "previous node" if we are backing *from the last sprite*
+        bool shouldTriggerPrev = (currentIndex == LastIndex);
+        TryStartChange(PrevIndex(currentIndex), triggerPrevNodeIfBackingFromLast: shouldTriggerPrev);
+    }
+
+    public void GoTo(int index)
+    {
+        // GoTo doesn't imply "backing from last", so no previous-node trigger here
+        TryStartChange(Mathf.Clamp(index, 0, LastIndex), triggerPrevNodeIfBackingFromLast:false);
+    }
+
+    void TryStartChange(int targetIndex, bool triggerPrevNodeIfBackingFromLast)
+    {
+        if (Time.time < nextAllowedTime || isProcessing) return;
+        if (targetIndex == currentIndex) return;
+
+        StartCoroutine(PlayTransitionAndSwap(targetIndex, triggerPrevNodeIfBackingFromLast));
+    }
+
+    IEnumerator PlayTransitionAndSwap(int targetIndex, bool triggerPrevNodeIfBackingFromLast)
     {
         isProcessing = true;
 
-        yield return new WaitForSeconds(delayBeforeChange);
+        // Kick the single transition animation
+        if (animator && !string.IsNullOrEmpty(transitionTrigger))
+            animator.SetTrigger(transitionTrigger);
 
-        currentIndex = newIndex;
+        // Swap after the transition completes
+        if (commitDelay > 0f) yield return new WaitForSeconds(commitDelay);
+
+        currentIndex = targetIndex;
         targetImage.sprite = sprites[currentIndex];
 
-        // ---- Yarn triggers ----
-        if (currentIndex == LastIndex)
-        {
-            // Landed on the LAST sprite
-            if (!string.IsNullOrEmpty(yarnLastNodeName))
-                YarnDialogueEventBridge.CallYarnEvent(yarnLastNodeName);
-        }
-        else if (fromLastToNotLast)
-        {
-            // ONLY when moving back off the last sprite
-            yield return new WaitForSeconds(0.1f); // tiny buffer, optional
-            if (!string.IsNullOrEmpty(yarnIntroNodeName))
-                YarnDialogueEventBridge.CallYarnEvent(yarnIntroNodeName);
-        }
+        // --- Yarn hooks ---
+        // If we just moved *to* the last sprite, fire last node
+        if (currentIndex == LastIndex && !string.IsNullOrEmpty(lastNodeName))
+            CallYarnEventSafe(lastNodeName);
 
-        nextAllowedTime = Time.time + inputCooldown; // cooldown starts after change
+        // If we pressed Back while we were on last, fire previous node
+        if (triggerPrevNodeIfBackingFromLast && !string.IsNullOrEmpty(previousNodeName))
+            CallYarnEventSafe(previousNodeName);
+        // ------------------
+
+        nextAllowedTime = Time.time + inputCooldown;
         isProcessing = false;
-        changeRoutine = null;
 
         UpdateButtonStates();
     }
 
     void UpdateButtonStates()
     {
-        if (forwardButton)
-            forwardButton.gameObject.SetActive(currentIndex < LastIndex); // hide when on last
-
-        if (backButton)
-            backButton.gameObject.SetActive(currentIndex > 0);            // hide when on first
+        if (forwardButton) forwardButton.gameObject.SetActive(currentIndex < LastIndex);
+        if (backButton)    backButton.gameObject.SetActive(currentIndex > 0);
     }
 
-    // --- NEW: external control ---
-
-    void HandlePsudoTurnOff()
+    void CallYarnEventSafe(string nodeName)
     {
-        DisableSwitcher();
-    }
 
-    /// <summary>
-    /// Cleanly disables this switcher:
-    /// - Stops active coroutine
-    /// - Hides navigation buttons so UI can’t trigger it
-    /// - Disables this component
-    /// </summary>
-    public void DisableSwitcher()
-    {
-        if (changeRoutine != null)
-        {
-            StopCoroutine(changeRoutine);
-            changeRoutine = null;
-        }
-
-        isProcessing = false;
-        nextAllowedTime = float.PositiveInfinity;
-
-        if (forwardButton) forwardButton.gameObject.SetActive(false);
-        if (backButton)    backButton.gameObject.SetActive(false);
-
-        enabled = false;
+        // Expecting a method with this exact signature on your bridge
+        YarnDialogueEventBridge.CallYarnEvent(nodeName);
     }
 }

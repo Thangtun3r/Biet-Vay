@@ -1,4 +1,4 @@
-﻿
+
 title: setup
 ---
 <<declare $hasBackpack = false>>
@@ -8,21 +8,21 @@ title: setup
 
 title: introduce
 ---
-<<expand>>
-<<UnlockMouse>>
+<<expandIntro>>
 ===
 title: backToPrevious
 ---
-
-<<expand>>
-<<UnlockMouse>>
+<<disablePlayer>>
+<<expandIntro>>
 ===
+
 
 
 
 
 title: start
 ---
+<<isNotBietVay>>
 <<collapse>>
 <<disablePlayer>>
 <<PsudoTurnOn>>
@@ -43,7 +43,7 @@ title: start
             <<jump Funeral>>
             <<endif>>
     -> I/didn't say/love you/to/my mom/enough.
-            Mai: stupid ass
+            <<resolve>>
 ===
 
 title: GoToSchool
@@ -58,8 +58,8 @@ Mom:Mai! Dad's is waiting outside.
 Mom:Get your Backpack!
 Mom: I left you some money on the table.
 Mom:Buy snacks if you want, but no junk food. Did you see the news? Some canteen food was poisoned, can even cause cancer.
--> Okay,/Mom.
-Mai: Okay, Mom.
+-> Okay,/mom.
+Mai: Okay, mom.
 Mom: Ah, also. I just signed you up for your extra math and literature class. 
 Mom: Remember to listen to your teacher, honey.
 -> Huhh.../More classes?
@@ -86,8 +86,8 @@ title: ExitHomeToSchool
 Dad: Where is your backpack Mai?
 <<else>>
 Mom: Did somebody forget to say the magic word?
--> Bye, Mom./Love you.
-Mai: Bye, Mom. Love you.
+-> Bye mom,/love you.
+Mai: Bye mom, love you.
 Mom: Love you too, have a safe trip.
 <<transition 2>>
 <<expand>>        
@@ -111,7 +111,7 @@ Phone: beep beep beep.
 -> *Pick up*
 Mai: Hi Mom!
 Mom: Arrived yet, honey?
--> Yeah,/ Mom./ I/ just /got here.
+-> Yeah,/ mom./ I/ just /got here.
 Mai: Yeah, Mom. I just got here.
 Mom: I heard on the news that people are getting kidnapped.
 Mom: They even take them across the border.
@@ -120,8 +120,8 @@ Mom: Stay in crowded places, okay?
 Mai: I know, mom. You don't have to keep repeating it.
 Mai: I'm not a child anymore.
 Mom: Haizz, you always want to act grown-up. Anyway...have a nice time with your friend, honey.
--> Bye Mom,/love you.
-Mai: Bye Mom, love you.
+-> Bye mom,/love you.
+Mai: Bye mom, love you.
 <<transition 2>>
 <<expand>>        
 <<restartScene>>
@@ -162,14 +162,15 @@ Mom: Why you only think about yourself?
 Mom: Ok.
 Mom: If you want to study art that much, pay to get it.
 Mom: And I won't pay a single dime for your intuition.
--> I/hate you.
-Mai: I hate you. You never let me choose, you never let me have control over my life. 
-Mai: Every single time you just kept saying and saying and forcing me to do as you say. 
-Mai: Like, do you even consider taking the time to understand or even listen to me? 
-Mai: That’s it, I have had enough of this nonsense.
-<<transition 2>>
-<<expand>>        
-<<restartScene>>
+-> I/[ft]hate you.[/ft]
+        Mai: I hate you. You never let me choose, you never let me have control over my life. 
+        Mai: Every single time you just kept saying and saying and forcing me to do as you say. 
+        Mai: Like, do you even consider taking the time to understand or even listen to me? 
+        Mai: That’s it, I have had enough of this nonsense.
+        <<transition 2>>
+        <<expand>>        
+        <<restartScene>>
+-> I/[ft]hate you.[/ft]/[w2f]love you.[/w2f]
 ===
 
 
@@ -193,12 +194,14 @@ Mom: Mai, I’m sorry, I know that you’re busy with your work.
 Mom: But if you can I truly want you to come back home. 
 Mom: Please Ma— Nevermind, even if you are overtime don’t eat noodles at night it’s not good for your health.
 -> I/know/Mom.
-Mai: I know Mom.
-Mai: Ok. If there is nothing more, I got to work now.
-Mai: Bye, take care Mom.
-<<transition 2>>
-<<expand>>        
-<<restartScene>>
+        Mai: I know Mom.
+        Mai: Ok. If there is nothing more, I got to work now.
+        Mai: Bye, take care Mom.
+        <<transition 2>>
+        <<expand>>        
+        <<restartScene>>
+-> I/know/Mom./[f]love you.[/f]
+
 ===
 
 title: PickupPhoneAgain

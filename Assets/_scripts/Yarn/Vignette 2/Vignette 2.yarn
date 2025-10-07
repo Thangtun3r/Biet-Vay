@@ -18,14 +18,12 @@ title: setup
 
 title: introduce
 ---
-<<expand>>
-<<UnlockMouse>>
+<<expandIntro>>
 ===
 title: backToPrevious
 ---
 <<disablePlayer>>
-<<expand>>
-<<UnlockMouse>>
+<<expandIntro>>
 ===
 
 
@@ -65,7 +63,7 @@ Liem: Let's see if I can turn my luck around today.
 
 title: start
 ---
-
+<<isNotBietVay>>
 <<collapse>>
 <<disablePlayer>>
 -> [bv]Biet vay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
@@ -142,10 +140,16 @@ Recieptionist: Okay, let me check your ticket.
     Recieptionist: I'm sorry sir.
     Recieptionist: This ticket didn't win anything.
     Recieptionist: Better luck next time.
+    <<transition 2>>
+    <<expand>>        
+    <<restartScene>>
     <<else>>
     Recieptionist: Congrats sir.
     Recieptionist: You have won {$currentHolding} VND
     Recieptionist: Here is your payout with your stake and your winning combined.
+    <<transition 2>>
+    <<VMReset>>
+    <<jump RestartTheLoop>>
     <<endif>>
 <<set $payOutDone = true>>
 <<VMReset>>
@@ -198,7 +202,7 @@ title: ConfirmBet
         <<set $betPlaced = true>>
         <<VMReset>>
         <<expand>>
-        <<prop 0>>
+        <<jump BettingSlip>>
 
 ===
 
@@ -224,9 +228,9 @@ title: WifePhoneCall
 <<collapse>>
 (Phone ringing): .....
 (Phone ringing): .........
--> Pick up
+-> *Pick up*
     <<jump PickUpPhone>>
--> Hang up
+-> *Hang up*
     <<jump ATM>>
 ===
 

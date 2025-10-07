@@ -38,13 +38,15 @@ title: Setup
 ===
 title: introduce
 ---
-<<UnlockMouse>>
+<<expandIntro>>
 ===
 title: backToPrevious
 ---
-<<expand>>
-<<UnlockMouse>>
+<<disablePlayer>>
+<<expandIntro>>
 ===
+
+
 
 title: start
 ---
@@ -211,8 +213,8 @@ Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
         Tam: People change ya know.
         Mai: Okay, let's see how it goes.
         <<set $affection += 1>>
-<<VMReset>>
 <<transition 2>>
+<<VMReset>>
 <<weather>>
 <<jump insidePark>>
 <<endonce>>
@@ -227,8 +229,8 @@ Mai: Hey, It's evening already, you got any plans?
             Tam: How about we go to play some gashapon? 
             Mai: Okay. That's sound fun!
             Tam: Let's hit the Mall!
-            <<VMReset>>
             <<transition 1>>
+            <<VMReset>>
             <<expand>>
             <<jump Gashapon>>
 ===
@@ -367,18 +369,21 @@ Mai: Or Thảo from my club. She loves games!
             Mai: ...
             Mai: I thought we were just friends.
             Mai: Tam, I truly appreciate your feelings.
-<<if $affection > 5>>
+<<if $affection < 0>>
     Mai: It’s sudden… Let me think about it, okay? I’ll text you.
     Mai: Today was fun. Thanks for hanging out with me.
         <<VMReset>>
         <<spawn Home>>
 
-<<elseif $affection >= 3>>
+<<elseif $affection >= 1>>
     Mai: And I truly value our friendship.
     Mai: And I don't want to break it.
     Mai: So...I hope we can still be friends. Still friends?
     -> Sure./ I/ understand.
         Tam: Sure, I understand.
+        <<transition 2>>
+        <<expand>>        
+        <<restartScene>>
     
 <<else>>
     <<jump suddenGoHome>>
@@ -398,103 +403,3 @@ Mai: Maybe we can hang out another time?
 ===
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//bye-bye
-
-title: Cinema
----
-
-/// bought the ticket and enter the cinema
-Game: (....THE MOVIE IS FREAKING SCREENING RIGHT NOW.....)
-
-Mai: (whisper) Woa the camera composition is amazing
--> The way/ they/ frame each shot/ is just/ perfect./
-Tam: (whisper) The way they frame each shot is just perfect.
-Game:(...)
-Mai: (whisper)Look at Marina, she is really captivating in this scene.
-    -> Kinda /like you,/ though.
-    Tam: Kinda like you, though.
-    Mai:...
-    <<set $movieFlirtSuccess = true>>
-    <<set $affection += 1>>
-    -> Yep/ She's/ truly/ gorgeous.
-    Tam: Yep, she’s truly gorgeous.
-<<transition>>
-/// After the movie ends they went outside
-Mai: The movie..is good right ?
--> Yeh/ great writing/and/ great acting.
-Tam: Yeh, great writing and great acting.
-Tam: I love the chemistry between the characters.
--> But/the CGI/ was/ absurd./
-Tam: But the CGI was absurd.
-Mai: I know right? It took me out of the moment.
-<<if $movieFlirtSuccess>>
-Mai: But atleast they had a stunning actress like me haha.
-<<endif>>
-<<jump Convenience_store_transition>>
-===
-
-
-
-title: StreetVendor
----
-<<collapse>>
-Mai: Oh, yeah <wiggle a=0.5>the usual</wiggle>.  
-Mai: I remember now.  
-Tam: We used to come here to eat before extra classes.  
-
--> So.../ what/ do/ you/ want?  
-Mai: The usual, please.  
-Tam: The usual?  
-Mai: Yep, the usual.  
-Tam: Alright, bet.  
-
-    //fix multiple choices
-    <<declare $correctFood = false>>  
-
-    -> Can you/ get me/ Nui xao bo/ without veggies/ and green onion?/  
-    Tam: Can you get me Nui xao bo without veggies and green onion? 
-    <<set $correctFood = true>>  
-
-    -> Can you/ get me/ Mi xao trung/ without veggies/ and green onion?/  
-    Tam: Can you get me Mi xao trung without veggies and green onion?
-    <<set $correctFood = false>>  
-
--> And also/ one bot chien/, Thank you!  
-Tam: And also one bot chien, Thank you!
-The Vendor: In a minute
-
-<<if $correctFood == false>>  
-Mai: Wrong! Mine’s <wiggle a=0.5>nui xào bò</wiggle>, no veggies, no green onion.
-Tam: I’ll get it right next time, promise.  
-Mai: Haha, I’m just messing with you.  
-
-<<elseif $correctFood == true>>  
-Mai: Wow, you actually got it right.
-Tam: Of course I did, I’m a pro at this.  
-Mai: Haha, I’m impressed.  
-<<set $affection += 1>>
-<<endif>>  
-
-The Vendor: Here you go, enjoy your meal, sweeties.  
-Mai: Thanks, cô.  
-Tam: Thanks, cô.  
-
-/// They eat for about half an hour  
-Mai: That was delicious.  
-Mai: Thanks for treating me.
-Tam: It's what gentlemen do.
-<<jump Convenience_store_transition>>
-
-===

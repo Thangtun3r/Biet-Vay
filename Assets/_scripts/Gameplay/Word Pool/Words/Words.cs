@@ -47,6 +47,7 @@ namespace Gameplay
         {
             if (detectorScript != null)
                 detectorScript.OnWordDetected += HandleWordDetected;
+            
         }
 
         private void OnDisable()
@@ -224,6 +225,21 @@ namespace Gameplay
             transform.SetAsLastSibling();        
             _originalParent = opposite;          
         }
+        
+        public void ReturnToOriginalPool()
+        {
+            if (_originalParent == null) return;
+
+            transform.SetParent(_originalParent, worldPositionStays: false);
+            transform.SetAsLastSibling();
+
+            // same cleanup logic as after drag
+            if (detectorCollider != null) detectorCollider.enabled = false;
+            if (buttonCollider != null) buttonCollider.enabled = true;
+
+            _overlappedWordTransform = null;
+        }
+
 
 
     }

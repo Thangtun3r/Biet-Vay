@@ -495,6 +495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visualToLogic: {fileID: 2722496367998514348}
+  fadeWord: {fileID: 8571672530885180982}
 --- !u!114 &8571672530885180982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFadeWord: 0
-  _words: {fileID: 0}
+  _words: {fileID: 7893412346723646125}
 --- !u!1 &6329238593558574151
 GameObject:
   m_ObjectHideFlags: 0

@@ -67,8 +67,7 @@ public class FrictionWord : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         if (isFriction && frictionMouseFollow != null) frictionMouseFollow.StopFollowMouse();
     }
-
-    // 🔹 Click handling only here
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (isDragging) return; // block click after drag
@@ -96,10 +95,14 @@ public class FrictionWord : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         isDragging = false;
+        
+        if (isFriction && _words != null)
+            _words.enabled = true;
 
-        if (_words != null) _words.enabled = true;
-        if (frictionMouseFollow != null) frictionMouseFollow.StopFollowMouse();
+        if (frictionMouseFollow != null)
+            frictionMouseFollow.StopFollowMouse();
     }
+
     
 
     private void StopFriction()

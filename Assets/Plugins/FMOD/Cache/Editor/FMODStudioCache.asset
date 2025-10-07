@@ -15,10 +15,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 1.bank
   Name: Vignette 1
   StudioPath: bank:/Vignette 1
-  lastModified: 638929402410415285
+  lastModified: 638953239214628993
   FileSizes:
   - Name: Desktop
-    Value: 8432512
+    Value: 8803168
   Exists: 1
 --- !u!114 &-7948058007449436636
 MonoBehaviour:
@@ -47,6 +47,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 33
+--- !u!114 &-7777977640150275684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Transition/ExitingToxs
+  m_EditorClassIdentifier: 
+  Path: event:/Transition/ExitingToxs
+  Guid:
+    Data1: 2122226453
+    Data2: 1153689607
+    Data3: -198249849
+    Data4: 316703311
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 68000
+--- !u!114 &-7041761822865691138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 1/FoodCooking
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 1/FoodCooking
+  Guid:
+    Data1: 449560025
+    Data2: 1244496801
+    Data3: 1853907363
+    Data4: -1240142363
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3693
 --- !u!114 &-6564563347543725749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +208,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112
+--- !u!114 &-2485995285182893719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 1/PickUpFood
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 1/PickUpFood
+  Guid:
+    Data1: 840548397
+    Data2: 1242271879
+    Data3: -259311218
+    Data4: 887457042
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 310
 --- !u!114 &-1250377997437489719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +274,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638929402410085311
+  lastModified: 638953237414525904
   FileSizes:
   - Name: Desktop
     Value: 26808992
@@ -219,7 +300,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8895227409773713057}
   IsStream: 1
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -250,12 +331,15 @@ MonoBehaviour:
   - {fileID: 1205983830768049823}
   - {fileID: 134979026080793406}
   - {fileID: -1056075810727517894}
+  - {fileID: -7777977640150275684}
+  - {fileID: -2485995285182893719}
+  - {fileID: -7041761822865691138}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638929402410415285
+  cacheTime: 638953239214628993
   cacheVersion: 131623
 --- !u!114 &134979026080793406
 MonoBehaviour:
@@ -353,8 +437,8 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638929402410095303
+  lastModified: 638953237414535912
   FileSizes:
   - Name: Desktop
-    Value: 1248
+    Value: 1406
   Exists: 1
