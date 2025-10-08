@@ -15,29 +15,29 @@ title: start
 <<isBietVay>>
 -> New game.
     <<transition 3>>
-    <<expand>>
+    <<expandIntro>>
     <<startGame>>
 -> Regrets recollection.
     Game: Which regrets you want to re-stepping in ?
         -> Duy's regret.
             <<transition 3>>
-            <<expand>>
+            <<expandIntro>>
             <<loadScene Vignette1>>
         -> Liem's regret.
             <<transition 3>>
-            <<expand>>
+            <<expandIntro>>
             <<loadScene Vignette2>>
         -> Tam's regret.
             <<transition 3>>
-            <<expand>>
+            <<expandIntro>>
             <<loadScene Vignette3>>
         -> Mai's regret.
             <<transition 3>>
-            <<expand>>
+            <<expandIntro>>
             <<loadScene Vignette4>>
         -> Your's regret.
             <<transition 3>>
-            <<expand>>
+            <<expandIntro>>
             <<loadScene Vignette5>>
         -> Back.
             <<jump start>>

@@ -11,35 +11,50 @@ public class SubmitForm : MonoBehaviour
     [Header("Server")]
     [SerializeField] private string url = "https://thangtuner.com/api/bietvay.php";
 
+    [Header("References")]
+    [Tooltip("Centralized data storage (SubmitStorer).")]
+    [SerializeField] private SubmitStorer storer;
+
     [Header("UI")]
-    [SerializeField] private TMP_InputField nameInput;
-    [SerializeField] private TMP_InputField emailInput;     // ✅ new
-    [SerializeField] private TMP_InputField bietVayInput;
-    [SerializeField] private TMP_InputField overcomeInput;
     [SerializeField] private Button sendButton;
     [SerializeField] private TextMeshProUGUI statusLabel;   // optional
 
     void Start()
     {
-        sendButton.onClick.AddListener(OnSendClicked);
+        if (sendButton) sendButton.onClick.AddListener(OnSendClicked);
         if (statusLabel) statusLabel.text = "";
+
+        if (!storer)
+        {
+            storer = FindObjectOfType<SubmitStorer>();
+            if (!storer)
+                Debug.LogWarning("SubmitForm: No SubmitStorer found. Please assign one in the Inspector.");
+        }
     }
 
     private void OnSendClicked()
     {
-        string name = nameInput.text.Trim();
-        string email = emailInput.text.Trim();              // ✅ new
-        string bietVay = bietVayInput.text.Trim();
-        string overcome = overcomeInput.text.Trim();
+        if (!storer)
+        {
+            if (statusLabel) statusLabel.text = "No data source (SubmitStorer) found!";
+            return;
+        }
 
-        if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) ||
-            string.IsNullOrEmpty(bietVay) || string.IsNullOrEmpty(overcome))
+        string name = (storer.nameValue ?? "").Trim();
+        string email = (storer.emailValue ?? "").Trim();
+        string bietVay = (storer.bietVayValue ?? "").Trim();
+        string overcome = (storer.overcomeValue ?? "").Trim();
+
+        if (string.IsNullOrEmpty(name) ||
+            string.IsNullOrEmpty(email) ||
+            string.IsNullOrEmpty(bietVay) ||
+            string.IsNullOrEmpty(overcome))
         {
             if (statusLabel) statusLabel.text = "Please fill all fields.";
             return;
         }
 
-        // bare-minimum email check
+        // basic email check
         if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
         {
             if (statusLabel) statusLabel.text = "Please enter a valid email.";
@@ -49,7 +64,7 @@ public class SubmitForm : MonoBehaviour
         FormData data = new FormData
         {
             name = name,
-            email = email,                                   // ✅ new
+            email = email,
             bietVay = bietVay,
             overcome = overcome
         };
@@ -87,7 +102,7 @@ public class SubmitForm : MonoBehaviour
     public class FormData
     {
         public string name;
-        public string email;                                  // ✅ new
+        public string email;
         public string bietVay;
         public string overcome;
     }

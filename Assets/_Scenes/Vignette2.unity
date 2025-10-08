@@ -11396,6 +11396,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6469149343736025317, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
   m_PrefabInstance: {fileID: 7658611925647745373}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7658611925647745376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6340582632946804617, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+  m_PrefabInstance: {fileID: 7658611925647745373}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7658611925647745377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6364491679611024323, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+  m_PrefabInstance: {fileID: 7658611925647745373}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7658611925647745378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3920797170628724561, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+  m_PrefabInstance: {fileID: 7658611925647745373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7712775634079279760
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11513,6 +11540,18 @@ PrefabInstance:
       propertyPath: Runner
       value: 
       objectReference: {fileID: 8888377626674662495}
+    - target: {fileID: 3301601749203423359, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: resetButton
+      value: 
+      objectReference: {fileID: 7658611925647745376}
+    - target: {fileID: 3301601749203423359, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: pauseMenuRoot
+      value: 
+      objectReference: {fileID: 7658611925647745378}
+    - target: {fileID: 3301601749203423359, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: backToStartButton
+      value: 
+      objectReference: {fileID: 7658611925647745377}
     - target: {fileID: 4518718443894787502, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: cameras.Array.size
       value: 2

@@ -42,15 +42,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
+        if (IsFrozen || Time.timeScale == 0f) return;   // stop rotating when paused
+
         HandleCameraRotation();
 
         if (vcam != null)
-        {
-            // keep position coming from Body: Hard Lock To Target (Follow = Head)
-            // but we control rotation because Aim = Do Nothing
             vcam.transform.rotation = cameraView.rotation;
-        }
     }
+
 
 
     private void Update()

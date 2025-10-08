@@ -12,3 +12,11 @@ title: start
 ---
 <<collapse>>
 ===
+
+title: disclose
+---
+-> No,Thanks.
+    <<resetScene>>
+-> Sure.
+    <<Expand>>
+===
