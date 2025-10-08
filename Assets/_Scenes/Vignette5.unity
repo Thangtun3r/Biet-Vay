@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 753113298}
   m_TextViewport: {fileID: 814255809}
-  m_TextComponent: {fileID: 1392228710}
+  m_TextComponent: {fileID: 653399662}
   m_Placeholder: {fileID: 1254907254}
   m_VerticalScrollbar: {fileID: 0}
   m_VerticalScrollbarEventHandler: {fileID: 0}
@@ -2057,7 +2057,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 0.7529412}
-  m_Text: werfdsfdf
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0

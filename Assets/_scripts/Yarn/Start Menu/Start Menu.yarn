@@ -44,6 +44,5 @@ title: start
 -> Quit the game.
     <<quit>>
 -> Credits.
-    Game: It's me.
-        <<jump start>>
+    <<PlayCreditRoll CreditRoll>>
 ===

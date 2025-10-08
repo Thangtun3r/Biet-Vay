@@ -4,6 +4,7 @@ title: Setup
 <<declare $orderNumber = 0>>
 <<declare $hasPickedUp = false>>
 <<declare $foodReady = false>>
+<<declare $hasWaited = false>>
 ===
 
 
@@ -106,16 +107,21 @@ Chair: How can you wait when you have nothing to wait for?
         -> Yeh,/you're right.
                 Duy: Yeh, you're right.
                 Chair: Well go find something to wait for then.
-<<else>>
+<<elseif $hasWaited == false>>
 <<prop 1>>
 <<playFMODEvent event:/Vignette 1/FoodCooking>>
 <<transition 3>>
 <<spawn WaitingChair>>
 <<wait 2.7>>
 <<VMBoost 2>>
-<<wait 1.5>>
+<<wait 0.4>>
 <<VMReset>>
+<<set $hasWaited = true>>
 <<set $foodReady = true>>
+<<else>>
+<<collapse>>
+Chair: Bro, you got the food already.
+Chair: Go and enjoy it.
 <<endif>>
 <<expand>>
 

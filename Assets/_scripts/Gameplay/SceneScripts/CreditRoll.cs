@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class CreditRoll : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class CreditRoll : MonoBehaviour
     [Header("Scene Loading")]
     [Tooltip("Optional: Scene name to load after credits.")]
     [SerializeField] private string sceneToLoad;
+
+    // --- YARN COMMAND INTEGRATION ---
+    [YarnCommand("PlayCreditRoll")]
+    public void Yarn_PlayCreditRoll()
+    {
+        PlayCreditRoll();
+    }
 
     /// <summary>
     /// Public method to start the credit roll animation.
