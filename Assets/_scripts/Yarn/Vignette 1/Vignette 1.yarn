@@ -11,11 +11,12 @@ title: Setup
 
 title: FMODOpener
 ---
-<<playFMODEvent event:/Transition/ExitingToxs>>
+
 ===
 
 title: introduce
 ---
+<<playFMODEvent event:/Vignette 1/Ambience Outside loop intro>>
 <<UnlockMouse>>
 ===
 title: backToPrevious
@@ -62,7 +63,7 @@ Toxos Staff: Ah also, you can right click to zoom in at the stuffs.
 -> Okay,/let me/see.
 <<else>>
 <<if $hasOrdered is false>>
-Toxos Staff: Have you make up your mind yet?
+Toxos Staff: Have you made up your mind yet?
 -> The Happy Toxos 14th/, please.
         Toxos Staff: Alright, Your order will be ready shortly.
         <<set $hasOrdered = true>>
@@ -80,7 +81,7 @@ Toxos Staff: Have you make up your mind yet?
 <<endif>>
 <<endonce>>
 <<if $hasOrdered is true and $foodReady is false>>
-        Toxos Staff: Your order will be ready shortly. You can take a sit over there to wait.
+        Toxos Staff: Your order will be ready shortly. You can take a seat over there to wait.
 <<elseif $hasOrdered is true and $foodReady is true>>
         Toxos Staff: Have a nice meal!
 <<endif>>
@@ -160,11 +161,12 @@ Duy: Hmm...I need to order something before going home
 <<else>>
 Duy: ...
 Duy: Damn, this combo is a lot, but I gotta tighten my belly this month cuz of the cost.<<if $orderNumber == 1>>
-Duy: What a steal of a deal! But I need to buy something to stuff myself at night cuz the portion is so small<<if $orderNumber == 2>>
-Duy: Hmmm, great deal… But why did I want to eat seafood at a chicken restaurant?<<if $orderNumber == 3>>
+Duy: What a steal of a deal! But I need to buy something to stuff myself at night cuz the portion is so small.<<if $orderNumber == 2>>
+Duy: Hmmm, great deal… but why did I want to eat seafood at a chicken restaurant?<<if $orderNumber == 3>>
 <<transition 4>>
-<<killFMODEvent>>
-<<expand>>        
+<<playFMODEvent event:/Transition/ExitingToxs>>
+<<wait  1>>
+<<expand>>
 <<restartScene>>
 <<endif>>
 <<expand>>

@@ -27,7 +27,7 @@ MonoBehaviour:
     hexColor: '#874A33'
   - characterName: Disturbing Woman
     hexColor: '#E88F00'
-  - characterName: Recieptionist
+  - characterName: Receptionist
     hexColor: '#BCE681'
   - characterName: Liem
     hexColor: '#A294F2'
@@ -35,3 +35,7 @@ MonoBehaviour:
     hexColor: '#DCDE62'
   - characterName: Mom
     hexColor: '#ec4887'
+  - characterName: Phone
+    hexColor: '#ec4887'
+  - characterName: Dad
+    hexColor: '#a7ca1c'

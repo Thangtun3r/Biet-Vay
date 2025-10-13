@@ -18,6 +18,8 @@ title: setup
 
 title: introduce
 ---
+<<killFMODEvent>>
+<<playFMODEvent event:/Vignette 2/On the train home>>
 <<UnlockMouse>>
 ===
 title: backToPrevious
@@ -68,6 +70,7 @@ title: start
 <<disablePlayer>>
 -> [bv]Biet vay [/bv]/I/[sw w="shouldn't have"]had[/sw]/bet/on/that/horse.   
     <<spawn start>>
+    <<killFMODEvent>>
     <<isBietVay>>
     <<transition 1>>
     <<PsudoTurnOff>>
@@ -87,15 +90,15 @@ title: BettingCorner
 <<collapse>>
 
 
-Recieptionist: Welcome to NRA off-course betting center.
-Recieptionist: How can I help you, sir?
+Receptionist: Welcome to NRA off-course betting center.
+Receptionist: How can I help you, sir?
 <<if $raceCompleted == false && $betPlaced == false && $payOutDone == false>>
 <<jump placeBet>>>>
 <<elseif $raceCompleted == true && $betPlaced == true && $payOutDone == false>>
 <<jump Payout>>
 <<else>>
--> Nevermind./
-    Recieptionist: Alright, have a nice day sir.
+-> Never mind./
+    Receptionist: Alright, have a nice day sir.
 <<endif>>
 
 
@@ -112,19 +115,19 @@ title: placeBet
     <<if $currentHolding > 0>>
         <<jump PlaceBet>>
     <<else>>
-        Recieptionist: What with the empty hand ??
-        Recieptionist: You need money to place a bet.
-        Recieptionist: If you don't have money, don't think about betting at all.
+        Receptionist: What’s with the empty hand??
+        Receptionist: You need money to place a bet.
+        Receptionist: If you don’t have any money, don’t think about betting at all.
     <<endif>>
 -> How/should/I/place a bet./
     Liem: So how should I bet?
-    Recieptionist: You can place a bet on any horse you like. The lower the odds, the lower the risk.
-    Recieptionist: However, the payout will also be lower.
-    Recieptionist: The higher the odds, the higher the risk.
-    Recieptionist: But remember 99.8% gamblers quit before winning big.
-    Recieptionist: So never give up!
--> Nevermind./
-    Recieptionist: Alright, have a nice day sir.
+    Receptionist: You can place a bet on any horse you like. The lower the odds, the lower the risk.
+    Receptionist: However, the payout will also be lower.
+    Receptionist: The higher the odds, the higher the risk.
+    Receptionist: But remember 99.8% of gamblers quit before winning big.
+    Receptionist: So never give up!
+-> Never mind./
+    Receptionist: Alright, have a nice day, sir.
 <<VMReset>>
 <<expand>>
 ===
@@ -134,19 +137,19 @@ title: Payout
 
 -> I/would like/to/redeem/my ticket./
 Liem: I would like to redeem my ticket.
-Recieptionist: Okay, let me check your ticket.
+Receptionist: Okay, let me check your ticket.
 <<payOut>>
     <<if $winningBet == false>>
-    Recieptionist: I'm sorry sir.
-    Recieptionist: This ticket didn't win anything.
-    Recieptionist: Better luck next time.
+    Receptionist: I’m sorry, sir.
+    Receptionist: This ticket didn't win anything.
+    Receptionist: Better luck next time.
     <<transition 2>>
     <<expand>>        
     <<restartScene>>
     <<else>>
-    Recieptionist: Congrats sir.
-    Recieptionist: You have won {$currentHolding} VND
-    Recieptionist: Here is your payout with your stake and your winning combined.
+    Receptionist: Congrats, sir.
+    Receptionist: You have won {$currentHolding} VND.
+    Receptionist: Here is your payout with your stake and your winnings combined.
     <<transition 2>>
     <<VMReset>>
     <<jump RestartTheLoop>>
@@ -158,7 +161,7 @@ Recieptionist: Okay, let me check your ticket.
 
 title: PlaceBet
 ---
-Recieptionist: Certainly, which horse would you like to bet on?
+Receptionist: Certainly, which horse would you like to bet on?
     -> Typical Day
         <<placeBet 0>>
         <<set $horseNames = "Typical Day">>
@@ -183,8 +186,8 @@ Recieptionist: Certainly, which horse would you like to bet on?
         <<placeBet 5>>
         <<set $horseNames = "Skibidi Huzz">>
         <<jump ConfirmBet>>
-    -> Nevermind./
-        Recieptionist: Alright, if you have any questions, feel free to ask.
+    -> Never mind./
+        Receptionist: Alright, if you have any questions, feel free to ask.
 <<VMReset>>
 <<expand>>
 
@@ -192,13 +195,13 @@ Recieptionist: Certainly, which horse would you like to bet on?
 
 title: ConfirmBet
 ---
-    Recieptionist: Right got it.
-    Recieptionist: Let me re-confirm, so you would like to all-in on {$horseNames}. Correct ?
+    Receptionist: Right, got it.
+    Receptionist: Let me re-confirm: you would like to go all-in on {$horseNames}, correct?
     -> Yes.
-        Recieptionist: Alright, your bet has been placed.
-        Recieptionist: Please take the printed ticket to later claim your payout.
-        Recieptionist: After the race finished, you can come back here to redeem your ticket.
-        Recieptionist: Good luck sir.
+        Receptionist: Alright, your bet has been placed.
+        Receptionist: Please take the printed ticket to later claim your payout.
+        Receptionist: After the race finishes, you can come back here to redeem your ticket.
+        Receptionist: Good luck, sir.
         <<set $betPlaced = true>>
         <<VMReset>>
         <<expand>>
@@ -226,29 +229,32 @@ title: RaceStart
 title: WifePhoneCall
 ---
 <<collapse>>
-(Phone ringing): .....
-(Phone ringing): .........
+<<playFMODEvent event:/Vignette 2/Phone Ring>>
+Phone: (Phone ringing)
 -> *Pick up*
+    <<playFMODEvent event:/Vignette 2/phone pickup>>
     <<jump PickUpPhone>>
 -> *Hang up*
+    <<playFMODEvent event:/Vignette 2/phone hangup>>
     <<jump ATM>>
 ===
 
 
 title: PickUpPhone
 ---
-Disturbing Woman: ....
+Disturbing Woman: ...
 Disturbing Woman: Alo?
 -> What/ do/ you/ want?
-Disturbing Woman: Why you haven't answeared my call ?
-Disturbing Woman: Have you pay for Tam's tuition yet? His teacher has been calling me that we have late for the fee.
-Disturbing Woman: Please don't say that you are going to the casino again.
+Disturbing Woman: Why haven’t you answered my call?
+Disturbing Woman: Have you paid for Tam’s tuition yet? His teacher has been calling me saying we’re late with the fee.
+Disturbing Woman: Please don’t tell me you’re going to the casino again.
 -> No,/I'm/working/for/the money.
 Liem: No, I am working for the money.
-Liem: I will triple it-
-Liem: I mean I promised I will pay for Tam and also sign up for his extra Math class aswell.
-Liem: And also pay the remaining debt for the house.
-Disturbing Woman: Please, I'm begging you. It's our son's future---
+Liem: I’ll triple it—
+Liem: I mean, I promise I’ll pay for Tam and also sign him up for his extra math class as well.
+Liem: And pay the remaining debt for the house.
+Disturbing Woman: Please, I'm begging you. It’s our son’s future—
+<<playFMODEvent event:/Vignette 2/phone hangup>>
 <<jump ATM>>
 
 ===
@@ -258,12 +264,16 @@ title: ATM
 <<VMBoost 1>>
 <<collapse>>
 -> *Insert/card* 
+    <<playFMODEvent event:/Vignette 2/Atm card insert>>
     <<cardInsert>>
     -> *Deposit*
+        <<playFMODEvent event:/Vignette 2/Atm button>>
         <<set $currentBalance = $currentHolding + $currentBalance>>
         <<set $currentHolding = 0>>
         <<deposit>>
     -> *Withdraw*
+        <<playFMODEvent event:/Vignette 2/Atm button>>
+        <<playFMODEvent event:/Vignette 2/Atm money>>
         <<set $currentHolding = $currentHolding + $currentBalance>>
         <<set $currentBalance = 0>>
         <<withdraw>>

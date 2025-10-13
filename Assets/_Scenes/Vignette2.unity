@@ -11824,11 +11824,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 574052352757615686, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_UpdateMethod
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 574052352757615686, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_ShowDebugText
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 574052352757615686, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_BlendUpdateMethod
@@ -11948,7 +11948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_StandbyUpdate
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Lens.FieldOfView
@@ -12288,6 +12288,46 @@ PrefabInstance:
       propertyPath: sprites.Array.data[3]
       value: 
       objectReference: {fileID: 21300000, guid: dc8ec24df0c7643489faa9209d46c8ee, type: 3}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[1].Path
+      value: event:/Vignette 2/Phone rumble
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[2].Path
+      value: event:/Vignette 2/Notify ding
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[1].Guid.Data1
+      value: -1812627653
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[1].Guid.Data2
+      value: 1170219489
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[1].Guid.Data3
+      value: -1623903608
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[1].Guid.Data4
+      value: 900160692
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[2].Guid.Data1
+      value: -364616768
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[2].Guid.Data2
+      value: 1229007664
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[2].Guid.Data3
+      value: -500660862
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379476883350035141, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      propertyPath: spriteOneShots.Array.data[2].Guid.Data4
+      value: 1172316171
+      objectReference: {fileID: 0}
     - target: {fileID: 4914642697067130898, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9018991
@@ -12668,6 +12708,10 @@ PrefabInstance:
       propertyPath: psudoImaggArray.Array.data[2]
       value: 
       objectReference: {fileID: 7658611925647745375}
+    - target: {fileID: 8181742115930221212, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: Banks.Array.data[0]
+      value: Vignette 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8348385306437430461, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: spawnPoints.Array.size
       value: 2
@@ -12688,7 +12732,9 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[1].point
       value: 
       objectReference: {fileID: 1268577849}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3441896046567736133, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+    - {fileID: 5487868670471297840, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

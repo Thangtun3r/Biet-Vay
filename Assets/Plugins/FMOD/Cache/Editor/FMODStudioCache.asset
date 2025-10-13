@@ -15,11 +15,38 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 1.bank
   Name: Vignette 1
   StudioPath: bank:/Vignette 1
-  lastModified: 638953239214628993
+  lastModified: 638957485623118167
   FileSizes:
   - Name: Desktop
-    Value: 8803168
+    Value: 8915808
   Exists: 1
+--- !u!114 &-8327321184196145308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 1/Ambience Outside loop intro
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 1/Ambience Outside loop intro
+  Guid:
+    Data1: -556264171
+    Data2: 1140408616
+    Data3: 1915507625
+    Data4: 1552304136
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 68000
 --- !u!114 &-7948058007449436636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +100,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 68000
+  Length: 3600
 --- !u!114 &-7041761822865691138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,60 +127,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 3693
---- !u!114 &-6564563347543725749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience Outside
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience Outside
-  Guid:
-    Data1: -1395819359
-    Data2: 1173335919
-    Data3: 1559662776
-    Data4: -188957435
-  Banks:
-  - {fileID: -8895227409773713057}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -1250377997437489719}
-  - {fileID: -6434961819305469389}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 272196
---- !u!114 &-6434961819305469389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Ambience Outside/PlayAmbience
-  m_EditorClassIdentifier: 
-  Name: PlayAmbience
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 1016596082
-    data2: 2388852834
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
+  Length: 3150
 --- !u!114 &-5613287546400000174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +155,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 143
+--- !u!114 &-5001370485694878851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Phone hangup
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Phone hangup
+  Guid:
+    Data1: 2100543088
+    Data2: 1173628842
+    Data3: 1865740734
+    Data4: -1595328851
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1320
 --- !u!114 &-3747526738752376379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,34 +209,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112
---- !u!114 &-2485995285182893719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Vignette 1/PickUpFood
-  m_EditorClassIdentifier: 
-  Path: event:/Vignette 1/PickUpFood
-  Guid:
-    Data1: 840548397
-    Data2: 1242271879
-    Data3: -259311218
-    Data4: 887457042
-  Banks:
-  - {fileID: -8895227409773713057}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 310
---- !u!114 &-1250377997437489719
+--- !u!114 &-2626106653856618870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,6 +233,60 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-2554303309814565103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/On the train home
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/On the train home
+  Guid:
+    Data1: 1256989724
+    Data2: 1271459386
+    Data3: 648873908
+    Data4: -1227897453
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 40000
+--- !u!114 &-2485995285182893719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 1/PickUpFood
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 1/PickUpFood
+  Guid:
+    Data1: 840548397
+    Data2: 1242271879
+    Data3: -259311218
+    Data4: 887457042
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1232821717831486065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,10 +302,34 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638953237414525904
+  lastModified: 638957561222265532
   FileSizes:
   - Name: Desktop
-    Value: 26808992
+    Value: 84032
+  Exists: 1
+--- !u!114 &-1061278378201605428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Ambience Outside/PlayAmbience
+  m_EditorClassIdentifier: 
+  Name: PlayAmbience
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1016596082
+    data2: 2388852834
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-1056075810727517894
 MonoBehaviour:
@@ -322,26 +374,38 @@ MonoBehaviour:
   - {fileID: 7705571881547959551}
   - {fileID: -1232821717831486065}
   - {fileID: -8895227409773713057}
+  - {fileID: 9170057444903596995}
   EditorEvents:
-  - {fileID: -6564563347543725749}
   - {fileID: 6536474148519541492}
   - {fileID: -3747526738752376379}
   - {fileID: -7948058007449436636}
   - {fileID: -5613287546400000174}
   - {fileID: 1205983830768049823}
-  - {fileID: 134979026080793406}
   - {fileID: -1056075810727517894}
   - {fileID: -7777977640150275684}
   - {fileID: -2485995285182893719}
   - {fileID: -7041761822865691138}
+  - {fileID: -8327321184196145308}
+  - {fileID: 6180915670185076773}
+  - {fileID: 4230389330103122005}
+  - {fileID: -2554303309814565103}
+  - {fileID: 6758234555184191}
+  - {fileID: 9197386157774984543}
+  - {fileID: 3265199725980273115}
+  - {fileID: 72255496062482928}
+  - {fileID: -5001370485694878851}
+  - {fileID: 7336264747456395346}
+  - {fileID: 106181575825840725}
+  - {fileID: 1563863857311430543}
+  - {fileID: 5894108494289603070}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638953239214628993
+  cacheTime: 638957561222280568
   cacheVersion: 131623
---- !u!114 &134979026080793406
+--- !u!114 &6758234555184191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -351,23 +415,77 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Florence
+  m_Name: event:/Vignette 2/Phone Rumble
   m_EditorClassIdentifier: 
-  Path: event:/Florence
+  Path: event:/Vignette 2/Phone Rumble
   Guid:
-    Data1: 2087430646
-    Data2: 1261583745
-    Data3: 2110980242
-    Data4: -1055535739
+    Data1: -1812627653
+    Data2: 1170219489
+    Data3: -1623903608
+    Data4: 900160692
   Banks:
-  - {fileID: -1232821717831486065}
+  - {fileID: 9170057444903596995}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 240000
+  Length: 920
+--- !u!114 &72255496062482928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Phone Ring
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Phone Ring
+  Guid:
+    Data1: 808544042
+    Data2: 1084600583
+    Data3: 891082405
+    Data4: 485711111
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12024
+--- !u!114 &106181575825840725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Atm money
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Atm money
+  Guid:
+    Data1: -1729414343
+    Data2: 1239979115
+    Data3: 1583352726
+    Data4: -866944295
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3100
 --- !u!114 &1205983830768049823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,6 +513,143 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &1563863857311430543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Atm button
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Atm button
+  Guid:
+    Data1: -1651113590
+    Data2: 1079721139
+    Data3: -1117224776
+    Data4: -1877964412
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 78
+--- !u!114 &3265199725980273115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Parlor Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Parlor Ambience
+  Guid:
+    Data1: -1205048569
+    Data2: 1268544973
+    Data3: -116639360
+    Data4: 1755149654
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 142051
+--- !u!114 &4230389330103122005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/Switching
+  m_EditorClassIdentifier: 
+  Path: event:/UI/Switching
+  Guid:
+    Data1: -586492208
+    Data2: 1177660313
+    Data3: 1369209223
+    Data4: -230418359
+  Banks:
+  - {fileID: -1232821717831486065}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5894108494289603070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Atm card insert
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Atm card insert
+  Guid:
+    Data1: -790946362
+    Data2: 1326180905
+    Data3: -1385908059
+    Data4: -1002758705
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1140
+--- !u!114 &6180915670185076773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 1/Ambience Outside
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 1/Ambience Outside
+  Guid:
+    Data1: -1395819359
+    Data2: 1173335919
+    Data3: 1559662776
+    Data4: -188957435
+  Banks:
+  - {fileID: -8895227409773713057}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -1061278378201605428}
+  - {fileID: -2626106653856618870}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 272196
 --- !u!114 &6536474148519541492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,7 +676,34 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 13400
+  Length: 12918
+--- !u!114 &7336264747456395346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Phone pickup
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Phone pickup
+  Guid:
+    Data1: 372285835
+    Data2: 1277795843
+    Data3: -1605327944
+    Data4: 228201257
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 100
 --- !u!114 &7705571881547959551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,8 +719,55 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638953237414535912
+  lastModified: 638957561222280568
   FileSizes:
   - Name: Desktop
-    Value: 1406
+    Value: 1994
   Exists: 1
+--- !u!114 &9170057444903596995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Vignette 2.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 2.bank
+  Name: Vignette 2
+  StudioPath: bank:/Vignette 2
+  lastModified: 638957537379660562
+  FileSizes:
+  - Name: Desktop
+    Value: 13375136
+  Exists: 1
+--- !u!114 &9197386157774984543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Notify ding
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Notify ding
+  Guid:
+    Data1: -364616768
+    Data2: 1229007664
+    Data3: -500660862
+    Data4: 1172316171
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3416

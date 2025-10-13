@@ -578,7 +578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d0f94aaa5c307408be6a7b5ff17973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FMODEvent: 
+  FMODEvent: event:/Vignette 2/Parlor Ambience
   FMODBGMParamName: 
   FMODParamValue: 0
 --- !u!1102 &6401739467520938713

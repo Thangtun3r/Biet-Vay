@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
+// FMOD
+using FMODUnity;
+
 public class SpriteSwitcherSimple : MonoBehaviour
 {
     [Header("UI")]
@@ -31,6 +34,18 @@ public class SpriteSwitcherSimple : MonoBehaviour
     [Tooltip("If other systems re-enable the buttons, enforce the correct visibility every frame.")]
     [SerializeField] private bool enforceVisibilityEveryFrame = true;
 
+    // --- FMOD: per-sprite one-shots ---
+    [Header("FMOD (optional)")]
+    [Tooltip("One-shot event to play when each sprite is shown. Leave an entry empty to play nothing for that sprite.")]
+    [SerializeField] private EventReference[] spriteOneShots;
+
+    [Tooltip("If true, one-shots play at this GameObject's position (3D). If false, they play as 2D one-shots.")]
+    [SerializeField] private bool use3DPosition = true;
+
+    [Tooltip("If true, also play the one-shot for the initial sprite on Start().")]
+    [SerializeField] private bool playOnStart = false;
+    // -----------------------------------
+
     private int currentIndex = 0;
     private bool isProcessing = false;
     private float nextAllowedTime = 0f;
@@ -38,6 +53,24 @@ public class SpriteSwitcherSimple : MonoBehaviour
     int LastIndex => Mathf.Max(0, sprites.Length - 1);
     int NextIndex(int i) => Mathf.Min(i + 1, LastIndex);
     int PrevIndex(int i) => Mathf.Max(i - 1, 0);
+
+    void OnValidate()
+    {
+        // Keep FMOD event array in sync with sprites length (non-destructive copy).
+        if (sprites == null) return;
+
+        if (spriteOneShots == null || spriteOneShots.Length != sprites.Length)
+        {
+            var old = spriteOneShots;
+            spriteOneShots = new EventReference[sprites.Length];
+            if (old != null)
+            {
+                int n = Mathf.Min(old.Length, spriteOneShots.Length);
+                for (int i = 0; i < n; i++)
+                    spriteOneShots[i] = old[i];
+            }
+        }
+    }
 
     void Start()
     {
@@ -51,6 +84,9 @@ public class SpriteSwitcherSimple : MonoBehaviour
         // initial load
         currentIndex = Mathf.Clamp(currentIndex, 0, LastIndex);
         targetImage.sprite = sprites[currentIndex];
+
+        if (playOnStart)
+            PlaySpriteEvent(currentIndex);
 
         if (forwardButton) forwardButton.onClick.AddListener(Next);
         if (backButton)    backButton.onClick.AddListener(Back);
@@ -115,6 +151,9 @@ public class SpriteSwitcherSimple : MonoBehaviour
         currentIndex = targetIndex;
         targetImage.sprite = sprites[currentIndex];
 
+        // Play per-sprite FMOD one-shot (if assigned)
+        PlaySpriteEvent(currentIndex);
+
         // --- Yarn hooks ---
         if (currentIndex == LastIndex && !string.IsNullOrEmpty(lastNodeName))
             CallYarnEventSafe(lastNodeName);
@@ -145,4 +184,20 @@ public class SpriteSwitcherSimple : MonoBehaviour
         // Expecting a static method with this exact signature on your bridge
         YarnDialogueEventBridge.CallYarnEvent(nodeName);
     }
+
+    // -------- FMOD helpers --------
+    void PlaySpriteEvent(int index)
+    {
+        if (spriteOneShots == null || index < 0 || index >= spriteOneShots.Length)
+            return;
+
+        var evt = spriteOneShots[index];
+        if (evt.IsNull) return;
+
+        if (use3DPosition)
+            RuntimeManager.PlayOneShot(evt, transform.position);
+        else
+            RuntimeManager.PlayOneShot(evt);
+    }
+    // ------------------------------
 }

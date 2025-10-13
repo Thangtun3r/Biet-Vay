@@ -22,8 +22,9 @@ title: PauseMenu
 
 title: BietVay
 ---
+<<transition 2>>
+<<expand>>        
 <<restartScene>>
-<<jump start>>
 
 ===
 
@@ -76,19 +77,6 @@ title: morningCall
 position: -725,100
 ---
 <<collapse>>
-<<if $laterRejection == true>>
-Mai: Hey Tam, after thinking a lot about it—
-Mai: I truly value our time together and appreciate your feelings.
-Mai: But I don’t think I’m ready to go further than friendship.
-Mai: We just hung out again after a long time, and we don’t know how much we’ve changed.
-Mai: So I don’t think we should rush into a relationship.
-Mai: I hope you understand, Tam.
-Mai: So… still friends?
--> Yeah,/ still/ friends.
-    Tam: Yeah, still friends.
-        <<jump BietVay>>
-
-<<else>>
 <<once>>
 Mai: <shake a=0.5>Heyyy...</shake>
 Mai: On your way yet?  
@@ -100,7 +88,6 @@ Mai: Okay, hurry up or you’ll get drenched lol.
 Game: What are you doing?  
 Game: Get your ass ready and <shake a=0.5>go.</shake>
 <<endonce>>
-<<endif>>
 <<expand>>
 ===
 
@@ -128,11 +115,10 @@ position: -336,-191
 -> Did/I/keep/you/waiting?
 Tam: Did I keep you waiting?
 Mai: Not really. Just arrived here for a bit.
-Mai: Ah before heading to the park. Wanna eat some Durian cheescake?
-//this to create connection with vignette 4
-Mai: Freshly baked from my mom.  
--> It/looks/yummy.
-Tam: Looks amazing Mai.
+Mai: Ah before heading to the park. Wanna eat some durian cheesecake?
+Mai: Freshly baked by my mom.
+-> Looks/amazing/,Mai.
+Tam: Looks amazing, Mai.
 Tam: And smells amazing too.
 Mai: I know, right?  
 Mai: Let's go inside and enjoy it.
@@ -159,60 +145,63 @@ title: ParkChitchat
 <<VMBoost 1>>
 <<collapse>>
 <<once>>
+
 -> The cheesecake/ was/ very /delicious!
     Tam: The cheesecake was very delicious!
     Tam: Your mom still overdoes the vanilla… in a good way.
     Mai: She says it tastes better when it’s too much haha.
-
--> So.../ How was/ University?
-    Tam: So… how was university?  
-    Mai: It's very fun!...like there are a bunch of things I can do.
+-> So.../ How was/ high school?
+    Tam: So… how was high school?
+    Mai: It was fun!... there were a bunch of things I could do.
     Mai: And hehe, let’s just say… my eyes are <wiggle a=0.5>very</wiggle> happy there!
     Tam: Oh really? What do you mean?
-    Mai: My school basketball team is full of handsome! Like unfairly handsome.
+    Mai: Our school basketball team was full of handsome! Like unfairly handsome.
     -> Oh/ok.
-    Tam: Oh ok.
-    Mai: And he-he, you wouldn't guess which club I got in.
-    -> Let/me/guess/Basketball/club?
-    Tam: Let me guess...Basketball club?
-        Mai: Nooo, It's <wiggle a=0.5>ArtClub!</wiggle> 
+        Tam: Oh ok.
+    Mai: And he-he, you wouldn't guess which club I got into.
+    -> Let/me/guess.../Basketball/club?
+        Tam: Let me guess... Basketball club?
+            Mai: Nooo, it's <wiggle a=0.5>Art Club!</wiggle>
             -> Drawing?/ You?
                 Tam: Drawing? You?
-                Tam: …You always joked you weren’t great at it.  
+                Tam: …You always joked you weren’t great at it.
                 Mai: Hey! I’ve been practicing!
-                <<set $affection -=1>>
+                <<set $affection -= 1>>  // Dismissive
             -> You?/ Drawing?
                 Tam: You? Drawing?
-                Tam: …You always joked you weren’t great at it.  
+                Tam: …You always joked you weren’t great at it.
                 Mai: Hey! I’ve been practicing!
-                <<set $affection -=1>>
-            -> Woah,/ that's/ awesome!  
-                Tam: Woah, that’s awesome!  
+                <<set $affection -= 1>>  // Dismissive
+            -> Woah,/ that's/ awesome!
+                Tam: Woah, that’s awesome!
                 Tam: Honestly, I’ll retire the stick-onomy joke. For tonight.
                 Mai: Good. You better be!
-                <<set $affection +=1>>
+                <<set $affection += 1>>  // Supportive
 
 Tam: You gotta draw me someday, yeah?
 Tam: I promise I’ll pay… like, friend discount rates.
 Mai: Haha, sure! I’ll hold you to that. Best friend discount it is.
-Tam: Oh and how about your studying, actually?  
+
+Tam: Oh and how about your studying, actually?
 Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
     -> You/ are/ doing great./
         Tam: I can tell you’re doing great already.
         Mai: Thanks, Tam.
-        <<set $affection += 1>>
+        <<set $affection += 1>>      // Supportive
     -> Just.../chill out.
-        Tam: Well, just chill out. Don’t stress too much.  
+        Tam: Well, just chill out. Don’t stress too much.
         Mai: I don't know. Like in several years we must get a job.
         Mai: And we cannot be silly with our problems anymore.
         Tam: Cuz funny accident become money accident right?
         Mai: Tam. No more pun.
+        // +0 (neutral)
     -> Wanna/ study together/ sometime?
-        Tam: Wanna study together sometime?  
+        Tam: Wanna study together sometime?
         Mai: You? Not just the night before the deadline ?!?!
-        Tam: People change ya know.
+        Tam: People change, ya know.
         Mai: Okay, let's see how it goes.
-        <<set $affection += 1>>
+        <<set $affection += 1>>      // Proactive help
+
 <<transition 2>>
 <<VMReset>>
 <<weather>>
@@ -220,14 +209,15 @@ Mai: Lot of assignments! Everyone’s so good… I’m not sure I can keep up.
 <<endonce>>
 
 
+
 -> Kinda/chill/isn't/it?
 Mai: Yeh, very chill indeed.
-Mai: It's was so long since I am this relaxed.
+Mai: It's been so long since I've been this relaxed.
 Mai: Hey, It's evening already, you got any plans?
 
         -> Let's/ go/to/the gashapen!
             Tam: How about we go to play some gashapon? 
-            Mai: Okay. That's sound fun!
+            Mai: Okay. That sounds fun!
             Tam: Let's hit the Mall!
             <<transition 1>>
             <<VMReset>>
@@ -254,13 +244,13 @@ title: MaiAtGashapon
 <<once>>
 Mai: Hey look! Let's try out this one!
 Mai: It’s the gacha with cats and ID cards, something like that.
-Mai: Superrr cool, they even make a parody card of Severence.
+Mai: Superrr cool, they even made a parody card of Severance.
 Tam: Really!?! Well we better get the special one.
 -> Aight,/watch/this.
 Tam: Aight, watch this.
 Mai: Ok, the stage is all yours.
 <<else>>
-Mai: What do you waiting for. Show me your SSR luck!
+Mai: What are you waiting for? Show me your SSR luck!
 <<endonce>>
 <<VMReset>>
 <<expand>>
@@ -277,16 +267,16 @@ title: GachaMachineGame
     <<wait  5>>
     <<if $favoriteGashapon>>
     Mai: Oh it's McLovin parody cat!
-    Mai: It's the limitied oneee.
+    Mai: It's the limited oneee.
     ->Well/ you/ can/ have it./
     Tam: Well you can have it.
     Mai: Really? Thanks alot!
     Tam: Yep yep.
     Mai: Let's play a few more.
-    <<set $affection += 10>>
+    <<set $affection += 1>>
     <<else>>
     Mai: The card looks very nice!
-    Mai: Let's play a few more till we get the special one!
+    Mai: Let's play a few more until we get the special one!
     <<endif>>
     <<jump Convenience_store_transition>>
         
@@ -300,16 +290,16 @@ title: GachaMachineGame
 title: Convenience_store_transition
 ---
 
-Mai: Well, that was fun but expesive as hell.
+Mai: Well, that was fun but expensive as hell.
     -> Yeh,/but/worth it/right?
     Tam: Yeh, but worth it, right?
     Mai: Yeh maybe haha.
 Mai: Looks like it’s going to rain soon. We should head home.  
 Tam: Ah, wait.  
 -> How about/ we/ swing/ by /the convenience store/
-Tam: How about we swing by the convenience store. To wait out the rain?
+Tam: How about we swing by the convenience store to wait out the rain?
 
-<<if $affection >= 3 >>
+<<if $affection >= 2 >>
     Mai: Oh, that’s a good idea.  
     Mai: I need to buy some stuff anyway.  
     -> Alright/ let’s/ go then.
@@ -369,13 +359,14 @@ Mai: Or Thảo from my club. She loves games!
             Mai: ...
             Mai: I thought we were just friends.
             Mai: Tam, I truly appreciate your feelings.
-<<if $affection < 0>>
+<<if $affection >= 3>>
     Mai: It’s sudden… Let me think about it, okay? I’ll text you.
     Mai: Today was fun. Thanks for hanging out with me.
+        <<transition 2>>
         <<VMReset>>
-        <<spawn Home>>
+        
 
-<<elseif $affection >= 1>>
+<<elseif $affection >= 2>>
     Mai: And I truly value our friendship.
     Mai: And I don't want to break it.
     Mai: So...I hope we can still be friends. Still friends?
@@ -402,4 +393,21 @@ Mai: Maybe we can hang out another time?
 
 ===
 
+title: delayedRejection
+---
+<<spawn Home>>
+<<collapse>>
+Phone: (Notification)
+Mai: Hey Tam, after thinking a lot about it—
+Mai: I truly value our time together and appreciate your feelings.
+Mai: But I don’t think I’m ready to go further than friendship.
+Mai: We just hung out again after a long time, and we don’t know how much we’ve changed.
+Mai: So I don’t think we should rush into a relationship.
+Mai: I hope you understand, Tam.
+Mai: So… still friends?
+-> Yeah,/ still/ friends.
+    Tam: Yeah, still friends.
+        <<jump BietVay>>
+
+===
 

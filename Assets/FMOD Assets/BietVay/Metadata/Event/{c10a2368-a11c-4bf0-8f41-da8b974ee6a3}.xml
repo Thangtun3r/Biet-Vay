@@ -270,8 +270,12 @@
 	</object>
 	<object class="LowpassEffect" id="{eabe0d90-3b64-428e-b32e-21aae72ec1d0}">
 		<property name="cutoff">
-			<value>3800</value>
+			<value>21600</value>
 		</property>
 	</object>
-	<object class="PannerEffect" id="{6794b0bd-f514-4306-a78a-2175aa0cd607}" />
+	<object class="PannerEffect" id="{6794b0bd-f514-4306-a78a-2175aa0cd607}">
+		<property name="stereoPan">
+			<value>34</value>
+		</property>
+	</object>
 </objects>

@@ -479,6 +479,7 @@ MonoBehaviour:
   - Master
   Banks:
   - Vignette 1
+  - Vignette 2
   BanksToLoad:
   - Master.strings
   - Master
