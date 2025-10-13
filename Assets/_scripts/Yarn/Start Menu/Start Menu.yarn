@@ -1,8 +1,9 @@
 ﻿
 title: introduce
 ---
-<<killFMODEvent>>
+<<killAllFMOD>>
 <<UnlockMouse>>
+
 ===
 title: backToPrevious
 ---
