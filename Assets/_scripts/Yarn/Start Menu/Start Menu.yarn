@@ -37,7 +37,7 @@ title: start
             <<transition 3>>
             <<expandIntro>>
             <<loadScene Vignette4>>
-        -> Your's regret.
+        -> Your regret.
             <<transition 3>>
             <<expandIntro>>
             <<loadScene Vignette5>>

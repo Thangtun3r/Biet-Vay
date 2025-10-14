@@ -302,6 +302,7 @@ MonoBehaviour:
     9 to reset the counter."
   resetSceneName: Start Menu
   findTimeout: 3
+  enableDebugKeyInput: 0
 --- !u!1 &723164501
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,7 +49,7 @@ MonoBehaviour:
   timeScale2: 2
   timeScale3: 3
   timeScale4: 4
-  enableHotkeys: 1
+  enableHotkeys: 0
 --- !u!114 &723141624046763100
 MonoBehaviour:
   m_ObjectHideFlags: 0

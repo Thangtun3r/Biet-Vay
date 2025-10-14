@@ -154,14 +154,15 @@ Mom: But art won't make you any dimes! You need to listen to me!
 Mom: Think about your future, don't let your studies go to waste.
 -> Why /are you/ like this?/
 Mai: Why are you like this? 
-Mia: Why you keep telling me to do that do this?
+Mai: Why you keep telling me to do that do this?
 Mom: No, I'm worry for you. This is what good for you.
 Mom: I do this because I love you.
-Mai: REALLY? GOOD FOR ME? Do you even take "me" in account?
-Mai: All you do is trying to impose your fears on me.
-Mom: HEY, enough of that misbehavior.
-Mom: WHO raise you up?
-Mom: WHO gives you a place to live, and WHO pays for your tuition?
+Mai: <shake a=0.5>REALLY? GOOD FOR ME?</shake>Do you even take "me" in account?
+Mai: <shake a=0.5>All you do is trying to impose your fears on me.</shake>
+Mom: <shake a=0.5>HEY</shake>, enough of that misbehavior.
+Mom: <shake a=0.5>WHO</shake> raise you up?
+Mom: <shake a=0.5>WHO</shake> gives you a place to live?
+Mom: And <shake a=0.5>WHO</shake> pays for your tuition?
 Mom: Why you only think about yourself?
 Mom: Ok.
 Mom: If you want to study art that much, pay to get it.
@@ -170,6 +171,9 @@ Mom: And I won't pay a single dime for your intuition.
         Mai: I hate you. You never let me choose, you never let me have control over my life. 
         Mai: Every single time you just kept saying and saying and forcing me to do as you say. 
         Mai: Like, do you even consider taking the time to understand or even listen to me? 
+        Mai: Hey? And you said that Who do them?
+        Mai: You? 
+        Mai: Isn't that your resposibility???
         Mai: That’s it, I have had enough of this nonsense.
         <<transition 2>>
         <<expand>>        
