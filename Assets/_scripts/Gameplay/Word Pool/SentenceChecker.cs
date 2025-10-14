@@ -8,6 +8,7 @@ public class SentenceChecker : MonoBehaviour
 {
     public WordDisplayManager wordDisplayManager;
     public static event Action OnCheckCompleted;
+    public static event Action OnCheckError;
     private List<OptionData> correctOrder;
     private List<string> userOrder;
     private bool isCorrect = false;
@@ -41,6 +42,7 @@ public class SentenceChecker : MonoBehaviour
         else
         {
             isCorrect = false;
+            OnCheckError?.Invoke(); // <-- only fire once, here
         }
     }
 
@@ -68,13 +70,19 @@ public class SentenceChecker : MonoBehaviour
         }
         return -1;
     }
-
+    
     private bool IsExactMatch(List<string> a, List<string> b)
     {
-        if (a.Count != b.Count) return false;
+        if (a.Count != b.Count)
+            return false;
+
         for (int i = 0; i < a.Count; i++)
-            if (a[i] != b[i]) return false;
+        {
+            if (!string.Equals(a[i], b[i], StringComparison.OrdinalIgnoreCase))
+                return false;
+        }
         return true;
     }
+
     
 }

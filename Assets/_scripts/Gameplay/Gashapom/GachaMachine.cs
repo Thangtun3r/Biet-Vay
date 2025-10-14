@@ -8,7 +8,7 @@ public class GachaMachine : MonoBehaviour
 
     [SerializeField] private List<GachaObjectSO> pool = new();
 
-    [SerializeField] private bool rollOnStart = true;
+    private bool rollOnStart = false;
 
     public Animator gachaMachineAnimator;
     

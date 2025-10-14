@@ -1,22 +1,27 @@
-using UnityEngine;
+/*using UnityEngine;
 using Cinemachine;
 
+[RequireComponent(typeof(CinemachineBrain))]
 public class HoldToZoom : MonoBehaviour
 {
-    public CinemachineBrain brain;
+    CinemachineBrain brain;
     public float zoomedFOV = 30f;
     public float normalFOV = 60f;
     public float smooth = 10f;
 
-    void Update()
+    void Awake() => brain = GetComponent<CinemachineBrain>();
+
+    void LateUpdate()
     {
-        var activeCam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
-        if (activeCam == null) return;
+        if (brain == null || brain.IsBlending) return; // <-- let blends happen
+
+        var vcam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        if (vcam == null) return;
 
         float targetFOV = Input.GetMouseButton(1) ? zoomedFOV : normalFOV;
 
-        var lens = activeCam.m_Lens;
-        lens.FieldOfView = Mathf.Lerp(lens.FieldOfView, targetFOV, Time.deltaTime * smooth);
-        activeCam.m_Lens = lens;
+        var lens = vcam.m_Lens;
+        lens.FieldOfView = Mathf.MoveTowards(lens.FieldOfView, targetFOV, smooth * Time.deltaTime);
+        vcam.m_Lens = lens;
     }
-}
+}*/

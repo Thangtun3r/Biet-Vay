@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (IsFrozen || Time.timeScale == 0f) return;   // stop rotating when paused
 
         HandleCameraRotation();
 

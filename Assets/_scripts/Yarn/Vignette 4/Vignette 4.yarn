@@ -26,6 +26,7 @@ title: start
 <<collapse>>
 <<disablePlayer>>
 <<PsudoTurnOn>>
+<<if $loopCount <= 4>>
     -> [bv]Biet vay,[/bv]/I/ [sw w="should've said"] didn't say [/sw]/love you/to/my mom/[sw w="more."]enough.[/sw]
             <<isBietVay>>
             <<transition 2>>
@@ -42,8 +43,11 @@ title: start
             <<elseif $loopCount == 4>>
             <<jump Funeral>>
             <<endif>>
+<<else>>
     -> I/didn't say/love you/to/my mom/enough.
             <<resolve>>
+    -> [f]Biet vay,[/f]/I/ [sw w="should've said"] didn't say [/sw]/love you/to/my mom/[sw w="more."]enough.[/sw]
+<<endif>>
 ===
 
 title: GoToSchool

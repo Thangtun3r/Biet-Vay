@@ -25,6 +25,15 @@ public class Vignette4Looper : MonoBehaviour
     [Tooltip("How long to wait for DialogueRunner to appear after scene load (seconds).")]
     [SerializeField] private float findTimeout = 3f;
 
+    [Header("Debug Settings")]
+    [Tooltip("Allow changing vignette counter using number keys (0–9) in the Editor. Automatically disabled in builds.")]
+    [SerializeField] private bool enableDebugKeyInput =
+    #if UNITY_EDITOR
+        true;   // enabled in Editor
+    #else
+        false;  // disabled in builds
+    #endif
+
     private void Awake()
     {
         // Ensure a single persistent instance
@@ -36,10 +45,7 @@ public class Vignette4Looper : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // Load saved vignette counter
         vignetteCounter = PlayerPrefs.GetInt(PlayerPrefsKey, 0);
-
-        // Try to bind DialogueRunner immediately
         TryRebindDialogueRunner(logIfMissing: false);
     }
 
@@ -64,19 +70,19 @@ public class Vignette4Looper : MonoBehaviour
 
     private void Update()
     {
-        // If the DialogueRunner reference was destroyed, rebind occasionally
         if (dialogueRunner == null && Time.frameCount % 60 == 0)
         {
             TryRebindDialogueRunner(logIfMissing: false);
         }
 
-        // Sync Yarn variable if available
         if (dialogueRunner != null)
         {
             dialogueRunner.VariableStorage.SetValue("$loopCount", vignetteCounter);
         }
 
-        // Handle numeric key input (0–9)
+        // Skip debug input if disabled
+        if (!enableDebugKeyInput) return;
+
         for (int i = 0; i <= 9; i++)
         {
             KeyCode key = KeyCode.Alpha0 + i;
@@ -96,9 +102,9 @@ public class Vignette4Looper : MonoBehaviour
         }
         else
         {
-            vignetteCounter = number; // 0 sets to 0; 1–8 set to their number
+            vignetteCounter = number;
             SaveCounter();
-            Debug.Log($"Vignette counter set to {vignetteCounter}");
+            Debug.Log($"[Vignette4Looper] Vignette counter set to {vignetteCounter}");
         }
     }
 
@@ -112,7 +118,7 @@ public class Vignette4Looper : MonoBehaviour
     {
         vignetteCounter = 0;
         SaveCounter();
-        Debug.Log("Vignette counter has been reset.");
+        Debug.Log("[Vignette4Looper] Vignette counter has been reset.");
     }
 
     private void SaveCounter()
@@ -121,12 +127,10 @@ public class Vignette4Looper : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    // --- Scene handling ---
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         TryRebindDialogueRunner(logIfMissing: false);
 
-        // If this scene matches the resetSceneName, reset automatically
         if (scene.name == resetSceneName)
         {
             Debug.Log($"[Vignette4Looper] Scene '{scene.name}' matches resetSceneName '{resetSceneName}'. Resetting counter.");
@@ -134,7 +138,6 @@ public class Vignette4Looper : MonoBehaviour
         }
     }
 
-    // --- Rebinding logic ---
     private void TryRebindDialogueRunner()
     {
         TryRebindDialogueRunner(logIfMissing: true);
@@ -148,12 +151,12 @@ public class Vignette4Looper : MonoBehaviour
 
         if (dialogueRunner != null)
         {
-            Debug.Log("Vignette4Looper: Rebound DialogueRunner.");
+            Debug.Log("[Vignette4Looper] Rebound DialogueRunner.");
             dialogueRunner.VariableStorage.SetValue("$loopCount", vignetteCounter);
         }
         else if (logIfMissing)
         {
-            Debug.LogWarning("Vignette4Looper: No DialogueRunner found after scene change.");
+            Debug.LogWarning("[Vignette4Looper] No DialogueRunner found after scene change.");
         }
     }
 }

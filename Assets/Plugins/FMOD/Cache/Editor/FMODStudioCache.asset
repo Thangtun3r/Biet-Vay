@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 1.bank
   Name: Vignette 1
   StudioPath: bank:/Vignette 1
-  lastModified: 638957485623118167
+  lastModified: 638960394826345177
   FileSizes:
   - Name: Desktop
     Value: 8915808
@@ -302,7 +302,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638957561222265532
+  lastModified: 638960394825789660
   FileSizes:
   - Name: Desktop
     Value: 84032
@@ -403,7 +403,7 @@ MonoBehaviour:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638957561222280568
+  cacheTime: 638960394827087282
   cacheVersion: 131623
 --- !u!114 &6758234555184191
 MonoBehaviour:
@@ -719,7 +719,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638957561222280568
+  lastModified: 638960394825789660
   FileSizes:
   - Name: Desktop
     Value: 1994
@@ -739,7 +739,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 2.bank
   Name: Vignette 2
   StudioPath: bank:/Vignette 2
-  lastModified: 638957537379660562
+  lastModified: 638960394827087282
   FileSizes:
   - Name: Desktop
     Value: 13375136

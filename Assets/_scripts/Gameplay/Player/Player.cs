@@ -65,8 +65,6 @@ public class Player : MonoBehaviour
     void SetPlayerSpawnPoint(Transform spawnPoint)
     {
         
-        
-
         // Disable CharacterController to allow position changes
         characterController.enabled = false;
         transform.position = spawnPoint.position;
