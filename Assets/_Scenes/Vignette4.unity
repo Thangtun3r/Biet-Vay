@@ -14574,6 +14574,7 @@ MonoBehaviour:
   resetNote: Press the 9 key to reset the vignette counter.
   resetSceneName: Start Menu
   findTimeout: 3
+  enableDebugKeyInput: 1
 --- !u!4 &1851069188
 Transform:
   m_ObjectHideFlags: 0
