@@ -136,6 +136,7 @@ title: Payout
 ---
 
 -> I/would like/to/redeem/my ticket./
+<<RedeemSlip BettingSlipWrapper>>
 Liem: I would like to redeem my ticket.
 Receptionist: Okay, let me check your ticket.
 <<payOut>>
@@ -196,8 +197,14 @@ Receptionist: Certainly, which horse would you like to bet on?
 title: ConfirmBet
 ---
     Receptionist: Right, got it.
+    <<playFMOD1shot event:/Vignette 2/KeyboardTyping>>
     Receptionist: Let me re-confirm: you would like to go all-in on {$horseNames}, correct?
     -> Yes.
+        Receptionist: Ok sir, let me process your bet.
+        <<playFMOD1shot event:/Vignette 2/KeyboardTyping_2>>
+        <<wait  1.3>>
+        <<playFMOD1shot event:/Vignette 2/PrintSlip>>
+        <<wait  2.8>>
         Receptionist: Alright, your bet has been placed.
         Receptionist: Please take the printed ticket to later claim your payout.
         Receptionist: After the race finishes, you can come back here to redeem your ticket.
@@ -212,6 +219,7 @@ title: ConfirmBet
 title: BettingSlip
 ---
 <<transition 1>>
+<<enableSlip BettingSlipWrapper>>
 <<spawn race>>
 <<jump RaceStart>>
 ===

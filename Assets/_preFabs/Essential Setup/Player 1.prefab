@@ -178,10 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac08f39709936745a8714d0c2680152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 574052352757615686}
+  vcam: {fileID: 5482214019488786950}
   zoomedFOV: 30
   normalFOV: 70
-  smooth: 10
+  smooth: 150
 --- !u!114 &8874221036885182557
 MonoBehaviour:
   m_ObjectHideFlags: 0

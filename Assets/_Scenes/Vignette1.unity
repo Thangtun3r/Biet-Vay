@@ -1962,17 +1962,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2878545965522542366, guid: 34a69d51f83c0cf4787a304d9521c566, type: 3}
---- !u!114 &692691057 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
-  m_PrefabInstance: {fileID: 6135138506378287248}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &708179387 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7271449666460269675, guid: 34a69d51f83c0cf4787a304d9521c566, type: 3}
@@ -7794,14 +7783,6 @@ PrefabInstance:
     - target: {fileID: 5482214019488786950, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 6612149451716826012, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
-      propertyPath: vcam
-      value: 
-      objectReference: {fileID: 692691057}
-    - target: {fileID: 6612149451716826012, guid: 5c8aa39960759f54684300cd7d2cd13d, type: 3}
-      propertyPath: smooth
-      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
