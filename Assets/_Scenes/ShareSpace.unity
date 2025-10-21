@@ -603,6 +603,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 407083701}
     m_Modifications:
+    - target: {fileID: 679802147655906037, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 123.769
+      objectReference: {fileID: 0}
+    - target: {fileID: 679802147655906037, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -61.59913
+      objectReference: {fileID: 0}
     - target: {fileID: 915909222489623333, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -720,6 +728,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2399019372484465960, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
+      propertyPath: m_text
+      value: 'Duoc''s
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399019372484465960, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4282273671
       objectReference: {fileID: 0}
@@ -748,6 +762,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4936453543582645405, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
+      propertyPath: m_text
+      value: "Bi\u1EBFt v\u1EADy i did more what i love, not what i can\n\nI couldn't,
+        you can't discard what you love and your passion for the sake of security.
+        Therefore, i made a promise to live more with love, to me and myself lol."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4936453543582645405, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
       propertyPath: m_fontColor.a
       value: 0
       objectReference: {fileID: 0}
@@ -770,6 +790,10 @@ PrefabInstance:
     - target: {fileID: 6194213845992813750, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
       propertyPath: m_Color.a
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7163663208058554341, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
+      propertyPath: m_text
+      value: Duoc's Biet Vay
       objectReference: {fileID: 0}
     - target: {fileID: 7163663208058554341, guid: bb583e75844329940b0c75db08db3fdc, type: 3}
       propertyPath: m_fontColor.a
@@ -811,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac08f39709936745a8714d0c2680152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brain: {fileID: 5968134158628148438}
+  vcam: {fileID: 0}
   zoomedFOV: 30
   normalFOV: 70
   smooth: 10
