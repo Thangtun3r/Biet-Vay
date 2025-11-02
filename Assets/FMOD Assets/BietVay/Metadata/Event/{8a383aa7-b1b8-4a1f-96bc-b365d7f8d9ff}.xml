@@ -116,6 +116,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7dc33aa4-a25b-4fb2-bb94-9ac1d570e397}">
+		<property name="volume">
+			<value>-14</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -131,7 +134,7 @@
 	</object>
 	<object class="SingleSound" id="{34977434-b991-4cce-9f51-a8f98a016475}">
 		<property name="start">
-			<value>2.4000000000000012</value>
+			<value>2.3500000000000001</value>
 		</property>
 		<property name="length">
 			<value>0.39999999999999991</value>
@@ -163,6 +166,7 @@
 	<object class="MixerBusEffectChain" id="{bd34bf60-817d-4f09-b7ac-13d549598345}">
 		<relationship name="effects">
 			<destination>{6fcd1bc5-ed7e-4b36-9e5e-8c1c0971126b}</destination>
+			<destination>{3f8b4120-7c59-463e-bebd-eb27fb741bb9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{77941a71-6c21-4cc2-86c4-2754e28d959b}" />
@@ -204,6 +208,11 @@
 	</object>
 	<object class="MixerBusPanner" id="{48e0b9ab-c7de-495a-8344-5f286b1f1f82}" />
 	<object class="MixerBusFader" id="{6fcd1bc5-ed7e-4b36-9e5e-8c1c0971126b}" />
+	<object class="PannerEffect" id="{3f8b4120-7c59-463e-bebd-eb27fb741bb9}">
+		<property name="stereoPan">
+			<value>56</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{6213dfda-dbc3-4439-b486-51e680bf24cb}">
 		<property name="position">
 			<value>0</value>
@@ -245,7 +254,7 @@
 	<object class="MixerBusFader" id="{8fc580ba-aab8-48c8-b10c-ee853c192777}" />
 	<object class="AutomationPoint" id="{e95a37ea-db51-4672-a40e-ed35fe7a563a}">
 		<property name="position">
-			<value>2.7500000000000013</value>
+			<value>2.7000000000000002</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -256,7 +265,7 @@
 	</object>
 	<object class="AutomationPoint" id="{4596ee9d-3b6a-4f07-9c14-bcfdb5fd4ac3}">
 		<property name="position">
-			<value>2.7999999999999914</value>
+			<value>2.7499999999999902</value>
 		</property>
 		<property name="value">
 			<value>0</value>

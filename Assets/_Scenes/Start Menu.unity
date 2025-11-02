@@ -930,7 +930,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3537156562804655116, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
   m_PrefabInstance: {fileID: 7658611925647745373}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7658611925647745374}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b489df63348943438515d6e71f48157, type: 3}
@@ -1317,8 +1317,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 486305891804736034, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
       insertIndex: -1
       addedObject: {fileID: 375924503}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 585516570041474386, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7658611925647745375}
   m_SourcePrefab: {fileID: 100100000, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+--- !u!1 &7658611925647745374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 585516570041474386, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
+  m_PrefabInstance: {fileID: 7658611925647745373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7658611925647745375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658611925647745374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4de5d3861bf5cb4ca1c80e0e9adae29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yarnNodeName: 
+  highlightTarget: {fileID: 0}
+  floatingTextObject: {fileID: 0}
+  highlightText: Interact
+  girlLookAt: 0
+  girlLookAtTarget: {fileID: 0}
+  isProp: 0
+  propSound:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1001 &7712775634079279760
 PrefabInstance:
   m_ObjectHideFlags: 0

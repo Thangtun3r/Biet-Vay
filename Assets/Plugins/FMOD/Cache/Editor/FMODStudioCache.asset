@@ -96,11 +96,38 @@ MonoBehaviour:
   - {fileID: 9170057444903596995}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 142051
+--- !u!114 &-6612061868392782816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/PeopleWhitenoise
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/PeopleWhitenoise
+  Guid:
+    Data1: 2043597033
+    Data2: 1304944409
+    Data3: 657979061
+    Data4: -964635446
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 61896
 --- !u!114 &-6574847503649343832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,10 +437,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638966768165750287
+  lastModified: 638977143126120881
   FileSizes:
   - Name: Desktop
-    Value: 84032
+    Value: 86880
   Exists: 1
 --- !u!114 &-948626335553773004
 MonoBehaviour:
@@ -516,12 +543,15 @@ MonoBehaviour:
   - {fileID: 2885582048397387033}
   - {fileID: -6574847503649343832}
   - {fileID: -2357905245782949628}
+  - {fileID: 1429100228382397418}
+  - {fileID: -6612061868392782816}
+  - {fileID: 2053546678224659878}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638966768167202943
+  cacheTime: 638977143960789663
   cacheVersion: 131623
 --- !u!114 &701954921418370051
 MonoBehaviour:
@@ -601,6 +631,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &1429100228382397418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/BGM
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/BGM
+  Guid:
+    Data1: 202422163
+    Data2: 1249112315
+    Data3: -365067344
+    Data4: 1364921004
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 201392
 --- !u!114 &1646901026315655756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,6 +685,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12918
+--- !u!114 &2053546678224659878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/UI/TypeWritterSFX
+  m_EditorClassIdentifier: 
+  Path: event:/UI/TypeWritterSFX
+  Guid:
+    Data1: -562008881
+    Data2: 1189238927
+    Data3: -740590184
+    Data4: 1253794825
+  Banks:
+  - {fileID: -1232821717831486065}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 191
 --- !u!114 &2053749564677096981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,10 +889,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638966768165790630
+  lastModified: 638977143126142991
   FileSizes:
   - Name: Desktop
-    Value: 2212
+    Value: 2336
   Exists: 1
 --- !u!114 &8234296464647683046
 MonoBehaviour:
@@ -906,8 +990,8 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 2.bank
   Name: Vignette 2
   StudioPath: bank:/Vignette 2
-  lastModified: 638966768167202943
+  lastModified: 638977143960789663
   FileSizes:
   - Name: Desktop
-    Value: 13759008
+    Value: 16937216
   Exists: 1

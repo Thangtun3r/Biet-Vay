@@ -115,8 +115,6 @@ public class DebugTool : MonoBehaviour
         {
             SetFmodPaused(isPaused);
         }
-
-        Debug.Log(isPaused ? "[DebugTool] Game Paused." : "[DebugTool] Game Resumed.");
     }
 
     private void ApplyPausedCursorState()

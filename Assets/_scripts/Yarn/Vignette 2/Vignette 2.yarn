@@ -236,6 +236,7 @@ title: RaceStart
 
 title: WifePhoneCall
 ---
+<<playFMODEvent event:/Vignette 2/BGM>>
 <<collapse>>
 <<playFMODEvent event:/Vignette 2/Phone Ring>>
 Phone: (Phone ringing)
@@ -269,6 +270,7 @@ Disturbing Woman: Please, I'm begging you. It’s our son’s future—
 
 title: ATM
 ---
+
 <<VMBoost 1>>
 <<collapse>>
 -> *Insert/card* 

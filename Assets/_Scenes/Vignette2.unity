@@ -4021,6 +4021,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &101590596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101590598}
+  - component: {fileID: 101590597}
+  m_Layer: 0
+  m_Name: People whitenoise (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &101590597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101590596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2043597033
+      Data2: 1304944409
+      Data3: 657979061
+      Data4: -964635446
+    Path: event:/Vignette 2/PeopleWhitenoise
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &101590598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101590596}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.01, y: 0.159, z: 12.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &104195434
 GameObject:
   m_ObjectHideFlags: 0
@@ -26717,6 +26780,69 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!1 &551662873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551662875}
+  - component: {fileID: 551662874}
+  m_Layer: 0
+  m_Name: People whitenoise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &551662874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551662873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 2043597033
+      Data2: 1304944409
+      Data3: 657979061
+      Data4: -964635446
+    Path: event:/Vignette 2/PeopleWhitenoise
+  Event: 
+  EventPlayTrigger: 1
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!4 &551662875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551662873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.9, y: 0.159, z: 2.257}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &565482501
 GameObject:
   m_ObjectHideFlags: 0
@@ -31394,6 +31520,33 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
   m_PrefabInstance: {fileID: 3824081045598938951}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &777398773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3241015611308123595, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+  m_PrefabInstance: {fileID: 8184803449116547549}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &777398776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 777398773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5eb462c9cd4e347b215560f1ff1de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typewriterBlips:
+  - Guid:
+      Data1: -562008881
+      Data2: 1189238927
+      Data3: -740590184
+      Data4: 1253794825
+    Path: event:/UI/TypeWritterSFX
+  blipInterval: 4
+  stopOnLineEnd: 1
+  _presenter: {fileID: 9110503750108672}
 --- !u!1 &800997493
 GameObject:
   m_ObjectHideFlags: 0
@@ -46485,8 +46638,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6655348436612638735, guid: 8cb128fd6a1ad754bb1f9f177345bba3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1440433505}
   m_SourcePrefab: {fileID: 100100000, guid: 8cb128fd6a1ad754bb1f9f177345bba3, type: 3}
+--- !u!1 &1440433501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6655348436612638735, guid: 8cb128fd6a1ad754bb1f9f177345bba3, type: 3}
+  m_PrefabInstance: {fileID: 1422048877}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1440433505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1440433501}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da5a66f145758c4db5bbc4482163ded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateInterval: 1
 --- !u!1 &1455898498 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6014503084441653313, guid: a3fb0413fdca3b44bb543d87c41de228, type: 3}
@@ -71040,7 +71214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nonRigidbodyVelocity: 0
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 1218239776102482063}
 --- !u!95 &3546390791600621511 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 79443613011491063, guid: 938037ae7f46ae94ba47b734ec034246, type: 3}
@@ -72160,10 +72334,18 @@ PrefabInstance:
       propertyPath: targetFPS
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 2761299218407802006, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2980052690482975626, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: Runner
       value: 
       objectReference: {fileID: 8888377626674662495}
+    - target: {fileID: 3241015611308123595, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3301601749203423359, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: resetButton
       value: 
@@ -72204,6 +72386,10 @@ PrefabInstance:
       propertyPath: resolveAnimator
       value: 
       objectReference: {fileID: 7450137188894887605}
+    - target: {fileID: 6500169810613479912, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6717509717384395828, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960
@@ -72265,6 +72451,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7658611925647745375}
     - target: {fileID: 8181742115930221212, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: PreloadSamples
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8181742115930221212, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
       propertyPath: Banks.Array.data[0]
       value: Vignette 2
       objectReference: {fileID: 0}
@@ -72293,7 +72483,10 @@ PrefabInstance:
     - {fileID: 5487868670471297840, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3241015611308123595, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 777398776}
   m_SourcePrefab: {fileID: 100100000, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
 --- !u!114 &8236712010062242506 stripped
 MonoBehaviour:
@@ -72425,3 +72618,5 @@ SceneRoots:
   - {fileID: 1422048877}
   - {fileID: 1338764826}
   - {fileID: 974496420}
+  - {fileID: 551662875}
+  - {fileID: 101590598}
