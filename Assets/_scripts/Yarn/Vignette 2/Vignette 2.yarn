@@ -228,15 +228,18 @@ title: BettingSlip
 title: RaceStart
 ---
 <<expand>>
-<<wait  2>>
+<<playFMOD1shot event:/Vignette 2/Horn>>
+<<wait  4>>
 <<startRace>>
+<<wait  2.4>>
+<<playFMOD1shot event:/Vignette 2/Horse running>>
 ===
 
 
 
 title: WifePhoneCall
 ---
-<<playFMODEvent event:/Vignette 2/BGM>>
+
 <<collapse>>
 <<playFMODEvent event:/Vignette 2/Phone Ring>>
 Phone: (Phone ringing)

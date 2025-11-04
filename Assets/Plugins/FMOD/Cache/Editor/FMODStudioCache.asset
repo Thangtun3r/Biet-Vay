@@ -437,7 +437,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638977143126120881
+  lastModified: 638978733624253823
   FileSizes:
   - Name: Desktop
     Value: 86880
@@ -498,6 +498,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1320
+--- !u!114 &-357722805028614604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Horn
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Horn
+  Guid:
+    Data1: -1736481146
+    Data2: 1341032001
+    Data3: 601717134
+    Data4: 1024844470
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8656
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,12 +573,14 @@ MonoBehaviour:
   - {fileID: 1429100228382397418}
   - {fileID: -6612061868392782816}
   - {fileID: 2053546678224659878}
+  - {fileID: 5860617807508303123}
+  - {fileID: -357722805028614604}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638977143960789663
+  cacheTime: 638978742102013561
   cacheVersion: 131623
 --- !u!114 &701954921418370051
 MonoBehaviour:
@@ -847,6 +876,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 920
+--- !u!114 &5860617807508303123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 2/Horse running
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 2/Horse running
+  Guid:
+    Data1: 207223245
+    Data2: 1226330528
+    Data3: -734066781
+    Data4: 2065561312
+  Banks:
+  - {fileID: 9170057444903596995}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 27029
 --- !u!114 &6054891336855800218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,10 +945,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638977143126142991
+  lastModified: 638978733624273340
   FileSizes:
   - Name: Desktop
-    Value: 2336
+    Value: 2424
   Exists: 1
 --- !u!114 &8234296464647683046
 MonoBehaviour:
@@ -990,8 +1046,8 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 2.bank
   Name: Vignette 2
   StudioPath: bank:/Vignette 2
-  lastModified: 638977143960789663
+  lastModified: 638978742102013561
   FileSizes:
   - Name: Desktop
-    Value: 16937216
+    Value: 18922880
   Exists: 1
