@@ -85,6 +85,7 @@ public class FinishLineTrigger : MonoBehaviour
         {
             winnerIndex = GetHorseIndex(horse);
             OnWinnerDetermined?.Invoke(winnerIndex);
+            OnRaceCompleted?.Invoke(winnerIndex);
         }
 
         // Completion: when everyone we expected has finished
@@ -92,7 +93,7 @@ public class FinishLineTrigger : MonoBehaviour
         {
             completionInvoked = true;
             if (winnerIndex < 0) winnerIndex = GetHorseIndex(horse); // fallback
-            OnRaceCompleted?.Invoke(winnerIndex);
+            
             
         }
     }

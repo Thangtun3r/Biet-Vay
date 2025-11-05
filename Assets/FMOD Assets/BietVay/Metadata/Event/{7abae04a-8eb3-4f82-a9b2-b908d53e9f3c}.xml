@@ -5,7 +5,7 @@
 			<value>Slip Hit</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{ee957bb2-841c-4576-a2b9-7229652ebe2e}</destination>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{deaf7fd5-e76c-4d56-8959-d55036f3b8ca}" />
 	<object class="GroupTrack" id="{fb6dbaa4-f6c5-4616-872f-32718ab01964}">
 		<relationship name="modules">
-			<destination>{5b6cb8f4-cd2c-47b8-a42f-e52debb16c3c}</destination>
+			<destination>{7015f6ae-37d8-48a2-8e37-10158b1fc7d5}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{b7898a02-5e3d-4e50-80bd-b0c06a0779c7}</destination>
@@ -68,7 +68,7 @@
 	</object>
 	<object class="Timeline" id="{61485caa-73b2-420d-8426-2c11104f91bd}">
 		<relationship name="modules">
-			<destination>{5b6cb8f4-cd2c-47b8-a42f-e52debb16c3c}</destination>
+			<destination>{7015f6ae-37d8-48a2-8e37-10158b1fc7d5}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{3862e5e2-3f28-4166-ae0b-80c1307a2f1b}">
@@ -88,18 +88,15 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{0d53e9d2-6802-4664-8616-5b285448e15e}" />
-	<object class="SingleSound" id="{5b6cb8f4-cd2c-47b8-a42f-e52debb16c3c}">
+	<object class="SingleSound" id="{7015f6ae-37d8-48a2-8e37-10158b1fc7d5}">
 		<property name="length">
-			<value>0.22</value>
+			<value>0.093999999999999986</value>
 		</property>
 		<property name="timelockedOffset">
-			<value>4.639999999999997</value>
+			<value>0.51600000000000001</value>
 		</property>
-		<relationship name="fadeOutCurve">
-			<destination>{1cbd7b54-5e37-4aa5-936e-0bf2eee6c662}</destination>
-		</relationship>
 		<relationship name="audioFile">
-			<destination>{c58385f2-f5f9-4bcf-896f-8d922d3fce82}</destination>
+			<destination>{749cd218-1d7b-4e05-9a2a-f63981c3b86c}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{b7898a02-5e3d-4e50-80bd-b0c06a0779c7}">
@@ -123,63 +120,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{14880d82-dc06-4c9d-a437-8fcbae923bb6}" />
 	<object class="MixerBusFader" id="{1e72eda7-fb18-4036-b396-2d7d9b3be9e6}" />
-	<object class="FadeCurve" id="{1cbd7b54-5e37-4aa5-936e-0bf2eee6c662}">
-		<relationship name="startPoint">
-			<destination>{93c7c443-a525-47cd-9b34-9bbf988f491c}</destination>
-		</relationship>
-		<relationship name="endPoint">
-			<destination>{76fc29e7-0f50-4457-ab93-6008a3cadb5f}</destination>
-		</relationship>
-	</object>
 	<object class="MixerBusEffectChain" id="{8e6f20bc-e2ee-4f52-bf68-a41a29b0ec11}">
 		<relationship name="effects">
 			<destination>{e31c2e7e-d38f-4cfb-b07c-6a1a6930c36a}</destination>
-			<destination>{33203350-8b40-47a1-a62a-4b936617c081}</destination>
-			<destination>{11c48470-2950-4fba-906d-40b11ad805ba}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e7019e70-3206-45df-b973-7a579f31aa46}" />
 	<object class="MixerBusFader" id="{7cae7bbe-b3f1-4dd9-b41a-3a7a696f99dc}" />
-	<object class="AutomationPoint" id="{93c7c443-a525-47cd-9b34-9bbf988f491c}">
-		<property name="position">
-			<value>0.12</value>
-		</property>
-		<property name="value">
-			<value>1</value>
-		</property>
-		<property name="curveShape">
-			<value>-0.420634806</value>
-		</property>
-	</object>
-	<object class="AutomationPoint" id="{76fc29e7-0f50-4457-ab93-6008a3cadb5f}">
-		<property name="position">
-			<value>0.22</value>
-		</property>
-		<property name="value">
-			<value>0</value>
-		</property>
-	</object>
 	<object class="MixerBusFader" id="{e31c2e7e-d38f-4cfb-b07c-6a1a6930c36a}" />
-	<object class="ThreeEQEffect" id="{33203350-8b40-47a1-a62a-4b936617c081}">
-		<property name="lowGain">
-			<value>-20.5</value>
-		</property>
-		<property name="midGain">
-			<value>-6.5</value>
-		</property>
-		<property name="highGain">
-			<value>-18.5</value>
-		</property>
-	</object>
-	<object class="LimiterEffect" id="{11c48470-2950-4fba-906d-40b11ad805ba}">
-		<property name="boost">
-			<value>2.9000001</value>
-		</property>
-		<property name="ceiling">
-			<value>-6.70000029</value>
-		</property>
-		<property name="release">
-			<value>860</value>
-		</property>
-	</object>
 </objects>
