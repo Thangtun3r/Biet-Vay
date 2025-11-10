@@ -9,6 +9,7 @@ TagManager:
   - WordPool
   - FinishLine
   - SOBietVay
+  - Player_Audio
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6fdf6d93-0930-4089-88d1-47d50d658341}">
+		<property name="assetPath">
+			<value>677230__davilca__break-ice-4.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.40799999999999997</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{48102138-9dc2-4e11-a962-9be4d9ea37bc}</destination>
+		</relationship>
+	</object>
+</objects>

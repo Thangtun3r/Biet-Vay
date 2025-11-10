@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random; // For Image component
+using Random = UnityEngine.Random;
+using FMODUnity; // ✅ Import FMODUnity namespace
 
 public class IceBreaker : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class IceBreaker : MonoBehaviour
     [Tooltip("ParticleSystem to play each time BreakIce() is called.")]
     public ParticleSystem breakParticles;
 
+    [Header("FMOD")]
+    [Tooltip("FMOD event that plays each time BreakIce() is called.")]
+    public EventReference breakSound; // ✅ Drag your FMOD event here
+
     [Header("Clicks needed per stage (random)")]
     [Min(1)] public int minClicksToAdvance = 1;
     [Min(1)] public int maxClicksToAdvance = 3;
@@ -20,9 +25,8 @@ public class IceBreaker : MonoBehaviour
     private int clicksRemaining = 1;       // how many more BreakIce() calls until we advance
     private Image imageComponent;
 
-    
     public static event Action OnIceBroken;
-    
+
     void Awake()
     {
         imageComponent = GetComponent<Image>();
@@ -42,23 +46,25 @@ public class IceBreaker : MonoBehaviour
     }
 
     /// <summary>
-    /// Plays particles and handles random-click progression.
-    /// Shows the last sprite normally; if triggered again while on the last sprite, disables the GameObject.
+    /// Plays particles, FMOD sound, and handles random-click progression.
     /// </summary>
     public void BreakIce()
     {
         if (!isActiveAndEnabled) return;
 
-        if (breakParticles != null) breakParticles.Play();
+        // ✅ Play particle FX
+        if (breakParticles != null)
+            breakParticles.Play();
+
+        // ✅ Play FMOD one-shot sound
+        if (!breakSound.IsNull)
+            RuntimeManager.PlayOneShot(breakSound, transform.position);
 
         // If we're already showing the last sprite, one more trigger disables.
         if (currentIndex >= iceSprites.Length - 1)
         {
-            // Invoke the event before disabling
-            
             OnIceBroken?.Invoke();
-            Debug.Log("iceBroken");
-
+            Debug.Log("Ice fully broken!");
             gameObject.SetActive(false);
             return;
         }
@@ -78,13 +84,10 @@ public class IceBreaker : MonoBehaviour
         clicksRemaining = RollClicks();
     }
 
-
     private int RollClicks()
     {
-        // Ensure sane bounds
         int lo = Mathf.Max(1, Mathf.Min(minClicksToAdvance, maxClicksToAdvance));
         int hi = Mathf.Max(lo, Mathf.Max(minClicksToAdvance, maxClicksToAdvance));
-        // Note: int Random.Range is [min, max) so add +1 to include hi.
         return Random.Range(lo, hi + 1);
     }
 }

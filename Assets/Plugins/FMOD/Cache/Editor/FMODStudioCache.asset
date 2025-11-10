@@ -20,6 +20,87 @@ MonoBehaviour:
   - Name: Desktop
     Value: 8915808
   Exists: 1
+--- !u!114 &-8617423406303504210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/Park Ambience
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/Park Ambience
+  Guid:
+    Data1: 425540245
+    Data2: 1115591027
+    Data3: 165513900
+    Data4: -1080703130
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 164013
+--- !u!114 &-8564098923027399525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/GachaMachine
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/GachaMachine
+  Guid:
+    Data1: 1044904868
+    Data2: 1268409628
+    Data3: -1543600488
+    Data4: 1773736872
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 5350
+--- !u!114 &-8543729191101978324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/Convenience Store
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/Convenience Store
+  Guid:
+    Data1: -1636997668
+    Data2: 1322322718
+    Data3: 503812756
+    Data4: -1609419945
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-8475359795592823462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +155,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 3416
+--- !u!114 &-8138715398315335940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/Car Passing
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/Car Passing
+  Guid:
+    Data1: -817791180
+    Data2: 1173484563
+    Data3: -2042942313
+    Data4: 1596922893
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 64226
 --- !u!114 &-7948058007449436636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +236,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 142051
+--- !u!114 &-7499544849284240031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/House amiene
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/House amiene
+  Guid:
+    Data1: 439393032
+    Data2: 1117628812
+    Data3: 1934860949
+    Data4: 828428815
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11300
 --- !u!114 &-6612061868392782816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,10 +359,10 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Vignette 3.bank
   Name: Vignette 3
   StudioPath: bank:/Vignette 3
-  lastModified: 638979641624599382
+  lastModified: 638983965892019212
   FileSizes:
   - Name: Desktop
-    Value: 338944
+    Value: 8637312
   Exists: 1
 --- !u!114 &-5613287546400000174
 MonoBehaviour:
@@ -283,6 +418,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 100
+--- !u!114 &-4314305093972802351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/mALL
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/mALL
+  Guid:
+    Data1: 2144682970
+    Data2: 1238415961
+    Data3: 900201918
+    Data4: 1214142677
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 42600
 --- !u!114 &-4175216039178188640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,6 +496,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 112
+--- !u!114 &-3526116863032020090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/Rain_Outside
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/Rain_Outside
+  Guid:
+    Data1: 568674031
+    Data2: 1079374442
+    Data3: 1905780644
+    Data4: 1777418765
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 96914
 --- !u!114 &-2825961640755684224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,6 +550,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12024
+--- !u!114 &-2794694418577050340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/ThunderStrike
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/ThunderStrike
+  Guid:
+    Data1: -1867902196
+    Data2: 1122704561
+    Data3: 1551637922
+    Data4: 333172276
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6580
 --- !u!114 &-2357905245782949628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +727,7 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638979682445080451
+  lastModified: 638983962853649802
   FileSizes:
   - Name: Desktop
     Value: 86880
@@ -650,17 +866,25 @@ MonoBehaviour:
   - {fileID: 2053546678224659878}
   - {fileID: 5860617807508303123}
   - {fileID: -357722805028614604}
-  - {fileID: 7765707381895008122}
   - {fileID: 7158473020842019998}
   - {fileID: 6574233069273764962}
   - {fileID: -1639440293590474928}
   - {fileID: -8475359795592823462}
+  - {fileID: -7499544849284240031}
+  - {fileID: -8617423406303504210}
+  - {fileID: -8138715398315335940}
+  - {fileID: -4314305093972802351}
+  - {fileID: -8564098923027399525}
+  - {fileID: -2794694418577050340}
+  - {fileID: -8543729191101978324}
+  - {fileID: -3526116863032020090}
+  - {fileID: 1300108546639198854}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1232821717831486065}
   StringsBanks:
   - {fileID: 7705571881547959551}
-  cacheTime: 638979698515224386
+  cacheTime: 638983965892019212
   cacheVersion: 131623
 --- !u!114 &701954921418370051
 MonoBehaviour:
@@ -740,6 +964,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 35
+--- !u!114 &1300108546639198854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Vignette 3/IceBreaking
+  m_EditorClassIdentifier: 
+  Path: event:/Vignette 3/IceBreaking
+  Guid:
+    Data1: 1035281818
+    Data2: 1168989281
+    Data3: -456324677
+    Data4: 1187005194
+  Banks:
+  - {fileID: -5902028416239022113}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &1429100228382397418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1079,38 +1330,11 @@ MonoBehaviour:
   Path: Assets/FMOD Assets/BietVay/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638979682445115640
+  lastModified: 638983962853683130
   FileSizes:
   - Name: Desktop
-    Value: 2658
+    Value: 3026
   Exists: 1
---- !u!114 &7765707381895008122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Vignette 3/Waking up
-  m_EditorClassIdentifier: 
-  Path: event:/Vignette 3/Waking up
-  Guid:
-    Data1: 439393032
-    Data2: 1117628812
-    Data3: 1934860949
-    Data4: 828428815
-  Banks:
-  - {fileID: -5902028416239022113}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 37336
 --- !u!114 &8234296464647683046
 MonoBehaviour:
   m_ObjectHideFlags: 0

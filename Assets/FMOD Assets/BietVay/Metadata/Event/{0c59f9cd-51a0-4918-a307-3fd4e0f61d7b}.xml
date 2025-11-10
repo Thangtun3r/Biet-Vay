@@ -100,6 +100,9 @@
 		<property name="timelockedOffset">
 			<value>0.049999999999982947</value>
 		</property>
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<relationship name="fadeInCurve">
 			<destination>{8cc6971a-a2c4-4a0b-aef1-ae475c4774e7}</destination>
 		</relationship>
@@ -115,7 +118,7 @@
 			<value>0.90000000000000002</value>
 		</property>
 		<property name="volume">
-			<value>-14.5</value>
+			<value>-16</value>
 		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{162ce9d0-d0ed-48eb-b91a-66299185b76a}</destination>
@@ -184,7 +187,7 @@
 			<value>0</value>
 		</property>
 		<property name="curveShape">
-			<value>-0.2547189</value>
+			<value>0.0673912391</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{b0b49739-4b9a-4e7b-bf2c-2863c87e4a33}">

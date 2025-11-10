@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{46e8b320-1de7-4cc1-acfe-5a1ae8313b6d}">
+		<property name="assetPath">
+			<value>Biet-Vay - Vignette3 - Windows, Mac, Linux - Unity 2022.3.62f2_ _DX11_ 2025-11-10 17-02-59.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5.4720000000000004</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{48102138-9dc2-4e11-a962-9be4d9ea37bc}</destination>
+		</relationship>
+	</object>
+</objects>

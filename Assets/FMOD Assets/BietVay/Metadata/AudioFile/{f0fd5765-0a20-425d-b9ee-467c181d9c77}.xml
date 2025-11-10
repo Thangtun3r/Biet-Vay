@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f0fd5765-0a20-425d-b9ee-467c181d9c77}">
+		<property name="assetPath">
+			<value>149444__conleec__amb_int_conveniencestore_001.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>174.93610416666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{48102138-9dc2-4e11-a962-9be4d9ea37bc}</destination>
+		</relationship>
+	</object>
+</objects>

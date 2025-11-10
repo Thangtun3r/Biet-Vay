@@ -162,7 +162,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 0}
   startMenuSceneName: Start Menu
-  holdDuration: 1
+  pauseMenuRoot: {fileID: 0}
+  resetButton: {fileID: 0}
+  backToStartButton: {fileID: 0}
+  enforceCursorEveryFrameWhilePaused: 1
+  pauseFmodOnPause: 1
+  fmodBusPathsToPause:
+  - bus:/
+  fmodEmittersToPause: []
 --- !u!114 &2720387137655865459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5601653612212845084}
   - component: {fileID: 8181742115930221212}
+  - component: {fileID: 8600777099386023829}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -432,6 +440,28 @@ MonoBehaviour:
   - Vignette 1
   CollisionTag: 
   PreloadSamples: 0
+--- !u!114 &8600777099386023829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241015611308123595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e5eb462c9cd4e347b215560f1ff1de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typewriterBlips:
+  - Guid:
+      Data1: -562008881
+      Data2: 1189238927
+      Data3: -740590184
+      Data4: 1253794825
+    Path: event:/UI/TypeWritterSFX
+  blipInterval: 4
+  stopOnLineEnd: 1
+  _presenter: {fileID: 0}
 --- !u!1 &4413016333800610442
 GameObject:
   m_ObjectHideFlags: 0

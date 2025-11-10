@@ -31638,33 +31638,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8024595309645763800, guid: 88a1178c01d91a3439e7141a40ccc176, type: 3}
   m_PrefabInstance: {fileID: 3824081045598938951}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &777398773 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3241015611308123595, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
-  m_PrefabInstance: {fileID: 8184803449116547549}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &777398776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 777398773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e5eb462c9cd4e347b215560f1ff1de0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  typewriterBlips:
-  - Guid:
-      Data1: -562008881
-      Data2: 1189238927
-      Data3: -740590184
-      Data4: 1253794825
-    Path: event:/UI/TypeWritterSFX
-  blipInterval: 4
-  stopOnLineEnd: 1
-  _presenter: {fileID: 9110503750108672}
 --- !u!1 &800997493
 GameObject:
   m_ObjectHideFlags: 0
@@ -65851,15 +65824,16 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[1].point
       value: 
       objectReference: {fileID: 1268577849}
+    - target: {fileID: 8600777099386023829, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
+      propertyPath: _presenter
+      value: 
+      objectReference: {fileID: 9110503750108672}
     m_RemovedComponents:
     - {fileID: 3441896046567736133, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
     - {fileID: 5487868670471297840, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3241015611308123595, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 777398776}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30708f4bbdfa9594488dd45893668f59, type: 3}
 --- !u!114 &8236712010062242506 stripped
 MonoBehaviour:

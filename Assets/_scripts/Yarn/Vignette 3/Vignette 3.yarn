@@ -63,6 +63,14 @@ title: start
     <<jump Home>>
 -> I/have/confessed/to/her.
     <<resolve>>
+-> Debug
+    <<transition 1>>
+    <<isBietVay>>
+    <<PsudoTurnOff>>
+    <<transition 5>>
+    <<expand>>
+    <<VMReset>>
+    <<jump Convenience_store>>
 ===
 
 title: Home
@@ -160,8 +168,8 @@ title: ParkChitchat
         Mai: Our school basketball team was full of handsome! Like unfairly handsome.
         -> Oh/ok.
             Tam: Oh ok.
-        -> Dafaud.
-            Tam: Dafa-
+        -> The hell.
+            Tam: The h-
             Mai: Huh?
             Tam: Ah- I mean cool cool.
         Mai: And he-he, you wouldn't guess which club I got into.
@@ -285,7 +293,6 @@ title: GachaMachineGame
 <<VMBoost 3>>
 <<collapse>>
 -> *Turn/ the crank*
-    Tam: *Turn the crank*
     <<roll>>
     <<wait 3>>
     <<if $favoriteGashapon>>
@@ -359,10 +366,10 @@ title: Convenince_store_mai
 <<collapse>>
 -> Lucky/ we/ stopped/ here.
     Tam: Lucky we stopped here.
-Mai: Yep—if we’d gone earlier, we’d be soaked.
+Mai: Ya, if we’d gone earlier, we’d be soaked.
 Mai: So...real talk! Are you interested in anyone in your class?
--> WHAT!/ Why/ so/ sudden?
-    Tam: <shake a=0.5>WHAT!</shake> Why so sudden?
+-> Not/really.
+    Tam: Not really.
     Tam: My class is all male, so… yeah.
 Mai: I can help you find someone! Let me be your wingman.
 Mai: And maybe you can help me find someone too.
@@ -370,18 +377,19 @@ Mai: And maybe you can help me find someone too.
     Tam: Nah, I’m good.
 Mai: Aww, come on. I could introduce you to Linh she’s really nice.
 Mai: Or Thảo from my club. She loves games!
--> How about/ the girl/ named/ Mai?
-    Tam: How about the girl named Mai?
-    Mai: ...
-    Mai: Huh?
-    Mai: <shake a=0.5>Huhhhhh?</shake>
-    -> Honestly,/ [fr]I like you.[/fr]
-        Tam: Honestly, I like you.
+-> What/about/ Mai?
+    Tam: What about Mai?
+    Mai: Mine? 
+    Mai: You mean you have a girlfriend already?
+    Mai: Aww, that's shucks.
+    ->  [fr]I like you.[/fr]
+        Tam: No, I mean Mai. You.
+        Tam: I like you.
         Mai: Whoa—hold up. This is very sudden.
         -> I’ve/ had/ a crush/on you/ since/ high school.
             Tam: I’ve had a crush on you since high school.
             Mai: ...
-            Mai: I thought we were just friends.
+            Mai: But I thought we were just friends.
             Mai: Tam, I truly appreciate your feelings.
 <<if $affection >= 3>>
     Mai: It’s sudden… Let me think about it, okay? I’ll text you.
@@ -423,10 +431,7 @@ title: delayedRejection
 <<spawn Home>>
 <<collapse>>
 Phone: (Notification)
-Mai: <shake a=0.1>Are</shake>
-Mai:  <shake a=0.2>you</shake>
-Mai: <shake a=0.5>Readyyyy</shake>
-Mai: <shake a=0.5>....</shake>
+Mai: ...
 Mai: Hey Tam, after thinking a lot about it—
 Mai: I truly value our time together and appreciate your feelings.
 Mai: But I don’t think I’m ready to go further than friendship.

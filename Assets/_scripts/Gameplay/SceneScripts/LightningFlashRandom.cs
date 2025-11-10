@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using FMODUnity;
 
 public class RandomLightningFlash : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class RandomLightningFlash : MonoBehaviour
     public Vector2 intervalRange = new Vector2(2f, 5f); // Time between storms
     public Vector2 flashesPerStrike = new Vector2(1, 3); // Min/Max flickers per strike
     public float timeBetweenFlashes = 0.1f; // Delay between flickers in one strike
+
+    [Header("FMOD Settings")]
+    [Tooltip("FMOD Event Reference for lightning sound (One-Shot)")]
+    public EventReference lightningSound;
 
     private Material mat;
 
@@ -37,21 +42,29 @@ public class RandomLightningFlash : MonoBehaviour
     {
         while (true)
         {
-            // Wait for a random interval before next strike
+            // Wait for random interval between strikes
             yield return new WaitForSeconds(Random.Range(intervalRange.x, intervalRange.y));
 
             int flashCount = Random.Range((int)flashesPerStrike.x, (int)flashesPerStrike.y + 1);
 
+            // 🎧 Play FMOD one-shot once per lightning strike
+            if (!lightningSound.IsNull)
+            {
+                RuntimeManager.PlayOneShot(lightningSound, transform.position);
+            }
+
             for (int i = 0; i < flashCount; i++)
             {
-                // Flash up QUICKLY
+                // Flash up quickly
                 mat.DOFade(flashAlpha, flashInDuration);
 
-                // Wait briefly, then fade out more slowly
+                // Wait for peak
                 yield return new WaitForSeconds(flashInDuration);
+
+                // Fade out slowly
                 mat.DOFade(normalAlpha, flashOutDuration);
 
-                // Small pause between flickers in the same strike
+                // Short pause before next flicker in this strike
                 yield return new WaitForSeconds(timeBetweenFlashes);
             }
         }
